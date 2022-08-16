@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 export default function MyButton() {
     return (
-        <button className=
-            "text-blue-400 bg-gray-90 body-font">Test</button>
+        <button class=
+            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Test</button>
     )
 };
