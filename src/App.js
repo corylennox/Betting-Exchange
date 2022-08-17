@@ -1,28 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-//import MyButton from "./MyButton"
-import MyButton from "./MyButton"
+import React from 'react';
+import TeamLine from './TeamLine';
 import "./tailwind.css"
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
 } from "react-router-dom";
 
-function App() {
+export default function App() {
   return (
-    <main>
+    <main class="text-gray-400 bg-gray-900 body-font py-200 px-200">
       <Router>
-        <MyButton />
-        <MyButton />
-        <MyButton />
-        <MyButton />
-        <MyButton />
-        <MyButton />
+        <TeamLine />
       </Router>
     </main>
   );
 }
-
-export default App;

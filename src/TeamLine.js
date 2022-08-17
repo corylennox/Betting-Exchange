@@ -1,7 +1,10 @@
 import React from 'react'
+import MyButton from './MyButton'
 
 export default function TeamLine() {
-  return (
-    <div>TeamLine</div>
-  )
+    return (
+        <div>
+            <MyButton />
+        </div>
+    )
 }

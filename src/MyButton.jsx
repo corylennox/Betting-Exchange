@@ -1,15 +1,6 @@
-import { event } from 'jquery';
 import React from 'react';
-/*
-export default function MyButton() {
-   return (
-       <button onClick={Toggle} class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded placeholder-shown:bg-red-500">
-           test {Toggle.state.isToggleOn ? 'ON' : 'OFF'}
-       </button>
-   )
-};
-*/
-export default class extends React.Component {
+
+export default class MyButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
