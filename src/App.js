@@ -1,5 +1,5 @@
 import React from 'react';
-import TeamLine from './TeamLine';
+import Proposition from './Proposition';
 import "./tailwind.css"
 import {
   BrowserRouter as Router,
@@ -9,8 +9,7 @@ export default function App() {
   return (
     <main class="text-gray-400 bg-gray-900 py-200 px-200">
       <Router>
-        <TeamLine />
-        <TeamLine />
+        <Proposition />
       </Router>
     </main>
   );
