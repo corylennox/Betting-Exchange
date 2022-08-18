@@ -7,8 +7,9 @@ import {
 
 export default function App() {
   return (
-    <main class="text-gray-400 bg-gray-900 body-font py-200 px-200">
+    <main class="text-gray-400 bg-gray-900 py-200 px-200">
       <Router>
+        <TeamLine />
         <TeamLine />
       </Router>
     </main>

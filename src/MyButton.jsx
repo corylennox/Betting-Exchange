@@ -16,12 +16,11 @@ export default class MyButton extends React.Component {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
-
   }
 
   render() {
     return (
-      <button onClick={this.handleClick} class={this.state.isToggleOn ? this.state.onCSS : this.state.offCSS}>
+      <button onClick={this.handleClick} className={this.state.isToggleOn ? this.state.onCSS : this.state.offCSS}>
         test
       </button>
     );
