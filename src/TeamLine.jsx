@@ -1,13 +1,13 @@
 import React from 'react'
 import MyButton from './MyButton'
-import { ArrowRightIcon } from "@heroicons/react/solid";
+import { CloudIcon } from "@heroicons/react/solid";
 
 export default function TeamLine() {
     return (
-        <div className='flex items-center justify-between max-w-lg '>
-            <div className='flex'>
-                <body className=''>Boston Celtics</body>
-                <ArrowRightIcon className='w-5 h-5 ml-1' />
+        <div className='border-2 border-blue-600 h-full w-full flex item'>
+            <div className='border-2 border-red-600 items-center flex'>
+                <CloudIcon className='w-8 h-8 ml-1 fill-green-600' />
+                <body className='text-black'>Boston Celtics</body>
             </div>
             <MyButton />
         </div>

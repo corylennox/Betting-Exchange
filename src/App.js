@@ -7,7 +7,7 @@ import {
 
 export default function App() {
   return (
-    <main class="text-gray-400 bg-gray-900 py-200 px-200">
+    <main class="absolute inset-0 text-gray-400 bg-gray-900">
       <Router>
         <Proposition />
       </Router>
