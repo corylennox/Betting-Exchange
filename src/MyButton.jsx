@@ -21,7 +21,7 @@ export default class MyButton extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick} className={this.state.isToggleOn ? this.state.onCSS : this.state.offCSS}>
-        test
+        +450
       </button>
     );
   }
