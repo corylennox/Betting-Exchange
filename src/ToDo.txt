@@ -1,2 +1,4 @@
 figure out best way to structure data (array in array?/image links)
 Rename propositions, team, item
+
+https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png
