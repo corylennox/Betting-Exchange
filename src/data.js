@@ -1,4 +1,4 @@
-export const Teams = [
+export const teams = [
     { team: "Boston Celtics" },
     { team: "Miami Shitters" },
     { team: "Golden State Cocksuckers" },
