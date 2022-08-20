@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Proposition from './Proposition';
+import Navbar from './components/Navbar';
+import Proposition from './components/Proposition';
 import "./tailwind.css"
 import {
   BrowserRouter as Router,
@@ -11,7 +11,7 @@ export default function App() {
     <main class="absolute inset-0 text-gray-400 bg-gray-900">
       <Router>
         <Navbar />
-        <Proposition />
+        <Proposition title='NBA' subTitle='theyre better than women!'/>
       </Router>
     </main>
   );

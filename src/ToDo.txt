@@ -1,0 +1,2 @@
+figure out best way to structure data (array in array?/image links)
+Rename propositions, team, item
