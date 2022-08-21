@@ -9,6 +9,8 @@ export default class MyButton extends React.Component {
       onCSS: "bg-blue-600 text-white font-semibold py-2 px-4 border border-gray-800 border-2 rounded placeholder-shown:bg-red-500"
     };
 
+    this.moneyline = this.props.moneyline;
+
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -21,7 +23,7 @@ export default class MyButton extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick} className={this.state.isToggleOn ? this.state.onCSS : this.state.offCSS}>
-        +450
+        {this.moneyline}
       </button>
     );
   }
