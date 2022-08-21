@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ContestantsData } from "../data";
-import Contestant from "./Contestant";
+import ContestantRow from "./ContestantRow";
 
 export default class OutrightBet extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class OutrightBet extends Component {
         <div class="grid grid-cols-3 mb-4 border-2 border-green-600">
           {ContestantsData.basketball.nbaTeams.map((nbaTeam) => (
             <div class="mb-4 bg-gray-400 h-12">
-              <Contestant contestantData={nbaTeam} />
+              <ContestantRow contestantData={nbaTeam} />
             </div>
           ))}
         </div>

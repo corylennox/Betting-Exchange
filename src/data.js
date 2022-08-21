@@ -1,8 +1,8 @@
 /*OutrightBet requires
     {
         contestant: 
-        img: 
-        line: "
+        image: 
+        moneyline: "
     },
 ];*/
 
@@ -13,62 +13,61 @@ export const ContestantsData =
         [
             {
                 contestant: "Boston Celtics",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-                line: "-1000"
+                image: "nba_icons/boston_celtics.png",
+                moneyline: "-1000"
             },
             {
                 contestant: "Miami Shitters",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png",
-                line: "+350"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png",
+                moneyline: "+350"
             },
             {
                 contestant: "Golden State Cocksuckers",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png",
-                line: "+250"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png",
+                moneyline: "+250"
             },
             {
                 contestant: "New Orleans Toucans",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/new_orleans_pelicans.png",
-                line: "+350"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/new_orleans_pelicans.png",
+                moneyline: "+350"
             },
             {
                 contestant: "Dallas Horses",
-
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/dallas_mavericks.png",
-                line: "+400"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/dallas_mavericks.png",
+                moneyline: "+400"
             },
             {
                 contestant: "Detroit Axles",
 
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/detroit_pistons.png",
-                line: "+125"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/detroit_pistons.png",
+                moneyline: "+125"
             },
             {
                 contestant: "Memphis Teddy Bears",
 
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/memphis_grizzlies.png",
-                line: "+510"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/memphis_grizzlies.png",
+                moneyline: "+510"
             },
             {
                 contestant: "Chicago Maybe Next Years",
 
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-                line: "+760"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/chicago_bulls.png",
+                moneyline: "+760"
             },
             {
                 contestant: "Brooklyn Losers",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-                line: "+160"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/brooklyn_nets.png",
+                moneyline: "+160"
             },
             {
                 contestant: "Atlanta Birds",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-                line: "+230"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/atlanta_hawks.png",
+                moneyline: "+230"
             },
             {
                 contestant: "Orlando Tragic",
-                img: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-                line: "+290"
+                image: "https://assets.sportsbook.fanduel.com/images/team/nba/orlando_magic.png",
+                moneyline: "+290"
             },
         ],
         wnbaTeams: 
