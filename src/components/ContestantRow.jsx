@@ -9,23 +9,30 @@ export default class ContestantRow extends React.Component {
         this.image = props.contestandData.image;
         this.moneyline = props.contestandData.moneyline;
 
+        this.renderImage = this.renderImage.bind(this);
     }
+
+    renderImage() {
+        if(this.image)
+        {
+            return (<img
+                alt={this.name}
+                className="w-8 h-8 ml-1"
+                src={this.image}
+            />)
+        }
+    }
+
     render() {
         return (
             <div className='h-full w-full flex justify-center'>
-                <div className='w-2/3  items-center flex justify-center'>
-                    <img
-                        alt={this.name}
-                        className="w-8 h-8 ml-1"
-                        src={this.image}
-                    />
-
-                    <body className='text-black pl-3'>{this.name}</body>
+                <div className='w-full items-center flex justify-left'>
+                    {this.renderImage()}
+                    <body className='min-w-fit text-gray-700 text-sm font pl-3'>{this.name}</body>
                 </div>
-                <div className='w-1/3 flex justify-center'>
+                <div className='w-full flex justify-end'>
                     <MyButton moneyline={this.moneyline} image={this.image} />
                 </div>
-
             </div>
         )
     }

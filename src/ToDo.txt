@@ -2,3 +2,6 @@ Terms we should know:
 Outright betting
 Moneyline
 Point spread
+
+To Do:
+order contestant rows by odds
