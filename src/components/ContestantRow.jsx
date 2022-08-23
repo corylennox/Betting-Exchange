@@ -8,7 +8,6 @@ export default class ContestantRow extends React.Component {
         this.name = props.contestantData.name;
         this.image = props.contestantData.image;
         this.moneyline = props.contestantData.moneyline;
-
         this.renderImage = this.renderImage.bind(this);
     }
 
