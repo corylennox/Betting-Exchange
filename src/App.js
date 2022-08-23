@@ -12,13 +12,13 @@ export default function App() {
       <Router>
         <Navbar />
         <div className='h-full w-full justify-center flex'>
-          <div className=' bg-slate-900 flex justify-end h-full w-full'>
+          <div className=' bg-slate-900 border-t border-slate-100 flex justify-end h-full w-full'>
             <body>sidebar</body>
             </div>
           <div className="h-full min-w-fit max-w-6xl">
             <Basketball/>
           </div>
-          <div className='bg-slate-100 shadow-xl drop-shadow-md h-full w-full'><body>Betslip</body></div>
+          <div className='bg-slate-50 shadow-xl drop-shadow-md h-full w-full'><body>Betslip</body></div>
         </div>
       </Router>
     </main>
