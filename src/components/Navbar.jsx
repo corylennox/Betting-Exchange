@@ -1,47 +1,43 @@
 import React from "react";
+import NavbarTabs from "./NavbarTabs";
 
 const navs = {
     home: {
         name: "Home",
-        url: "eiffel.com"
+        href: "home"
     },
     myBets: {
         name: "My Bets",
-        url: "eiffel.com/my-bets"
+        href: "my-bets"
     },
 };
 
 const loginItems = {
     login: {
         name: "Log in",
-        url: "eiffel.com/login#login"
+        href: "login"
     },
     signup: {
         name: "Sign Up",
-        url: "eiffel.com/login#signup"
+        href: "signup"
     },
 };
 
 export default function Navbar() {
   return (
-    <header class="bg-slate-900 border-b border-slate-100 top-0 z-50 sticky">
+    <header class="bg-slate-800 top-0 z-50 sticky">
         <div class="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center">
             <div class="flex flex-wrap flex-col md:flex-row items-center">
-                <a href={navs.home.url} class="px-3 py-7">
+                <a href={navs.home.href} class="px-3 py-7">
                     {navs.home.name}
                 </a>
-                <a href={navs.home.url} class="px-3 py-7">
-                    {navs.home.name}
-                </a>
-                <a href={navs.myBets.url} class="px-3 py-7">
-                    {navs.myBets.name}
-                </a>
+                <NavbarTabs navs={navs}/>
             </div>
             <div class="flex flex-wrap flex-col md:flex-row items-center">
-                <a href={loginItems.login.url} class="px-3 py-7">
+                <a href={loginItems.login.href} class="px-3 py-7">
                     {loginItems.login.name}
                 </a>
-                <a href={loginItems.signup.url} class="px-3 py-7">
+                <a href={loginItems.signup.href} class="px-3 py-7">
                     {loginItems.signup.name}
                 </a>
             </div>
