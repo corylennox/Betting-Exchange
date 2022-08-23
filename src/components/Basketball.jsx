@@ -5,7 +5,7 @@ import OutrightBet from "./OutrightBet";
 export default class Basketball extends Component {
     render() {
         return (
-            <div>
+            <div className="className='bg-slate-200 pl-8 pt-4 pr-8 '">
                 <h1 className='mb-3 font-semibold font-sans text-2xl text-slate-900'>Basketball</h1>
                 {BetData.map((betData) => (
                     <div>
