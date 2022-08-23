@@ -25,7 +25,7 @@ const loginItems = {
 
 export default function Navbar() {
   return (
-    <header class="bg-slate-800 top-0 z-50 sticky">
+    <header class="bg-slate-900 border-b border-slate-200 top-0 z-50 sticky">
         <div class="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center">
             <div class="flex flex-wrap flex-col md:flex-row items-center">
                 <a href={navs.home.href} class="px-3 py-7">

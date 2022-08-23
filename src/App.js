@@ -18,7 +18,7 @@ export default function App() {
           <div className="h-full min-w-fit max-w-6xl">
             <Basketball/>
           </div>
-          <div className='bg-slate-200 shadow-xl drop-shadow-md h-full w-full'><body>Betslip</body></div>
+          <div className='bg-slate-100 shadow-xl drop-shadow-md h-full w-full'><body>Betslip</body></div>
         </div>
       </Router>
     </main>
