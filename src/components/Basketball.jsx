@@ -9,7 +9,7 @@ export default class Basketball extends Component {
                 <h1 className='mb-3 font-semibold font-sans text-2xl text-slate-900'>Basketball</h1>
                 {BetData.map((betData) => (
                     <div>
-                        <OutrightBet title={betData.title} contestantsData={betData.contestantData} />
+                        <OutrightBet title={betData.title} contestantsData={betData.contestantsData} />
                     </div>
                 ))}
             </div>

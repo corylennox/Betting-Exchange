@@ -101,10 +101,10 @@ export const BetData =
 [
     {
         title: "2022-23 NBA Championship Winner",
-        contestantData: ContestantsData.basketball.nbaTeams,
+        contestantsData: ContestantsData.basketball.nbaTeams,
     },
     {
         title: "2022-23 WNBA Championship Winner",
-        contestantData: ContestantsData.basketball.wnbaTeams,
+        contestantsData: ContestantsData.basketball.wnbaTeams,
     },
 ]

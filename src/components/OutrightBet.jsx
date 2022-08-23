@@ -7,11 +7,10 @@ export default class OutrightBet extends Component {
 
     this.title = props.title;
 
-    this.contestantRows = this.props.contestantsData.map((contestandData) => (
-      <div class="mb-2 h-12">
-        <ContestantRow contestandData={contestandData} />
-      </div>
-    ));
+    this.contestantsData = [];
+    this.props.contestantsData.forEach(element => {
+      this.contestantsData.push(element);
+    });
   }
 
   render() {
@@ -20,7 +19,11 @@ export default class OutrightBet extends Component {
         <h2 className="flex font-semibold text-blue-900 text-xl">{this.title}</h2>
         <h3 className=" pb-2 font-semibold text-slate-900 text-md">Outright Bet</h3>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {this.contestantRows}
+          {this.contestantsData.map((contestandData) => (
+            <div class="mb-2 h-12">
+              <ContestantRow contestantData={contestandData} />
+            </div>
+          ))}
         </div>
       </div>
     );
