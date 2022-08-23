@@ -63,7 +63,7 @@ export const ContestantsData =
         [
             {
                 name: "Nobody",
-                moneyline: "-1000"
+                moneyline: "+25"
             },
             {
                 name: "Cares",
