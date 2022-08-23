@@ -1,0 +1,6 @@
+- We use the-odds-api.com or an analyst to generate a daily list of possible bets and their valid values. 
+	- We provide a “get” api so that market makers can see the available bets for the day
+- Market makers A and B submit a triangle (our API message) to our servers via the API and we reject their message if any field in their message is invalid (doesn’t pass the filter based on the valid bets for the day)
+- Any Market Maker message that passes the filter will have their values added to the corresponding order book.
+- The bets pane on the website will display all of today’s possible bets and the teams/competitors within the bets. There will be a lock icon if there is no values for the bet received yet. Otherwise, there will be the “best” available from the order book displayed on the UI.
+	- This “lock” mechanism mimics what fan duel does right now when bets cannot be placed for a certain bet
