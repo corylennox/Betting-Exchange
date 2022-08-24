@@ -97,9 +97,7 @@ export const ContestantsData =
 
 };
 
-export const SkyLynxGame = {
-    title: "Chicago Sky @ Minnesota Lynx",
-
+export const SkyLynxGameContestantData = {
     contestantData1: {
         name: "Minnesota Lynx",
         image: "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
@@ -120,12 +118,20 @@ export const SkyLynxGame = {
 export const BetData =
 [
     {
+        type: "outright",
         title: "2022-23 NBA Championship Winner",
         contestantsData: ContestantsData.basketball.nbaTeams,
     },
     {
+        type: "outright",
         title: "2022-23 WNBA Championship Winner",
         contestantsData: ContestantsData.basketball.wnbaTeams,
+    },
+    {
+        type: "game",
+        title: "Chicago Sky @ Minnesota Lynx",
+        contestantData1: SkyLynxGameContestantData.contestantData1,
+        contestantData2: SkyLynxGameContestantData.contestantData2
     },
 ]
 
