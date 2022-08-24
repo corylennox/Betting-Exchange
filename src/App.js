@@ -4,7 +4,7 @@ import "./tailwind.css"
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
-import Basketball from './components/Basketball';
+import SportPane from './components/SportPane';
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
             <body>sidebar</body>
             </div>
           <div className="h-full min-w-fit max-w-6xl">
-            <Basketball/>
+            <SportPane/>
           </div>
           <div className='bg-slate-50 shadow-xl drop-shadow-md h-full w-full'><body>Betslip</body></div>
         </div>

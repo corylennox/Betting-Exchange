@@ -115,25 +115,91 @@ export const SkyLynxGameContestantData = {
     }
 };
 
-export const BetData =
-[
-    {
-        type: "outright",
-        title: "2022-23 NBA Championship Winner",
-        contestantsData: ContestantsData.basketball.nbaTeams,
-    },
-    {
-        type: "outright",
-        title: "2022-23 WNBA Championship Winner",
-        contestantsData: ContestantsData.basketball.wnbaTeams,
-    },
-    {
-        type: "game",
-        title: "Chicago Sky @ Minnesota Lynx",
-        contestantData1: SkyLynxGameContestantData.contestantData1,
-        contestantData2: SkyLynxGameContestantData.contestantData2
-    },
-]
+export const BasketballBetData =
+{
+    sport: "Basketball",
+    availableBets:
+    [
+        {
+            type: "outright",
+            title: "2022-23 NBA Championship Winner",
+            contestantsData: ContestantsData.basketball.nbaTeams,
+        },
+        {
+            type: "outright",
+            title: "2022-23 WNBA Championship Winner",
+            contestantsData: ContestantsData.basketball.wnbaTeams,
+        },
+        {
+            type: "game",
+            title: "Chicago Sky @ Minnesota Lynx",
+            contestantData1: SkyLynxGameContestantData.contestantData1,
+            contestantData2: SkyLynxGameContestantData.contestantData2
+        },
+    ]
+};
+
+export const BaseballBetData =
+{
+    sport: "Baseball",
+    availableBets:
+    [
+        {
+            type: "game",
+            title: "Chicago Cubs @ Seattle Mariners",
+            contestantData1: {
+                name: "Chicago Cubs",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/chicago_cubs.png",
+                spread: "-2.5",
+                money: "-160",
+                total: "O 16"
+            },
+            contestantData2: {
+                name: "Seattle Mariners",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/seattle_mariners.png",
+                spread: "+2",
+                money: "+180",
+                total: "U 16"
+            }
+        },
+        {
+            type: "game",
+            title: "Cincinnati Reds @ Philadelphia Phillies",
+            contestantData1: {
+                name: "Cincinnati Reds",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/cincinnati_reds.png",
+                spread: "-1.5",
+                money: "-350",
+                total: "O 6.5"
+            },
+            contestantData2: {
+                name: "Philadelphia Phillies",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png",
+                spread: "+1",
+                money: "+250",
+                total: "U 6.5"
+            }
+        },
+        {
+            type: "game",
+            title: "Atlanta Braves @ Pittsburgh Pirates",
+            contestantData1: {
+                name: "Atlanta Braves",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png",
+                spread: "-5",
+                money: "-600",
+                total: "O 8.5"
+            },
+            contestantData2: {
+                name: "Pittsburgh Pirates",
+                image: "https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png",
+                spread: "+5.5",
+                money: "+300",
+                total: "U 8.5"
+            }
+        },
+    ]
+};
 
 // export const basketballBets = {
 //     tabs: [
