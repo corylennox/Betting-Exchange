@@ -1,5 +1,6 @@
 import React from 'react'
 import MyButton from './MyButton'
+import TeamAndOptionalLogo from './TeamAndOptionalLogo'
 
 export default class ContestantRow extends React.Component {
     constructor(props) {
@@ -25,10 +26,7 @@ export default class ContestantRow extends React.Component {
     render() {
         return (
             <div className='w-full flex justify-center mb-2 h-12  border-black '>
-                <div className='w-full items-center flex justify-left'>
-                    {this.renderImage()}
-                    <body className='min-w-fit text-gray-700 text-sm font pl-3'>{this.name}</body>
-                </div>
+                <TeamAndOptionalLogo image={this.image} name={this.name} />
                 <div className='w-full flex justify-end'>
                     <MyButton moneyline={this.moneyline} image={this.image} />
                 </div>
@@ -36,4 +34,3 @@ export default class ContestantRow extends React.Component {
         )
     }
 }
-

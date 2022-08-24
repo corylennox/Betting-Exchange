@@ -97,6 +97,26 @@ export const ContestantsData =
 
 };
 
+export const SkyLynxGame = {
+    title: "Chicago Sky @ Minnesota Lynx",
+
+    contestantData1: {
+        name: "Minnesota Lynx",
+        image: "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
+        spread: "-7",
+        money: "-120",
+        total: "O 160"
+    },
+
+    contestantData2: {
+        name: "Chicago Sky",
+        image: "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
+        spread: "+6.5",
+        money: "+140",
+        total: "U 160"
+    }
+};
+
 export const BetData =
 [
     {
@@ -108,3 +128,39 @@ export const BetData =
         contestantsData: ContestantsData.basketball.wnbaTeams,
     },
 ]
+
+// export const basketballBets = {
+//     tabs: [
+//         {
+//             tabName: "Featured",
+//             bets: [
+//                 {
+//                     betId: 01
+//                     betName: "2023 Champion",
+//                     betType: "outright",
+//                     ...
+//                 },
+//                 {
+//                     betId: 02
+//                     betName: "2023 MVP",
+//                     betType: "outright",
+//                     valueNames: ["Luka Doncic", "Lebron James", ...],
+//                     ...
+//                 }
+//             ]
+//         },
+//         {
+//             tabName: "WNBA",
+//             bets: [
+//                 {
+//                     betName: "Lynx @ Stars",
+//                     betType: "spread, money, total",
+//                 },
+//                 {
+//                     betName: "Sun @ Pussies",
+//                     betType: "spread, money, total",
+//                 },
+//             ]
+//         }
+//     ]
+// }

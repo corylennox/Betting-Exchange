@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { BetData } from '../data';
+import { BetData, SkyLynxGame } from '../data';
 import OutrightBet from "./OutrightBet";
+import GameBet from "./GameBet";
 
 export default class Basketball extends Component {
     render() {
@@ -12,6 +13,9 @@ export default class Basketball extends Component {
                         <OutrightBet title={betData.title} contestantsData={betData.contestantsData} />
                     </div>
                 ))}
+                <div>
+                    <GameBet gameData={SkyLynxGame} />
+                </div>
             </div>
         );
     }
