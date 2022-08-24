@@ -24,7 +24,7 @@ export default class ContestantRow extends React.Component {
 
     render() {
         return (
-            <div className='h-full w-full flex justify-center'>
+            <div className='w-full flex justify-center mb-2 h-12  border-black '>
                 <div className='w-full items-center flex justify-left'>
                     {this.renderImage()}
                     <body className='min-w-fit text-gray-700 text-sm font pl-3'>{this.name}</body>
