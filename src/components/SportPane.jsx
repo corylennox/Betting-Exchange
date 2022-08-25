@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
-import { BasketballBetData, BaseballBetData } from '../data';
+import { BetData } from '../betData';
 import OutrightBet from "./OutrightBet";
 import GameBet from "./GameBet";
 
-const BetData = BasketballBetData;
+const betData = BetData[0];
+
 
 export default class SportPane extends Component {
     render() {
         return (
             <div className="h-full bg-slate-100 pl-8 pt-4 pr-8">
-                <h1 className='mb-3 font-semibold font-sans text-2xl text-slate-900'>{BetData.sport}</h1>
-                {BetData.availableBets.map((betData) =>
-                {
-                    if (betData.type === 'outright')
-                    {
-                        return <div> <OutrightBet title={betData.title} contestantsData={betData.contestantsData} /> </div>;
+                <h1 className='mb-3 font-semibold font-sans text-2xl text-slate-900'>{betData.sport}</h1>
+                {betData.availableBets.map((bet) => {
+                    switch (bet.type) {
+                        case "outright":
+                            return <div> <OutrightBet betData={bet} /> </div>;
+                        case "game":
+                            return <div> <GameBet betData={bet} /> </div>;
+                        default:
+                            return <></>;
                     }
-                    else if (betData.type === 'game')
-                    {
-                        return <div> <GameBet gameData={betData} /> </div>;
-                    }
-                    return <></>;
                 })}
             </div>
         );

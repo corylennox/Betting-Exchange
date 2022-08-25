@@ -4,6 +4,6 @@ Moneyline
 Point spread
 
 To Do:
-order contestant rows by odds
+order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
