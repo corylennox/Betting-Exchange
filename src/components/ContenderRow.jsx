@@ -1,6 +1,5 @@
 import React from 'react'
 import MyButton from './MyButton'
-import TeamAndOptionalLogo from './TeamAndOptionalLogo'
 
 export default class ContenderRow extends React.Component {
     constructor(props) {
@@ -26,7 +25,7 @@ export default class ContenderRow extends React.Component {
     render() {
         return (
             <div className='w-full flex justify-center mb-2 h-12  border-black '>
-                <TeamAndOptionalLogo image={this.image} name={this.name} />
+                {this.props.contenderData}
                 <div className='w-full flex justify-end'>
                     <MyButton moneyline={this.moneyline} image={this.image} />
                 </div>

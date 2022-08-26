@@ -7,3 +7,4 @@ To Do:
 order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
+make odds random

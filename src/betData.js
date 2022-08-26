@@ -12,25 +12,43 @@ export const BetData = [
             {
                 type: "outright",
                 title: "2022-23 WNBA Championship Winner",
-                contendersData: ContendersData.basketball.nbaTeams,
+                contendersData: ContendersData.basketball.wnbaTeams,
             },
             {
                 type: "game",
                 title: "Milwaukee Bucks @ Minnesota Timberwolves",
                 contender1Data: {
-                    name: "Milwaukee Bucks",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/nba/milwaukee_bucks.png",
+                    contender1: ContendersData.basketball.nbaTeams.at(0),
                     spread: "+6.5",
                     money: "+140",
                     total: "U 160"
                 },
                 contender2Data: {
-                    name: "Minnesota Timberwolves",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/nba/minnesota_timberwolves.png",
+                    contender2: ContendersData.basketball.nbaTeams.at(1),
                     spread: "+6.5",
                     money: "+140",
                     total: "U 160"
                 },
+            },
+            {
+                type: "game",
+                title: "Chicago Sky @ Minnesota Lynx",
+                contender1: ContendersData.basketball.wnbaTeams.at(0),
+                contender2: ContendersData.basketball.wnbaTeams.at(1),
+                contender1Data: {
+                    spread: "+6.5",
+                    money: "+140",
+                    total: "U 160"
+                },
+                contender2Data: {
+                    name: "Minnesota Lynx",
+                    image: "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
+                    spread: "-7",
+                    money: "-120",
+                    total: "O 160"
+                },
+
+
             },
         ]
     },
@@ -41,15 +59,14 @@ export const BetData = [
                 type: "game",
                 title: "Chicago Cubs @ Seattle Mariners",
                 contenderData1: {
-                    name: "Chicago Cubs",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/chicago_cubs.png",
+                    contender1: ContendersData.baseball.mlbTeams.at(0),
                     spread: "-2.5",
                     money: "-160",
                     total: "O 16"
                 },
                 contenderData2: {
                     name: "Seattle Mariners",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/seattle_mariners.png",
+                    image: ContendersData.baseball.mlbTeams.at(1),
                     spread: "+2",
                     money: "+180",
                     total: "U 16"
@@ -59,15 +76,13 @@ export const BetData = [
                 type: "game",
                 title: "Cincinnati Reds @ Philadelphia Phillies",
                 contenderData1: {
-                    name: "Cincinnati Reds",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/cincinnati_reds.png",
+                    image: ContendersData.baseball.mlbTeams.at(2),
                     spread: "-1.5",
                     money: "-350",
                     total: "O 6.5"
                 },
                 contenderData2: {
-                    name: "Philadelphia Phillies",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png",
+                    image: ContendersData.baseball.mlbTeams.at(3),
                     spread: "+1",
                     money: "+250",
                     total: "U 6.5"
@@ -77,15 +92,13 @@ export const BetData = [
                 type: "game",
                 title: "Atlanta Braves @ Pittsburgh Pirates",
                 contenderData1: {
-                    name: "Atlanta Braves",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png",
+                    image: ContendersData.baseball.mlbTeams.at(4),
                     spread: "-5",
                     money: "-600",
                     total: "O 8.5"
                 },
                 contenderData2: {
-                    name: "Pittsburgh Pirates",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png",
+                    image: ContendersData.baseball.mlbTeams.at(5),
                     spread: "+5.5",
                     money: "+300",
                     total: "U 8.5"

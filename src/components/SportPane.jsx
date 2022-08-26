@@ -14,9 +14,9 @@ export default class SportPane extends Component {
                 {betData.availableBets.map((bet) => {
                     switch (bet.type) {
                         case "outright":
-                            return <div> <OutrightBet betData={bet} /> </div>;
+                            return <div> <OutrightBet outrightBetData={bet} /> </div>;
                         case "game":
-                            return <div> <GameBet betData={bet} /> </div>;
+                            return <div> <GameBet gameBetData={bet} /> </div>;
                         default:
                             return <></>;
                     }
