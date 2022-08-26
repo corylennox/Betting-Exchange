@@ -13,7 +13,7 @@ export default class ContenderAndIcon extends React.Component {
         {
             return (<img
                 alt={this.props.name}
-                className="w-8 h-8 ml-1"
+                className="w-8 h-8"
                 src={this.props.image}
             />)
         }
@@ -23,7 +23,7 @@ export default class ContenderAndIcon extends React.Component {
         return (
             <div className='w-full items-center flex justify-left'>
                 {this.renderOptionalImage()}
-                <body className='min-w-fit text-gray-700 text-sm font pl-3'>{this.name}</body>
+                <body className='min-w-fit text-gray-700 text-md font-normal pl-3'>{this.name}</body>
             </div>
         )
     }

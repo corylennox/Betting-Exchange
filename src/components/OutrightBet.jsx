@@ -2,32 +2,38 @@ import React, { Component } from "react";
 import MyButton from "./MyButton";
 
 class OutrightBetContenderRow extends React.Component {
-  // renderImage() {
-  //     if(this.props.contenderData.image)
-  //     {
-  //         return (<img
-  //             alt={this.props.contenderData.name}
-  //             className="w-8 h-8 ml-1"
-  //             src={this.props.contenderData.image}
-  //         />)
-  //     }
-  // }
+  constructor(props) {
+    super(props);
+    //this code randomly generates a an int between -1000 and +1000
+    this.randMoneyline = (Math.random() < 0.5 ? -1 : 1) * (Math.ceil((Math.random() * 1000) / 10) * 10);
+    this.randMoneylineStr = "";
+    if (this.randMoneyline < 0) {
+      this.randMoneylineStr = this.randMoneyline.toString();
+    }
+    else {
+      this.randMoneylineStr = "+".concat(this.randMoneyline.toString());
+    }
+
+  }
   render() {
-      return (
-          <div className='w-full flex justify-center mb-2 h-12  border-black '>
-              {this.props.contenderData}
-              <div className='w-full flex justify-end'>
-                  <MyButton moneyline="100" image={this.props.contenderData.image} />
-              </div>
-          </div>
-      )
+    return (
+      <div className='w-full flex justify-center mb-2 h-12 border-black '>
+        {this.props.contenderData}
+        <div className='w-full flex justify-end'>
+          <MyButton moneyline={this.randMoneylineStr} />
+        </div>
+      </div>
+    )
   }
 }
 
 export default class OutrightBet extends Component {
   constructor(props) {
     super(props);
-    //this.props.outrightBetData.contendersData.sort(function (a, b) { return a.moneyline - b.moneyline })
+
+    this.rowsArr = this.props.outrightBetData.contendersData.map((contenderData) => (
+      <OutrightBetContenderRow contenderData={contenderData} />
+    ));
   }
 
   render() {
@@ -36,10 +42,9 @@ export default class OutrightBet extends Component {
         <h2 className="flex font-semibold text-blue-900 text-xl">{this.props.outrightBetData.title}</h2>
         <h3 className=" pb-2 font-semibold text-slate-900 text-md">Outright Bet</h3>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
-          {//print rows
-            this.props.outrightBetData.contendersData.map((contenderData) => (
-              <OutrightBetContenderRow contenderData={contenderData} />
-            ))
+          {
+            //NOT SORTING for some reason smh
+            this.rowsArr.sort(function (a, b) { return a.randMoneyline - b.randMoneyline })
           }
         </div>
       </div>

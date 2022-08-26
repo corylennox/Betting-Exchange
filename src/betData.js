@@ -18,37 +18,33 @@ export const BetData = [
                 type: "game",
                 title: "Milwaukee Bucks @ Minnesota Timberwolves",
                 contender1Data: {
-                    contender1: ContendersData.basketball.nbaTeams.at(0),
-                    spread: "+6.5",
+                    contender: ContendersData.basketball.nbaTeams[0],
+                    spread: "+7.5",
                     money: "+140",
-                    total: "U 160"
+                    total: "O 160"
                 },
                 contender2Data: {
-                    contender2: ContendersData.basketball.nbaTeams.at(1),
-                    spread: "+6.5",
-                    money: "+140",
+                    contender: ContendersData.basketball.nbaTeams[1],
+                    spread: "-7",
+                    money: "-120",
                     total: "U 160"
                 },
             },
             {
                 type: "game",
                 title: "Chicago Sky @ Minnesota Lynx",
-                contender1: ContendersData.basketball.wnbaTeams.at(0),
-                contender2: ContendersData.basketball.wnbaTeams.at(1),
                 contender1Data: {
+                    contender: ContendersData.basketball.wnbaTeams[0],
                     spread: "+6.5",
                     money: "+140",
-                    total: "U 160"
-                },
-                contender2Data: {
-                    name: "Minnesota Lynx",
-                    image: "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
-                    spread: "-7",
-                    money: "-120",
                     total: "O 160"
                 },
-
-
+                contender2Data: {
+                    contender: ContendersData.basketball.wnbaTeams[1],
+                    spread: "-7",
+                    money: "-120",
+                    total: "U 160"
+                },
             },
         ]
     },
@@ -58,15 +54,14 @@ export const BetData = [
             {
                 type: "game",
                 title: "Chicago Cubs @ Seattle Mariners",
-                contenderData1: {
-                    contender1: ContendersData.baseball.mlbTeams.at(0),
+                contender1Data: {
+                    contender: ContendersData.baseball.mlbTeams[0],
                     spread: "-2.5",
                     money: "-160",
                     total: "O 16"
                 },
-                contenderData2: {
-                    name: "Seattle Mariners",
-                    image: ContendersData.baseball.mlbTeams.at(1),
+                contender2Data: {
+                    contender: ContendersData.baseball.mlbTeams[1],
                     spread: "+2",
                     money: "+180",
                     total: "U 16"
@@ -75,14 +70,14 @@ export const BetData = [
             {
                 type: "game",
                 title: "Cincinnati Reds @ Philadelphia Phillies",
-                contenderData1: {
-                    image: ContendersData.baseball.mlbTeams.at(2),
+                contender1Data: {
+                    contender: ContendersData.baseball.mlbTeams[2],
                     spread: "-1.5",
                     money: "-350",
                     total: "O 6.5"
                 },
-                contenderData2: {
-                    image: ContendersData.baseball.mlbTeams.at(3),
+                contender2Data: {
+                    contender: ContendersData.baseball.mlbTeams[3],
                     spread: "+1",
                     money: "+250",
                     total: "U 6.5"
@@ -91,14 +86,14 @@ export const BetData = [
             {
                 type: "game",
                 title: "Atlanta Braves @ Pittsburgh Pirates",
-                contenderData1: {
-                    image: ContendersData.baseball.mlbTeams.at(4),
+                contender1Data: {
+                    contender: ContendersData.baseball.mlbTeams[4],
                     spread: "-5",
                     money: "-600",
                     total: "O 8.5"
                 },
-                contenderData2: {
-                    image: ContendersData.baseball.mlbTeams.at(5),
+                contender2Data: {
+                    contender: ContendersData.baseball.mlbTeams[5],
                     spread: "+5.5",
                     money: "+300",
                     total: "U 8.5"

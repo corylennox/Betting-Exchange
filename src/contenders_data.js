@@ -17,9 +17,14 @@ export const ContendersData =
             <ContenderAndIcon name="Orlando Magic" image="https://assets.sportsbook.fanduel.com/images/team/nba/orlando_magic.png" />,
         ],
         wnbaTeams: [
-            <ContenderAndIcon name="Chicago Sky" image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png" />,
-            <ContenderAndIcon name="Minnesota Lynx" image="https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png" />,
-            <ContenderAndIcon name="Golden State Warriors" image="https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png" />,
+            <ContenderAndIcon name="Chicago Sky" image="https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png" />,
+            <ContenderAndIcon name="Minnesota Lynx" image="https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png" />,
+            <ContenderAndIcon name="Washington Mystics" image="https://assets.sportsbook.fanduel.com/images/team/wnba/washington_mystics.png" />,
+            <ContenderAndIcon name="Seattle Storm" image="https://assets.sportsbook.fanduel.com/images/team/wnba/seattle_storm.png" />,
+            <ContenderAndIcon name="Los Angeles Sparks" image="https://assets.sportsbook.fanduel.com/images/team/wnba/los_angeles_sparks.png" />,
+            <ContenderAndIcon name="Phoenix Mercury" image="https://assets.sportsbook.fanduel.com/images/team/wnba/phoenix_mercury.png" />,
+            <ContenderAndIcon name="Dallas Wings" image="https://assets.sportsbook.fanduel.com/images/team/wnba/dallas_wings.png" />,
+            <ContenderAndIcon name="Connecticut Sun" image="https://assets.sportsbook.fanduel.com/images/team/wnba/connecticut_sun.png" />,
         ],
         euroTeams: [
             <ContenderAndIcon name="Chicago Sky" image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png" />,
@@ -35,7 +40,6 @@ export const ContendersData =
             <ContenderAndIcon name="Philadelphia Phillies" image="https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png" />,
             <ContenderAndIcon name="Atlanta Braves" image="https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png" />,
             <ContenderAndIcon name="Seattle Mariners" image="https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png" />,
-
         ]
     },
     soccer: {

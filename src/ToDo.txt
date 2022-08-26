@@ -4,7 +4,7 @@ Moneyline
 Point spread
 
 To Do:
+make odds random
 order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
-make odds random

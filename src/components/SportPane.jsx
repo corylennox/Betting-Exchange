@@ -3,7 +3,7 @@ import { BetData } from '../betData';
 import OutrightBet from "./OutrightBet";
 import GameBet from "./GameBet";
 
-const betData = BetData[0];
+const betData = BetData[1];
 
 
 export default class SportPane extends Component {
