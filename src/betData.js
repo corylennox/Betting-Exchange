@@ -1,8 +1,12 @@
 import { ContendersData } from "./contenders_data";
+import { svgs } from "./svgs"
 
 export const BetData = [
     {
         sport: "Basketball",
+        href: 'basketball',
+        icon: svgs.basketball,
+        image: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
         availableBets: [
             {
                 type: "outright",
@@ -50,6 +54,9 @@ export const BetData = [
     },
     {
         sport: "Baseball",
+        href: 'baseball',
+        icon: svgs.baseball,
+        image: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
         availableBets: [
             {
                 type: "game",
@@ -103,6 +110,9 @@ export const BetData = [
     },
     {
         sport: "Soccer",
+        href: 'soccer',
+        icon: svgs.soccer,
+        image: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
         availableBets: [
             {
                 type: "outright",
