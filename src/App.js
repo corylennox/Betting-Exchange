@@ -12,7 +12,7 @@ export default function App() {
     <main class="absolute inset-0 text-gray-400">
       <Navbar />
  
-        <div className='grid grid-cols-1 xl:grid-cols-4'>
+        <div className='h-full grid grid-cols-1 xl:grid-cols-4'>
           <div className=' bg-slate-900 border-t border-slate-100 flex justify-end h-full'>
             <body>sidebar</body>
           </div>
