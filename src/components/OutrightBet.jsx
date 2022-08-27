@@ -17,9 +17,9 @@ class OutrightBetContenderRow extends React.Component {
   }
   render() {
     return (
-      <div className='w-full flex justify-center mb-2 h-12 border-black '>
+      <div className='w-full flex justify-center h-12'>
         {this.props.contenderData}
-        <div className='w-full flex justify-end'>
+        <div className='w-auto flex justify-end'>
           <MyButton moneyline={this.randMoneylineStr} />
         </div>
       </div>
@@ -41,7 +41,7 @@ export default class OutrightBet extends Component {
       <div className='bg-slate-100 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3'>
         <h2 className="flex font-semibold text-blue-900 text-xl">{this.props.outrightBetData.title}</h2>
         <h3 className=" pb-2 font-semibold text-slate-900 text-md">Outright Bet</h3>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-2">
           {
             //NOT SORTING for some reason smh
             this.rowsArr.sort(function (a, b) { return a.randMoneyline - b.randMoneyline })

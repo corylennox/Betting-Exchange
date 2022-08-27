@@ -4,7 +4,7 @@ import MyButton from "./MyButton";
 class GameBetContenderRow extends Component {
   render() {
     return (
-      <div class="flex mb-2 h-10" >
+      <div>
         {/* <div class="w-2/5 flex justify-left">
           {this.props.contenderData.contender}
         </div>
@@ -18,11 +18,11 @@ class GameBetContenderRow extends Component {
           <MyButton moneyline={this.props.contenderData.total} />
         </div> */}
 
-        <div class="w-full grid grid-cols-5">
-          <div class=" col-span-2"> {this.props.contenderData.contender}</div>
-          <div class="flex justify-center"><MyButton moneyline={this.props.contenderData.spread} /></div>
-          <div class="flex justify-center"><MyButton moneyline={this.props.contenderData.money} /></div>
-          <div class="flex justify-center"><MyButton moneyline={this.props.contenderData.total} /></div>
+        <div class="w-full mb-2 grid grid-cols-5 align-center ">
+          <div class="flex h-10 justfiy-left col-span-2 "> {this.props.contenderData.contender}</div>
+          <div class="flex h-10 justify-center"><MyButton moneyline={this.props.contenderData.spread} /></div>
+          <div class="flex h-10 justify-center"><MyButton moneyline={this.props.contenderData.money} /></div>
+          <div class="flex h-10 justify-center"><MyButton moneyline={this.props.contenderData.total} /></div>
         </div>
       </div>
     );
