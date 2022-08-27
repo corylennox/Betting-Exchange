@@ -13,8 +13,8 @@ class OutrightBetContenderRow extends React.Component {
     else {
       this.randMoneylineStr = "+".concat(this.randMoneyline.toString());
     }
-
   }
+
   render() {
     return (
       <div className='w-full flex justify-center h-12'>
@@ -28,14 +28,6 @@ class OutrightBetContenderRow extends React.Component {
 }
 
 export default class OutrightBet extends Component {
-  constructor(props) {
-    super(props);
-
-    this.rowsArr = this.props.outrightBetData.contendersData.map((contenderData) => (
-      <OutrightBetContenderRow contenderData={contenderData} />
-    ));
-  }
-
   render() {
     return (
       <div className='bg-slate-100 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3'>
@@ -43,8 +35,9 @@ export default class OutrightBet extends Component {
         <h3 className=" pb-2 font-semibold text-slate-900 text-md">Outright Bet</h3>
         <div class="grid md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-2">
           {
-            //NOT SORTING for some reason smh
-            this.rowsArr.sort(function (a, b) { return a.randMoneyline - b.randMoneyline })
+            this.props.outrightBetData.contendersData.map((contenderData) => (
+              <OutrightBetContenderRow contenderData={contenderData} />
+            ))
           }
         </div>
       </div>
