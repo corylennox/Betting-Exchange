@@ -23,7 +23,7 @@ export default function App() {
                     <Route
                       path={betData.href}
                       element={<SportPane betData={betData} />}
-                    ></Route>
+                    />
                   ))}
                 </Route>
               </Routes>

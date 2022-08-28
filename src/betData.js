@@ -22,13 +22,13 @@ export const BetData = [
         type: "game",
         title: "Milwaukee Bucks @ Minnesota Timberwolves",
         contender1Data: {
-          contender: ContendersData.basketball.nbaTeams[0],
+          contender: ContendersData.basketball.nbaTeams[28],
           spread: "+7.5",
           money: "+140",
           total: "O 160",
         },
         contender2Data: {
-          contender: ContendersData.basketball.nbaTeams[1],
+          contender: ContendersData.basketball.nbaTeams[29],
           spread: "-7",
           money: "-120",
           total: "U 160",
