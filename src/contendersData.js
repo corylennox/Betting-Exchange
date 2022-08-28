@@ -196,7 +196,7 @@ export const ContendersData = {
         image="https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png"
       />,
       <ContenderAndIcon
-        name="Seattle Mariners"
+        name="Pittsburgh Pirates"
         image="https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png"
       />,
     ],

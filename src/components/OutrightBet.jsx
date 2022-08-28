@@ -46,6 +46,7 @@ export default class OutrightBet extends Component {
     };
 
     this.showMore = this.showMore.bind(this);
+    this.displayRows = this.showMore.bind(this);
   }
 
   showMore() {
@@ -55,8 +56,12 @@ export default class OutrightBet extends Component {
         prevState.showText === this.showMoreText
           ? this.showLessText
           : this.showMoreText,
+      arrowIcon:
+        prevState.arrowIcon === this.downIcon ? this.upIcon : this.downIcon,
     }));
   }
+
+  displayRows() {}
 
   render() {
     return (
