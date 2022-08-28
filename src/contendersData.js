@@ -14,7 +14,8 @@ export const ContendersData =
             <ContenderAndIcon name="Brooklyn Nets" image="https://assets.sportsbook.fanduel.com/images/team/nba/brooklyn_nets.png" />,
             <ContenderAndIcon name="Atlanta Hawks" image="https://assets.sportsbook.fanduel.com/images/team/nba/atlanta_hawks.png" />,
             <ContenderAndIcon name="New Orleans Pelicans" image="https://assets.sportsbook.fanduel.com/images/team/nba/new_orleans_pelicans.png" />,
-            <ContenderAndIcon name="Orlando Magic" image="https://assets.sportsbook.fanduel.com/images/team/nba/orlando_magic.png" />,
+            <ContenderAndIcon name="MilWaukee Bucks" image="https://assets.sportsbook.fanduel.com/images/team/nba/milwaukee_bucks.png" />,
+            <ContenderAndIcon name="Minnesota Timberwolves" image="https://assets.sportsbook.fanduel.com/images/team/nba/minnesota_timberwolves.png" />,
         ],
         wnbaTeams: [
             <ContenderAndIcon name="Chicago Sky" image="https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png" />,
@@ -39,7 +40,7 @@ export const ContendersData =
             <ContenderAndIcon name="Cincinnati Reds" image="https://assets.sportsbook.fanduel.com/images/team/mlb/cincinnati_reds.png" />,
             <ContenderAndIcon name="Philadelphia Phillies" image="https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png" />,
             <ContenderAndIcon name="Atlanta Braves" image="https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png" />,
-            <ContenderAndIcon name="Seattle Mariners" image="https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png" />,
+            <ContenderAndIcon name="Pittsburgh Pirates" image="https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png" />,
         ]
     },
     soccer: {
