@@ -68,7 +68,23 @@ export default class OutrightBet extends Component {
           (contenderData, index) => (
             <div
               className={
-                index > 5 && this.state.isExpanded === false ? "hidden" : ""
+                !this.state.isExpanded
+                  ? index < 4
+                    ? "bg-blue-600"
+                    : index >= 4 && index <= 7
+                    ? "bg-red-600 md:bg-blue-600"
+                    : index > 7 && index <= 11
+                    ? "bg-red-600 xl:bg-blue-600"
+                    : "bg-red-600"
+                  : "" //expanded, so show all rows
+
+                // index > 1 && this.state.isExpanded === false
+                //   ? "xs:hidden"
+                //   : index > 3 && this.state.isExpanded === false
+                //   ? "md:hidden"
+                //   : index > 5 && this.state.isExpanded === false
+                //   ? "lg:hidden"
+                //   : ""
               }
             >
               <OutrightBetContenderRow contenderData={contenderData} />
