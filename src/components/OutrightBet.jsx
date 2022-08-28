@@ -36,8 +36,8 @@ export default class OutrightBet extends Component {
 
     this.showMoreText = "Show more";
     this.showLessText = "Show less";
-    this.downIcon = <ArrowDownIcon className="w-5 h-5 ml-2 fill-slate-900" />;
-    this.upIcon = <ArrowUpIcon className="w-5 h-5 ml-2 fill-slate-900" />;
+    this.downIcon = <ArrowDownIcon className="w-5 h-5 ml-2 fill-blue-400" />;
+    this.upIcon = <ArrowUpIcon className="w-5 h-5 ml-2 fill-blue-400" />;
 
     this.state = {
       isExpanded: false,
@@ -46,7 +46,7 @@ export default class OutrightBet extends Component {
     };
 
     this.showMore = this.showMore.bind(this);
-    this.displayRows = this.showMore.bind(this);
+    this.displayRows = this.displayRows.bind(this);
   }
 
   showMore() {
@@ -61,7 +61,23 @@ export default class OutrightBet extends Component {
     }));
   }
 
-  displayRows() {}
+  displayRows() {
+    return (
+      <div className="grid xs:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {this.props.outrightBetData.contendersData.map(
+          (contenderData, index) => (
+            <div
+              className={
+                index > 5 && this.state.isExpanded === false ? "hidden" : ""
+              }
+            >
+              <OutrightBetContenderRow contenderData={contenderData} />
+            </div>
+          )
+        )}
+      </div>
+    );
+  }
 
   render() {
     return (
@@ -69,17 +85,13 @@ export default class OutrightBet extends Component {
         <h2 className="flex font-semibold text-blue-900 text-xl">
           {this.props.outrightBetData.title}
         </h2>
-        <h3 className=" pb-2 font-semibold text-slate-900 text-md">
+        <h3 className="pb-2 font-semibold text-slate-900 text-md">
           Outright Bet
         </h3>
-        <div class="grid xs:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {this.props.outrightBetData.contendersData.map((contenderData) => (
-            <OutrightBetContenderRow contenderData={contenderData} />
-          ))}
-        </div>
+        {this.displayRows()}
         <div
           onClick={this.showMore}
-          className="w-full cursor-pointer h-12 inline-flex justify-center text-slate-900 text-sm border-t border-b border-slate-900 mt-5 mb-1"
+          className="w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1"
         >
           <body className="flex items-center justify-center w-full">
             {this.state.showText}
