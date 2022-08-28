@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import MyButton from "./MyButton";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/solid";
 
+const numContenderRowsToDisplay = 4;
+
 class OutrightBetContenderRow extends React.Component {
   constructor(props) {
     super(props);
@@ -69,22 +71,14 @@ export default class OutrightBet extends Component {
             <div
               className={
                 !this.state.isExpanded
-                  ? index < 4
-                    ? "bg-blue-600"
-                    : index >= 4 && index <= 7
-                    ? "bg-red-600 md:bg-blue-600"
-                    : index > 7 && index <= 11
-                    ? "bg-red-600 xl:bg-blue-600"
-                    : "bg-red-600"
+                  ? index < numContenderRowsToDisplay
+                    ? "contents"
+                    : index < numContenderRowsToDisplay*2
+                    ? "hidden md:contents"
+                    : index < numContenderRowsToDisplay*3
+                    ? "hidden xl:contents"
+                    : "hidden"
                   : "" //expanded, so show all rows
-
-                // index > 1 && this.state.isExpanded === false
-                //   ? "xs:hidden"
-                //   : index > 3 && this.state.isExpanded === false
-                //   ? "md:hidden"
-                //   : index > 5 && this.state.isExpanded === false
-                //   ? "lg:hidden"
-                //   : ""
               }
             >
               <OutrightBetContenderRow contenderData={contenderData} />
