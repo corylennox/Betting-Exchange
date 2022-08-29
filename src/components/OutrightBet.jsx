@@ -45,12 +45,11 @@ export default class OutrightBet extends Component {
       isExpanded: false,
       showText: this.showMoreText,
       arrowIcon: this.downIcon,
-      displayShowMore: true,
     };
 
     this.showAll = this.showAll.bind(this);
     this.displayRows = this.displayRows.bind(this);
-    this.displayShowMore = this.displayShowMore.bind(this);
+    this.showMoreCSS = this.showMoreCSS.bind(this);
   }
 
   displayRows() {
@@ -63,11 +62,11 @@ export default class OutrightBet extends Component {
                 !this.state.isExpanded
                   ? index < numContenderRowsToDisplay
                     ? "contents"
-                    : index < numContenderRowsToDisplay*2
-                    ? "hidden md:contents"
-                    : index < numContenderRowsToDisplay*3
-                    ? "hidden xl:contents"
-                    : "hidden"
+                    : index < numContenderRowsToDisplay * 2
+                      ? "hidden md:contents"
+                      : index < numContenderRowsToDisplay * 3
+                        ? "hidden xl:contents"
+                        : "hidden"
                   : "" //expanded, so show all rows
               }>
               <OutrightBetContenderRow contenderData={contenderData} />
@@ -90,23 +89,21 @@ export default class OutrightBet extends Component {
     }));
   }
 
-  displayShowMore() {
-    //determine if show more should be displayed
+  showMoreCSS() {
+    if (this.props.outrightBetData.contendersData.length > numContenderRowsToDisplay * 3) {
+      return("w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1")
+    }
+    else if (this.props.outrightBetData.contendersData.length > numContenderRowsToDisplay * 2) {
+      return("xl:hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1")
+    }
+    else if (this.props.outrightBetData.contendersData.length > numContenderRowsToDisplay) {
+      console.log("length: ", this.props.outrightBetData.contendersData.length)
+      return("md:hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1")
 
-
-
-    if(this.state.displayShowMore === true){
-      return (<div
-        onClick={this.showAll}
-        className="w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1"
-      >
-        <body className="flex select-none items-center justify-center w-full">
-          {this.state.showText}
-          {this.state.arrowIcon}
-        </body>
-      </div>)
-    } 
-    else return
+    }    else if (this.props.outrightBetData.contendersData.length <= numContenderRowsToDisplay) {
+      return("hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1")
+    }
+    return("")
   }
 
   render() {
@@ -120,8 +117,15 @@ export default class OutrightBet extends Component {
           Outright Bet
         </h3>
         {this.displayRows()}
-        {this.displayShowMore()}
-        
+        <div
+          onClick={this.showAll}
+          className={this.showMoreCSS()}
+        >
+          <body className="flex select-none items-center justify-center w-full">
+            {this.state.showText}
+            {this.state.arrowIcon}
+          </body>
+        </div>
       </div>
     );
   }

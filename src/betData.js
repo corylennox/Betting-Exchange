@@ -1,5 +1,6 @@
 import { ContendersData } from "./contendersData";
 import { svgs } from "./svgs";
+import ContenderAndIcon from "./components/ContenderAndIcon"
 
 export const BetData = [
   {
@@ -116,8 +117,146 @@ export const BetData = [
     availableBets: [
       {
         type: "outright",
-        title: "",
-        contendersData: ContendersData.basketball.nbaTeams,
+        title: "13 Contenders",
+        contendersData: [
+          <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />,
+        ],
+      },
+      {
+        type: "outright",
+        title: "12 Contenders",
+        contendersData: [
+          <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />,
+        ],
+      },
+      {
+        type: "outright",
+        title: "5 Contenders",
+        contendersData: [
+          <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />,
+        ],
+      },
+      {
+        type: "outright",
+        title: "4 Contenders",
+        contendersData: [
+          <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />,
+        ],
+      },
+      {
+        type: "outright",
+        title: "2 Contenders",
+        contendersData: [
+          <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />, <ContenderAndIcon
+            name="Boston Celtics"
+            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
+          />,
+        ],
       },
       {
         type: "game",
