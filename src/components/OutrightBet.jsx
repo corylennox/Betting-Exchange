@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MyButton from "./MyButton";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 
-const numContenderRowsToDisplay = 4;
+const numContenderRowsToDisplay = 3;
 
 class OutrightBetContenderRow extends React.Component {
   constructor(props) {
