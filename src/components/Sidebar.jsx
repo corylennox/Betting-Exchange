@@ -3,6 +3,7 @@ import React, { Component } from "react";
 export default class Sidebar extends Component {
   render() {
     return (
+      <div class="hidden lg:contents">
       <div class="pr-12">
         <div class="mb-3">
           <body>All Sports</body>
@@ -19,6 +20,7 @@ export default class Sidebar extends Component {
             </a>
           ))}
         </div>
+      </div>
       </div>
     );
   }
