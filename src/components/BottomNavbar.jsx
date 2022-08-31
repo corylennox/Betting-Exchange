@@ -7,42 +7,42 @@ const BottomNavbarItems = [
     {
         name: 'Home',
         unselectedIcon: <HomeIcon className="h-5 w-5"/>,
-        selectedIcon: <HomeIconSolid className="h-5 w-5"/>,
+        selectedIcon: <HomeIconSolid className="h-5 w-5 fill-blue-400"/>,
         hideTopBorderOnClick: false,
         href: "/home",
     },
     {
         name: 'All Sports',
         unselectedIcon: <LightningBoltIcon className="h-5 w-5"/>,
-        selectedIcon: <LightningBoltIconSolid className="h-5 w-5"/>,
+        selectedIcon: <LightningBoltIconSolid className="h-5 w-5 fill-blue-400"/>,
         hideTopBorderOnClick: false,
         href: "/all-sports",
     },
     {
         name: 'Betslip',
         unselectedIcon: <DocumentTextIcon className="h-5 w-5"/>,
-        selectedIcon: <DocumentTextIconSolid className="h-5 w-5"/>,
+        selectedIcon: <DocumentTextIconSolid className="h-5 w-5 fill-blue-400"/>,
         hideTopBorderOnClick: true,
         href: "/betslip",
     },
     {
         name: 'My Bets',
         unselectedIcon: <DocumentReportIcon className="h-5 w-5"/>, /* RectangleStackIcon */
-        selectedIcon: <DocumentReportIconSolid className="h-5 w-5"/>, /* RectangleStackIconSolid */
+        selectedIcon: <DocumentReportIconSolid className="h-5 w-5 fill-blue-400"/>, /* RectangleStackIconSolid */
         hideTopBorderOnClick: false,
         href: "/my-bets",
     },
     {
         name: 'Account',
         unselectedIcon: <UserIcon className="h-5 w-5"/>,
-        selectedIcon: <UserIconSolid className="h-5 w-5"/>,
+        selectedIcon: <UserIconSolid className="h-5 w-5 fill-blue-400"/>,
         hideTopBorderOnClick: false,
         href: "/account",
     },
 ]
 
 function bodyFocusedCss() {
-    return "text-slate-400";
+    return "text-blue-400";
 }
 
 function bodyDeFocusedCss() {
@@ -50,11 +50,11 @@ function bodyDeFocusedCss() {
 }
 
 function divBaseCss() {
-    return "grid grid-cols-1 pt-3 pb-4 items-center justify-items-center w-full h-full";
+    return "grid grid-cols-1 pt-4 pb-4 items-center justify-items-center w-full h-full";
 }
 
 function divDefaultCss() {
-    return divBaseCss() + " border-t-2";
+    return divBaseCss() + " border-6t-";
 }
 
 function divHideTopBorderCss() {
@@ -86,7 +86,7 @@ export default class BottomNavbar extends Component {
 d
     render() {
         return (
-            <div className="flex justify-between w-full bg-white h-16">
+            <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full rounded-t-2xl border-t-2 text-xs">
                 {
                     BottomNavbarItems.map((navbarItem, index) =>
                         (
