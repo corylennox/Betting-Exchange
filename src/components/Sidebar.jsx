@@ -3,9 +3,10 @@ import React, { Component } from "react";
 export default class Sidebar extends Component {
   render() {
     return (
+      <div class="hidden lg:contents">
       <div class="pr-12">
-        <div class="mb-3">
-          <body>All Sports</body>
+        <div class="mb-3 mt-3">
+          <h1>All Sports</h1>
         </div>
         <div class="pl-1">
           {this.props.betData.map((sportData) => (
@@ -19,6 +20,7 @@ export default class Sidebar extends Component {
             </a>
           ))}
         </div>
+      </div>
       </div>
     );
   }
