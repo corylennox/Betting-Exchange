@@ -8,8 +8,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
 
-
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.sidebar = <Sidebar sportsPane={false} betData={BetData} />;
+
+    this.state = {
+      state: true,
+    };
+  }
+
   render() {
     return (
       <main class="absolute inset-0 w-full h-full text-gray-400">
@@ -18,11 +27,10 @@ export default class App extends Component {
             <Navbar />
           </div>
           <div className="h-full grid xs:grid-cols-1 lg:grid-cols-6">
-
             {/* Sidebar */}
             <div className="hidden lg:contents">
               <div className=" bg-slate-900 border-t border-slate-100 flex justify-end h-full">
-                <Sidebar sportsPane={false} betData={BetData} />
+                {this.sidebar}
               </div>
             </div>
 
@@ -40,7 +48,8 @@ export default class App extends Component {
                   </Route>
 
                   {/* All Sports in sports pane */}
-                  <Route path="/all-sports"
+                  <Route
+                    path="/all-sports"
                     element={
                       <div>
                         <Sidebar sportsPane={true} betData={BetData} />
@@ -49,7 +58,8 @@ export default class App extends Component {
                   />
 
                   {/* route all other paths to home */}
-                  <Route path="*"
+                  <Route
+                    path="*"
                     element={<SportPane betData={BetData[0]} />}
                   />
                 </Routes>
@@ -71,7 +81,7 @@ export default class App extends Component {
             </div>
           </div>
         </Router>
-      </main >
+      </main>
     );
   }
 }
