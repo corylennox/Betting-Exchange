@@ -19,7 +19,7 @@ export default function App() {
           {/* Sidebar */}
           <div className="hidden lg:contents">
             <div className=" bg-slate-900 border-t border-slate-100 flex justify-end h-full">
-              <Sidebar betData={BetData} />
+              <Sidebar sportsPane={false} betData={BetData} />
             </div>
           </div>
 
@@ -35,6 +35,15 @@ export default function App() {
                     />
                   ))}
                 </Route>
+
+                {/* All Sports in sports pane */}
+                <Route path="/all-sports"
+                  element= {
+                    <div>
+                      <Sidebar sportsPane={true} betData={BetData} />
+                    </div>
+                  }
+                />
 
                 {/* route all other paths to home */}
                 <Route path="*"

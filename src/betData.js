@@ -7,7 +7,8 @@ export const BetData = [
     sport: "Featured",
     href: "featured",
     icon: svgs.StarIcon,
-    image: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
     availableBets: [
       {
         type: "outright",
@@ -58,7 +59,8 @@ export const BetData = [
     sport: "Basketball",
     href: "basketball",
     icon: svgs.basketball,
-    image: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
     availableBets: [
       {
         type: "outright",
@@ -108,7 +110,8 @@ export const BetData = [
     sport: "Baseball",
     href: "baseball",
     icon: svgs.baseball,
-    image: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
     availableBets: [
       {
         type: "game",
@@ -164,7 +167,8 @@ export const BetData = [
     sport: "Soccer",
     href: "soccer",
     icon: svgs.soccer,
-    image: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
     availableBets: [
       {
         type: "outright",
@@ -333,28 +337,32 @@ export const BetData = [
     sport: "Football",
     href: "featured",
     icon: svgs.StarIcon,
-    image: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
     availableBets: []
   },
   {
     sport: "Boxing",
     href: "featured",
     icon: svgs.StarIcon,
-    image: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
     availableBets: []
   },
   {
     sport: "Bowling",
     href: "featured",
     icon: svgs.StarIcon,
-    image: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
     availableBets: []
   },
   {
     sport: "Rugby",
     href: "featured",
     icon: svgs.StarIcon,
-    image: "https://cdn-icons-png.flaticon.com/128/902/902997.png",
+    imageWhite: "https://cdn-icons-png.flaticon.com/128/902/902997.png",
+    imageBlue: "https://cdn-icons-png.flaticon.com/128/902/902997.png",
     availableBets: []
   },
 ];
