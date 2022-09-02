@@ -9,15 +9,12 @@ export default class Betslip extends Component {
     }
 
     this.handleClick = this.handleClick.bind(this);
-
   }
 
   handleClick(props) {
     this.setState({
       hasBets: !this.hasBets,
     });
-
-
   }
 
   render() {
