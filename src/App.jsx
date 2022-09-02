@@ -21,7 +21,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <main class="absolute inset-0 w-full h-full text-gray-400">
+      <main class="absolute inset-0 w-full text-gray-400">
         <Router>
           <div className="hidden lg:contents">
             <Navbar />
@@ -29,7 +29,7 @@ export default class App extends Component {
           <div className="h-full grid xs:grid-cols-1 lg:grid-cols-6">
             {/* Sidebar */}
             <div className="hidden lg:contents">
-              <div className=" bg-slate-900 border-t border-slate-100 flex justify-end h-full">
+              <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
                 {this.sidebar}
               </div>
             </div>
