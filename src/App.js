@@ -24,7 +24,7 @@ export default function App() {
           </div>
 
           {/* Sportspane */}
-          <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full">
+          <div className="xs:col-span-1 lg:col-span-3 xl:w-auto min-h-screen w-full h-full">
             {
               <Routes>
                 <Route path="/">
