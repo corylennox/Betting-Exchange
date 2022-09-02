@@ -23,10 +23,14 @@ export default class App extends Component {
     return (
       <main class="absolute inset-0 w-full text-gray-400">
         <Router>
+
+          {/* Navbar */}
           <div className="hidden lg:contents">
             <Navbar />
           </div>
-          <div className=" min-h-screen grid xs:grid-cols-1 lg:grid-cols-6">
+
+          {/* Grid */}
+          <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
             {/* Sidebar */}
             <div className="hidden lg:contents">
               <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
