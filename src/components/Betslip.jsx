@@ -20,7 +20,7 @@ export default class Betslip extends Component {
   render() {
     return (
       <div class="">
-          <h1>Betslip</h1>
+          {this.state.hasBets === false ? "trash" : "lets gooooo"}
       </div>
     );
   }
