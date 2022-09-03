@@ -7,11 +7,14 @@ import { BetData } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
+import MyButton from "./components/MyButton";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
+    this.BottomNavbar = <BottomNavbar />;
+    this.betslip = <Betslip />
     this.sidebar = <Sidebar sportsPane={false} betData={BetData} />;
 
     this.state = {
@@ -28,6 +31,12 @@ export default class App extends Component {
           <div className="hidden lg:contents">
             <Navbar />
           </div>
+
+          {/* ////////////////////////////////////////////////////////////////// */}
+          <div className="h-20 pt-5 ">
+            <MyButton moneyline="345" test={this.betslip.handleClick} />
+          </div>
+          {/* ////////////////////////////////////////////////////////////////// */}
 
           {/* Grid */}
           <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
@@ -73,14 +82,14 @@ export default class App extends Component {
             {/* Betslip */}
             <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-full">
               <div className=" bg-slate-50 shadow-xl drop-shadow-md h-full">
-                <Betslip />
+                {this.betslip}
               </div>
             </div>
 
             {/* Bottom Navbar */}
             <div className="contents lg:hidden 0">
               <div className="inset-0 bottom-0 z-50 sticky bg-slate-100 h-16">
-                <BottomNavbar />
+                {this.BottomNavbar}
               </div>
             </div>
           </div>
