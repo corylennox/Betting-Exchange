@@ -138,10 +138,10 @@ export default class OutrightBet extends Component {
         </h3>
         {this.displayRows()}
         <div onClick={this.showAll} className={this.showMoreCSS()}>
-          <body className="flex select-none items-center justify-center w-full">
+          <h1 className="flex select-none items-center justify-center w-full">
             {this.state.showText}
             {this.state.arrowIcon}
-          </body>
+          </h1>
         </div>
       </div>
     );

@@ -24,11 +24,11 @@ export default class MyButton extends React.Component {
   }
 
   onClick() {
-    this.setState((prevState) => ({
-      isToggleOn: !prevState.isToggleOn,
-    }));
+    this.setState({
+      isToggleOn: !this.state.isToggleOn,
+    });
 
-    this.props.onMoneylineClick(this.betInfo);
+    this.props.onMoneylineClick(!this.state.isToggleOn, this.betInfo);
   }
 
   render() {

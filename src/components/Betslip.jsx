@@ -7,8 +7,15 @@ export default class Betslip extends Component {
   }
 
   test() {
-    if (this.props.activeBets.length === 0) return "empty";
-    else return "not empty";
+    // if (this.props.activeBets.length === 0) return "empty";
+    // else return this.props.activeBets[0].moneyline;
+
+    return this.props.activeBets.map((bet) => (
+      <div>
+        <h1>{bet.moneyline}</h1>
+      </div>
+    )
+    )
   }
   // handleClick() {
   //   this.setState({

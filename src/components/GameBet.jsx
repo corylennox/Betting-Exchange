@@ -37,13 +37,13 @@ export default class GameBet extends Component {
             Game Bet
           </h3>
           <div class="flex justify-center text-slate-500">
-            <body>Spread</body>
+            <p>Spread</p>
           </div>
           <div class="flex justify-center text-slate-500">
-            <body>Money</body>
+            <p>Money</p>
           </div>
           <div class="flex justify-center text-slate-500">
-            <body>Total</body>
+            <p>Total</p>
           </div>
         </div>
         <GameBetContenderRow

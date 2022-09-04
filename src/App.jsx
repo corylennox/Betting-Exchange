@@ -18,37 +18,32 @@ export default class App extends Component {
     };
 
     this.BottomNavbar = <BottomNavbar />;
-    this.betslip = <Betslip activeBets={[]} />;
     this.sidebar = <Sidebar sportsPane={false} betData={BetData} />;
 
     this.onMoneylineClick = this.onMoneylineClick.bind(this);
   }
 
-  onMoneylineClick(props) {
+  onMoneylineClick(isToggleOn, betInfo) {
     //change state and add this moneyline to running array of monelines
-    this.setState({
-      activeBets: this.activeBets.push(props),
-    });
+    // if(isToggleOn)
+    // {
+      this.setState({ activeBets: [...this.state.activeBets, betInfo]})
+    // }
+    // else {
+    //   //delete bet from array
+    // }
+
+    //alert("test");
   }
 
   render() {
     return (
-      <main class="absolute inset-0 w-full text-gray-400">
+      <main className="absolute inset-0 w-full text-gray-400">
         <Router>
           {/* Navbar */}
           <div className="hidden lg:contents">
             <Navbar />
           </div>
-
-          {/* ////////////////////////////////////////////////////////////////// */}
-          {/* <div className="h-20 pt-5 ">
-            <MyButton
-              moneyline="+350"
-              onMoneylineClick={this.onMoneylineClick}
-            />
-          </div> */}
-          {/* ////////////////////////////////////////////////////////////////// */}
-
           {/* Grid */}
           <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
             {/* Sidebar */}
@@ -98,7 +93,7 @@ export default class App extends Component {
             {/* Betslip */}
             <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-full">
               <div className=" bg-slate-50 shadow-xl drop-shadow-md h-full">
-                {this.betslip}
+                <Betslip activeBets={this.state.activeBets} />
               </div>
             </div>
 

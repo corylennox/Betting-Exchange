@@ -87,7 +87,7 @@ function BottomNavbarNameAndIcon(props) {
       {location.pathname === props.itemInfo.href
         ? props.itemInfo.selectedIcon
         : props.itemInfo.unselectedIcon}
-      <body
+      <p
         className={
           location.pathname === props.itemInfo.href
             ? bodyFocusedCss()
@@ -95,7 +95,7 @@ function BottomNavbarNameAndIcon(props) {
         }
       >
         {props.itemInfo.name}
-      </body>
+      </p>
     </div>
   );
 }

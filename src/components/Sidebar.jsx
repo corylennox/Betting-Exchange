@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
                     src={this.props.sportsPane ? sportData.imageBlue : sportData.imageWhite}
                     alt={sportData.href}
                 />
-                <body className={this.props.sportsPane ? "text-blue-500 font-light text-s" : ""}>{sportData.sport}</body>
+                <p className={this.props.sportsPane ? "text-blue-500 font-light text-s" : ""}>{sportData.sport}</p>
               </div>
               <div className={this.props.sportsPane ? "" : "hidden"}>
                 <ChevronRightIcon className="w-4 h-4 mr-3 text-blue-500"/>
