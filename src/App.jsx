@@ -7,35 +7,46 @@ import { BetData } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-import MyButton from "./components/MyButton";
+//import MyButton from "./components/MyButton";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      activeBets: [],
+    };
+
     this.BottomNavbar = <BottomNavbar />;
-    this.betslip = <Betslip />
+    this.betslip = <Betslip activeBets={[]} />;
     this.sidebar = <Sidebar sportsPane={false} betData={BetData} />;
 
-    this.state = {
-      state: true,
-    };
+    this.onMoneylineClick = this.onMoneylineClick.bind(this);
+  }
+
+  onMoneylineClick(props) {
+    //change state and add this moneyline to running array of monelines
+    this.setState({
+      activeBets: this.activeBets.push(props),
+    });
   }
 
   render() {
     return (
       <main class="absolute inset-0 w-full text-gray-400">
         <Router>
-
           {/* Navbar */}
           <div className="hidden lg:contents">
             <Navbar />
           </div>
 
           {/* ////////////////////////////////////////////////////////////////// */}
-          <div className="h-20 pt-5 ">
-            <MyButton moneyline="345" test={this.betslip.handleClick} />
-          </div>
+          {/* <div className="h-20 pt-5 ">
+            <MyButton
+              moneyline="+350"
+              onMoneylineClick={this.onMoneylineClick}
+            />
+          </div> */}
           {/* ////////////////////////////////////////////////////////////////// */}
 
           {/* Grid */}
@@ -55,7 +66,12 @@ export default class App extends Component {
                     {BetData.map((betData) => (
                       <Route
                         path={betData.href}
-                        element={<SportPane betData={betData} />}
+                        element={
+                          <SportPane
+                            betData={betData}
+                            onMoneylineClick={this.onMoneylineClick}
+                          />
+                        }
                       />
                     ))}
                   </Route>

@@ -3,25 +3,32 @@ import React, { Component } from "react";
 export default class Betslip extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hasBets: false,
-    
-    }
-
-    this.handleClick = this.handleClick.bind(this);
+    this.test = this.test.bind(this);
   }
 
-  handleClick(props) {
-    this.setState({
-      hasBets: !this.hasBets,
-    });
+  test() {
+    if (this.props.activeBets.length === 0) return "empty";
+    else return "not empty";
   }
+  // handleClick() {
+  //   this.setState({
+  //     hasBets: !this.hasBets,
+  //   });
+  // }
+
+  // this.betInfo = {
+  //   moneyline: this.props.moneyline,
+  //   contender: this.props.contender,
+  //   type: this.props.type,
+  //   title: this.props.title,
+  // };
 
   render() {
-    return (
-      <div class="">
-          {this.state.hasBets === false ? "trash" : "lets gooooo"}
-      </div>
-    );
+    // this.props.bets.map((bet) => (
+    //   <div>
+    //     <h1>{bet.moneyline}</h1>
+    //   </div>
+    // ));
+    return <h1>{this.test()}</h1>;
   }
 }
