@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
+import ImageMap from "../images/ImageMap";
 
 export default class Sidebar extends Component {
   render() {
@@ -13,11 +14,9 @@ export default class Sidebar extends Component {
             <div className="contents">
             <a class={this.props.sportsPane ? "flex justify-between items-center pb-4 pt-4 pl-5" : "flex justify-between items-center pb-2 pt-2 pl-5 pr-12"} href={sportData.href}>
               <div className="flex items-center">
-                <img
-                    className="w-5 h-5 invert mr-3"
-                    src={this.props.sportsPane ? sportData.imageBlue : sportData.imageWhite}
-                    alt={sportData.href}
-                />
+                <div className="mr-3">
+                    {ImageMap.get(this.props.sportsPane ? sportData.alternateIcon : sportData.icon)}
+                </div>
                 <body className={this.props.sportsPane ? "text-blue-500 font-light text-s" : ""}>{sportData.sport}</body>
               </div>
               <div className={this.props.sportsPane ? "" : "hidden"}>
