@@ -18,6 +18,7 @@ export default class Betslip extends Component {
       return this.props.activeBets.map((bet) => (
         <div className="min-h-fit min-w-fit pl-8 pt-4 pr-8">
           <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg">
+
             <h1>{bet.line}</h1>
             <h1>{bet.contender}</h1>
             <h1>{bet.type}</h1>

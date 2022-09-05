@@ -13,7 +13,7 @@ class GameBetContenderRow extends Component {
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.spread}
-              contender={this.props.contender}
+              contender={this.props.contenderData.contender}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}
@@ -22,7 +22,7 @@ class GameBetContenderRow extends Component {
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.money}
-              contender={this.props.contender}
+              contender={this.props.contenderData.contender}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}
@@ -31,7 +31,7 @@ class GameBetContenderRow extends Component {
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.total}
-              contender={this.props.contender}
+              contender={this.props.contenderData.contender}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}

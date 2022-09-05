@@ -93,7 +93,13 @@ export default class App extends Component {
 
             {/* Betslip */}
             <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
-              <div className="h-auto">
+              <div className="h-auto ">
+                <div className="flex sticky top-0 border-b-2 h-11 items-center p-2">
+                  <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
+                    <h1 className="w-full text-md font-semibold text-white font-mono">{this.state.activeBets.length}</h1>
+                  </div>
+                  <h1 className="text-slate-600 font-bold text-lg ml-1">Betslip</h1>
+                </div>
                 <Betslip activeBets={this.state.activeBets} />
               </div>
             </div>
