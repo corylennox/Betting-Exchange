@@ -92,7 +92,7 @@ export default class App extends Component {
             </div>
 
             {/* Betslip */}
-            <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-full">
+            <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
               <div className=" bg-slate-50 shadow-xl drop-shadow-md h-full">
                 <Betslip activeBets={this.state.activeBets} />
               </div>

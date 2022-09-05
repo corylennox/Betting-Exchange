@@ -25,7 +25,10 @@ export default class SportPane extends Component {
               return (
                 <div>
                   {" "}
-                  <GameBet gameBetData={bet} />{" "}
+                  <GameBet
+                    gameBetData={bet}
+                    onMoneylineClick={this.props.onMoneylineClick}
+                  />{" "}
                 </div>
               );
             default:

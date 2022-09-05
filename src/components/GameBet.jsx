@@ -11,13 +11,31 @@ class GameBetContenderRow extends Component {
             {this.props.contenderData.contender}
           </div>
           <div className="flex h-10 justify-center">
-            <MyButton moneyline={this.props.contenderData.spread} />
+            <MyButton
+              line={this.props.contenderData.spread}
+              contender={this.props.contender}
+              type={this.props.type}
+              title={this.props.title}
+              onMoneylineClick={this.props.onMoneylineClick}
+            />
           </div>
           <div className="flex h-10 justify-center">
-            <MyButton moneyline={this.props.contenderData.money} />
+            <MyButton
+              line={this.props.contenderData.money}
+              contender={this.props.contender}
+              type={this.props.type}
+              title={this.props.title}
+              onMoneylineClick={this.props.onMoneylineClick}
+            />
           </div>
           <div className="flex h-10 justify-center">
-            <MyButton moneyline={this.props.contenderData.total} />
+            <MyButton
+              line={this.props.contenderData.total}
+              contender={this.props.contender}
+              type={this.props.type}
+              title={this.props.title}
+              onMoneylineClick={this.props.onMoneylineClick}
+            />
           </div>
         </div>
       </div>
@@ -48,9 +66,15 @@ export default class GameBet extends Component {
         </div>
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender1Data}
+          type={this.props.type}
+          title={this.props.gameBetData.title}
+          onMoneylineClick={this.props.onMoneylineClick}
         />
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender2Data}
+          type={this.props.type}
+          title={this.props.gameBetData.title}
+          onMoneylineClick={this.props.onMoneylineClick}
         />
       </div>
     );

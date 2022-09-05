@@ -26,7 +26,7 @@ class OutrightBetContenderRow extends React.Component {
         {this.props.contenderData}
         <div className="w-auto flex justify-end">
           <MyButton
-            moneyline={this.randMoneylineStr}
+            line={this.randMoneylineStr}
             contender={this.props.contenderData}
             type={this.props.type}
             title={this.props.title}

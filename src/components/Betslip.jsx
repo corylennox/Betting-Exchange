@@ -17,7 +17,7 @@ export default class Betslip extends Component {
     if (this.props.activeBets.length !== 0) {
       return this.props.activeBets.map((bet) => (
         <div>
-          <h1>{bet.moneyline}</h1>
+          <h1>{bet.line}</h1>
         </div>
       ));
     } else {

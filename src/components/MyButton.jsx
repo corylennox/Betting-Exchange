@@ -14,7 +14,7 @@ export default class MyButton extends React.Component {
     };
 
     this.betInfo = {
-      moneyline: this.props.moneyline,
+      line: this.props.line,
       contender: this.props.contender,
       type: this.props.type,
       title: this.props.title,
@@ -37,7 +37,7 @@ export default class MyButton extends React.Component {
         onClick={this.onClick}
         className={this.state.isToggleOn ? this.onCSS : this.offCSS}
       >
-        {this.props.moneyline}
+        {this.props.line}
       </button>
     );
   }
