@@ -5,10 +5,10 @@ export default class NavbarTabs extends React.Component {
     render() {
         return (
             <div>
-                <a href={this.props.navs.home.href} class="px-3 py-7">
+                <a href={this.props.navs.home.href} className="px-3 py-7">
                     {this.props.navs.home.name}
                 </a>
-                <a href={this.props.navs.myBets.href} class="px-3 py-7">
+                <a href={this.props.navs.myBets.href} className="px-3 py-7">
                     {this.props.navs.myBets.name}
                 </a>
             </div>

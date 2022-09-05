@@ -25,19 +25,19 @@ const loginItems = {
 
 export default function Navbar() {
   return (
-    <header class="bg-slate-900 top-0 z-50 sticky">
-        <div class="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center">
-            <div class="flex flex-wrap flex-col md:flex-row items-center">
-                <a href={navs.home.href} class="px-3 py-7">
+    <header className="bg-slate-900 top-0 z-50 sticky">
+        <div className="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center">
+            <div className="flex flex-wrap flex-col md:flex-row items-center">
+                <a href={navs.home.href} className="px-3 py-7">
                     {navs.home.name}
                 </a>
                 <NavbarTabs navs={navs}/>
             </div>
-            <div class="flex flex-wrap flex-col md:flex-row items-center">
-                <a href={loginItems.login.href} class="px-3 py-7">
+            <div className="flex flex-wrap flex-col md:flex-row items-center">
+                <a href={loginItems.login.href} className="px-3 py-7">
                     {loginItems.login.name}
                 </a>
-                <a href={loginItems.signup.href} class="px-3 py-7">
+                <a href={loginItems.signup.href} className="px-3 py-7">
                     {loginItems.signup.name}
                 </a>
             </div>

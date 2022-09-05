@@ -24,16 +24,14 @@ export default class App extends Component {
   }
 
   onMoneylineClick(isToggleOn, betInfo) {
-    //change state and add this moneyline to running array of monelines
-    // if(isToggleOn)
-    // {
-      this.setState({ activeBets: [...this.state.activeBets, betInfo]})
-    // }
-    // else {
-    //   //delete bet from array
-    // }
-
-    //alert("test");
+    // change state and add this moneyline to running array of monelines
+    if(isToggleOn === true)
+    {
+     this.setState({ activeBets: [...this.state.activeBets, betInfo]})
+    }
+    else {
+      //delete bet from array
+    }
   }
 
   render() {
