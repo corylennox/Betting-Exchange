@@ -78,8 +78,8 @@ export default class OutrightBet extends Component {
             >
               <OutrightBetContenderRow
                 contenderData={contenderData}
-                type={this.props.type}
-                title={this.props.title}
+                type={this.props.outrightBetData.type}
+                title={this.props.outrightBetData.title}
                 onMoneylineClick={this.props.onMoneylineClick}
               />
             </div>

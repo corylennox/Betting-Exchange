@@ -66,13 +66,13 @@ export default class GameBet extends Component {
         </div>
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender1Data}
-          type={this.props.type}
+          type={this.props.gameBetData.type}
           title={this.props.gameBetData.title}
           onMoneylineClick={this.props.onMoneylineClick}
         />
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender2Data}
-          type={this.props.type}
+          type={this.props.gameBetData.type}
           title={this.props.gameBetData.title}
           onMoneylineClick={this.props.onMoneylineClick}
         />

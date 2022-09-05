@@ -7,7 +7,7 @@ export default class Betslip extends Component {
   }
 
   // this.props.activeBets = {
-  //   moneyline: this.props.moneyline,
+  //   line: this.props.moneyline,
   //   contender: this.props.contender,
   //   type: this.props.type,
   //   title: this.props.title,
@@ -16,25 +16,27 @@ export default class Betslip extends Component {
   test() {
     if (this.props.activeBets.length !== 0) {
       return this.props.activeBets.map((bet) => (
-        <div>
-          <h1>{bet.line}</h1>
+        <div className="h-full min-w-fit pl-8 pt-4 pr-8">
+          <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
+            <h1>{bet.line}</h1>
+            <h1>{bet.contender}</h1>
+            <h1>{bet.type}</h1>
+            <h1>{bet.title}</h1>
+          </div>
         </div>
       ));
     } else {
       return (
         <div>
-          <h1>no bets :(</h1>
+          <h1 className=" text-6xl text-center">
+            Click some bets you degenerate!
+          </h1>
         </div>
       );
     }
   }
 
   render() {
-    // this.props.bets.map((bet) => (
-    //   <div>
-    //     <h1>{bet.moneyline}</h1>
-    //   </div>
-    // ));
-    return <h1>{this.test()}</h1>;
+    return <div>{this.test()}</div>;
   }
 }
