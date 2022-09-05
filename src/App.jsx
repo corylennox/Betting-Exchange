@@ -30,7 +30,10 @@ export default class App extends Component {
      this.setState({ activeBets: [...this.state.activeBets, betInfo]})
     }
     else {
-      //delete bet from array
+      //button was toggled off; delete bet from array
+      // var array = this.state.people;
+      // var index = array.indexOf(e.target.value); // Let's say it's Bob.
+      // delete array[index];
     }
   }
 

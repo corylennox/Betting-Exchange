@@ -6,10 +6,14 @@ export default class Betslip extends Component {
     this.test = this.test.bind(this);
   }
 
-  test() {
-    // if (this.props.activeBets.length === 0) return "empty";
-    // else return this.props.activeBets[0].moneyline;
+    // this.props.activeBets = {
+  //   moneyline: this.props.moneyline,
+  //   contender: this.props.contender,
+  //   type: this.props.type,
+  //   title: this.props.title,
+  // };
 
+  test() {
     return this.props.activeBets.map((bet) => (
       <div>
         <h1>{bet.moneyline}</h1>
@@ -17,18 +21,6 @@ export default class Betslip extends Component {
     )
     )
   }
-  // handleClick() {
-  //   this.setState({
-  //     hasBets: !this.hasBets,
-  //   });
-  // }
-
-  // this.betInfo = {
-  //   moneyline: this.props.moneyline,
-  //   contender: this.props.contender,
-  //   type: this.props.type,
-  //   title: this.props.title,
-  // };
 
   render() {
     // this.props.bets.map((bet) => (
