@@ -25,15 +25,15 @@ export default class App extends Component {
 
   onMoneylineClick(isToggleOn, betInfo) {
     // change state and add this moneyline to running array of monelines
-    if(isToggleOn === true)
-    {
-     this.setState({ activeBets: [...this.state.activeBets, betInfo]})
-    }
-    else {
+    if (isToggleOn === true) {
+      this.setState({ activeBets: [...this.state.activeBets, betInfo] });
+    } else {
       //button was toggled off; delete bet from array
-      // var array = this.state.people;
-      // var index = array.indexOf(e.target.value); // Let's say it's Bob.
-      // delete array[index];
+      this.setState({
+        activeBets: this.state.activeBets.filter(function (bet) {
+          return bet !== betInfo;
+        }),
+      });
     }
   }
 
