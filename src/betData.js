@@ -1,12 +1,12 @@
 import { ContendersData } from "./contendersData";
-import { svgs } from "./svgs";
 import ContenderAndIcon from "./components/ContenderAndIcon"
 
 export const BetData = [
   {
     sport: "Featured",
     href: "featured",
-    icon: svgs.StarIcon,
+    icon: "featured",
+    alternateIcon: "featuredAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
     availableBets: [
@@ -58,7 +58,8 @@ export const BetData = [
     
     sport: "Basketball",
     href: "basketball",
-    icon: svgs.basketball,
+    icon: "basketball",
+    alternateIcon: "basketballAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/512/921/921183.png",
     availableBets: [
@@ -109,7 +110,8 @@ export const BetData = [
   {
     sport: "Baseball",
     href: "baseball",
-    icon: svgs.baseball,
+    icon: "baseball",
+    alternateIcon: "baseballAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/512/3371/3371359.png",
     availableBets: [
@@ -166,7 +168,8 @@ export const BetData = [
   {
     sport: "Soccer",
     href: "soccer",
-    icon: svgs.soccer,
+    icon: "soccer",
+    alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/512/907/907690.png",
     availableBets: [
@@ -336,7 +339,8 @@ export const BetData = [
   {
     sport: "Football",
     href: "featured",
-    icon: svgs.StarIcon,
+    icon: "soccer",
+    alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
     availableBets: []
@@ -344,7 +348,8 @@ export const BetData = [
   {
     sport: "Boxing",
     href: "featured",
-    icon: svgs.StarIcon,
+    icon: "soccer",
+    alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
     availableBets: []
@@ -352,7 +357,8 @@ export const BetData = [
   {
     sport: "Bowling",
     href: "featured",
-    icon: svgs.StarIcon,
+    icon: "soccer",
+    alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
     availableBets: []
@@ -360,7 +366,8 @@ export const BetData = [
   {
     sport: "Rugby",
     href: "featured",
-    icon: svgs.StarIcon,
+    icon: "soccer",
+    alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/902/902997.png",
     imageBlue: "https://cdn-icons-png.flaticon.com/128/902/902997.png",
     availableBets: []
