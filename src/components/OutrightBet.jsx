@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import MyButton from "./MyButton";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
+import ContenderAndIcon from "./ContenderAndIcon";
+import { ContendersData } from "../contendersData";
 
 const numContenderRowsToDisplay = 3;
 
@@ -23,13 +25,16 @@ class OutrightBetContenderRow extends React.Component {
   render() {
     return (
       <div className="w-full flex justify-center h-12">
-        {this.props.contenderData}
+        <ContenderAndIcon
+        name={this.props.contenderData.name}
+        image={this.props.contenderData.image} />
         <div className="w-auto flex justify-end">
           <MyButton
             line={this.randMoneylineStr}
-            contender={this.props.contenderData}
+            contender={<ContenderAndIcon name={this.props.contenderData.name} image={this.props.contenderData.image} />}
             type={this.props.type}
             title={this.props.title}
+            buttonId={this.props.buttonId}
             onMoneylineClick={this.props.onMoneylineClick}
           />
         </div>
@@ -62,7 +67,9 @@ export default class OutrightBet extends Component {
     return (
       <div className="grid xs:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {this.props.outrightBetData.contendersData.map(
-          (contenderData, index) => (
+          (contenderData, index) => {
+            console.log('index ' + index + " and contenderData " + contenderData.contenderId);
+            return (
             <div
               className={
                 !this.state.isExpanded
@@ -77,13 +84,14 @@ export default class OutrightBet extends Component {
               }
             >
               <OutrightBetContenderRow
-                contenderData={contenderData}
+                contenderData={ContendersData.get(contenderData.contenderId)}
+                buttonId={contenderData.buttonId}
                 type={this.props.outrightBetData.type}
                 title={this.props.outrightBetData.title}
                 onMoneylineClick={this.props.onMoneylineClick}
               />
             </div>
-          )
+          )}
         )}
       </div>
     );

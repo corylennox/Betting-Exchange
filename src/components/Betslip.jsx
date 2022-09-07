@@ -52,6 +52,10 @@ export default class Betslip extends Component {
               </div>
             </div>
 
+            <div>
+              <h1>ButtonId:{bet.buttonId}</h1>
+            </div>
+
 
 
 

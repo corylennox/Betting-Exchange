@@ -8,3 +8,10 @@ make odds random
 order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
+
+- dividers between grid columns in OutrightBets
+- sidebar and betslip for mobile 
+
+- On thing we should probably fix with the app - if there is a button with the same button id between both the featured page and a sport page, they should cause each other to become highlighted
+
+- Change the contenderId from a string to a number

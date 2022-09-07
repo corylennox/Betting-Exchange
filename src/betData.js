@@ -1,6 +1,6 @@
 import { ContendersData } from "./contendersData";
-import ContenderAndIcon from "./components/ContenderAndIcon"
 
+// TODO Change the contenderId from a String to a number
 export const BetData = [
   {
     sport: "Featured",
@@ -13,43 +13,95 @@ export const BetData = [
       {
         type: "outright",
         title: "2022-23 NBA Championship Winner",
-        contendersData: ContendersData.basketball.nbaTeams,
+        contendersData: [
+            {contenderId: "bostonceltics", buttonId:93452},
+            {contenderId: "miamiheat", buttonId:9043930},
+            {contenderId: "goldenstatewarriors", buttonId:904390921},
+            {contenderId: "dallasmavericks", buttonId:433432},
+            {contenderId: "detroitpistons", buttonId:906564390921},
+            {contenderId: "memphisgrizzlies", buttonId:9084390921},
+            {contenderId: "chicagobulls", buttonId:2345},
+            {contenderId: "brooklynnets", buttonId:9043903523921},
+            {contenderId: "atlantahawks", buttonId:654},
+            {contenderId: "neworleanspelicans", buttonId:123},
+            {contenderId: "orlandomagic", buttonId:456},
+            {contenderId: "philadelphia76ers", buttonId:6543},
+            {contenderId: "denvernuggets", buttonId:3265},
+            {contenderId: "torontoraptors", buttonId:65432},
+            {contenderId: "newyorkknicks", buttonId:236},
+            {contenderId: "clevelandcavaliers", buttonId:8492},
+            {contenderId: "charlottehornets", buttonId:43534},
+            {contenderId: "portlandtrailblazers", buttonId:52345},
+            {contenderId: "washingtonwizards", buttonId:126437},
+            {contenderId: "utahjazz", buttonId:654325},
+            {contenderId: "sacramentokings", buttonId:7583},
+            {contenderId: "oklahomacitythunder", buttonId:62049},
+            {contenderId: "indianapacers", buttonId:2346626},
+            {contenderId: "phoenixsunds", buttonId:236266622},
+            {contenderId: "houstonrockets", buttonId:544},
+            {contenderId: "sanantoniospurs", buttonId:999333},
+            {contenderId: "losangelesclippers", buttonId:2932552},
+            {contenderId: "milwaukeebucks", buttonId:6653246},
+            {contenderId: "minnesotatimberwolves", buttonId:9889028}
+        ],
       },
       {
         type: "game",
         title: "Cincinnati Reds @ Philadelphia Phillies",
         contender1Data: {
-          contender: ContendersData.baseball.mlbTeams[2],
+          contenderId: "cincinnatireds",
           spread: "-1.5",
+          spreadButtonId: 42663243,
           money: "-350",
+          moneyButtonId: 42663244,
           total: "O 6.5",
+          totalButtonId: 42663245,
         },
         contender2Data: {
-          contender: ContendersData.baseball.mlbTeams[3],
+          contenderId: "philadelphiaphillies",
           spread: "+1",
+          spreadButtonId: 42663246,
           money: "+250",
+          moneyButtonId: 42663247,
           total: "U 6.5",
+          totalButtonId: 42663248,
         },
       },
       {
         type: "outright",
         title: "2022-23 WNBA Championship Winner",
-        contendersData: ContendersData.basketball.wnbaTeams,
+        contendersData: [
+            {contenderId: "chicagosky", buttonId:9934322},
+            {contenderId: "minnesotalynx", buttonId:8237},
+            {contenderId: "washingtonmystics", buttonId:89012},
+            {contenderId: "seattlestorm", buttonId:489242},
+            {contenderId: "losangelessparks", buttonId:73529},
+            {contenderId: "phoenixmercury", buttonId:66936},
+            {contenderId: "dallaswings", buttonId:552431},
+            {contenderId: "connecticutsun", buttonId:903656},
+            {contenderId: "chicagosky", buttonId:994322}
+        ]
       },
       {
         type: "game",
         title: "Atlanta Braves @ Pittsburgh Pirates",
         contender1Data: {
-          contender: ContendersData.baseball.mlbTeams[4],
+          contenderId: "atlantabraves",
           spread: "-5",
+          spreadButtonId: 2930423,
           money: "-600",
+          moneyButtonId: 23409234,
           total: "O 8.5",
+          totalButtonId: 90234234,
         },
         contender2Data: {
-          contender: ContendersData.baseball.mlbTeams[5],
+          contenderId: "pittsburghpirates",
           spread: "+5.5",
+          spreadButtonId: 203094,
           money: "+300",
+          moneyButtonId: 393242,
           total: "U 8.5",
+          totalButtonId: 99323444,
         },
       },
     ],
@@ -66,43 +118,95 @@ export const BetData = [
       {
         type: "outright",
         title: "2022-23 NBA Championship Winner",
-        contendersData: ContendersData.basketball.nbaTeams,
+        contendersData: [
+            {contenderId: "bostonceltics", buttonId:93452},
+            {contenderId: "miamiheat", buttonId:9043930},
+            {contenderId: "goldenstatewarriors", buttonId:904390921},
+            {contenderId: "dallasmavericks", buttonId:433432},
+            {contenderId: "detroitpistons", buttonId:906564390921},
+            {contenderId: "memphisgrizzlies", buttonId:9084390921},
+            {contenderId: "chicagobulls", buttonId:2345},
+            {contenderId: "brooklynnets", buttonId:9043903523921},
+            {contenderId: "atlantahawks", buttonId:654},
+            {contenderId: "neworleanspelicans", buttonId:123},
+            {contenderId: "orlandomagic", buttonId:456},
+            {contenderId: "philadelphia76ers", buttonId:6543},
+            {contenderId: "denvernuggets", buttonId:3265},
+            {contenderId: "torontoraptors", buttonId:65432},
+            {contenderId: "newyorkknicks", buttonId:236},
+            {contenderId: "clevelandcavaliers", buttonId:8492},
+            {contenderId: "charlottehornets", buttonId:43534},
+            {contenderId: "portlandtrailblazers", buttonId:52345},
+            {contenderId: "washingtonwizards", buttonId:126437},
+            {contenderId: "utahjazz", buttonId:654325},
+            {contenderId: "sacramentokings", buttonId:7583},
+            {contenderId: "oklahomacitythunder", buttonId:62049},
+            {contenderId: "indianapacers", buttonId:2346626},
+            {contenderId: "phoenixsunds", buttonId:236266622},
+            {contenderId: "houstonrockets", buttonId:544},
+            {contenderId: "sanantoniospurs", buttonId:999333},
+            {contenderId: "losangelesclippers", buttonId:2932552},
+            {contenderId: "milwaukeebucks", buttonId:6653246},
+            {contenderId: "minnesotatimberwolves", buttonId:9889028}
+        ],
       },
       {
         type: "outright",
         title: "2022-23 WNBA Championship Winner",
-        contendersData: ContendersData.basketball.wnbaTeams,
+        contendersData: [
+            {contenderId: "chicagosky", buttonId:9934322},
+            {contenderId: "minnesotalynx", buttonId:8237},
+            {contenderId: "washingtonmystics", buttonId:89012},
+            {contenderId: "seattlestorm", buttonId:489242},
+            {contenderId: "losangelessparks", buttonId:73529},
+            {contenderId: "phoenixmercury", buttonId:66936},
+            {contenderId: "dallaswings", buttonId:552431},
+            {contenderId: "connecticutsun", buttonId:903656},
+            {contenderId: "chicagosky", buttonId:994322}
+        ]
       },
       {
         type: "game",
         title: "Milwaukee Bucks @ Minnesota Timberwolves",
         contender1Data: {
-          contender: ContendersData.basketball.nbaTeams[28],
+          contenderId: "milwaukeebucks",
           spread: "+7.5",
+          spreadButtonId: 93940,
           money: "+140",
+          moneyButtonId: 3452,
           total: "O 160",
+          totalButtonId: 129438,
         },
         contender2Data: {
-          contender: ContendersData.basketball.nbaTeams[29],
+          contenderId: "minnesotatimberwolves",
           spread: "-7",
+          spreadButtonId: 637326,
           money: "-120",
+          moneyButtonId: 33322,
           total: "U 160",
+          totalButtonId: 777847,
         },
       },
       {
         type: "game",
         title: "Chicago Sky @ Minnesota Lynx",
         contender1Data: {
-          contender: ContendersData.basketball.wnbaTeams[0],
+          contenderId: "chicagosky",
           spread: "+6.5",
+          spreadButtonId: 756837,
           money: "+140",
+          moneyButtonId: 15409,
           total: "O 160",
+          totalButtonId: 893654,
         },
         contender2Data: {
-          contender: ContendersData.basketball.wnbaTeams[1],
+          contenderId: "minnesotalynx",
           spread: "-7",
+          spreadButtonId: 628578,
           money: "-120",
+          moneyButtonId: 48395,
           total: "U 160",
+          totalButtonId: 958473,
         },
       },
     ],
@@ -119,48 +223,66 @@ export const BetData = [
         type: "game",
         title: "Chicago Cubs @ Seattle Mariners",
         contender1Data: {
-          contender: ContendersData.baseball.mlbTeams[0],
+          contenderId: "chicagocubs",
           spread: "-2.5",
+          spreadButtonId: 422223551,
           money: "-160",
+          moneyButtonId: 422223552,
           total: "O 16",
+          totalButtonId: 422223553,
         },
         contender2Data: {
-          contender: ContendersData.baseball.mlbTeams[1],
+          contenderId: "seattlemariners",
           spread: "+2",
+          spreadButtonId: 422223554,
           money: "+180",
+          moneyButtonId: 422223555,
           total: "U 16",
+          totalButtonId: 422223556,
         },
       },
       {
         type: "game",
         title: "Cincinnati Reds @ Philadelphia Phillies",
         contender1Data: {
-          contender: ContendersData.baseball.mlbTeams[2],
+          contenderId: "cincinnatireds",
           spread: "-1.5",
+          spreadButtonId: 42663243,
           money: "-350",
+          moneyButtonId: 42663244,
           total: "O 6.5",
+          totalButtonId: 42663245,
         },
         contender2Data: {
-          contender: ContendersData.baseball.mlbTeams[3],
+          contenderId: "philadelphiaphillies",
           spread: "+1",
+          spreadButtonId: 42663246,
           money: "+250",
+          moneyButtonId: 42663247,
           total: "U 6.5",
+          totalButtonId: 42663248,
         },
       },
       {
         type: "game",
         title: "Atlanta Braves @ Pittsburgh Pirates",
         contender1Data: {
-          contender: ContendersData.baseball.mlbTeams[4],
+          contenderId: "atlantabraves",
           spread: "-5",
+          spreadButtonId: 2930423,
           money: "-600",
+          moneyButtonId: 23409234,
           total: "O 8.5",
+          totalButtonId: 90234234,
         },
         contender2Data: {
-          contender: ContendersData.baseball.mlbTeams[5],
+          contenderId: "pittsburghpirates",
           spread: "+5.5",
+          spreadButtonId: 203094,
           money: "+300",
+          moneyButtonId: 393242,
           total: "U 8.5",
+          totalButtonId: 99323444,
         },
       },
     ],
@@ -177,168 +299,73 @@ export const BetData = [
         type: "outright",
         title: "13 Contenders",
         contendersData: [
-          <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />,
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
         ],
       },
       {
         type: "outright",
         title: "12 Contenders",
         contendersData: [
-          <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />,
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
         ],
       },
       {
         type: "outright",
         title: "5 Contenders",
         contendersData: [
-          <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />,
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
         ],
       },
       {
         type: "outright",
         title: "4 Contenders",
         contendersData: [
-          <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />,
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
         ],
       },
       {
         type: "outright",
         title: "2 Contenders",
         contendersData: [
-          <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />, <ContenderAndIcon
-            name="Boston Celtics"
-            image="https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"
-          />,
+          {contenderId: "bostonceltics", buttonId:93452},
+          {contenderId: "bostonceltics", buttonId:93452},
         ],
-      },
-      {
-        type: "game",
-        title: "",
-        contender1Data: {
-          name: "",
-          image: "",
-          spread: "",
-          money: "",
-          total: "",
-        },
-        contender2Data: {
-          name: "",
-          image: "",
-          spread: "",
-          money: "",
-          total: "",
-        },
       },
     ],
   },
   {
     sport: "Football",
-    href: "featured",
+    href: "football",
     icon: "soccer",
     alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/2087/2087177.png",
@@ -347,7 +374,7 @@ export const BetData = [
   },
   {
     sport: "Boxing",
-    href: "featured",
+    href: "boxing",
     icon: "soccer",
     alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/1804/1804582.png",
@@ -356,7 +383,7 @@ export const BetData = [
   },
   {
     sport: "Bowling",
-    href: "featured",
+    href: "bowling",
     icon: "soccer",
     alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/3390/3390440.png",
@@ -365,7 +392,7 @@ export const BetData = [
   },
   {
     sport: "Rugby",
-    href: "featured",
+    href: "rugby",
     icon: "soccer",
     alternateIcon: "soccerAlternate",
     imageWhite: "https://cdn-icons-png.flaticon.com/128/902/902997.png",

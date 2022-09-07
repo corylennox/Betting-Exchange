@@ -16,6 +16,7 @@ export default class MyButton extends React.Component {
     this.betInfo = {
       line: this.props.line,
       contender: this.props.contender,
+      buttonId: this.props.buttonId,
       type: this.props.type,
       title: this.props.title,
     };

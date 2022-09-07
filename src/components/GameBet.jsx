@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import MyButton from "./MyButton";
+import ContenderAndIcon from "./ContenderAndIcon";
+import { ContendersData } from "../contendersData";
 
 class GameBetContenderRow extends Component {
   render() {
+    const contenderInfo = ContendersData.get(this.props.contenderData.contenderId);
+    const contenderAndIcon = <ContenderAndIcon name={contenderInfo.name} image={contenderInfo.image} />;
     return (
       <div>
         <div className="w-full mb-2 grid grid-cols-5 align-center ">
           <div className="flex h-10 justfiy-left col-span-2 ">
-            {" "}
-            {this.props.contenderData.contender}
+            {contenderAndIcon}
           </div>
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.spread}
-              contender={this.props.contenderData.contender}
+              contender={contenderAndIcon}
+              buttonId={this.props.contenderData.spreadButtonId}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}
@@ -22,7 +26,8 @@ class GameBetContenderRow extends Component {
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.money}
-              contender={this.props.contenderData.contender}
+              contender={contenderAndIcon}
+              buttonId={this.props.contenderData.moneyButtonId}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}
@@ -31,7 +36,8 @@ class GameBetContenderRow extends Component {
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.total}
-              contender={this.props.contenderData.contender}
+              contender={contenderAndIcon}
+              buttonId={this.props.contenderData.totalButtonId}
               type={this.props.type}
               title={this.props.title}
               onMoneylineClick={this.props.onMoneylineClick}
