@@ -40,7 +40,7 @@ export const ContendersData = new Map([
   ["phoenixmercury", {name: "Phoenix Mercury", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/phoenix_mercury.png"}],
   ["dallaswings", {name: "Dallas Wings", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/dallas_wings.png"}],
   ["connecticutsun", {name: "Connecticut Sun", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/connecticut_sun.png"}],
-  ["chicagosky", {name: "Chicago Sky", image: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png"}],
+  ["chicagosky", {name: "Chicago Sky", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png"}],
 
 // euro basket teams
   ["minnesotalynx", {name: "Minnesota Lynx", image: "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png"}],
