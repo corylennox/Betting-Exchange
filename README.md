@@ -18,6 +18,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 Starts the back end apollo server in the development mode.\
 Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
 
-### `run-p client server`
+### `num run all`
 
 Starts both client and server in parallel.
