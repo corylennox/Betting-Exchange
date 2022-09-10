@@ -1,10 +1,10 @@
-
 import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
-import { LOAD_USERS } from "../GraphQL/Queries";
+import { useQuery } from "@apollo/client";
+import { LOAD_USERS } from "./Queries";
 
 function GetUsers() {
-  const { error, loading, data } = useQuery(LOAD_USERS);
+  //const { error, loading, data } = useQuery(LOAD_USERS);
+  const { data } = useQuery(LOAD_USERS);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     if (data) {
@@ -14,9 +14,8 @@ function GetUsers() {
 
   return (
     <div>
-      {" "}
       {users.map((val) => {
-        return <h1> {val.firstName}</h1>;
+        return <h1> {val.firstName + " " + val.lastName}</h1>;
       })}
     </div>
   );

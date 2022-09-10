@@ -5,6 +5,7 @@ export const LOAD_USERS = gql`
     getAllUsers {
       id
       firstName
+      lastName
       email
       password
     }

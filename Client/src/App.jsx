@@ -7,15 +7,15 @@ import { BetData } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-//import MyButton from "./components/MyButton";
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from, } from "@apollo/client";
 import { onError } from '@apollo/client/link/error';
-import GetUsers from "./components/GetData";
+import GetUsers from "./GraphQL/GetData";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
     graphqlErrors.map(({ message, location, path }) => {
       alert(`Graphql error ${message}`);
+      return 1;
     });
   }
 });
