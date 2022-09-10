@@ -14,7 +14,7 @@ Starts both client and server in parallel.
 
 ### `npm run client`
 
-Starts the react front end client in the development mode.\
+Starts the front end react client in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
