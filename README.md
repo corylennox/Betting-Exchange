@@ -15,9 +15,9 @@ Server runs on [http://localhost:4000](http://localhost:4000)\
 
 ### `npm run client`
 
-Runs the client only.\
+Runs the client only.
 
 
 ### `npm run server`
 
-Runs the server only.\
+Runs the server only.
