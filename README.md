@@ -7,7 +7,7 @@ This project contains the front and back end of a betting exchange.
 
 In the project directory, you can run:
 
-### `num run all`
+### `npm run all`
 
 Starts both client and server in parallel.
 
