@@ -90,8 +90,7 @@ export default class App extends Component {
                           path={betData.href}
                           element={
                             <SportPane
-                              betData={betData.tabs}
-                              onMoneylineClick={this.onMoneylineClick}
+                              betData={betData}
                             />
                           }
                         />
@@ -114,7 +113,6 @@ export default class App extends Component {
                       element={
                         <SportPane
                           betData={SportBets[0]}
-                          onMoneylineClick={this.onMoneylineClick}
                         />
                       }
                     />

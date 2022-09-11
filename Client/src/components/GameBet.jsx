@@ -5,42 +5,40 @@ import { ContendersData } from "../contendersData";
 
 class GameBetContenderRow extends Component {
   render() {
-    const contenderInfo = ContendersData.get(this.props.contenderData.contenderId);
-    const contenderAndIcon = <ContenderAndIcon name={contenderInfo.name} image={contenderInfo.image} />;
     return (
       <div>
         <div className="w-full mb-2 grid grid-cols-5 align-center ">
           <div className="flex h-10 justfiy-left col-span-2 ">
-            {contenderAndIcon}
+            <ContenderAndIcon name={this.props.contenderData.name} image={this.props.contenderData.image} />
           </div>
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.spread}
-              contender={contenderAndIcon}
+              contenderName={this.props.contenderData.name}
+              contenderImage={this.props.contenderData.image}
               buttonId={this.props.contenderData.spreadButtonId}
               type={this.props.type}
-              title={this.props.title}
-              onMoneylineClick={this.props.onMoneylineClick}
+              title={this.props.betTitle}
             />
           </div>
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.money}
-              contender={contenderAndIcon}
+              contenderName={this.props.contenderData.name}
+              contenderImage={this.props.contenderData.image}
               buttonId={this.props.contenderData.moneyButtonId}
               type={this.props.type}
-              title={this.props.title}
-              onMoneylineClick={this.props.onMoneylineClick}
+              title={this.props.betTitle}
             />
           </div>
           <div className="flex h-10 justify-center">
             <MyButton
               line={this.props.contenderData.total}
-              contender={contenderAndIcon}
+              contenderName={this.props.contenderData.name}
+              contenderImage={this.props.contenderData.image}
               buttonId={this.props.contenderData.totalButtonId}
               type={this.props.type}
-              title={this.props.title}
-              onMoneylineClick={this.props.onMoneylineClick}
+              title={this.props.betTitle}
             />
           </div>
         </div>
@@ -54,7 +52,7 @@ export default class GameBet extends Component {
     return (
       <div className="bg-slate-100 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
         <h2 className="flex font-semibold text-blue-900 text-xl">
-          {this.props.gameBetData.title}
+          {this.props.gameBetData.betTitle}
         </h2>
         <div className="w-full grid grid-cols-5 mb-2">
           <h3 className="col-span-2 font-semibold text-slate-900 text-md">
@@ -73,14 +71,12 @@ export default class GameBet extends Component {
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender1Data}
           type={this.props.gameBetData.type}
-          title={this.props.gameBetData.title}
-          onMoneylineClick={this.props.onMoneylineClick}
+          title={this.props.gameBetData.betTitle}
         />
         <GameBetContenderRow
           contenderData={this.props.gameBetData.contender2Data}
           type={this.props.gameBetData.type}
-          title={this.props.gameBetData.title}
-          onMoneylineClick={this.props.onMoneylineClick}
+          title={this.props.gameBetData.betTitle}
         />
       </div>
     );

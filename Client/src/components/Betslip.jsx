@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ContenderAndIcon from "./ContenderAndIcon";
 
 export default class Betslip extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class Betslip extends Component {
           <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
             <div className="inline-flex w-full ">
               <div className=" w-11/12">
-                <h1>{bet.contender}</h1>
+                <h1><ContenderAndIcon name={bet.contenderName} image={bet.contenderImage} /></h1>
                 <h1>{bet.title + " - " + bet.type.charAt(0).toUpperCase() + bet.type.slice(1)}</h1>
               </div>
               <div className="w-1/12 text-right mr-2">

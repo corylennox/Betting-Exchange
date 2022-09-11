@@ -22,14 +22,6 @@ class OutrightBetContenderRow extends React.Component {
     }
   }
 
-  // <OutrightBetContenderRow
-  //   contenderData={contenderData}
-  //   buttonId={contenderData.buttonId}
-  //   type={this.props.outrightBetData.type}
-  //   title={this.props.outrightBetData.betTitle}
-  //   onMoneylineClick={this.props.onMoneylineClick}
-  // />
-
   render() {
     return (
       <div className="w-full flex justify-center h-12">
@@ -40,16 +32,11 @@ class OutrightBetContenderRow extends React.Component {
         <div className="w-auto flex justify-end">
           <MyButton
             line={this.randMoneylineStr}
-            contender={
-              <ContenderAndIcon
-                name={this.props.contenderData.name}
-                image={this.props.contenderData.image}
-              />
-            }
+            contenderName = {this.props.contenderData.name}
+            contederImage = {this.props.contenderData.image}
             type={this.props.type}
             title={this.props.title}
-            buttonId={this.props.buttonId}
-            onMoneylineClick={this.props.onMoneylineClick}
+            buttonId={this.props.contenderData.buttonId}
           />
         </div>
       </div>
@@ -77,12 +64,6 @@ export default class OutrightBet extends Component {
     this.showMoreCSS = this.showMoreCSS.bind(this);
   }
 
-  // <OutrightBet
-  //   outrightBetData={bet}
-  //   tabTitle={tab.tabTitle}
-  //   onMoneylineClick={this.props.onMoneylineClick}
-  // />
-
   displayRows() {
     return (
       <div className="grid xs:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -104,10 +85,8 @@ export default class OutrightBet extends Component {
               >
                 <OutrightBetContenderRow
                   contenderData={contenderData}
-                  buttonId={contenderData.buttonId}
                   type={this.props.outrightBetData.type}
                   title={this.props.outrightBetData.betTitle}
-                  onMoneylineClick={this.props.onMoneylineClick}
                 />
               </div>
             );
@@ -158,7 +137,6 @@ export default class OutrightBet extends Component {
   render() {
     return (
       <div className="bg-slate-100 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
-        {alert("test")}
         <h2 className="flex font-semibold text-blue-900 text-xl">
           {this.props.outrightBetData.betTitle}
         </h2>
