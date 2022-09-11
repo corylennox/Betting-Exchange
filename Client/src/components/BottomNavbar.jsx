@@ -114,6 +114,7 @@ export default class BottomNavbar extends Component {
       <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full rounded-t-2xl border-t-2 border-slate-300 text-xs pb-5">
         {BottomNavbarItems.map((navbarItem, index) => (
           <a
+            key={navbarItem.name}
             className="w-full h-full"
             href={navbarItem.href}
             onClick={() => this.onTabClicked(index)}

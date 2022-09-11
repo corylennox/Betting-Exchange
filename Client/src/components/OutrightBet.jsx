@@ -22,16 +22,30 @@ class OutrightBetContenderRow extends React.Component {
     }
   }
 
+  // <OutrightBetContenderRow
+  //   contenderData={contenderData}
+  //   buttonId={contenderData.buttonId}
+  //   type={this.props.outrightBetData.type}
+  //   title={this.props.outrightBetData.betTitle}
+  //   onMoneylineClick={this.props.onMoneylineClick}
+  // />
+
   render() {
     return (
       <div className="w-full flex justify-center h-12">
         <ContenderAndIcon
-        name={this.props.contenderData.name}
-        image={this.props.contenderData.image} />
+          name={this.props.contenderData.name}
+          image={this.props.contenderData.image}
+        />
         <div className="w-auto flex justify-end">
           <MyButton
             line={this.randMoneylineStr}
-            contender={<ContenderAndIcon name={this.props.contenderData.name} image={this.props.contenderData.image} />}
+            contender={
+              <ContenderAndIcon
+                name={this.props.contenderData.name}
+                image={this.props.contenderData.image}
+              />
+            }
             type={this.props.type}
             title={this.props.title}
             buttonId={this.props.buttonId}
@@ -63,35 +77,41 @@ export default class OutrightBet extends Component {
     this.showMoreCSS = this.showMoreCSS.bind(this);
   }
 
+  // <OutrightBet
+  //   outrightBetData={bet}
+  //   tabTitle={tab.tabTitle}
+  //   onMoneylineClick={this.props.onMoneylineClick}
+  // />
+
   displayRows() {
     return (
       <div className="grid xs:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {this.props.outrightBetData.contendersData.map(
           (contenderData, index) => {
-            console.log('index ' + index + " and contenderData " + contenderData.contenderId);
             return (
-            <div
-              className={
-                !this.state.isExpanded
-                  ? index < numContenderRowsToDisplay
-                    ? "contents"
-                    : index < numContenderRowsToDisplay * 2
-                    ? "hidden md:contents"
-                    : index < numContenderRowsToDisplay * 3
-                    ? "hidden xl:contents"
-                    : "hidden"
-                  : "" //expanded, so show all rows
-              }
-            >
-              <OutrightBetContenderRow
-                contenderData={ContendersData.get(contenderData.contenderId)}
-                buttonId={contenderData.buttonId}
-                type={this.props.outrightBetData.type}
-                title={this.props.outrightBetData.title}
-                onMoneylineClick={this.props.onMoneylineClick}
-              />
-            </div>
-          )}
+              <div
+                className={
+                  !this.state.isExpanded
+                    ? index < numContenderRowsToDisplay
+                      ? "contents"
+                      : index < numContenderRowsToDisplay * 2
+                      ? "hidden md:contents"
+                      : index < numContenderRowsToDisplay * 3
+                      ? "hidden xl:contents"
+                      : "hidden"
+                    : "" //expanded, so show all rows
+                }
+              >
+                <OutrightBetContenderRow
+                  contenderData={contenderData}
+                  buttonId={contenderData.buttonId}
+                  type={this.props.outrightBetData.type}
+                  title={this.props.outrightBetData.betTitle}
+                  onMoneylineClick={this.props.onMoneylineClick}
+                />
+              </div>
+            );
+          }
         )}
       </div>
     );
@@ -138,8 +158,9 @@ export default class OutrightBet extends Component {
   render() {
     return (
       <div className="bg-slate-100 rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
+        {alert("test")}
         <h2 className="flex font-semibold text-blue-900 text-xl">
-          {this.props.outrightBetData.title}
+          {this.props.outrightBetData.betTitle}
         </h2>
         <h3 className="pb-2 font-semibold text-slate-900 text-md">
           Outright Bet
