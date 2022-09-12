@@ -125,7 +125,7 @@ export const SportBets = {
             {name: "Phoenix Mercury", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/phoenix_mercury.png", buttonId:66936},
             {name: "Dallas Wings", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/dallas_wings.png", buttonId:552431},
             {name: "Connecticut Sun", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/connecticut_sun.png", buttonId:903656},
-            {name: "Chicago Sky", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png", buttonId:994322}
+            {name: "Chicago Sky Test", image: "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png", buttonId:994322}
           ]
         },
       ],  
