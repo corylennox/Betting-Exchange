@@ -4,6 +4,7 @@ import ImageMap from "../images/ImageMap";
 
 export default class Sidebar extends Component {
   render() {
+    console.log("test..icles " + this.props.sportsPane + " " + this.props.sportsData.length);
     return (
       <div className={this.props.sportsPane ? "bg-white" : ""}>
         <div
@@ -24,8 +25,8 @@ export default class Sidebar extends Component {
           </h1>
         </div>
         <div>
-          {this.props.betData.map((sportData, index) => (
-            <div key={sportData.sport} className="contents">
+          {this.props.sportsData.map((sportData, index) => (
+            <div key={sportData.title} className="contents">
               <a
                 className={
                   this.props.sportsPane
@@ -38,8 +39,8 @@ export default class Sidebar extends Component {
                   <div className="mr-3">
                     {ImageMap.get(
                       this.props.sportsPane
-                        ? sportData.alternateIcon
-                        : sportData.icon
+                        ? sportData.sidebarAlternateIcon
+                        : sportData.sidebarIcon
                     )}
                   </div>
                   <p
@@ -49,7 +50,7 @@ export default class Sidebar extends Component {
                         : ""
                     }
                   >
-                    {sportData.sport}
+                    {sportData.title}
                   </p>
                 </div>
                 <div className={this.props.sportsPane ? "" : "hidden"}>
@@ -57,7 +58,7 @@ export default class Sidebar extends Component {
                 </div>
               </a>
               {this.props.sportsPane &&
-              index < this.props.betData.length - 1 ? (
+              index < this.props.sportsData.length - 1 ? (
                 <div className="w-full h-px bg-gray-300 ml-4" />
               ) : (
                 <div />

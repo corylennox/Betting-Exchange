@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
-import { BetData, UniversalData, SportBets } from "./betData";
+import { UniversalData, SportBets } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
@@ -42,7 +42,7 @@ export default class App extends Component {
     };
 
     this.BottomNavbar = <BottomNavbar />;
-    this.sidebar = <Sidebar sportsPane={false} betData={BetData} />;
+    this.sidebar = <Sidebar sportsPane={false} sportsData={UniversalData.sports} />;
 
     this.onMoneylineClick = this.onMoneylineClick.bind(this);
   }
@@ -102,7 +102,7 @@ export default class App extends Component {
                       path="/all-sports"
                       element={
                         <div>
-                          <Sidebar sportsPane={true} betData={BetData} />
+                          <Sidebar sportsPane={true} sportsData={UniversalData.sports} />
                         </div>
                       }
                     />

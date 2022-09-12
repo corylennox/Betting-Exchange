@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import MyButton from "./MyButton";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import ContenderAndIcon from "./ContenderAndIcon";
-import { ContendersData } from "../contendersData";
 
 const numContenderRowsToDisplay = 3;
 

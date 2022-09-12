@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import MyButton from "./MyButton";
 import ContenderAndIcon from "./ContenderAndIcon";
-import { ContendersData } from "../contendersData";
 
 class GameBetContenderRow extends Component {
   render() {
