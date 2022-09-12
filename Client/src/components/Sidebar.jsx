@@ -11,7 +11,6 @@ export default class Sidebar extends Component {
             this.props.sportsPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-5"
           }
         >
-          {" "}
           {/* margin left to match the padding left in the <a/> tag */}
           <h1
             className={

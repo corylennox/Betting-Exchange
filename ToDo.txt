@@ -4,12 +4,18 @@ Moneyline
 Point spread
 
 To Do:
-make odds random
+finish top nav bar
 order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
 
+give lines to outright bet contenders from data
+dynamically generate sidebar items
+get wager and win buttons to update to correct values and catch bad inputs
+render active sportspane using state rather than href (because using href clears betslip when switching sportspanes)
+
+
 - dividers between grid columns in OutrightBets
 - sidebar and betslip for mobile 
 
-- On thing we should probably fix with the app - if there is a button with the same button id between both the featured page and a sport page, they should cause each other to become highlighted
+- buttons with the same button id on two different pages (eg. featured page and basketball page) should be toggled in sync

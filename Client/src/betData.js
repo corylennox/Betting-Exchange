@@ -24,8 +24,8 @@ export const SportBets = {
           type: "OutrightBet",
           betTitle: "2022-23 NBA Championship Winner",
           contendersData: [
-            {name: "Boston Celtics", image: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png", buttonId:93452},
-            {name: "Miami Heat", image: "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png", buttonId:9043930},
+            {name: "same button test", image: "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png", buttonId:9043930},
+            {name: "same button test", image: "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png", buttonId:9043930},
             {name: "Golden State Warriors", image: "https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png", buttonId:904390921},
             {name: "Dallas Mavericks", image: "https://assets.sportsbook.fanduel.com/images/team/nba/dallas_mavericks.png", buttonId:433432},
             {name: "Detroit Pistons", image: "https://assets.sportsbook.fanduel.com/images/team/nba/detroit_pistons.png", buttonId:906564390921},

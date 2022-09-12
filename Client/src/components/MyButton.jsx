@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
 
 function getUpdatedMap(toggledBets, buttonId, betInfo) {
