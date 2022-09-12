@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";

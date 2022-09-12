@@ -2,6 +2,12 @@ import React, { useContext } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
 
+function deleteBet(toggledBets, buttonId) {
+  if (toggledBets.has(buttonId))
+    toggledBets.delete(buttonId);
+  return new Map(toggledBets);
+}
+
 export default function Betslip(props) {
   const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
   const toggledBetsArray = Array.from( toggledBets.keys() );
@@ -14,14 +20,15 @@ export default function Betslip(props) {
       <div className="flex min-h-fit min-w-fit pt-4 pr-9">
         <img
           alt="remove icon"
-          className="w-7 h-7 mx-2 mt-2"
+          className="w-7 h-7 mx-2 mt-2 cursor-pointer"
           src="res/remove.png"
+          onClick={ () => setToggledBets(deleteBet(toggledBets, buttonId)) }
         />
         <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
           <div className="inline-flex w-full ">
             <div className=" w-11/12">
               <h1><ContenderAndIcon name={bet.contenderName} image={bet.contenderImage} /></h1>
-              <h1>{bet.title + " - " + bet.type.charAt(0).toUpperCase() + bet.type.slice(1)}</h1>
+              <h1>{ bet.title + " - " + bet.type.charAt(0).toUpperCase() + bet.type.slice(1)}</h1>
             </div>
             <div className="w-1/12 text-right mr-2">
               <h1 className="pt-4 pb-4 h-full">{bet.line}</h1>
