@@ -356,7 +356,7 @@ export const SportBets = [
                 buttonId: 903656,
               },
               {
-                name: "Chicago Sky",
+                name: "Chicago Sky Test",
                 image:
                   "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
                 buttonId: 994322,

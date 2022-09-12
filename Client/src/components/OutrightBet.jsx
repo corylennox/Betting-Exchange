@@ -70,6 +70,7 @@ export default class OutrightBet extends Component {
           (contenderData, index) => {
             return (
               <div
+                key={this.props.tabTitle + this.props.outrightBetData.betTitle + contenderData.name}
                 className={
                   !this.state.isExpanded
                     ? index < numContenderRowsToDisplay

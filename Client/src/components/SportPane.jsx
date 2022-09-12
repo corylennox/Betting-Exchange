@@ -15,7 +15,7 @@ export default class SportPane extends Component {
        switch (bet.type) {
           case "outright":
             return (
-              <div>
+              <div key={tab.tabTitle + bet.betTitle}>
                 <OutrightBet
                   outrightBetData={bet}
                   tabTitle={tab.tabTitle}
@@ -24,7 +24,7 @@ export default class SportPane extends Component {
             );
           case "game":
             return (
-              <div>
+              <div key={tab.tabTitle + bet.betTitle}>
                 <GameBet
                   gameBetData={bet}
                   tabTitle={tab.tabTitle}

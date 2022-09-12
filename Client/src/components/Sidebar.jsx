@@ -4,7 +4,6 @@ import ImageMap from "../images/ImageMap";
 
 export default class Sidebar extends Component {
   render() {
-    console.log("test..icles " + this.props.sportsPane + " " + this.props.sportsData.length);
     return (
       <div className={this.props.sportsPane ? "bg-white" : ""}>
         <div
