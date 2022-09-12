@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useContext } from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
@@ -16,6 +16,7 @@ import {
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import GetUsers from "./GraphQL/GetData";
+import { ToggledBetsContext } from "./Contexts/ToggledBetsContext";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -34,9 +35,12 @@ const client = new ApolloClient({
 });
 
 export default function App() {
+  const [toggledBets, setToggledBets] = useState(new Map());
+
   return (
     <ApolloProvider client={client}>
       <main className="absolute inset-0 w-full text-gray-400">
+        <ToggledBetsContext.Provider value={{toggledBets, setToggledBets}}>
         <Router>
           {/* Navbar */}
           <div className="hidden lg:contents">
@@ -98,7 +102,7 @@ export default function App() {
                 <div className="flex sticky top-0 border-b-2 h-11 items-center p-2">
                   <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
                     <h1 className="w-full text-md font-semibold text-white font-mono">
-                      {0}
+                      {toggledBets.size}
                     </h1>
                   </div>
                   <h1 className="text-slate-600 font-bold text-lg ml-1">
@@ -118,6 +122,7 @@ export default function App() {
             </div>
           </div>
         </Router>
+        </ToggledBetsContext.Provider>
       </main>
     </ApolloProvider>
   );

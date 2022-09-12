@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
+import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
 
 export default function Betslip(props) {
+  const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
+  const toggledBetsArray = Array.from( toggledBets.keys() );
 
-  if (props.activeBets.length !== 0) {
-    return (props.activeBets.map((bet) => (
+  if (toggledBetsArray.length !== 0) {
+    return (toggledBetsArray.map((buttonId) => {
+      const bet = toggledBets.get(buttonId);
+      console.log(bet.contenderName);
+      return (
       <div className="flex min-h-fit min-w-fit pt-4 pr-9">
         <img
           alt="remove icon"
@@ -45,7 +51,7 @@ export default function Betslip(props) {
           </div>
         </div>
       </div>
-    )));
+    )}));
   } else {
     return (
       <div>

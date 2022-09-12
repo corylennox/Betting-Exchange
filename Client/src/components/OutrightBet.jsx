@@ -32,7 +32,7 @@ class OutrightBetContenderRow extends React.Component {
           <MyButton
             line={this.randMoneylineStr}
             contenderName = {this.props.contenderData.name}
-            contederImage = {this.props.contenderData.image}
+            contenderImage = {this.props.contenderData.image}
             type={this.props.type}
             title={this.props.title}
             buttonId={this.props.contenderData.buttonId}
