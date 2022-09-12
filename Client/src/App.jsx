@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
-import { UniversalData, SportBets } from "./betData";
+import { UniversalData, SportsBets } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
@@ -56,7 +56,7 @@ export default function App() {
               {
                 <Routes>
                   <Route path="/">
-                    {SportBets.map((betData) => (
+                    {SportsBets.map((betData) => (
                       <Route
                         key={betData.sportTitle}
                         path={betData.href}
@@ -84,7 +84,7 @@ export default function App() {
                     path="*"
                     element={
                       <SportPane
-                        betData={SportBets[0]}
+                        betData={SportsBets[0]}
                       />
                     }
                   />

@@ -13,7 +13,7 @@ export default class SportPane extends Component {
     return (this.props.betData.tabs.map((tab) => { return (
       tab.availableBets.map((bet) => { 
        switch (bet.type) {
-          case "outright":
+          case "OutrightBet":
             return (
               <div key={tab.tabTitle + bet.betTitle}>
                 <OutrightBet
@@ -22,7 +22,7 @@ export default class SportPane extends Component {
                 />
               </div>
             );
-          case "game":
+          case "GameBet":
             return (
               <div key={tab.tabTitle + bet.betTitle}>
                 <GameBet
