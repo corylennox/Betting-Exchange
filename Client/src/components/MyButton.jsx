@@ -15,7 +15,8 @@ export default class MyButton extends React.Component {
 
     this.betInfo = {
       line: this.props.line,
-      contender: this.props.contender,
+      contenderName: this.props.contenderName,
+      contenderImage: this.props.contenderImage,
       buttonId: this.props.buttonId,
       type: this.props.type,
       title: this.props.title,
@@ -28,8 +29,6 @@ export default class MyButton extends React.Component {
     this.setState({
       isToggleOn: !this.state.isToggleOn,
     });
-
-    this.props.onMoneylineClick(!this.state.isToggleOn, this.betInfo);
   }
 
   render() {
