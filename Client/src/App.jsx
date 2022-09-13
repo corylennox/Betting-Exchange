@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
-import { UniversalData, SportsBets } from "./betData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
 import {
@@ -34,11 +35,15 @@ const client = new ApolloClient({
   link: link,
 });
 
-export default function App() {
+function AppNested() {
+  const { loading, data: universalDataResponse, error } = useQuery(UNIVERSAL_DATA_QUERY);
+
   const [toggledBets, setToggledBets] = useState(new Map());
 
+  if (loading)
+    return (<h1>Loading...</h1>);
+
   return (
-    <ApolloProvider client={client}>
       <main className="absolute inset-0 w-full text-gray-400">
         <ToggledBetsContext.Provider value={{toggledBets, setToggledBets}}>
         <Router>
@@ -51,7 +56,7 @@ export default function App() {
             {/* Sidebar */}
             <div className="hidden lg:contents">
               <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
-                <Sidebar sportsPane={false} sportsData={UniversalData.sports} />
+                <Sidebar sportsPane={false} sportsData={universalDataResponse.universalData.sports} />
               </div>
             </div>
 
@@ -60,13 +65,13 @@ export default function App() {
               {
                 <Routes>
                   <Route path="/">
-                    {SportsBets.map((betData) => (
+                    {universalDataResponse.universalData.sports.map((sport) => (
                       <Route
-                        key={betData.sportTitle}
-                        path={betData.href}
+                        key={sport.title}
+                        path={sport.href}
                         element={
                           <SportPane
-                            betData={betData}
+                            sportPaneTitle={sport.title}
                           />
                         }
                       />
@@ -78,7 +83,7 @@ export default function App() {
                     path="/all-sports"
                     element={
                       <div>
-                        <Sidebar sportsPane={true} sportsData={UniversalData.sports} />
+                        <Sidebar sportsPane={true} sportsData={universalDataResponse.universalData.sports} />
                       </div>
                     }
                   />
@@ -88,7 +93,7 @@ export default function App() {
                     path="*"
                     element={
                       <SportPane
-                        betData={SportsBets[0]}
+                        sportPaneTitle={universalDataResponse.universalData.sports[0].title}
                       />
                     }
                   />
@@ -124,6 +129,13 @@ export default function App() {
         </Router>
         </ToggledBetsContext.Provider>
       </main>
-    </ApolloProvider>
   );
+}
+
+export default function App() {
+  return (
+    <ApolloProvider client={client}>
+      <AppNested />
+    </ApolloProvider>
+  )
 }
