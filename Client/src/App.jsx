@@ -45,6 +45,12 @@ function AppNested() {
   if (loading)
     return (<h1>Loading...</h1>);
 
+  if (error)
+  {
+    console.log("Error loading App: " + error);
+    return (<h1>Error Loading App. Error logged to console.</h1>);
+  }
+
   const universalData = translateUniversalData(universalDataResponse)
   return (
       <main className="absolute inset-0 w-full text-gray-400">

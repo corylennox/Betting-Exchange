@@ -13,6 +13,12 @@ export default function SportPane(props) {
     if (loading)
       return (<h1>Loading...</h1>);
 
+    if (error)
+    {
+      console.log("Error loading SportPane: " + error);
+      return (<h1>Error Loading SportPane. Error logged to console.</h1>);
+    }
+
     const sportPaneData = translateSportsPaneData(sportPaneDataResponse)
     return (
       <div className="h-full min-w-fit bg-slate-100 pl-8 pt-4 pr-8">
