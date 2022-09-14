@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const typeDefs = require('./src/Schema');
-const { UniversalData, SportBets } = require('./src/Data');
+const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
 
 const books = [
     {
@@ -45,7 +45,7 @@ const resolvers = {
         books: () => books,
         getAllUsers: () => users,
         universalData: () => UniversalData,
-        sportPane: (args) => SportBets,
+        sportPane: (parent, args, context, info) => {return SportsBets.has(args.sportTitle) ? SportsBets.get(args.sportTitle) : FeaturedSportBets;},
     },
 };
 
