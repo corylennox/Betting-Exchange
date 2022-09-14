@@ -18,6 +18,7 @@ import {
 import { onError } from "@apollo/client/link/error";
 import GetUsers from "./GraphQL/GetData";
 import { ToggledBetsContext } from "./Contexts/ToggledBetsContext";
+import { translateUniversalData } from "./GraphQL/Translate";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -35,6 +36,7 @@ const client = new ApolloClient({
   link: link,
 });
 
+// Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   const { loading, data: universalDataResponse, error } = useQuery(UNIVERSAL_DATA_QUERY);
 
@@ -43,6 +45,7 @@ function AppNested() {
   if (loading)
     return (<h1>Loading...</h1>);
 
+  const universalData = translateUniversalData(universalDataResponse)
   return (
       <main className="absolute inset-0 w-full text-gray-400">
         <ToggledBetsContext.Provider value={{toggledBets, setToggledBets}}>
@@ -56,7 +59,7 @@ function AppNested() {
             {/* Sidebar */}
             <div className="hidden lg:contents">
               <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
-                <Sidebar sportsPane={false} sportsData={universalDataResponse.universalData.sports} />
+                <Sidebar sportsPane={false} sportsData={universalData.sports} />
               </div>
             </div>
 
@@ -65,7 +68,7 @@ function AppNested() {
               {
                 <Routes>
                   <Route path="/">
-                    {universalDataResponse.universalData.sports.map((sport) => (
+                    {universalData.sports.map((sport) => (
                       <Route
                         key={sport.title}
                         path={sport.href}
@@ -83,7 +86,7 @@ function AppNested() {
                     path="/all-sports"
                     element={
                       <div>
-                        <Sidebar sportsPane={true} sportsData={universalDataResponse.universalData.sports} />
+                        <Sidebar sportsPane={true} sportsData={universalData.sports} />
                       </div>
                     }
                   />
@@ -93,7 +96,7 @@ function AppNested() {
                     path="*"
                     element={
                       <SportPane
-                        sportPaneTitle={universalDataResponse.universalData.sports[0].title}
+                        sportPaneTitle={universalData.sports[0].title}
                       />
                     }
                   />
