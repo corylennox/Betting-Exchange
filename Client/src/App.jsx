@@ -38,23 +38,25 @@ const client = new ApolloClient({
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
-  const { loading, data: universalDataResponse, error } = useQuery(UNIVERSAL_DATA_QUERY);
+  const {
+    loading,
+    data: universalDataResponse,
+    error,
+  } = useQuery(UNIVERSAL_DATA_QUERY);
 
   const [toggledBets, setToggledBets] = useState(new Map());
 
-  if (loading)
-    return (<h1>Loading...</h1>);
+  if (loading) return <h1>Loading...</h1>;
 
-  if (error)
-  {
+  if (error) {
     console.log("Error loading App: " + error);
-    return (<h1>Error Loading App. Error logged to console.</h1>);
+    return <h1>Error Loading App. Error logged to console.</h1>;
   }
 
-  const universalData = translateUniversalData(universalDataResponse)
+  const universalData = translateUniversalData(universalDataResponse);
   return (
-      <main className="absolute inset-0 w-full text-gray-400">
-        <ToggledBetsContext.Provider value={{toggledBets, setToggledBets}}>
+    <main className="absolute inset-0 w-full text-gray-400">
+      <ToggledBetsContext.Provider value={{ toggledBets, setToggledBets }}>
         <Router>
           {/* Navbar */}
           <div className="hidden lg:contents">
@@ -78,11 +80,7 @@ function AppNested() {
                       <Route
                         key={sport.title}
                         path={sport.href}
-                        element={
-                          <SportPane
-                            sportPaneTitle={sport.title}
-                          />
-                        }
+                        element={<SportPane sportPaneTitle={sport.title} />}
                       />
                     ))}
                   </Route>
@@ -92,7 +90,10 @@ function AppNested() {
                     path="/all-sports"
                     element={
                       <div>
-                        <Sidebar sportsPane={true} sportsData={universalData.sports} />
+                        <Sidebar
+                          sportsPane={true}
+                          sportsData={universalData.sports}
+                        />
                       </div>
                     }
                   />
@@ -123,7 +124,6 @@ function AppNested() {
                     Betslip
                   </h1>
                 </div>
-                <GetUsers />
                 <Betslip activeBets={[]} />
               </div>
             </div>
@@ -136,8 +136,8 @@ function AppNested() {
             </div>
           </div>
         </Router>
-        </ToggledBetsContext.Provider>
-      </main>
+      </ToggledBetsContext.Provider>
+    </main>
   );
 }
 
@@ -146,5 +146,5 @@ export default function App() {
     <ApolloProvider client={client}>
       <AppNested />
     </ApolloProvider>
-  )
+  );
 }
