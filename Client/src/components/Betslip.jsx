@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { DeleteBetAction } from "../actions/ToggledBetsActions"
 
 function deleteBet(toggledBets, buttonId) {
   if (toggledBets.has(buttonId)) toggledBets.delete(buttonId);
@@ -18,7 +20,9 @@ function onWinChange(evt, setWin, setWager, line) {
 }
 
 function ToggledBet(props) {
-  const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
+  const toggledBets = useSelector(state => state.toggledBets);
+  const dispatch = useDispatch();
+  // const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
   const [wager, setWager] = useState(0);
   const [win, setWin] = useState(0);
 
@@ -28,7 +32,7 @@ function ToggledBet(props) {
         alt="remove icon"
         className="w-7 h-7 mx-2 mt-2 cursor-pointer"
         src="res/remove.png"
-        onClick={() => setToggledBets(deleteBet(toggledBets, props.buttonId))}
+        onClick={() => dispatch(DeleteBetAction(props.buttonId))}
       />
       <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
         <div className="inline-flex w-full ">
@@ -100,11 +104,11 @@ function ToggledBet(props) {
 
 export default function Betslip() {
   const { toggledBets } = useContext(ToggledBetsContext);
-  const toggledBetsArray = Array.from(toggledBets.keys());
 
   if (toggledBetsArray.length !== 0) {
-    return toggledBetsArray.map((buttonId) => {
-      const bet = toggledBets.get(buttonId);
+    return toggledBets.map((toggledBet) => {
+      const buttonId = toggledBet.key;
+      const bet = toggledBet.value.betInfo;
       return <ToggledBet bet={bet} buttonId={buttonId} />;
     });
   } else {

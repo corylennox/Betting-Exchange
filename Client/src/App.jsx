@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
@@ -16,9 +16,11 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import GetUsers from "./GraphQL/GetData";
 import { ToggledBetsContext } from "./Contexts/ToggledBetsContext";
 import { translateUniversalData } from "./GraphQL/Translate";
+import { PersistGate } from 'redux-persist/integration/react'
+import { Provider } from "react-redux"
+import { store, persistor } from './components/ConfigureStore'
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -144,7 +146,11 @@ function AppNested() {
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <AppNested />
-    </ApolloProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppNested />
+        </PersistGate>
+      </Provider>
+    </ApolloProvider >
   );
 }
