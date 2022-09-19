@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
-import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
-import { useSelector, useDispatch } from 'react-redux';
-import { DeleteBetAction } from "../actions/ToggledBetsActions"
+//import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteBetAction } from "../Redux/Actions";
 
-function deleteBet(toggledBets, buttonId) {
-  if (toggledBets.has(buttonId)) toggledBets.delete(buttonId);
-  return new Map(toggledBets);
-}
+// function deleteBet(toggledBets, buttonId) {
+//   if (toggledBets.has(buttonId)) toggledBets.delete(buttonId);
+//   return new Map(toggledBets);
+// }
 
 function onWagerChange(evt, setWin, setWager, line) {
   setWin((evt.target.value * parseInt(line, 10)) / 100); //this math is wrong idk american odds ¯\_(ツ)_/¯
@@ -20,7 +20,6 @@ function onWinChange(evt, setWin, setWager, line) {
 }
 
 function ToggledBet(props) {
-  const toggledBets = useSelector(state => state.toggledBets);
   const dispatch = useDispatch();
   // const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
   const [wager, setWager] = useState(0);
@@ -32,7 +31,7 @@ function ToggledBet(props) {
         alt="remove icon"
         className="w-7 h-7 mx-2 mt-2 cursor-pointer"
         src="res/remove.png"
-        onClick={() => dispatch(DeleteBetAction(props.buttonId))}
+        onClick={() => dispatch(deleteBetAction(props.buttonId))}
       />
       <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
         <div className="inline-flex w-full ">
@@ -103,10 +102,13 @@ function ToggledBet(props) {
 }
 
 export default function Betslip() {
-  const { toggledBets } = useContext(ToggledBetsContext);
+  // const { toggledBets } = useContext(ToggledBetsContext);
+  const toggledBets = useSelector((state) => state.toggledBets);
+  const toggledBetsArray = Array.from(toggledBets.keys());
+  console.log(toggledBetsArray);
 
   if (toggledBetsArray.length !== 0) {
-    return toggledBets.map((toggledBet) => {
+    return toggledBetsArray.map((toggledBet) => {
       const buttonId = toggledBet.key;
       const bet = toggledBet.value.betInfo;
       return <ToggledBet bet={bet} buttonId={buttonId} />;

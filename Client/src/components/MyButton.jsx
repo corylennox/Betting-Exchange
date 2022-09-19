@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
-import { useSelector, useDispatch } from 'react-redux';
-import { myButtonClickedAction } from '../actions/ToggledBetsActions'
+import { useSelector, useDispatch } from "react-redux";
+import { myButtonClickedAction } from "../Redux/Actions";
 
 function getUpdatedMap(toggledBets, buttonId, betInfo) {
-  if (toggledBets.has(buttonId))
-    toggledBets.delete(buttonId);
-  else
-    toggledBets.set(buttonId, betInfo);
+  if (toggledBets.has(buttonId)) toggledBets.delete(buttonId);
+  else toggledBets.set(buttonId, betInfo);
   return new Map(toggledBets);
 }
 
@@ -27,15 +25,15 @@ export default function MyButton(props) {
     type: props.type,
     title: props.title,
   };
-  
-  const toggledBets = useSelector(state => state.toggledBets);
+
+  const toggledBets = useSelector((state) => state.toggledBets);
 
   return (
     <button
       onClick={() => {
-        dispatch(myButtonClickedAction(props.buttonId, betInfo))
+        dispatch(myButtonClickedAction(props.buttonId, betInfo));
       }}
-      className={new ArrayMap(toggledBets).has(props.buttonId) ? onCSS : offCSS}
+      className={toggledBets.has(props.buttonId) ? onCSS : offCSS}
     >
       {props.line}
     </button>
