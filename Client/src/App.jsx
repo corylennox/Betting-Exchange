@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
@@ -16,9 +16,12 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import GetUsers from "./GraphQL/GetData";
-import { ToggledBetsContext } from "./Contexts/ToggledBetsContext";
 import { translateUniversalData } from "./GraphQL/Translate";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+import { store, persistor } from "./Redux/ConfigureStore";
+import { useSelector } from "react-redux";
+import { reviveMap } from "./utils";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -38,13 +41,15 @@ const client = new ApolloClient({
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
+  //persistor.purge();
+
   const {
     loading,
     data: universalDataResponse,
     error,
   } = useQuery(UNIVERSAL_DATA_QUERY);
 
-  const [toggledBets, setToggledBets] = useState(new Map());
+  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
 
   if (loading) return <h1>Loading...</h1>;
 
@@ -56,87 +61,83 @@ function AppNested() {
   const universalData = translateUniversalData(universalDataResponse);
   return (
     <main className="absolute inset-0 w-full text-gray-400">
-      <ToggledBetsContext.Provider value={{ toggledBets, setToggledBets }}>
-        <Router>
-          {/* Navbar */}
+      <Router>
+        {/* Navbar */}
+        <div className="hidden lg:contents">
+          <Navbar />
+        </div>
+        {/* Grid */}
+        <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
+          {/* Sidebar */}
           <div className="hidden lg:contents">
-            <Navbar />
+            <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
+              <Sidebar sportsPane={false} sportsData={universalData.sports} />
+            </div>
           </div>
-          {/* Grid */}
-          <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
-            {/* Sidebar */}
-            <div className="hidden lg:contents">
-              <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
-                <Sidebar sportsPane={false} sportsData={universalData.sports} />
-              </div>
-            </div>
 
-            {/* Sportspane */}
-            <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
-              {
-                <Routes>
-                  <Route path="/">
-                    {universalData.sports.map((sport) => (
-                      <Route
-                        key={sport.title}
-                        path={sport.href}
-                        element={<SportPane sportPaneTitle={sport.title} />}
+          {/* Sportspane */}
+          <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
+            {
+              <Routes>
+                <Route path="/">
+                  {universalData.sports.map((sport) => (
+                    <Route
+                      key={sport.title}
+                      path={sport.href}
+                      element={<SportPane sportPaneTitle={sport.title} />}
+                    />
+                  ))}
+                </Route>
+
+                {/* All Sports in sports pane */}
+                <Route
+                  path="/all-sports"
+                  element={
+                    <div>
+                      <Sidebar
+                        sportsPane={true}
+                        sportsData={universalData.sports}
                       />
-                    ))}
-                  </Route>
+                    </div>
+                  }
+                />
 
-                  {/* All Sports in sports pane */}
-                  <Route
-                    path="/all-sports"
-                    element={
-                      <div>
-                        <Sidebar
-                          sportsPane={true}
-                          sportsData={universalData.sports}
-                        />
-                      </div>
-                    }
-                  />
+                {/* route all other paths to home */}
+                <Route
+                  path="*"
+                  element={
+                    <SportPane sportPaneTitle={universalData.sports[0].title} />
+                  }
+                />
+              </Routes>
+            }
+          </div>
 
-                  {/* route all other paths to home */}
-                  <Route
-                    path="*"
-                    element={
-                      <SportPane
-                        sportPaneTitle={universalData.sports[0].title}
-                      />
-                    }
-                  />
-                </Routes>
-              }
-            </div>
-
-            {/* Betslip */}
-            <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
-              <div className="h-auto ">
-                <div className="flex sticky top-0 border-b-2 h-11 items-center p-2">
-                  <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
-                    <h1 className="w-full text-md font-semibold text-white font-mono">
-                      {toggledBets.size}
-                    </h1>
-                  </div>
-                  <h1 className="text-slate-600 font-bold text-lg ml-1">
-                    Betslip
+          {/* Betslip */}
+          <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
+            <div className="h-auto ">
+              <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2 bg-white">
+                <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
+                  <h1 className="w-full text-md font-semibold text-white font-mono">
+                    { toggledBets.size }
                   </h1>
                 </div>
-                <Betslip activeBets={[]} />
+                <h1 className="text-slate-600 font-bold text-lg ml-1">
+                  Betslip
+                </h1>
               </div>
-            </div>
-
-            {/* Bottom Navbar */}
-            <div className="contents lg:hidden 0">
-              <div className="inset-0 bottom-0 z-50 sticky bg-slate-100 h-16">
-                <BottomNavbar />
-              </div>
+              <Betslip activeBets={[]} />
             </div>
           </div>
-        </Router>
-      </ToggledBetsContext.Provider>
+
+          {/* Bottom Navbar */}
+          <div className="contents lg:hidden 0">
+            <div className="inset-0 bottom-0 z-50 sticky bg-slate-100 h-16">
+              <BottomNavbar />
+            </div>
+          </div>
+        </div>
+      </Router>
     </main>
   );
 }
@@ -144,7 +145,11 @@ function AppNested() {
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <AppNested />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppNested />
+        </PersistGate>
+      </Provider>
     </ApolloProvider>
   );
 }

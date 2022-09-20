@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import OutrightBet from "./OutrightBet";
 import GameBet from "./GameBet";
 import { useQuery } from "@apollo/client";

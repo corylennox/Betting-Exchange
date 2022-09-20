@@ -1,16 +1,10 @@
-import React, { useContext } from "react";
-import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
-
-function getUpdatedMap(toggledBets, buttonId, betInfo) {
-  if (toggledBets.has(buttonId))
-    toggledBets.delete(buttonId);
-  else
-    toggledBets.set(buttonId, betInfo);
-  return new Map(toggledBets);
-}
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { myButtonClickedAction } from "../Redux/Actions";
+import { reviveMap } from "../utils"
 
 export default function MyButton(props) {
-  const { toggledBets, setToggledBets } = useContext(ToggledBetsContext);
+  const dispatch = useDispatch();
 
   const onCSS =
     "w-16 bg-blue-600 text-white font-semibold border border-gray-800 border rounded placeholder-shown:bg-red-500";
@@ -26,10 +20,12 @@ export default function MyButton(props) {
     title: props.title,
   };
 
+  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
+
   return (
     <button
       onClick={() => {
-        setToggledBets(getUpdatedMap(toggledBets, props.buttonId, betInfo))
+        dispatch(myButtonClickedAction(props.buttonId, betInfo));
       }}
       className={toggledBets.has(props.buttonId) ? onCSS : offCSS}
     >
