@@ -11,8 +11,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import allReducers from "./Reducers/AllReducers";
-import { deleteBetAction } from "./Actions";
-import { myButtonClickedAction } from "./Actions";
 
 const persistConfig = {
   key: "root",
@@ -33,7 +31,6 @@ export const store = configureStore({
           PERSIST,
           PURGE,
           REGISTER,
-          myButtonClickedAction,
         ],
       },
     }),

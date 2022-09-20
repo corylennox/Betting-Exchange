@@ -1,13 +1,7 @@
-import React, { useContext } from "react";
-import { ToggledBetsContext } from "../Contexts/ToggledBetsContext";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { myButtonClickedAction } from "../Redux/Actions";
-
-function getUpdatedMap(toggledBets, buttonId, betInfo) {
-  if (toggledBets.has(buttonId)) toggledBets.delete(buttonId);
-  else toggledBets.set(buttonId, betInfo);
-  return new Map(toggledBets);
-}
+import { reviveMap } from "../utils"
 
 export default function MyButton(props) {
   const dispatch = useDispatch();
@@ -26,7 +20,7 @@ export default function MyButton(props) {
     title: props.title,
   };
 
-  const toggledBets = useSelector((state) => state.toggledBets);
+  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
 
   return (
     <button

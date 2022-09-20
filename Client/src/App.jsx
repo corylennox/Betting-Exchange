@@ -16,12 +16,12 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-//import { ToggledBetsContext } from "./Contexts/ToggledBetsContext";
 import { translateUniversalData } from "./GraphQL/Translate";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./Redux/ConfigureStore";
 import { useSelector } from "react-redux";
+import { reviveMap } from "./utils";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -41,13 +41,15 @@ const client = new ApolloClient({
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
+  //persistor.purge();
+
   const {
     loading,
     data: universalDataResponse,
     error,
   } = useQuery(UNIVERSAL_DATA_QUERY);
 
-  //const [toggledBets, setToggledBets] = useState(new Map());
+  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
 
   if (loading) return <h1>Loading...</h1>;
 
@@ -59,7 +61,6 @@ function AppNested() {
   const universalData = translateUniversalData(universalDataResponse);
   return (
     <main className="absolute inset-0 w-full text-gray-400">
-      {/* <ToggledBetsContext.Provider value={{ toggledBets, setToggledBets }}> */}
       <Router>
         {/* Navbar */}
         <div className="hidden lg:contents">
@@ -115,10 +116,10 @@ function AppNested() {
           {/* Betslip */}
           <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
             <div className="h-auto ">
-              <div className="flex sticky top-0 border-b-2 h-11 items-center p-2">
+              <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2 bg-white">
                 <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
                   <h1 className="w-full text-md font-semibold text-white font-mono">
-                    {/*useSelector((state) => state.toggledBets).size()*/}
+                    { toggledBets.size }
                   </h1>
                 </div>
                 <h1 className="text-slate-600 font-bold text-lg ml-1">
@@ -137,7 +138,6 @@ function AppNested() {
           </div>
         </div>
       </Router>
-      {/* </ToggledBetsContext.Provider> */}
     </main>
   );
 }
