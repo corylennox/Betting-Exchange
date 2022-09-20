@@ -14,6 +14,8 @@ import {
   DocumentReportIcon as DocumentReportIconSolid,
   /*RectangleStackIcon as RectangleStackIconSolid,*/ UserIcon as UserIconSolid,
 } from "@heroicons/react/solid";
+import { useSelector } from "react-redux";
+import { parseMap } from "../utils";
 
 const BottomNavbarItems = [
   {
@@ -73,17 +75,26 @@ function divDefaultCss() {
   return divBaseCss() + " border-6t-";
 }
 
-/*
-function divHideTopBorderCss() {
-    return divBaseCss() + " border-l-2 border-r-2";
-}*/
-
 function BottomNavbarNameAndIcon(props) {
   const location = useLocation();
+  const name = props.itemInfo.name;
+  const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
   return (
     //<div className={ (props.itemInfo.hideTopBorderOnClick && location.pathname === props.itemInfo.href) ? divHideTopBorderCss() : divDefaultCss() }>
     <div className={divDefaultCss()}>
+      {name === "Betslip" && toggledBets.size !== 0 ? (
+        <div className="w-full h-full static">
+          <div className="-mt-1 ml-[4.5rem] rounded-full bg-red-500 flex h-5 w-5 items-center text-center absolute">
+            <h1 className="w-full text-md font-semibold text-white font-mono">
+              {toggledBets.size}
+            </h1>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+
       {location.pathname === props.itemInfo.href
         ? props.itemInfo.selectedIcon
         : props.itemInfo.unselectedIcon}
@@ -94,8 +105,14 @@ function BottomNavbarNameAndIcon(props) {
             : bodyDeFocusedCss()
         }
       >
-        {props.itemInfo.name}
+        {name}
       </p>
+
+      {/* <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
+        <h1 className="w-full text-md font-semibold text-white font-mono">
+          {toggledBets.size}
+        </h1>
+      </div> */}
     </div>
   );
 }

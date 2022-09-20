@@ -102,6 +102,16 @@ function AppNested() {
                   }
                 />
 
+                {/* Betslip in sports pane */}
+                <Route
+                  path="/betslip"
+                  element={
+                    <div>
+                      <Betslip />
+                    </div>
+                  }
+                />
+
                 {/* route all other paths to home */}
                 <Route
                   path="*"
@@ -119,14 +129,14 @@ function AppNested() {
               <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2 bg-white">
                 <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
                   <h1 className="w-full text-md font-semibold text-white font-mono">
-                    { toggledBets.size }
+                    {toggledBets.size}
                   </h1>
                 </div>
                 <h1 className="text-slate-600 font-bold text-lg ml-1">
                   Betslip
                 </h1>
               </div>
-              <Betslip activeBets={[]} />
+              <Betslip />
             </div>
           </div>
 

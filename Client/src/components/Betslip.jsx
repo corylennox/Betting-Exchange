@@ -105,6 +105,12 @@ export default function Betslip() {
       return <ToggledBet bet={bet} buttonId={buttonId} />;
     });
   } else {
-    return <div>{/* this runs when there's no active bets */}</div>;
+    return (
+      <div className=" w-full pt-28">
+        <h1 className=" text-slate-800 text-center text-2xl">
+          You have no current bets.
+        </h1>
+      </div>
+    );
   }
 }
