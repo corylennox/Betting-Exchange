@@ -1,11 +1,11 @@
-import { replaceMap, reviveMap } from "../../utils";
+import { stringifyMap, parseMap } from "../../utils";
 
-const toggledBetsReducer = (state = replaceMap(new Map()), action) => {
+const toggledBetsReducer = (state = stringifyMap(new Map()), action) => {
   if (!action.payload) return state;
 
   const buttonId = action.payload.buttonId;
 
-  let newState = reviveMap(state)
+  let newState = parseMap(state)
 
   switch (action.type) {
     case "MY_BUTTON_CLICKED":
@@ -19,7 +19,7 @@ const toggledBetsReducer = (state = replaceMap(new Map()), action) => {
       break;
     default:
   }
-  return replaceMap(newState);
+  return stringifyMap(newState);
 };
 
 export default toggledBetsReducer;

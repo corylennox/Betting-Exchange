@@ -1,3 +1,7 @@
+/**
+ * Toggle bets actions
+ */
+
 export const myButtonClickedAction = (buttonId, betInfo) => {
   return {
     type: "MY_BUTTON_CLICKED",
@@ -16,3 +20,5 @@ export const deleteBetAction = (buttonId) => {
     },
   };
 };
+
+// other actions

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteBetAction } from "../Redux/Actions";
-import { reviveMap } from "../utils";
+import { parseMap } from "../utils";
 
 function onWagerChange(evt, setWin, setWager, line) {
   setWin((evt.target.value * parseInt(line, 10)) / 100); //this math is wrong idk american odds ¯\_(ツ)_/¯
@@ -96,7 +96,7 @@ function ToggledBet(props) {
 }
 
 export default function Betslip() {
-  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
+  const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const toggledBetsArray = Array.from(toggledBets);
 
   if (toggledBetsArray.length !== 0) {

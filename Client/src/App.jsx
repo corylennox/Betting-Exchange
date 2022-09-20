@@ -21,7 +21,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./Redux/ConfigureStore";
 import { useSelector } from "react-redux";
-import { reviveMap } from "./utils";
+import { parseMap } from "./utils";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -49,7 +49,7 @@ function AppNested() {
     error,
   } = useQuery(UNIVERSAL_DATA_QUERY);
 
-  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
+  const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
   if (loading) return <h1>Loading...</h1>;
 

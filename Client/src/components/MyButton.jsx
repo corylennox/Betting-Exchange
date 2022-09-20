@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { myButtonClickedAction } from "../Redux/Actions";
-import { reviveMap } from "../utils"
+import { parseMap } from "../utils"
 
 export default function MyButton(props) {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function MyButton(props) {
     title: props.title,
   };
 
-  const toggledBets = reviveMap(useSelector((state) => state.toggledBets));
+  const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
   return (
     <button

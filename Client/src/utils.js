@@ -1,4 +1,4 @@
-function replacer(key, value) {
+function replacer(_key, value) {
     if(value instanceof Map) {
         return {
         dataType: 'Map',
@@ -9,11 +9,11 @@ function replacer(key, value) {
     }
 }
 
-export function replaceMap(map) {
+export function stringifyMap(map) {
     return JSON.stringify(map, replacer);
 }
 
-function reviver(key, value) {
+function reviver(_key, value) {
     if(typeof value === 'object' && value !== null) {
         if (value.dataType === 'Map') {
             return new Map(value.value);
@@ -22,6 +22,6 @@ function reviver(key, value) {
     return value;
 }
 
-export function reviveMap(json) {
+export function parseMap(json) {
     return JSON.parse(json, reviver);
 }
