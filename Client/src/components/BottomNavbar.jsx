@@ -115,7 +115,7 @@ function BottomNavbarNameAndIcon(props) {
 
 export default function BottomNavbar() {
   return (
-    <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full rounded-t-2xl border-t-2 border-slate-300 text-xs pb-5">
+    <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full border-t-2 border-slate-300 text-xs pb-5">
       {BottomNavbarItems.map((navbarItem, index) => (
         <a
           key={navbarItem.name}

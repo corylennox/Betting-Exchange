@@ -32,7 +32,11 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
   }
 });
 
-const link = from([errorLink, new HttpLink({ uri: "http://localhost:4000/" })]);
+const link = from([
+  errorLink,
+  new HttpLink({ uri: "http://localhost:4000/" }),
+  //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
+]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -142,7 +146,7 @@ function AppNested() {
 
           {/* Bottom Navbar */}
           <div className="contents lg:hidden 0">
-            <div className="inset-0 bottom-0 z-50 sticky bg-slate-100 h-16">
+            <div className="inset-0 bottom-0 z-50 sticky h-16">
               <BottomNavbar />
             </div>
           </div>
