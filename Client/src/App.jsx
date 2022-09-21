@@ -4,65 +4,24 @@ import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
+
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  HttpLink,
-  from,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
+import { ApolloProvider } from "@apollo/client";
 import { translateUniversalData } from "./GraphQL/Translate";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./Redux/ConfigureStore";
 import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
-
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-      return 1;
-    });
-  }
-});
-
-const link = from([
-  errorLink,
-  new HttpLink({ uri: "http://localhost:4000/" }),
-  //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
-]);
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: link,
-});
+import { client, universalData } from "./GraphQL/GetData";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   //persistor.purge();
 
-  const {
-    loading,
-    data: universalDataResponse,
-    error,
-  } = useQuery(UNIVERSAL_DATA_QUERY);
-
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
-  if (loading) return <h1>Loading...</h1>;
-
-  if (error) {
-    console.log("Error loading App: " + error);
-    return <h1>Error Loading App. Error logged to console.</h1>;
-  }
-
-  const universalData = translateUniversalData(universalDataResponse);
   return (
     <main className="absolute inset-0 w-full text-gray-400">
       <Router>
