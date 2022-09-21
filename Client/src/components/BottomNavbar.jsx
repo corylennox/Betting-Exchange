@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import {
   HomeIcon,
@@ -83,21 +83,23 @@ function BottomNavbarNameAndIcon(props) {
   return (
     //<div className={ (props.itemInfo.hideTopBorderOnClick && location.pathname === props.itemInfo.href) ? divHideTopBorderCss() : divDefaultCss() }>
     <div className={divDefaultCss()}>
-      {name === "Betslip" && toggledBets.size !== 0 ? (
-        <div className="w-full h-full static">
-          <div className="-mt-1 ml-[4.5rem] rounded-full bg-red-500 flex h-5 w-5 items-center text-center absolute">
-            <h1 className="w-full text-md font-semibold text-white font-mono">
-              {toggledBets.size}
-            </h1>
+      <div className="relative">
+        {location.pathname === props.itemInfo.href
+          ? props.itemInfo.selectedIcon
+          : props.itemInfo.unselectedIcon}
+        {name === "Betslip" && toggledBets.size !== 0 ? (
+          <div className="w-full ">
+            <div className=" rounded-full bg-red-500 flex h-5 w-5 items-center text-center absolute bottom-[0.4rem] left-7">
+              <h1 className="w-full text-md font-semibold text-white font-mono">
+                {toggledBets.size}
+              </h1>
+            </div>
           </div>
-        </div>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
+      </div>
 
-      {location.pathname === props.itemInfo.href
-        ? props.itemInfo.selectedIcon
-        : props.itemInfo.unselectedIcon}
       <p
         className={
           location.pathname === props.itemInfo.href
@@ -107,41 +109,24 @@ function BottomNavbarNameAndIcon(props) {
       >
         {name}
       </p>
-
-      {/* <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
-        <h1 className="w-full text-md font-semibold text-white font-mono">
-          {toggledBets.size}
-        </h1>
-      </div> */}
     </div>
   );
 }
 
-export default class BottomNavbar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onTabClicked = this.onTabClicked.bind(this);
-  }
-
-  onTabClicked(clickedIndex) {}
-
-  render() {
-    return (
-      <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full rounded-t-2xl border-t-2 border-slate-300 text-xs pb-5">
-        {BottomNavbarItems.map((navbarItem, index) => (
-          <a
-            key={navbarItem.name}
-            className="w-full h-full"
-            href={navbarItem.href}
-            onClick={() => this.onTabClicked(index)}
-          >
-            <div className="w-full h-full">
-              <BottomNavbarNameAndIcon itemInfo={navbarItem} />
-            </div>
-          </a>
-        ))}
-      </div>
-    );
-  }
+export default function BottomNavbar() {
+  return (
+    <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full rounded-t-2xl border-t-2 border-slate-300 text-xs pb-5">
+      {BottomNavbarItems.map((navbarItem, index) => (
+        <a
+          key={navbarItem.name}
+          className="w-full h-full relative"
+          href={navbarItem.href}
+        >
+          <div className="w-full h-full absolute top-0">
+            <BottomNavbarNameAndIcon itemInfo={navbarItem} />
+          </div>
+        </a>
+      ))}
+    </div>
+  );
 }
