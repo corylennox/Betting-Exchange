@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteBetAction, setWagerAction } from "../Redux/Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
-import { determineWin, determineWager } from "../common/wagerWinUtils";
+import { determineWager, determineWin } from 'BettingExchangeCommon/wagerWinUtils'
 
 /**
  * In order to prevent floating point errors, we want to store integers rather than floats.
