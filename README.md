@@ -3,9 +3,16 @@
 This project contains the front and back end of a betting exchange.
 
 
+## Setting up after pulling
+
+In the root project directory, run the following command:
+### `sh setup.sh`
+
+If you're on a Windows machine, run the above command via your VSCode terminal
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the root project directory, you can run:
 
 ### `npm run all`
 
