@@ -12,8 +12,11 @@ add divider to grid in OutrightBet
 give lines to outright bet contenders from data
 dynamically generate sidebar items
 get wager and win buttons to update to correct values and catch bad inputs
+Process betslip submissions by sending to backend
 render active sportspane using state rather than href (because using href clears betslip when switching sportspanes)
-
+Double check the logic in wagerWinUtils.js to make sure we are doing what fanduel does with regards to Math.floor() and Math.ceil()
+Implement commission into the betslip and backend
+All Sports tab has horizontal scrolling in mobile view
 
 - dividers between grid columns in OutrightBets
 - sidebar and betslip for mobile 

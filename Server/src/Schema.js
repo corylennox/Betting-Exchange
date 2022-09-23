@@ -19,6 +19,7 @@ const typeDefs = gql`
     name: String!
     image: String
     buttonId: ID!
+    line: Line!
   }
 
   type OutrightBet implements Bet {
@@ -27,14 +28,25 @@ const typeDefs = gql`
     contendersData: [OutrightContender]!
   }
 
+  enum LineType {
+    MoneyLine,
+    SpreadLine,
+    TotalLine,
+  }
+
+  type Line {
+    type: LineType!
+    value: Float!
+  }
+
   type GameContender {
     name: String!
     image: String
-    spread: Float
+    spread: Line!
     spreadButtonId: ID!
-    money: Int
+    money: Line!
     moneyButtonId: ID!
-    total: Float
+    total: Line!
     totalButtonId: ID!
   }
 

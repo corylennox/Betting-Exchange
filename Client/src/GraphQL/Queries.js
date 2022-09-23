@@ -40,27 +40,49 @@ export const SPORT_PANE_QUERY = gql`
               buttonId
               image
               name
+              line {
+                type
+                value
+              }
             }
           }
           ... on GameBet {
             contender1Data {
               totalButtonId
-              total
-              money
+              total {
+                type
+                value
+              }
+              money {
+                type
+                value
+              }
               moneyButtonId
               spreadButtonId
-              spread
+              spread {
+                type
+                value
+              }
               name
               image
             }
             contender2Data {
               name
               image
-              spread
-              money
+              spread {
+                type
+                value
+              }
+              money {
+                type
+                value
+              }
               spreadButtonId
               moneyButtonId
-              total
+              total {
+                type
+                value
+              }
               totalButtonId
             }
           }

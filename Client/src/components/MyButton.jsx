@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { myButtonClickedAction } from "../Redux/Actions";
 import { parseMap } from "../utils"
+import { getDisplayStr } from '../utils'
 
 export default function MyButton(props) {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function MyButton(props) {
       }}
       className={toggledBets.has(props.buttonId) ? onCSS : offCSS}
     >
-      {props.line}
+      {getDisplayStr(props.line)}
     </button>
   );
 }

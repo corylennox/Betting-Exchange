@@ -8,17 +8,6 @@ const numContenderRowsToDisplay = 3;
 class OutrightBetContenderRow extends React.Component {
   constructor(props) {
     super(props);
-
-    //this code randomly generates a an int between -1000 and +1000
-    this.randMoneyline =
-      (Math.random() < 0.5 ? -1 : 1) *
-      (Math.ceil((Math.random() * 1000) / 10) * 10);
-    this.randMoneylineStr = "";
-    if (this.randMoneyline < 0) {
-      this.randMoneylineStr = this.randMoneyline.toString();
-    } else {
-      this.randMoneylineStr = "+".concat(this.randMoneyline.toString());
-    }
   }
 
   render() {
@@ -30,7 +19,7 @@ class OutrightBetContenderRow extends React.Component {
         />
         <div className="w-auto flex justify-end">
           <MyButton
-            line={this.randMoneylineStr}
+            line={this.props.contenderData.line}
             contenderName = {this.props.contenderData.name}
             contenderImage = {this.props.contenderData.image}
             type={this.props.type}

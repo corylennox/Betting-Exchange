@@ -10,12 +10,14 @@ const toggledBetsReducer = (state = stringifyMap(new Map()), action) => {
   switch (action.type) {
     case "MY_BUTTON_CLICKED":
       if (newState.has(buttonId)) newState.delete(buttonId);
-      else newState.set(buttonId, { betInfo: action.payload.betInfo, wager: 0 });
+      else newState.set(buttonId, { betInfo: action.payload.betInfo, wagerStr: "", wagerInteger: 0 });
       break;
     case "DELETE_BET":
       newState.delete(buttonId);
       break;
-    case "WAGER_CHANGED":
+    case "SET_WAGER":
+      newState.get(buttonId).wagerStr = action.payload.wagerStr;
+      newState.get(buttonId).wagerInteger = action.payload.wagerInteger;
       break;
     default:
   }

@@ -21,4 +21,17 @@ export const deleteBetAction = (buttonId) => {
   };
 };
 
-// other actions
+export const setWagerAction = (buttonId, wagerStr, wagerInteger) => {
+  return {
+    type: "SET_WAGER",
+    payload: {
+      buttonId: buttonId,
+      wagerStr: wagerStr,
+      wagerInteger: wagerInteger,
+    },
+  };
+};
+
+/**
+ * other actions
+ */
