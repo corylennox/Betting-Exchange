@@ -20,10 +20,8 @@ function isValidWagerOrWin(newVal) {
   // Make sure each item is either a digit or a "."
   for (let i = 0; i < newVal.length; i++) {
     const c = newVal[i]
-    console.log(newVal);
     if ((c < '0' || c > '9') && c != '.')
     {
-      console.log("invalid");
       return false;
     }
 
@@ -32,14 +30,12 @@ function isValidWagerOrWin(newVal) {
       // If there's more than one '.', it's not valid
       if (foundDecimal)
       {
-        console.log("invalid2")
         return false
       }
 
       // It's not valid if there are more than 2 numbers after the decimal
       if (newVal.length - i > wagerScale() + 1)
       {
-        console.log("invalid3")
         return false;
       }
 
@@ -47,7 +43,6 @@ function isValidWagerOrWin(newVal) {
     }
   }
 
-  console.log("valid");
   return true;
 }
 
@@ -100,7 +95,6 @@ function validateAndChangeWager(evt, setWager, setWinStr, line) {
   if (isValidWagerOrWin(newWagerStr))
   {
     const newWagerInteger = convertToIntegerScale(newWagerStr)
-    console.log(newWagerInteger)
     setWager(newWagerStr, newWagerInteger)
     const newWinStr = convertToPriceString(determineWin(line, newWagerInteger))
     setWinStr(newWinStr)
@@ -112,14 +106,9 @@ function validateAndChangeWin(evt, setWager, setWinStr, line) {
   if (isValidWagerOrWin(newWinStr))
   {
     const newWinInteger = convertToIntegerScale(newWinStr)
-    console.log(newWinInteger)
     setWinStr(newWinStr)
-    console.log(newWinStr)
-    console.log("line: " + JSON.stringify(line))
     const newWagerInteger = determineWager(line, newWinInteger)
-    console.log("newWagerInteger: " + newWagerInteger)
     const newWagerStr = convertToPriceString(newWagerInteger)
-    console.log("newWagerStr: " + newWagerStr)
     setWager(newWagerStr, newWagerInteger)
   }
 }
