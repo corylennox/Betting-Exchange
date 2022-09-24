@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { translateUniversalData } from "./GraphQL/Translate";
 import { PersistGate } from "redux-persist/integration/react";
@@ -44,7 +44,7 @@ function AppNested() {
 
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
-  const  {
+  const {
     loading,
     data: universalDataResponse,
     error,
