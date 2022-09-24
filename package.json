@@ -5,6 +5,8 @@
   "scripts": {
     "all": "run-p server client",
     "client": "cd Client && npm start",
-    "server": "cd Server && npm start"
+    "server": "cd Server && npm start",
+    "test": "run-p test-client",
+    "test-client": "cd Client && npm test"
   }
 }
