@@ -25,9 +25,10 @@ const loginItems = {
 
 export default function Navbar() {
   return (
-    <header className="bg-slate-900 top-0 z-50 sticky">
-        <div className="container mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center">
+    <div className="bg-slate-900 top-0 z-50 sticky w-full">
+        <div className="w-full flex justify-between items-center">
             <div className="flex flex-wrap flex-col md:flex-row items-center">
+                <img className="h-5" src="logo.png" />
                 <a href={navs.home.href} className="px-3 py-7">
                     {navs.home.name}
                 </a>
@@ -67,6 +68,6 @@ export default function Navbar() {
           <ArrowRightIcon class="w-4 h-4 ml-1" />
         </a>
       </div> */}
-    </header>
+    </div>
   );
 }

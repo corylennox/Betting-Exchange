@@ -74,8 +74,11 @@ function AppNested() {
         <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
           {/* Sidebar */}
           <div className="hidden lg:contents">
-            <div className=" bg-slate-900 border-t border-slate-100 flex justify-end min-h-screen">
+            <div className=" bg-slate-900 min-h-screen">
+            <div className="sticky top-20 overflow-y-scroll overscroll-contain"> {/* this div prevents the sidebar from scrolling */}
+              <div className="bg-slate-800 h-0.5 w-full" /> {/* this is the border between navbar and sidebar */}
               <Sidebar sportsPane={false} sportsData={universalData.sports} />
+            </div>
             </div>
           </div>
 
