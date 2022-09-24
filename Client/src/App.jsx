@@ -7,36 +7,13 @@ import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
-import { translateUniversalData } from "./GraphQL/Translate";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./Redux/ConfigureStore";
 import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
-import { useQuery } from "@apollo/client";
-import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
-import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
-import { onError } from "@apollo/client/link/error";
-
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-      return 1;
-    });
-  }
-});
-
-const link = from([
-  errorLink,
-  new HttpLink({ uri: "http://localhost:4000/" }),
-  //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
-]);
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: link,
-});
+import { client } from "./ConfigureBackend";
+import { loading, error, universalData } from "./GetData";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
@@ -44,19 +21,12 @@ function AppNested() {
 
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
-  const {
-    loading,
-    data: universalDataResponse,
-    error,
-  } = useQuery(UNIVERSAL_DATA_QUERY);
+  if (loading) return <h1>Loading</h1>;
 
-  if (loading) return <h1>Loading</h1>
-  
   if (error) {
     console.log("Error loading App: " + error);
     return <h1>Error Loading App. Error logged to console.</h1>;
   }
-  const universalData = translateUniversalData(universalDataResponse);
 
   return (
     <main className="absolute inset-0 w-full text-gray-400">
