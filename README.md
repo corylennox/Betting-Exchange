@@ -29,6 +29,6 @@ Runs the client only.
 
 Runs the server only.
 
-### 'npm test`
+### `npm test`
 
 Runs every unit test in every package (Client, Server, Common).
