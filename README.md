@@ -28,3 +28,7 @@ Runs the client only.
 ### `npm run server`
 
 Runs the server only.
+
+### 'npm test`
+
+Runs every unit test in every package (Client, Server, Common).
