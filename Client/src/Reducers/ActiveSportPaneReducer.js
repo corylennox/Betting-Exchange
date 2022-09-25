@@ -6,7 +6,7 @@ const activeSportPaneReducer = (state = "Featured", action) => {
 
     switch (action.type) {
         case "CHANGE_ACTIVE_SPORTPANE":
-            newState = action.payload.title;
+            newState = action.payload.href;
             break;     
         default:
     }

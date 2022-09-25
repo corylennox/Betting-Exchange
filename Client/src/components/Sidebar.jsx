@@ -13,7 +13,11 @@ export default function Sidebar(props) {
     <div className={props.isSportPane ? "bg-white" : ""}>
       <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-5"}>
         {/* margin left to match the padding left in the <a/> tag */}
-        <h1 className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
+        <h1 className={
+              props.isSportPane
+                ? "text-gray-700 font-bold"
+                : "text-slate-200 font-bold"
+            }>
           All Sports
         </h1>
       </div>
@@ -25,13 +29,13 @@ export default function Sidebar(props) {
                 className={
                   props.isSportPane
                     ? " flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
-                    : sportData.title === activeSportPane
+                    : sportData.href === activeSportPane
                       ? "bg-slate-700 flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
                       : "flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
                 }
                 onClick={() => {
                   dispatch(
-                    changeSportpaneAction(sportData.title, sportData.href)
+                    changeSportpaneAction(sportData.href)
                   );
                 }}
               >
