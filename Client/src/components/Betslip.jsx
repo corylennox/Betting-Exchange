@@ -1,32 +1,37 @@
 import React, { useState } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBetAction, setWagerAction } from "../Redux/Actions";
+import { deleteBetAction, setWagerAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
-import { determineWager, determineWin } from 'BettingExchangeCommon/wagerWinUtils'
-import { isValidWagerOrWin, convertToIntegerScale, convertToPriceString } from './BetslipUtils'
+import {
+  determineWager,
+  determineWin,
+} from "BettingExchangeCommon/wagerWinUtils";
+import {
+  isValidWagerOrWin,
+  convertToIntegerScale,
+  convertToPriceString,
+} from "./BetslipUtils";
 
 function validateAndChangeWager(evt, setWager, setWinStr, line) {
-  const newWagerStr = evt.target.value
-  if (isValidWagerOrWin(newWagerStr))
-  {
-    const newWagerInteger = convertToIntegerScale(newWagerStr)
-    setWager(newWagerStr, newWagerInteger)
-    const newWinStr = convertToPriceString(determineWin(line, newWagerInteger))
-    setWinStr(newWinStr)
+  const newWagerStr = evt.target.value;
+  if (isValidWagerOrWin(newWagerStr)) {
+    const newWagerInteger = convertToIntegerScale(newWagerStr);
+    setWager(newWagerStr, newWagerInteger);
+    const newWinStr = convertToPriceString(determineWin(line, newWagerInteger));
+    setWinStr(newWinStr);
   }
 }
 
 function validateAndChangeWin(evt, setWager, setWinStr, line) {
-  const newWinStr = evt.target.value
-  if (isValidWagerOrWin(newWinStr))
-  {
-    const newWinInteger = convertToIntegerScale(newWinStr)
-    setWinStr(newWinStr)
-    const newWagerInteger = determineWager(line, newWinInteger)
-    const newWagerStr = convertToPriceString(newWagerInteger)
-    setWager(newWagerStr, newWagerInteger)
+  const newWinStr = evt.target.value;
+  if (isValidWagerOrWin(newWinStr)) {
+    const newWinInteger = convertToIntegerScale(newWinStr);
+    setWinStr(newWinStr);
+    const newWagerInteger = determineWager(line, newWinInteger);
+    const newWagerStr = convertToPriceString(newWagerInteger);
+    setWager(newWagerStr, newWagerInteger);
   }
 }
 
@@ -61,7 +66,9 @@ function ToggledBet(props) {
             </h1>
           </div>
           <div className="w-1/12 text-right mr-2">
-            <h1 className="pt-4 pb-4 h-full">{getDisplayStr(props.bet.line)}</h1>
+            <h1 className="pt-4 pb-4 h-full">
+              {getDisplayStr(props.bet.line)}
+            </h1>
           </div>
         </div>
 
@@ -78,9 +85,19 @@ function ToggledBet(props) {
                   leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
-                  validateAndChangeWager(evt,
-                    (newWagerStr, newWagerInteger) => dispatch(setWagerAction(props.buttonId, newWagerStr, newWagerInteger)),
-                    setWinStr, props.bet.line)
+                  validateAndChangeWager(
+                    evt,
+                    (newWagerStr, newWagerInteger) =>
+                      dispatch(
+                        setWagerAction(
+                          props.buttonId,
+                          newWagerStr,
+                          newWagerInteger
+                        )
+                      ),
+                    setWinStr,
+                    props.bet.line
+                  )
                 }
                 value={wagerStr}
               />
@@ -99,9 +116,19 @@ function ToggledBet(props) {
                   leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
-                  validateAndChangeWin(evt,
-                    (newWagerStr, newWagerInteger) => dispatch(setWagerAction(props.buttonId, newWagerStr, newWagerInteger)),
-                    setWinStr, props.bet.line)
+                  validateAndChangeWin(
+                    evt,
+                    (newWagerStr, newWagerInteger) =>
+                      dispatch(
+                        setWagerAction(
+                          props.buttonId,
+                          newWagerStr,
+                          newWagerInteger
+                        )
+                      ),
+                    setWinStr,
+                    props.bet.line
+                  )
                 }
                 value={winStr}
               />

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { myButtonClickedAction } from "../Redux/Actions";
+import { myButtonClickedAction } from "../Actions";
 import { parseMap } from "../utils"
 import { getDisplayStr } from '../utils'
 

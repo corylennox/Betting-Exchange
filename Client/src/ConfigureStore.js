@@ -15,6 +15,7 @@ import allReducers from "./Reducers/AllReducers";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ['activeSportPane']
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);

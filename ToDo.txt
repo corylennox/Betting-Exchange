@@ -9,6 +9,8 @@ order contender rows by odds
 make tailwind theme
 add divider to grid in OutrightBet
 
+clickable area doesn't extend all the way to the bottom in bottomnavbar "tabs" (only visible on mobile view)
+
 give lines to outright bet contenders from data
 dynamically generate sidebar items
 get wager and win buttons to update to correct values and catch bad inputs
