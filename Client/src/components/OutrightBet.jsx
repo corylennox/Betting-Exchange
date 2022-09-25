@@ -5,32 +5,28 @@ import ContenderAndIcon from "./ContenderAndIcon";
 
 const numContenderRowsToDisplay = 3;
 
-class OutrightBetContenderRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+function OutrightBetContenderRow(props) {
 
-  render() {
-    return (
-      <div className="w-full flex justify-center h-12">
-        <ContenderAndIcon
-          name={this.props.contenderData.name}
-          image={this.props.contenderData.image}
+  return (
+    <div className="w-full flex justify-center h-12">
+      <ContenderAndIcon
+        name={props.contenderData.name}
+        image={props.contenderData.image}
+      />
+      <div className="w-auto flex justify-end">
+        <MyButton
+          line={props.contenderData.line}
+          contenderName={props.contenderData.name}
+          contenderImage={props.contenderData.image}
+          type={props.type}
+          title={props.title}
+          buttonId={props.contenderData.buttonId}
         />
-        <div className="w-auto flex justify-end">
-          <MyButton
-            line={this.props.contenderData.line}
-            contenderName = {this.props.contenderData.name}
-            contenderImage = {this.props.contenderData.image}
-            type={this.props.type}
-            title={this.props.title}
-            buttonId={this.props.contenderData.buttonId}
-          />
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
 
 export default class OutrightBet extends Component {
   constructor(props) {
@@ -65,10 +61,10 @@ export default class OutrightBet extends Component {
                     ? index < numContenderRowsToDisplay
                       ? "contents"
                       : index < numContenderRowsToDisplay * 2
-                      ? "hidden md:contents"
-                      : index < numContenderRowsToDisplay * 3
-                      ? "hidden xl:contents"
-                      : "hidden"
+                        ? "hidden md:contents"
+                        : index < numContenderRowsToDisplay * 3
+                          ? "hidden xl:contents"
+                          : "hidden"
                     : "" //expanded, so show all rows
                 }
               >

@@ -49,12 +49,12 @@ function AppNested() {
           {/* Sidebar */}
           <div className="hidden lg:contents">
             <div className=" bg-slate-900 min-h-screen">
-              <div className="sticky top-20 overflow-y-scroll overscroll-contain">
+              <div className="sticky top-20 overscroll-contain">
                 {" "}
                 {/* this div prevents the sidebar from scrolling */}
                 <div className="bg-slate-800 h-0.5 w-full" />{" "}
                 {/* this is the border between navbar and sidebar */}
-                <Sidebar sportsPane={false} sportsData={universalData.sports} />
+                <Sidebar isSportPane={false} sportsData={universalData.sports} />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ function AppNested() {
                 element={
                   <div>
                     <Sidebar
-                      sportsPane={true}
+                      isSportPane={true}
                       sportsData={universalData.sports}
                     />
                   </div>

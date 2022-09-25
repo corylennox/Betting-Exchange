@@ -12,12 +12,12 @@ export function isValidWagerOrWin(newVal) {
   // Make sure each item is either a digit or a "."
   for (let i = 0; i < newVal.length; i++) {
     const c = newVal[i]
-    if ((c < '0' || c > '9') && c != '.')
+    if ((c < '0' || c > '9') && c !== '.')
     {
       return false;
     }
 
-    if (c == '.')
+    if (c === '.')
     {
       // If there's more than one '.', it's not valid
       if (foundDecimal)
@@ -47,7 +47,7 @@ export function convertToIntegerScale(wagerOrWin) {
   for(let i = 0; i < wagerOrWin.length; i++)
   {
     const c = wagerOrWin[i];
-    if (c == '.')
+    if (c === '.')
     {
     decimalInd = i;
     continue;
@@ -58,7 +58,7 @@ export function convertToIntegerScale(wagerOrWin) {
   }
 
   // if the wagerOrWin is "43" or "43.4", we need to multiply the integer by 100 or 10, respectively to include final decimal
-  if (decimalInd != -1)
+  if (decimalInd !== -1)
     retVal *= Math.pow(10, wagerScale() - (wagerOrWin.length - 1 - decimalInd));
   else
     retVal *= Math.pow(10, wagerScale());

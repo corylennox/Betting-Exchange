@@ -1,18 +1,19 @@
 import React from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import ImageMap from "../images/ImageMap";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { changeSportpaneAction } from "../Actions";
 import { Link } from "react-router-dom";
 
 export default function Sidebar(props) {
   const dispatch = useDispatch();
+  const activeSportPane = useSelector((state) => state.activeSportPane)
 
   return (
-    <div className={props.sportsPane ? "bg-white" : ""}>
-      <div className={props.sportsPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-5"}>
+    <div className={props.isSportPane ? "bg-white" : ""}>
+      <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-5"}>
         {/* margin left to match the padding left in the <a/> tag */}
-        <h1 className={props.sportsPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
+        <h1 className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
           All Sports
         </h1>
       </div>
@@ -22,9 +23,11 @@ export default function Sidebar(props) {
             <Link to={"/" + sportData.href}>
               <span
                 className={
-                  props.sportsPane
-                    ? "flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
-                    : "flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
+                  props.isSportPane
+                    ? " flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
+                    : sportData.title === activeSportPane
+                      ? "bg-slate-700 flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
+                      : "flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
                 }
                 onClick={() => {
                   dispatch(
@@ -35,25 +38,25 @@ export default function Sidebar(props) {
                 <div className="flex items-center">
                   <div className="mr-3">
                     {ImageMap.get(
-                      props.sportsPane
+                      props.isSportPane
                         ? sportData.sidebarAlternateIcon
                         : sportData.sidebarIcon
                     )}
                   </div>
                   <p
                     className={
-                      props.sportsPane ? "text-blue-500 font-light text-s" : ""
+                      props.isSportPane ? "text-blue-500 font-light text-s" : ""
                     }
                   >
                     {sportData.title}
                   </p>
                 </div>
-                <div className={props.sportsPane ? "" : "hidden"}>
+                <div className={props.isSportPane ? "" : "hidden"}>
                   <ChevronRightIcon className="w-4 h-4 mr-3 text-blue-500" />
                 </div>
               </span>
             </Link>
-            {props.sportsPane && index < props.sportsData.length - 1 ? (
+            {props.isSportPane && index < props.sportsData.length - 1 ? (
               <div className="w-full h-px bg-gray-300 ml-4" />
             ) : (
               <div />
