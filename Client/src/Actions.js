@@ -45,3 +45,15 @@ export const changeSportpaneAction = (title, href) => {
     },
   };
 };
+
+/**
+ * change active navbar tab actions
+ */
+export const changeNavbarTabAction = ( href) => {
+  return {
+    type: "CHANGE_ACTIVE_NAVBAR_TAB",
+    payload: {
+      href: href,
+    },
+  };
+};

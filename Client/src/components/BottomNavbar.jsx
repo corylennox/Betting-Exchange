@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import {
   HomeIcon,
   LightningBoltIcon,
@@ -14,8 +13,10 @@ import {
   DocumentReportIcon as DocumentReportIconSolid,
   /*RectangleStackIcon as RectangleStackIconSolid,*/ UserIcon as UserIconSolid,
 } from "@heroicons/react/solid";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { parseMap } from "../utils";
+import { changeNavbarTabAction } from "../Actions";
+import { Link } from "react-router-dom";
 
 const BottomNavbarItems = [
   {
@@ -23,7 +24,7 @@ const BottomNavbarItems = [
     unselectedIcon: <HomeIcon className="h-5 w-5" />,
     selectedIcon: <HomeIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
-    href: "/home",
+    href: "/",
   },
   {
     name: "All Sports",
@@ -76,15 +77,16 @@ function divDefaultCss() {
 }
 
 function BottomNavbarNameAndIcon(props) {
-  const location = useLocation();
   const name = props.itemInfo.name;
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
+  const activeNavbarTab = useSelector((state) => state.activeNavbarTab)
+
+
 
   return (
-    //<div className={ (props.itemInfo.hideTopBorderOnClick && location.pathname === props.itemInfo.href) ? divHideTopBorderCss() : divDefaultCss() }>
     <div className={divDefaultCss()}>
       <div className="relative">
-        {location.pathname === props.itemInfo.href
+        {props.itemInfo.href === activeNavbarTab
           ? props.itemInfo.selectedIcon
           : props.itemInfo.unselectedIcon}
         {name === "Betslip" && toggledBets.size !== 0 ? (
@@ -102,7 +104,7 @@ function BottomNavbarNameAndIcon(props) {
 
       <p
         className={
-          location.pathname === props.itemInfo.href
+          props.itemInfo.href === activeNavbarTab
             ? bodyFocusedCss()
             : bodyDeFocusedCss()
         }
@@ -114,18 +116,24 @@ function BottomNavbarNameAndIcon(props) {
 }
 
 export default function BottomNavbar() {
+  const dispatch = useDispatch();
+
   return (
-    <div className="flex justify-between w-full bottom-0 z-50 sticky bg-white h-full border-t-2 border-slate-300 text-xs pb-5">
+    <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-white h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
       {BottomNavbarItems.map((navbarItem, index) => (
-        <a
-          key={navbarItem.name}
-          className="w-full h-full relative"
-          href={navbarItem.href}
-        >
-          <div className="w-full h-full absolute top-0">
+        <Link to={navbarItem.href} className='h-16 w-full'>
+          <span
+            key={navbarItem.name}
+            className="w-full h-full relative"
+            onClick={() => {
+              dispatch(
+                changeNavbarTabAction(navbarItem.href)
+              );
+            }}
+          >
             <BottomNavbarNameAndIcon itemInfo={navbarItem} />
-          </div>
-        </a>
+          </span>
+        </Link>
       ))}
     </div>
   );

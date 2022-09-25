@@ -15,7 +15,7 @@ import allReducers from "./Reducers/AllReducers";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ['activeSportPane']
+  whitelist: ['toggledBets']
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
