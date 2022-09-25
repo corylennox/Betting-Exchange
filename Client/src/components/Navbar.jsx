@@ -28,7 +28,7 @@ export default function Navbar() {
     <div className="bg-slate-900 top-0 z-50 sticky w-full">
       <div className="w-full flex justify-between items-center">
         <div className="flex flex-wrap flex-col md:flex-row items-center">
-          <img className="h-5" src="logo.png" />
+          <img className="h-5" src="logo.png" alt="logo"/>
           <a href={navs.home.href} className="px-3 py-7">
             {navs.home.name}
           </a>

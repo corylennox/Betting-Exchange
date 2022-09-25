@@ -27,14 +27,14 @@ export function parseMap(json) {
 }
 
 export function getDisplayStr(line) {
-    if (line.type == "MoneyLine" || line.type == "SpreadLine")
-        if (line.value == 0)
+    if (line.type === "MoneyLine" || line.type === "SpreadLine")
+        if (line.value === 0)
             return "EVEN"
         else if (line.value > 0)
             return "+" + line.value.toString()
         else
             return line.value.toString()
-    if (line.type == "TotalLine")
+    if (line.type === "TotalLine")
         if (line.value < 0)
             return "U " + Math.abs(line.value).toString();
         else if (line.value > 0)

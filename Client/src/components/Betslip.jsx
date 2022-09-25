@@ -7,7 +7,7 @@ import { getDisplayStr } from "../utils";
 import {
   determineWager,
   determineWin,
-} from "BettingExchangeCommon/wagerWinUtils";
+} from "bettingexchangecommon/wagerWinUtils";
 import {
   isValidWagerOrWin,
   convertToIntegerScale,
