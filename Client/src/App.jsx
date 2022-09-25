@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
-//import SportPane from "./components/SportPane";
+import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
@@ -17,13 +17,10 @@ import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { translateUniversalData } from "./GraphQL/Translate";
 
-
-
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   //persistor.purge();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
-  const activeSportpane = useSelector((state) => state.activeSportPane)
 
   const {
     loading,
@@ -58,10 +55,7 @@ function AppNested() {
 
           {/* Sportspane */}
           <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
-          { activeSportpane }
-
-            {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-            {/* <Routes>
+            <Routes>
               <Route path="/">
                 {universalData.sports.map((sport) => (
                   <Route
@@ -70,10 +64,10 @@ function AppNested() {
                     element={<SportPane sportPaneTitle={sport.title} />}
                   />
                 ))}
-              </Route> */}
+              </Route>
 
-            {/* All Sports in sports pane */}
-            {/* <Route
+              {/* All Sports in sports pane */}
+              <Route
                 path="/all-sports"
                 element={
                   <div>
@@ -83,27 +77,26 @@ function AppNested() {
                     />
                   </div>
                 }
-              /> */}
+              />
 
-            {/* Betslip in sports pane */}
-            {/* <Route
+              {/* Betslip in sports pane */}
+              <Route
                 path="/betslip"
                 element={
                   <div>
                     <Betslip />
                   </div>
                 }
-              /> */}
+              />
 
-            {/* route all other paths to home */}
-            {/* <Route
+              {/* route all other paths to home */}
+              <Route
                 path="*"
                 element={
                   <SportPane sportPaneTitle={universalData.sports[0].title} />
                 }
               />
-            </Routes> */}
-            {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            </Routes>
           </div>
 
           {/* Betslip */}
