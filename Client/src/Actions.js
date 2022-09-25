@@ -25,11 +25,12 @@ export const deleteBetAction = (buttonId) => {
  * change active sportspane actions
  */
 
-export const changeSportpaneAction = (title) => {
+export const changeSportpaneAction = (title, href) => {
   return {
     type: "CHANGE_ACTIVE_SPORTPANE",
     payload: {
       title: title,
+      href: href
     },
   };
 };

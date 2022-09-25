@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBetAction } from "../Redux/Actions";
+import { deleteBetAction } from "../Actions";
 import { parseMap } from "../utils";
 
 function onWagerChange(evt, setWin, setWager, line) {

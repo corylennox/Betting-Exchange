@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import allReducers from "./Redux/Reducers/AllReducers";
+import allReducers from "./Reducers/AllReducers";
 
 const persistConfig = {
   key: "root",

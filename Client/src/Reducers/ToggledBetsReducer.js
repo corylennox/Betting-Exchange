@@ -1,4 +1,4 @@
-import { stringifyMap, parseMap } from "../../utils";
+import { stringifyMap, parseMap } from "../utils";
 
 const toggledBetsReducer = (state = stringifyMap(new Map()), action) => {
   if (!action.payload) return state;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import ImageMap from "../images/ImageMap";
 import { useSelector, useDispatch } from "react-redux";
-import { changeSportpaneAction } from "../Redux/Actions";
+import { changeSportpaneAction } from "../Actions";
 
 export default function Sidebar(props) {
   const dispatch = useDispatch();
@@ -36,10 +36,10 @@ export default function Sidebar(props) {
               }
 
               onClick={() => {
-                dispatch(changeSportpaneAction(sportData.title));
+                dispatch(changeSportpaneAction(sportData.title, sportData.href));
               }}
 
-              href={sportData.href}
+              //href={sportData.href}
             >
               <div className="flex items-center">
                 <div className="mr-3">
