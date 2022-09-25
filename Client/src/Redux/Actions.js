@@ -1,5 +1,5 @@
 /**
- * Toggle bets actions
+ * Toggle bets reducer actions
  */
 
 export const myButtonClickedAction = (buttonId, betInfo) => {
@@ -21,4 +21,15 @@ export const deleteBetAction = (buttonId) => {
   };
 };
 
-// other actions
+/**
+ * change active sportspane actions
+ */
+
+export const changeSportpaneAction = (title) => {
+  return {
+    type: "CHANGE_ACTIVE_SPORTPANE",
+    payload: {
+      title: title,
+    },
+  };
+};

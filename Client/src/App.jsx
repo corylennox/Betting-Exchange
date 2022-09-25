@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
-import SportPane from "./components/SportPane";
+//import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
@@ -9,17 +9,27 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
-import { store, persistor } from "./Redux/ConfigureStore";
+import { store, persistor } from "./ConfigureStore";
 import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
 import { client } from "./ConfigureBackend";
-import { loading, error, universalData } from "./GetData";
+import { useQuery } from "@apollo/client";
+import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
+import { translateUniversalData } from "./GraphQL/Translate";
+
+
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   //persistor.purge();
-
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
+  const activeSportpane = useSelector((state) => state.activeSportPane)
+
+  const {
+    loading,
+    data: universalDataResponse,
+    error,
+  } = useQuery(UNIVERSAL_DATA_QUERY);
 
   if (loading) return <h1>Loading</h1>;
 
@@ -27,6 +37,8 @@ function AppNested() {
     console.log("Error loading App: " + error);
     return <h1>Error Loading App. Error logged to console.</h1>;
   }
+
+  const universalData = translateUniversalData(universalDataResponse);
 
   return (
     <main className="absolute inset-0 w-full text-gray-400">
@@ -46,50 +58,52 @@ function AppNested() {
 
           {/* Sportspane */}
           <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
-            {
-              <Routes>
-                <Route path="/">
-                  {universalData.sports.map((sport) => (
-                    <Route
-                      key={sport.title}
-                      path={sport.href}
-                      element={<SportPane sportPaneTitle={sport.title} />}
+          { activeSportpane }
+
+            {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* <Routes>
+              <Route path="/">
+                {universalData.sports.map((sport) => (
+                  <Route
+                    key={sport.title}
+                    path={sport.href}
+                    element={<SportPane sportPaneTitle={sport.title} />}
+                  />
+                ))}
+              </Route> */}
+
+            {/* All Sports in sports pane */}
+            {/* <Route
+                path="/all-sports"
+                element={
+                  <div>
+                    <Sidebar
+                      sportsPane={true}
+                      sportsData={universalData.sports}
                     />
-                  ))}
-                </Route>
+                  </div>
+                }
+              /> */}
 
-                {/* All Sports in sports pane */}
-                <Route
-                  path="/all-sports"
-                  element={
-                    <div>
-                      <Sidebar
-                        sportsPane={true}
-                        sportsData={universalData.sports}
-                      />
-                    </div>
-                  }
-                />
+            {/* Betslip in sports pane */}
+            {/* <Route
+                path="/betslip"
+                element={
+                  <div>
+                    <Betslip />
+                  </div>
+                }
+              /> */}
 
-                {/* Betslip in sports pane */}
-                <Route
-                  path="/betslip"
-                  element={
-                    <div>
-                      <Betslip />
-                    </div>
-                  }
-                />
-
-                {/* route all other paths to home */}
-                <Route
-                  path="*"
-                  element={
-                    <SportPane sportPaneTitle={universalData.sports[0].title} />
-                  }
-                />
-              </Routes>
-            }
+            {/* route all other paths to home */}
+            {/* <Route
+                path="*"
+                element={
+                  <SportPane sportPaneTitle={universalData.sports[0].title} />
+                }
+              />
+            </Routes> */}
+            {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
           </div>
 
           {/* Betslip */}

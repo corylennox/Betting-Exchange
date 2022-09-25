@@ -12,8 +12,8 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 
 const link = from([
   errorLink,
-  //new HttpLink({ uri: "http://localhost:4000/" }),
-  new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
+  new HttpLink({ uri: "http://localhost:4000/" }),
+  //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
 ]);
 
 export const client = new ApolloClient({

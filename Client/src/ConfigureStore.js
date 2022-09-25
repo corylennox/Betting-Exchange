@@ -10,11 +10,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import allReducers from "./Reducers/AllReducers";
+import allReducers from "./Redux/Reducers/AllReducers";
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ['activeSportPane']
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
