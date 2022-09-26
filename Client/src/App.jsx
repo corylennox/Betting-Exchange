@@ -23,6 +23,7 @@ import { client } from "./ConfigureBackend";
 import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { translateUniversalData } from "./GraphQL/Translate";
+import rts from "./MyRoutes";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
@@ -73,7 +74,7 @@ function AppNested() {
           <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
             <Routes>
               <Route
-                path="/"
+                path={rts.home}
                 element={
                   <h1 className=" text-slate-800 text-center text-2xl pt-28">
                     Homepage
@@ -99,7 +100,7 @@ function AppNested() {
               )}
 
               <Route // All Sports in sports pane
-                path="/all-sports"
+                path={rts.allSports}
                 element={
                   <div>
                     <Sidebar
@@ -111,7 +112,7 @@ function AppNested() {
               />
 
               <Route // Betslip in sports pane
-                path="/betslip"
+                path={rts.betslip}
                 element={
                   <div>
                     <Betslip isSportPane={true} />
@@ -119,9 +120,9 @@ function AppNested() {
                 }
               />
 
-              <Route path="/my-bets" element={<MyBets />} />
+              <Route path={rts.myBets} element={<MyBets />} />
 
-              <Route path="/account" element={<Account />} />
+              <Route path={rts.account} element={<Account />} />
 
               <Route // Redirect all other paths to home
                 path="*"
@@ -131,7 +132,7 @@ function AppNested() {
           </div>
 
           {/* Betslip */}
-          <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky top-20 overflow-y-scroll overscroll-contain ">
+          <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky inset-0 top-20 overflow-y-scroll overscroll-contain ">
             <div className="h-auto ">
               <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2 bg-white">
                 <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">

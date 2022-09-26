@@ -4,15 +4,16 @@ import ImageMap from "../images/ImageMap";
 import { useSelector, useDispatch } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { Link } from "react-router-dom";
-//import { useLocation } from "react-router-dom";
-import { BottomNavbarItems } from "./BottomNavbar";
+import rts from "../MyRoutes";
 
 export default function Sidebar(props) {
-  //const currentPathName = useLocation().pathname;
   const dispatch = useDispatch();
   const activeSportPane = useSelector((state) => state.activeSportPane);
 
-  //dispatch(changeSportpaneAction(currentPathName));
+  if (props.isSportPane) {
+    dispatch(changeSportpaneAction(rts.allSports));
+    dispatch(changeNavbarTabAction(rts.allSports));
+  }
 
   return (
     <div className={props.isSportPane ? "bg-white" : ""}>
@@ -42,7 +43,7 @@ export default function Sidebar(props) {
                 }
                 onClick={() => {
                   dispatch(changeSportpaneAction(sportData.href));
-                  dispatch(changeNavbarTabAction(BottomNavbarItems[1].href));
+                  dispatch(changeNavbarTabAction(rts.allSports));
                 }}
               >
                 <div className="flex items-center">

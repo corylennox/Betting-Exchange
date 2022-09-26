@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { parseMap } from "../utils";
 import { changeNavbarTabAction } from "../Actions";
 import { Link } from "react-router-dom";
+import rts from "../MyRoutes";
 
 export const BottomNavbarItems = [
   {
@@ -24,21 +25,21 @@ export const BottomNavbarItems = [
     unselectedIcon: <HomeIcon className="h-5 w-5" />,
     selectedIcon: <HomeIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
-    href: "/",
+    href: rts.home,
   },
   {
     name: "Sports",
     unselectedIcon: <LightningBoltIcon className="h-5 w-5" />,
     selectedIcon: <LightningBoltIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
-    href: "/all-sports",
+    href: rts.allSports,
   },
   {
     name: "Betslip",
     unselectedIcon: <DocumentTextIcon className="h-5 w-5" />,
     selectedIcon: <DocumentTextIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: true,
-    href: "/betslip",
+    href: rts.betslip,
   },
   {
     name: "My Bets",
@@ -49,14 +50,14 @@ export const BottomNavbarItems = [
       <DocumentReportIconSolid className="h-5 w-5 fill-blue-400" />
     ) /* RectangleStackIconSolid */,
     hideTopBorderOnClick: false,
-    href: "/my-bets",
+    href: rts.myBets,
   },
   {
     name: "Account",
     unselectedIcon: <UserIcon className="h-5 w-5" />,
     selectedIcon: <UserIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
-    href: "/account",
+    href: rts.account,
   },
 ];
 
