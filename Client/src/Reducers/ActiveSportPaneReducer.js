@@ -1,5 +1,4 @@
-
-const activeSportPaneReducer = (state = "Featured", action) => {
+const activeSportPaneReducer = (state = '/', action) => {
     if (!action.payload) return state;
 
     let newState = state;

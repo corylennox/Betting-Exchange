@@ -1,17 +1,20 @@
 import React from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import ImageMap from "../images/ImageMap";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeSportpaneAction } from "../Actions";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 export default function Sidebar(props) {
   const dispatch = useDispatch();
-  const activeSportPane = useSelector((state) => state.activeSportPane)
+  const currentPathName = useLocation().pathname;
+  dispatch(changeSportpaneAction(currentPathName));
 
   return (
     <div className={props.isSportPane ? "bg-white" : ""}>
-      <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-5"}>
+      <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
         {/* margin left to match the padding left in the <a/> tag */}
         <h1 className={
               props.isSportPane
@@ -29,13 +32,13 @@ export default function Sidebar(props) {
                 className={
                   props.isSportPane
                     ? " flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
-                    : sportData.href === activeSportPane
-                      ? "bg-slate-700 flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
-                      : "flex justify-between items-center pb-2 pt-2 pl-5 pr-12 cursor-pointer"
+                    : "/" + sportData.href === currentPathName
+                      ? "bg-slate-800 flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer text-slate-300 font-semibold"
+                      : "flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer"
                 }
                 onClick={() => {
                   dispatch(
-                    changeSportpaneAction(sportData.href)
+                    changeSportpaneAction('/' + sportData.href)
                   );
                 }}
               >

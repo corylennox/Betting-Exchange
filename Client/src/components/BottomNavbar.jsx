@@ -17,6 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { parseMap } from "../utils";
 import { changeNavbarTabAction } from "../Actions";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 const BottomNavbarItems = [
   {
@@ -117,6 +119,8 @@ function BottomNavbarNameAndIcon(props) {
 
 export default function BottomNavbar() {
   const dispatch = useDispatch();
+  const currentPathName = useLocation().pathname;
+  dispatch(changeNavbarTabAction(currentPathName));
 
   return (
     <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-white h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
