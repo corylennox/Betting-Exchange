@@ -3,9 +3,16 @@ import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
 import Sidebar from "./components/Sidebar";
+import Account from "./components/Account";
+import MyBets from "./components/MyBets";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
@@ -54,21 +61,42 @@ function AppNested() {
                 {/* this div prevents the sidebar from scrolling */}
                 <div className="bg-slate-800 h-0.5 w-full" />{" "}
                 {/* this is the border between navbar and sidebar */}
-                <Sidebar isSportPane={false} sportsData={universalData.sports} />
+                <Sidebar
+                  isSportPane={false}
+                  sportsData={universalData.sports}
+                />
               </div>
             </div>
           </div>
 
-          {/* Sportspane */}
+          {/* Sportpane routes */}
           <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
             <Routes>
-              {universalData.sports.map((sport) => (
-                <Route
-                  key={sport.title}
-                  path={sport.href}
-                  element={<SportPane sportPaneTitle={sport.title} />}
-                />
-              ))}
+              <Route
+                path="/"
+                element={
+                  <h1 className=" text-slate-800 text-center text-2xl pt-28">
+                    Homepage
+                  </h1>
+                }
+              />
+
+              {universalData.sports.map(
+                (
+                  sport //map all sportpane routes
+                ) => (
+                  <Route
+                    key={sport.title}
+                    path={sport.href}
+                    element={
+                      <SportPane
+                        sportPaneTitle={sport.title}
+                        href={sport.href}
+                      />
+                    }
+                  />
+                )
+              )}
 
               <Route // All Sports in sports pane
                 path="/all-sports"
@@ -86,16 +114,18 @@ function AppNested() {
                 path="/betslip"
                 element={
                   <div>
-                    <Betslip />
+                    <Betslip isSportPane={true} />
                   </div>
                 }
               />
 
-              <Route // Route all other paths to home
+              <Route path="/my-bets" element={<MyBets />} />
+
+              <Route path="/account" element={<Account />} />
+
+              <Route // Redirect all other paths to home
                 path="*"
-                element={
-                  <SportPane sportPaneTitle={universalData.sports[0].title} />
-                }
+                element={<Navigate to="/" />}
               />
             </Routes>
           </div>
@@ -113,7 +143,7 @@ function AppNested() {
                   Betslip
                 </h1>
               </div>
-              <Betslip />
+              <Betslip isSportPane={false} />
             </div>
           </div>
 

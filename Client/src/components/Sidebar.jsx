@@ -1,45 +1,48 @@
 import React from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import ImageMap from "../images/ImageMap";
-import { useDispatch } from "react-redux";
-import { changeSportpaneAction } from "../Actions";
+import { useSelector, useDispatch } from "react-redux";
+import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-
+//import { useLocation } from "react-router-dom";
+import { BottomNavbarItems } from "./BottomNavbar";
 
 export default function Sidebar(props) {
+  //const currentPathName = useLocation().pathname;
   const dispatch = useDispatch();
-  const currentPathName = useLocation().pathname;
-  dispatch(changeSportpaneAction(currentPathName));
+  const activeSportPane = useSelector((state) => state.activeSportPane);
+
+  //dispatch(changeSportpaneAction(currentPathName));
 
   return (
     <div className={props.isSportPane ? "bg-white" : ""}>
       <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
         {/* margin left to match the padding left in the <a/> tag */}
-        <h1 className={
-              props.isSportPane
-                ? "text-gray-700 font-bold"
-                : "text-slate-200 font-bold"
-            }>
+        <h1
+          className={
+            props.isSportPane
+              ? "text-gray-700 font-bold"
+              : "text-slate-200 font-bold"
+          }
+        >
           All Sports
         </h1>
       </div>
       <div>
         {props.sportsData.map((sportData, index) => (
           <div key={sportData.title} className="contents">
-            <Link to={"/" + sportData.href}>
+            <Link to={sportData.href}>
               <span
                 className={
                   props.isSportPane
                     ? " flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
-                    : "/" + sportData.href === currentPathName
-                      ? "bg-slate-800 flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer text-slate-300 font-semibold"
-                      : "flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer"
+                    : sportData.href === activeSportPane
+                    ? "bg-slate-800 flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer text-slate-300 font-semibold"
+                    : "flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer"
                 }
                 onClick={() => {
-                  dispatch(
-                    changeSportpaneAction('/' + sportData.href)
-                  );
+                  dispatch(changeSportpaneAction(sportData.href));
+                  dispatch(changeNavbarTabAction(BottomNavbarItems[1].href));
                 }}
               >
                 <div className="flex items-center">

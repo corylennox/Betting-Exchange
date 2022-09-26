@@ -17,10 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { parseMap } from "../utils";
 import { changeNavbarTabAction } from "../Actions";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
-
-const BottomNavbarItems = [
+export const BottomNavbarItems = [
   {
     name: "Home",
     unselectedIcon: <HomeIcon className="h-5 w-5" />,
@@ -29,7 +27,7 @@ const BottomNavbarItems = [
     href: "/",
   },
   {
-    name: "All Sports",
+    name: "Sports",
     unselectedIcon: <LightningBoltIcon className="h-5 w-5" />,
     selectedIcon: <LightningBoltIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
@@ -81,14 +79,11 @@ function divDefaultCss() {
 function BottomNavbarNameAndIcon(props) {
   const name = props.itemInfo.name;
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
-  const activeNavbarTab = useSelector((state) => state.activeNavbarTab)
-
-
 
   return (
     <div className={divDefaultCss()}>
       <div className="relative">
-        {props.itemInfo.href === activeNavbarTab
+        {props.isSelected
           ? props.itemInfo.selectedIcon
           : props.itemInfo.unselectedIcon}
         {name === "Betslip" && toggledBets.size !== 0 ? (
@@ -104,13 +99,7 @@ function BottomNavbarNameAndIcon(props) {
         )}
       </div>
 
-      <p
-        className={
-          props.itemInfo.href === activeNavbarTab
-            ? bodyFocusedCss()
-            : bodyDeFocusedCss()
-        }
-      >
+      <p className={props.isSelected ? bodyFocusedCss() : bodyDeFocusedCss()}>
         {name}
       </p>
     </div>
@@ -119,23 +108,23 @@ function BottomNavbarNameAndIcon(props) {
 
 export default function BottomNavbar() {
   const dispatch = useDispatch();
-  const currentPathName = useLocation().pathname;
-  dispatch(changeNavbarTabAction(currentPathName));
+  const activeNavbarTab = useSelector((state) => state.activeNavbarTab);
 
   return (
     <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-white h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
-      {BottomNavbarItems.map((navbarItem, index) => (
-        <Link to={navbarItem.href} className='h-16 w-full'>
+      {BottomNavbarItems.map((navbarItem) => (
+        <Link to={navbarItem.href} className="h-16 w-full">
           <span
             key={navbarItem.name}
             className="w-full h-full relative"
             onClick={() => {
-              dispatch(
-                changeNavbarTabAction(navbarItem.href)
-              );
+              dispatch(changeNavbarTabAction(navbarItem.href));
             }}
           >
-            <BottomNavbarNameAndIcon itemInfo={navbarItem} />
+            <BottomNavbarNameAndIcon
+              itemInfo={navbarItem}
+              isSelected={activeNavbarTab === navbarItem.href}
+            />
           </span>
         </Link>
       ))}

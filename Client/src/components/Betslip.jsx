@@ -13,6 +13,8 @@ import {
   convertToIntegerScale,
   convertToPriceString,
 } from "./BetslipUtils";
+import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
+import { BottomNavbarItems } from "./BottomNavbar";
 
 function validateAndChangeWager(evt, setWager, setWinStr, line) {
   const newWagerStr = evt.target.value;
@@ -143,9 +145,16 @@ function ToggledBet(props) {
   );
 }
 
-export default function Betslip() {
+export default function Betslip(props) {
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const toggledBetsArray = Array.from(toggledBets);
+  const dispatch = useDispatch();
+
+  //if this betslip is rendering as a sportpane,
+  if (props.isSportPane) {
+    dispatch(changeSportpaneAction(BottomNavbarItems[2].href));
+    dispatch(changeNavbarTabAction(BottomNavbarItems[2].href));
+  }
 
   if (toggledBetsArray.length !== 0) {
     return toggledBetsArray.map(([buttonId, toggledBet]) => {
