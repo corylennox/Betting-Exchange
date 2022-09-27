@@ -20,6 +20,7 @@ render active sportspane using state rather than href (because using href clears
 Double check the logic in wagerWinUtils.js to make sure we are doing what fanduel does with regards to Math.floor() and Math.ceil()
 Implement commission into the betslip and backend
 All Sports tab has horizontal scrolling in mobile view
+Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
 
 - dividers between grid columns in OutrightBets
 - sidebar and betslip for mobile 

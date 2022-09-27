@@ -1,6 +1,6 @@
 const MyRoutes = {
   home: "/",
-  allSports: "all-sports",
+  allSports: "/all-sports",
   betslip: "/betslip",
   myBets: "/my-bets",
   account: "/account",
