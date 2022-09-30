@@ -62,13 +62,13 @@ export default function Sidebar(props) {
                     {sportData.title}
                   </p>
                 </div>
-                <div className={props.isSportPane ? "" : "hidden"}>
+                <div className={props.isSportPane ? "mr-8" : "hidden"}>
                   <ChevronRightIcon className="w-4 h-4 mr-3 text-blue-500" />
                 </div>
               </span>
             </Link>
             {props.isSportPane && index < props.sportsData.length - 1 ? (
-              <div className="w-full h-px bg-gray-300 ml-4" />
+              <div className="w-11/12 h-px bg-gray-300 ml-12" />
             ) : (
               <div />
             )}

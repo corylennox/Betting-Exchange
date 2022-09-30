@@ -15,6 +15,10 @@ export const LOAD_USERS = gql`
 export const UNIVERSAL_DATA_QUERY = gql`
   query SportPaneQuery {
     universalData {
+      homepage {
+        title
+        href
+      }
       sports {
         title
         href

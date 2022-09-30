@@ -1,7 +1,7 @@
 // The App.jsx will request UniversalData from the server, and the server will reply with this data:
 export const UniversalData = {
   sports: [
-    {title: "Featured", href:"featured", sidebarIcon: "featured", sidebarAlternateIcon: "featuredAlternate" },
+    {title: "Popular", href:"featured", sidebarIcon: "featured", sidebarAlternateIcon: "featuredAlternate" },
     {title: "Basketball", href:"basketball", sidebarIcon: "basketball", sidebarAlternateIcon: "basketballAlternate" },
     {title: "Baseball", href:"baseball", sidebarIcon: "baseball", sidebarAlternateIcon: "baseballAlternate" },
     {title: "Soccer", href:"soccer", sidebarIcon: "soccer", sidebarAlternateIcon: "soccerAlternate" },

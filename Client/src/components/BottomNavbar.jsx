@@ -25,7 +25,7 @@ export const BottomNavbarItems = [
     unselectedIcon: <HomeIcon className="h-5 w-5" />,
     selectedIcon: <HomeIconSolid className="h-5 w-5 fill-blue-400" />,
     hideTopBorderOnClick: false,
-    href: rts.home,
+    href: rts.homepage,
   },
   {
     name: "Sports",

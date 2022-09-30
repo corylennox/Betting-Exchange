@@ -74,11 +74,12 @@ function AppNested() {
           <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
             <Routes>
               <Route
-                path={rts.home}
+                path={rts.homepage}
                 element={
-                  <h1 className=" text-slate-800 text-center text-2xl pt-28">
-                    Homepage
-                  </h1>
+                  <SportPane
+                        sportPaneTitle={universalData.homepage.title}
+                        href={universalData.homepage.href}
+                      />
                 }
               />
 

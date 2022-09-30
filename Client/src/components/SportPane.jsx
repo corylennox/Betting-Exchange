@@ -6,15 +6,19 @@ import { SPORT_PANE_QUERY } from "../GraphQL/Queries";
 import { translateSportsPaneData } from "../GraphQL/Translate";
 import { useDispatch } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
-//import { useLocation } from "react-router-dom";
-import { BottomNavbarItems } from "./BottomNavbar";
+import rts from "../MyRoutes";
 
 export default function SportPane(props) {
   //const currentPathName = useLocation().pathname;
   const dispatch = useDispatch();
+  //const activeNavbarTab = useSelector((state) => state.activeNavbarTab);
 
   dispatch(changeSportpaneAction(props.href));
-  dispatch(changeNavbarTabAction(BottomNavbarItems[1].href));
+  
+  if(props.href === rts.homepage)
+    dispatch(changeNavbarTabAction(rts.homepage));
+  else
+    dispatch(changeNavbarTabAction(rts.allSports))
 
   const {
     loading,

@@ -108,7 +108,6 @@ export default class OutrightBet extends Component {
       this.props.outrightBetData.contendersData.length >
       numContenderRowsToDisplay
     ) {
-      console.log("length: ", this.props.outrightBetData.contendersData.length);
       return "md:hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1";
     } else if (
       this.props.outrightBetData.contendersData.length <=

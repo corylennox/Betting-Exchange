@@ -1,12 +1,10 @@
 // The App.jsx will request UniversalData from the server, and the server will reply with this data:
 const UniversalData = {
+  homepage: {
+    title: "Popular",
+    href: "/",
+  },
   sports: [
-    {
-      title: "Featured",
-      href: "/featured",
-      sidebarIcon: "featured",
-      sidebarAlternateIcon: "featuredAlternate",
-    },
     {
       title: "Basketball",
       href: "/basketball",
@@ -54,8 +52,8 @@ const UniversalData = {
 
 // The SportPane will be passed the href and will request the information to the server, and the server will reply with this data:
 const FeaturedSportBets = {
-  sportTitle: "Featured",
-  href: "featured",
+  sportTitle: "Popular",
+  href: "probablydoesntneedtobehere",
   tabs: [
     {
       tabTitle: "NBA",

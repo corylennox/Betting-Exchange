@@ -75,7 +75,13 @@ const typeDefs = gql`
     sidebarAlternateIcon: String!
   }
 
+  type HomepageData {
+    title: String!
+    href: String!
+  }
+
   type UniversalData {
+    homepage: HomepageData
     sports: [SportHighLevelData!]
   }
 
