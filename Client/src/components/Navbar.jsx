@@ -7,22 +7,22 @@ import rts from "../MyRoutes";
 const navs = {
   home: {
     name: "Home",
-    href: "/",
+    href: rts.homepage,
   },
   myBets: {
     name: "My Bets",
-    href: "/my-bets",
+    href: rts.myBets,
   },
 };
 
 const loginItems = {
   login: {
     name: "Log in",
-    href: "/login",
+    href: rts.login,
   },
   signup: {
     name: "Sign Up",
-    href: "/signup",
+    href: rts.signup,
   },
 };
 
