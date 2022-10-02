@@ -44,7 +44,7 @@ function ToggledBet(props) {
   const [winStr, setWinStr] = useState("");
 
   return (
-    <div className="flex min-h-fit min-w-fit pt-4 pr-9">
+    <div className="flex min-h-fit min-w-fit py-3 pr-9">
       <img
         alt="remove icon"
         className="w-7 h-7 mx-2 mt-2 cursor-pointer"

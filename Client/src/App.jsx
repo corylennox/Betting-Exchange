@@ -46,21 +46,20 @@ function AppNested() {
   const universalData = translateUniversalData(universalDataResponse);
 
   return (
-    <main className="absolute inset-0 w-full text-gray-400">
+    <main className=" inset-0 w-full text-gray-400 min-h-screen bg-slate-900">
       <Router>
         {/* Navbar */}
-        <div className="hidden lg:contents">
+        <div className="top-0 hidden lg:contents">
           <Navbar />
         </div>
-        {/* Grid */}
-        <div className="grid xs:grid-cols-1 lg:grid-cols-6 min-h-screen">
+        <div className="flex flex-nowrap justify-center pb-16 lg:pb-0 lg:pt-20 min-w-full min-h-screen"> { /* padding top and bottom matches the top/bottom navbar heights */ }
+
           {/* Sidebar */}
-          <div className="hidden lg:contents">
-            <div className=" bg-slate-900 min-h-screen">
+          <div className="hidden lg:contents w-60">
+            <div className=" bg-slate-900 ">
               <div className="sticky top-20 overscroll-contain">
-                {" "}
                 {/* this div prevents the sidebar from scrolling */}
-                <div className="bg-slate-800 h-0.5 w-full" />{" "}
+                <div className="bg-slate-800 h-0.5 w-full" />
                 {/* this is the border between navbar and sidebar */}
                 <Sidebar
                   isSportPane={false}
@@ -71,33 +70,30 @@ function AppNested() {
           </div>
 
           {/* Sportpane routes */}
-          <div className="xs:col-span-1 lg:col-span-3 xl:w-auto w-full h-full min-h-screen">
+          <div className="w-full lg:max-w-2xl bg-slate-200">
             <Routes>
               <Route
                 path={rts.homepage}
                 element={
                   <SportPane
-                        sportPaneTitle={universalData.homepage.title}
-                        href={universalData.homepage.href}
-                      />
+                    sportPaneTitle={universalData.homepage.title}
+                    href={universalData.homepage.href}
+                  />
                 }
               />
 
-              {universalData.sports.map(
-                (
-                  sport //map all sportpane routes
-                ) => (
-                  <Route
-                    key={sport.title}
-                    path={sport.href}
-                    element={
-                      <SportPane
-                        sportPaneTitle={sport.title}
-                        href={sport.href}
-                      />
-                    }
-                  />
-                )
+              {universalData.sports.map((sport) => ( //map all sportpane routes
+                <Route
+                  key={sport.title}
+                  path={sport.href}
+                  element={
+                    <SportPane
+                      sportPaneTitle={sport.title}
+                      href={sport.href}
+                    />
+                  }
+                />
+              )
               )}
 
               <Route // All Sports in sports pane
@@ -133,27 +129,37 @@ function AppNested() {
           </div>
 
           {/* Betslip */}
-          <div className="hidden lg:block xs:col-span-1 lg:col-span-2 xl:auto w-full h-[calc(100vh-5rem)] sticky inset-0 top-20 overflow-y-scroll overscroll-contain ">
-            <div className="h-auto ">
-              <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2 bg-white">
-                <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
-                  <h1 className="w-full text-md font-semibold text-white font-mono">
-                    {toggledBets.size}
-                  </h1>
+          <div className="hidden lg:contents">
+            <div className=" min-w-[22rem] max-w-[22rem] sticky top-20 h-[calc(100vh-5rem)] shadow-[0_3px_3px_3px_rgba(0,0,0,0.3)] bg-white">
+              <div className=" w-full ">
+                <div className=""> { /* parent */}
+                  <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2">
+                    <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
+                      <h1 className="w-full text-md font-semibold text-white font-mono">
+                        {toggledBets.size}
+                      </h1>
+                    </div>
+                    <h1 className="text-slate-600 font-bold text-lg ml-1">
+                      Betslip
+                    </h1>
+                  </div>
+                  <div className="overflow-y-auto h-[calc(100vh-13.75rem)]" >
+                    <Betslip isSportPane={false} />
+                  </div>
+                  <div className="w-full h-[6rem] bottom-0 border-t-2 border-slate-800 absolute">
+                    submit betslip
+                  </div>
                 </div>
-                <h1 className="text-slate-600 font-bold text-lg ml-1">
-                  Betslip
-                </h1>
               </div>
-              <Betslip isSportPane={false} />
+
             </div>
           </div>
+        </div>
 
-          {/* Bottom Navbar */}
-          <div className="contents lg:hidden 0">
-            <div className="inset-0 bottom-0 z-50 sticky h-16 w-full">
-              <BottomNavbar />
-            </div>
+        {/* Bottom Navbar */}
+        <div className="contents lg:hidden">
+          <div className="inset-0 bottom-0 z-50 fixed h-16 w-full">
+            <BottomNavbar />
           </div>
         </div>
       </Router>

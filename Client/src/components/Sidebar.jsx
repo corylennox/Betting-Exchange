@@ -17,7 +17,7 @@ export default function Sidebar(props) {
 
   return (
     <div className={props.isSportPane ? "bg-white" : ""}>
-      <div className={props.isSportPane ? "mb-1 mt-3 ml-4" : "mb-3 mt-3 ml-11"}>
+      <div className={props.isSportPane ? "mb-1 pt-3 ml-4" : "mb-3 mt-3 ml-11"}>
         {/* margin left to match the padding left in the <a/> tag */}
         <h1
           className={

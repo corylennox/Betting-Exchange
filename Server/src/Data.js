@@ -53,7 +53,7 @@ const UniversalData = {
 // The SportPane will be passed the href and will request the information to the server, and the server will reply with this data:
 const FeaturedSportBets = {
   sportTitle: "Popular",
-  href: "probablydoesntneedtobehere",
+  href: "/", //probably doesn't need to be here
   tabs: [
     {
       tabTitle: "NBA",

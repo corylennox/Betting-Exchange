@@ -31,7 +31,7 @@ export default function Navbar() {
   const activeSportPane = useSelector((state) => state.activeSportPane);
 
   return (
-    <div className="bg-slate-900 top-0 z-50 sticky w-full">
+    <div className="fixed bg-slate-900 top-0 z-50 w-full">
       <div className="w-full grid grid-cols-6 items-center h-20">
         <Link to={navs.home.href} className="col-span-1 pl-11 h-full flex items-center"
           onClick={() => {dispatch(changeSportpaneAction(navs.home.href)); dispatch(changeNavbarTabAction(rts.homepage)); }}> {/* padding left matches the margin left in the sidebar, so logo and sidebar are left-aligned */}
