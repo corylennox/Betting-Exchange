@@ -46,7 +46,7 @@ function AppNested() {
   const universalData = translateUniversalData(universalDataResponse);
 
   return (
-    <main className=" inset-0 w-full text-gray-400 min-h-screen bg-slate-900">
+    <main className=" inset-0 w-full min-h-screen bg-slate-900">
       <Router>
         {/* Navbar */}
         <div className="top-0 hidden lg:contents">
@@ -70,7 +70,7 @@ function AppNested() {
           </div>
 
           {/* Sportpane routes */}
-          <div className="w-full lg:max-w-2xl bg-slate-200">
+          <div className="w-full lg:max-w-2xl bg-skin-accent">
             <Routes>
               <Route
                 path={rts.homepage}

@@ -8,9 +8,9 @@ export default function MyButton(props) {
   const dispatch = useDispatch();
 
   const onCSS =
-    "w-16 bg-blue-600 text-white font-semibold border border-gray-800 border rounded placeholder-shown:bg-red-500";
+    "w-16 bg-skin-buttonActionSelected text-skin-actionSelected font-semibold border border-skin-buttonActionSelected border rounded placeholder-shown:bg-red-500";
   const offCSS =
-    "w-16 bg-transparent hover:bg-gray-200 text-blue-600 font-semibold hover:text-blue-800 border border-blue-600 rounded placeholder-shown:bg-red-500";
+    "w-16 bg-transparent hover:bg-skin-buttonActionHover text-skin-actionUnselected font-semibold hover:text-skin-actionHover border border-blue-500 rounded placeholder-shown:bg-red-500";
 
   const betInfo = {
     line: props.line,

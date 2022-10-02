@@ -7,7 +7,7 @@ class GameBetContenderRow extends Component {
     return (
       <div>
         <div className="w-full mb-2 grid grid-cols-5 align-center ">
-          <div className="flex h-10 justfiy-left col-span-2 ">
+          <div className="flex h-10 justfiy-left col-span-2 text-skin-body">
             <ContenderAndIcon name={this.props.contenderData.name} image={this.props.contenderData.image} />
           </div>
           <div className="flex h-10 justify-center">
@@ -49,21 +49,21 @@ class GameBetContenderRow extends Component {
 export default class GameBet extends Component {
   render() {
     return (
-      <div className="bg-white rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
-        <h2 className="flex font-semibold text-blue-900 text-xl">
+      <div className="bg-skin-overlay rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
+        <h2 className="flex font-semibold text-skin-body text-xl">
           {this.props.gameBetData.betTitle}
         </h2>
         <div className="w-full grid grid-cols-5 mb-2">
-          <h3 className="col-span-2 font-semibold text-slate-900 text-md">
+          <h3 className="col-span-2 font-semibold text-skin-body text-md">
             Game Bet
           </h3>
-          <div className="flex justify-center text-slate-500">
+          <div className="flex justify-center text-skin-accent">
             <p>Spread</p>
           </div>
-          <div className="flex justify-center text-slate-500">
+          <div className="flex justify-center text-skin-accent">
             <p>Money</p>
           </div>
-          <div className="flex justify-center text-slate-500">
+          <div className="flex justify-center text-skin-accent">
             <p>Total</p>
           </div>
         </div>

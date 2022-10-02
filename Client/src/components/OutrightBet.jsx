@@ -98,33 +98,33 @@ export default class OutrightBet extends Component {
       this.props.outrightBetData.contendersData.length >
       numContenderRowsToDisplay * 3
     ) {
-      return "w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1";
+      return "w-full cursor-pointer h-12 inline-flex justify-center text-skin-actionUnselected text-sm border-t border-b border-skin-divider mt-5 mb-1";
     } else if (
       this.props.outrightBetData.contendersData.length >
       numContenderRowsToDisplay * 2
     ) {
-      return "xl:hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1";
+      return "xl:hidden w-full cursor-pointer h-12 inline-flex justify-center text-skin-actionUnselected text-sm border-t border-b border-skin-divider mt-5 mb-1";
     } else if (
       this.props.outrightBetData.contendersData.length >
       numContenderRowsToDisplay
     ) {
-      return "md:hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1";
+      return "md:hidden w-full cursor-pointer h-12 inline-flex justify-center text-skin-actionUnselected text-sm border-t border-b border-skin-divider mt-5 mb-1";
     } else if (
       this.props.outrightBetData.contendersData.length <=
       numContenderRowsToDisplay
     ) {
-      return "hidden w-full cursor-pointer h-12 inline-flex justify-center text-blue-400 text-sm border-t border-b border-slate-900 mt-5 mb-1";
+      return "hidden w-full cursor-pointer h-12 inline-flex justify-center text-skin-actionUnselected text-sm border-t border-b border-skin-divider mt-5 mb-1";
     }
     return "";
   }
 
   render() {
     return (
-      <div className="bg-white rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
-        <h2 className="flex font-semibold text-blue-900 text-xl">
+      <div className="bg-skin-overlay rounded-2xl p-3 drop-shadow-md shadow-lg mb-3">
+        <h2 className="flex font-semibold text-skin-body text-xl">
           {this.props.outrightBetData.betTitle}
         </h2>
-        <h3 className="pb-2 font-semibold text-slate-900 text-md">
+        <h3 className="pb-2 font-semibold text-skin-body text-md">
           Outright Bet
         </h3>
         {this.displayRows()}

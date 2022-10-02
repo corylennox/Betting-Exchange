@@ -31,7 +31,7 @@ export default function Navbar() {
   const activeSportPane = useSelector((state) => state.activeSportPane);
 
   return (
-    <div className="fixed bg-slate-900 top-0 z-50 left-1/2 translate-x-[-50%] w-full max-w-[76rem]">
+    <div className="fixed bg-slate-900 top-0 z-50 left-1/2 translate-x-[-50%] w-full max-w-[76rem] text-skin-header">
       <div className="flex flex-row flex-nowrap items-center h-20 w-full">
         <div className="min-w-[12rem] max-w-[12rem] h-full ">
           <Link to={navs.home.href} className="pl-11 h-full flex items-center"

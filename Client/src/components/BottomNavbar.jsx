@@ -22,51 +22,51 @@ import rts from "../MyRoutes";
 export const BottomNavbarItems = [
   {
     name: "Home",
-    unselectedIcon: <HomeIcon className="h-5 w-5" />,
-    selectedIcon: <HomeIconSolid className="h-5 w-5 fill-blue-400" />,
+    unselectedIcon: <HomeIcon className="h-5 w-5 fill-skin-unselected" />,
+    selectedIcon: <HomeIconSolid className="h-5 w-5 fill-skin-selected" />,
     hideTopBorderOnClick: false,
     href: rts.homepage,
   },
   {
     name: "Sports",
-    unselectedIcon: <LightningBoltIcon className="h-5 w-5" />,
-    selectedIcon: <LightningBoltIconSolid className="h-5 w-5 fill-blue-400" />,
+    unselectedIcon: <LightningBoltIcon className="h-5 w-5 fill-skin-unselected" />,
+    selectedIcon: <LightningBoltIconSolid className="h-5 w-5 fill-skin-selected" />,
     hideTopBorderOnClick: false,
     href: rts.allSports,
   },
   {
     name: "Betslip",
-    unselectedIcon: <DocumentTextIcon className="h-5 w-5" />,
-    selectedIcon: <DocumentTextIconSolid className="h-5 w-5 fill-blue-400" />,
+    unselectedIcon: <DocumentTextIcon className="h-5 w-5 fill-skin-unselected" />,
+    selectedIcon: <DocumentTextIconSolid className="h-5 w-5 fill-skin-selected" />,
     hideTopBorderOnClick: true,
     href: rts.betslip,
   },
   {
     name: "My Bets",
     unselectedIcon: (
-      <DocumentReportIcon className="h-5 w-5" />
+      <DocumentReportIcon className="h-5 w-5 fill-skin-unselected"/>
     ) /* RectangleStackIcon */,
     selectedIcon: (
-      <DocumentReportIconSolid className="h-5 w-5 fill-blue-400" />
+      <DocumentReportIconSolid className="h-5 w-5 fill-skin-selected" />
     ) /* RectangleStackIconSolid */,
     hideTopBorderOnClick: false,
     href: rts.myBets,
   },
   {
     name: "Account",
-    unselectedIcon: <UserIcon className="h-5 w-5" />,
-    selectedIcon: <UserIconSolid className="h-5 w-5 fill-blue-400" />,
+    unselectedIcon: <UserIcon className="h-5 w-5 fill-skin-unselected" />,
+    selectedIcon: <UserIconSolid className="h-5 w-5 fill-skin-selected" />,
     hideTopBorderOnClick: false,
     href: rts.account,
   },
 ];
 
 function bodyFocusedCss() {
-  return "text-blue-400";
+  return "text-skin-actionUnselected";
 }
 
 function bodyDeFocusedCss() {
-  return "text-black";
+  return "text-skin-body";
 }
 
 function divBaseCss() {
@@ -90,7 +90,7 @@ function BottomNavbarNameAndIcon(props) {
         {name === "Betslip" && toggledBets.size !== 0 ? (
           <div className="w-full ">
             <div className=" rounded-full bg-red-500 flex h-5 w-5 items-center text-center absolute bottom-[0.4rem] left-7">
-              <h1 className="w-full text-md font-semibold text-white font-mono">
+              <h1 className="w-full text-md font-semibold text-skin-header font-mono">
                 {toggledBets.size}
               </h1>
             </div>
@@ -112,7 +112,7 @@ export default function BottomNavbar() {
   const activeNavbarTab = useSelector((state) => state.activeNavbarTab);
 
   return (
-    <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-white h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
+    <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-skin-overlay h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
       {BottomNavbarItems.map((navbarItem) => (
         <Link to={navbarItem.href} className="h-16 w-full">
           <span

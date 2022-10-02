@@ -38,7 +38,7 @@ export default function SportPane(props) {
   const sportPaneData = translateSportsPaneData(sportPaneDataResponse);
   return (
     <div className="min-w-fit pl-8 pt-4 pr-8">
-      <h1 className="mb-3 font-semibold font-sans text-2xl text-slate-900">
+      <h1 className="mb-3 font-semibold font-sans text-2xl text-skin-body">
         {sportPaneData.sportTitle}
       </h1>
       {sportPaneData.tabs.map((tab) => {

@@ -22,8 +22,8 @@ export default function Sidebar(props) {
         <h1
           className={
             props.isSportPane
-              ? "text-gray-700 font-bold"
-              : "text-slate-200 font-bold"
+              ? "text-skin-body font-bold"
+              : "text-skin-header font-bold"
           }
         >
           All Sports
@@ -38,7 +38,7 @@ export default function Sidebar(props) {
                   props.isSportPane
                     ? " flex justify-between items-center pb-4 pt-4 pl-5 cursor-pointer"
                     : sportData.href === activeSportPane
-                    ? "bg-slate-800 flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer text-slate-300 font-semibold"
+                    ? "bg-skin-defaultSelected flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer text-slate-300 font-semibold"
                     : "flex justify-between items-center pb-2 pt-2 pl-11 pr-12 cursor-pointer"
                 }
                 onClick={() => {
@@ -56,14 +56,14 @@ export default function Sidebar(props) {
                   </div>
                   <p
                     className={
-                      props.isSportPane ? "text-blue-500 font-light text-s" : ""
+                      props.isSportPane ? "text-skin-actionUnselected font-light text-s" : "text-skin-header"
                     }
                   >
                     {sportData.title}
                   </p>
                 </div>
                 <div className={props.isSportPane ? "mr-8" : "hidden"}>
-                  <ChevronRightIcon className="w-4 h-4 mr-3 text-blue-500" />
+                  <ChevronRightIcon className="w-4 h-4 mr-3 text-skin-actionUnselected" />
                 </div>
               </span>
             </Link>

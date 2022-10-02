@@ -51,7 +51,7 @@ function ToggledBet(props) {
         src="res/remove.png"
         onClick={() => dispatch(deleteBetAction(props.buttonId))}
       />
-      <div className="bg-slate-500 text-slate-50 rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
+      <div className="bg-skin-overlay text-skin-body rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
         <div className="inline-flex w-full ">
           <div className=" w-11/12">
             <h1>
@@ -76,15 +76,14 @@ function ToggledBet(props) {
 
         {/* Wager input */}
         <div className="flex w-full h-14 mt-2">
-          <div className="w-1/2 mr-1 border rounded-lg  p-1 text-sm">
-            <label class="block uppercase tracking-wide text-gray-700  font-bold ">
+          <div className="w-1/2 mr-1 border border-skin-input rounded-lg  p-1 text-sm">
+            <label class="block uppercase tracking-wide text-skin-body font-bold">
               Wager
             </label>
-            <div className="inline-flex text-gray-700 font-bold ">
+            <div className="inline-flex font-bold text-skin-body">
               <span className="">$</span>
               <input
-                class="appearance-none block bg-transparent w-full text-gray-700 
-                  leading-tight focus:outline-none"
+                class="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
                   validateAndChangeWager(
@@ -107,15 +106,14 @@ function ToggledBet(props) {
           </div>
 
           {/* Win input */}
-          <div className="w-1/2 ml-1 border rounded-lg p-1 text-sm">
-            <label class="block uppercase tracking-wide text-gray-700  font-bold ">
+          <div className="w-1/2 ml-1 border border-skin-input rounded-lg p-1 text-sm">
+            <label class="block uppercase tracking-wide text-skin-body  font-bold ">
               To Win
             </label>
-            <div className="inline-flex text-gray-700 font-bold ">
+            <div className="inline-flex font-bold text-skin-body">
               <span className="">$</span>
               <input
-                class="appearance-none block bg-transparent w-full text-gray-700 
-                  leading-tight focus:outline-none"
+                class="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
                   validateAndChangeWin(
@@ -164,7 +162,7 @@ export default function Betslip(props) {
   } else {
     return (
       <div className=" w-full pt-28">
-        <h1 className=" text-slate-800 text-center text-2xl">
+        <h1 className=" text-skin-accent text-center text-2xl">
           You have no current bets.
         </h1>
       </div>
