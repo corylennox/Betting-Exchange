@@ -68,9 +68,9 @@ export default function Sidebar(props) {
               </span>
             </Link>
             {props.isSportPane && index < props.sportsData.length - 1 ? (
-              <div className="w-11/12 h-px bg-gray-300 ml-12" />
+              <div className="w-11/12 h-0.5 bg-gray-300 ml-12" />
             ) : (
-              <div />
+              <></>
             )}
           </div>
         ))}

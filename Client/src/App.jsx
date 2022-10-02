@@ -133,7 +133,7 @@ function AppNested() {
             <div className=" min-w-[22rem] max-w-[22rem] sticky top-20 h-[calc(100vh-5rem)] shadow-[0_3px_3px_3px_rgba(0,0,0,0.3)] bg-white">
               <div className=" w-full ">
                 <div className=""> { /* parent */}
-                  <div className="flex sticky top-0 z-50 border-b-2 h-11 items-center p-2">
+                  <div className="flex sticky top-0 z-50 border-b-2 border-gray-300 h-11 items-center p-2">
                     <div className="rounded-full bg-red-500 flex relative h-7 w-7 items-center text-center">
                       <h1 className="w-full text-md font-semibold text-white font-mono">
                         {toggledBets.size}
@@ -146,7 +146,7 @@ function AppNested() {
                   <div className="overflow-y-auto h-[calc(100vh-13.75rem)]" >
                     <Betslip isSportPane={false} />
                   </div>
-                  <div className="w-full h-[6rem] bottom-0 border-t-2 border-slate-800 absolute">
+                  <div className="w-full h-[6rem] bottom-0 border-t-2 border-gray-300 absolute">
                     submit betslip
                   </div>
                 </div>
