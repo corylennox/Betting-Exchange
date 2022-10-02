@@ -52,14 +52,14 @@ function AppNested() {
         <div className="top-0 hidden lg:contents">
           <Navbar />
         </div>
-        <div className="flex flex-nowrap justify-center pb-16 lg:pb-0 lg:pt-20 min-w-full min-h-screen"> { /* padding top and bottom matches the top/bottom navbar heights */ }
+        <div className="flex flex-nowrap justify-center pb-16 lg:pb-0 lg:pt-20 min-w-full min-h-screen"> { /* padding top and bottom matches the top/bottom navbar he */ }
 
           {/* Sidebar */}
-          <div className="hidden lg:contents w-60">
-            <div className=" bg-slate-900 ">
+          <div className="hidden lg:contents">
+            <div className=" bg-slate-900 min-w-[12rem] max-w-[12rem]">
               <div className="sticky top-20 overscroll-contain">
                 {/* this div prevents the sidebar from scrolling */}
-                <div className="bg-slate-800 h-0.5 w-full" />
+                <div className="bg-slate-800 h-0.5 " />
                 {/* this is the border between navbar and sidebar */}
                 <Sidebar
                   isSportPane={false}
