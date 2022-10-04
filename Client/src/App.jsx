@@ -46,7 +46,7 @@ function AppNested() {
   const universalData = translateUniversalData(universalDataResponse);
 
   return (
-    <main className=" inset-0 w-full min-h-screen bg-slate-900">
+    <main className=" inset-0 w-full min-h-screen bg-skin-default">
       <Router>
         {/* Navbar */}
         <div className="top-0 hidden lg:contents">
