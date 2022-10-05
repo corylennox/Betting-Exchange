@@ -9,11 +9,9 @@ make tailwind theme
 add divider to grid in OutrightBet
 nightmode: https://www.youtube.com/watch?v=oMOe_32M6ss&ab_channel=JohnKomarnicki
 
-give lines to outright bet contenders from data
-get wager and win buttons to update to correct values and catch bad inputs
 Process betslip submissions by sending to backend
 Double check the logic in wagerWinUtils.js to make sure we are doing what fanduel does with regards to Math.floor() and Math.ceil()
-Implement commission into the betslip and backend
+Implement commission into the betslip and backend (total, commission, To Win)
 Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
 
 - dividers between grid columns in OutrightBets
