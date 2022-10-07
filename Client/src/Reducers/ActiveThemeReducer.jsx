@@ -1,4 +1,4 @@
-const activeThemeReducer = (state = "", action) => {
+const activeThemeReducer = (state = 'System', action) => {
   if (!action.payload) return state;
 
   let newState = state;
@@ -9,7 +9,7 @@ const activeThemeReducer = (state = "", action) => {
       break;
     default:
   }
-  return newState;
+  return (newState);
 };
 
 export default activeThemeReducer;

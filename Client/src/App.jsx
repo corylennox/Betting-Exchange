@@ -27,7 +27,7 @@ import rts from "./MyRoutes";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
-  //persistor.purge();
+  persistor.purge();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
 
   const {
