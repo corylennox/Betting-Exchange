@@ -1,37 +1,32 @@
 import React, { Fragment, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import { SunIcon, MoonIcon, DesktopComputerIcon } from "@heroicons/react/solid";
+import { useSelector, useDispatch } from "react-redux";
+import { changeThemeAction } from "../Actions";
 
 const themes = [
-  { id: 0, name: 'light', text: "Light", icon: <SunIcon className="mr-2 h-6 w-6" /> },
-  { id: 1, name: 'dark', text: "Dark", icon: <MoonIcon className="mr-2 h-6 w-6" /> },
-  { id: 2, name: 'undefined', text: "System", icon: <DesktopComputerIcon className="mr-2 h-6 w-6" /> }
-]
+  { id: "light", text: "Light", icon: <SunIcon className="mr-2 h-6 w-6" /> },
+  { id: "dark", text: "Dark", icon: <MoonIcon className="mr-2 h-6 w-6" /> },
+  {
+    id: "undefined",
+    text: "System",
+    icon: <DesktopComputerIcon className="mr-2 h-6 w-6" />,
+  },
+];
 
 export default function ThemeButton() {
-  const [selectedTheme, setSelectedTheme] = useState(localStorage.theme === )
-  const onChange = () => {
-    switch (selectedTheme.name) {
-      case 'light':
-        localStorage.theme = 'light'
-        break;
-      case 'dark':
-        localStorage.theme = 'dark'
-        break;
-      case 'undefined':
-        localStorage.removeItem('theme')
-        break
-      default:
-    }
-  };
+  //const [selectedTheme, setSelectedTheme] = useState(localStorage.theme === )
+  const activeTheme = useSelector((state) => state.activeTheme);
 
   return (
     <div className="relative">
-      <Listbox value={selectedTheme} by="id" onChange={setSelectedTheme}>
+      <Listbox
+        value={activeTheme}
+        by="id"
+        onChange={useDispatch(changeThemeAction(//))}
+      >
         <Listbox.Button>
-
           <SunIcon className="h-6 w-6" />
-
         </Listbox.Button>
 
         {/* Menu Items */}
@@ -41,17 +36,15 @@ export default function ThemeButton() {
               key={theme.id}
               value={theme}
               className={({ active, selected }) =>
-                `cursor-pointer items-center px-2 py-1 ${active ? 'bg-skin-accent' : ''
-                } ${selected ? 'text-red-600' : ''}`}
+                `cursor-pointer items-center px-2 py-1 ${
+                  active ? "bg-skin-accent" : ""
+                } ${selected ? "text-red-600" : ""}`
+              }
             >
-              <span
-                className="inline-flex"
-              >
+              <span className="inline-flex">
                 {theme.icon}
                 {theme.text}
               </span>
-
-
             </Listbox.Option>
           ))}
         </Listbox.Options>

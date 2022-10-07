@@ -26,8 +26,11 @@
     -->
     <title>Betting Exchange</title>
     <script>
+      import { useSelector, useDispatch } from "react-redux";
+
+      const activeTheme = useSelector((state) => state.activeTheme);
       if (
-        localStorage.theme === "dark" ||
+        activeTheme === "dark" ||
         (!("theme" in localStorage) &&
           window.matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
