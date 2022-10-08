@@ -15,7 +15,7 @@ import allReducers from "./Reducers/AllReducers";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['toggledBets']
+  whitelist: ["toggledBets", "activeTheme"],
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
@@ -25,14 +25,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          PURGE,
-          REGISTER,
-        ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
   devTools:

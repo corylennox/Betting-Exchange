@@ -6,7 +6,6 @@ import ContenderAndIcon from "./ContenderAndIcon";
 const numContenderRowsToDisplay = 3;
 
 function OutrightBetContenderRow(props) {
-
   return (
     <div className="w-full flex justify-center h-12">
       <ContenderAndIcon
@@ -26,7 +25,6 @@ function OutrightBetContenderRow(props) {
     </div>
   );
 }
-
 
 export default class OutrightBet extends Component {
   constructor(props) {
@@ -55,16 +53,20 @@ export default class OutrightBet extends Component {
           (contenderData, index) => {
             return (
               <div
-                key={this.props.tabTitle + this.props.outrightBetData.betTitle + contenderData.name}
+                key={
+                  this.props.tabTitle +
+                  this.props.outrightBetData.betTitle +
+                  contenderData.name
+                }
                 className={
                   !this.state.isExpanded
                     ? index < numContenderRowsToDisplay
                       ? "contents"
                       : index < numContenderRowsToDisplay * 2
-                        ? "hidden md:contents"
-                        : index < numContenderRowsToDisplay * 3
-                          ? "hidden xl:contents"
-                          : "hidden"
+                      ? "hidden md:contents"
+                      : index < numContenderRowsToDisplay * 3
+                      ? "hidden xl:contents"
+                      : "hidden"
                     : "" //expanded, so show all rows
                 }
               >

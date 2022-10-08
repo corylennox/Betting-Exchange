@@ -48,11 +48,23 @@ export const changeSportpaneAction = (href) => {
 /**
  * change active navbar tab actions
  */
-export const changeNavbarTabAction = ( href) => {
+export const changeNavbarTabAction = (href) => {
   return {
     type: "CHANGE_ACTIVE_NAVBAR_TAB",
     payload: {
       href: href,
+    },
+  };
+};
+
+/**
+ * change active theme
+ */
+export const changeThemeAction = (theme) => {
+  return {
+    type: "CHANGE_ACTIVE_THEME",
+    payload: {
+      theme: theme,
     },
   };
 };
