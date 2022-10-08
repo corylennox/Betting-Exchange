@@ -13,10 +13,17 @@ export default function ActiveThemeButton() {
     <div className="relative h-full">
       <Listbox
         defaultValue={activeTheme}
-        onChange={(arg) => {dispatch(changeThemeAction(arg))}}
+        onChange={(arg) => { dispatch(changeThemeAction(arg)) }}
       >
         <Listbox.Button className="h-full items-center align-middle">
-          <span>{themes.get(activeTheme).getIcon(true)}</span>
+          <span className={() => `h-3 w-4 ${activeTheme === themeData[0].name ? "text-sky-500" : ""}`} >
+            {activeTheme === themeData[0].name ?
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? themeData[2].icon
+                : themeData[1].icon
+              : themeData[0].icon}
+          </span>
+
         </Listbox.Button>
 
         {/* Menu Items */}
@@ -26,13 +33,12 @@ export default function ActiveThemeButton() {
               key={theme.id}
               value={theme.name}
               className={({ active, selected }) =>
-                `cursor-pointer items-center px-2 py-1 ${
-                  active ? "bg-skin-accent" : ""
+                `cursor-pointer items-center px-2 py-1 ${active ? "bg-skin-accent" : ""
                 } ${selected ? "text-sky-500" : ""}`
               }
             >
               <span className="inline-flex items-center align-middle">
-                <span className="mr-2">{theme.getIcon(false)}</span>
+                <span className="mr-2">{theme.icon}</span>
                 {theme.name}
               </span>
             </Listbox.Option>
