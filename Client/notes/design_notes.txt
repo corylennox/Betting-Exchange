@@ -1,6 +1,11 @@
+API Notes:
 - We use the-odds-api.com or an analyst to generate a daily list of possible bets and their valid values. 
 	- We provide a “get” api so that market makers can see the available bets for the day
 - Market makers A and B submit a triangle (our API message) to our servers via the API and we reject their message if any field in their message is invalid (doesn’t pass the filter based on the valid bets for the day)
 - Any Market Maker message that passes the filter will have their values added to the corresponding order book.
 - The bets pane on the website will display all of today’s possible bets and the teams/competitors within the bets. There will be a lock icon if there is no values for the bet received yet. Otherwise, there will be the “best” available from the order book displayed on the UI.
 	- This “lock” mechanism mimics what fan duel does right now when bets cannot be placed for a certain bet
+
+Win/Wager Decisions:
+- We decided to take the floor of the user's wager when determining the amount that they win. There needs to be some standard that both parties agree to for rounding uneven wagers/lines. Possible options include: flooring, ceiling, or rounding the wager into the win. Floor is the only way that prevents users from gaming the system. Otherwise, we (the exchange) could be forced to cough up money when matching two user's bets.
+- Conversely, to translate from win -> wager, we have to take the ceiling of that conversion in order to perform the equal but opposite logic to the above comment.

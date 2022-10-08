@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBetAction, setWagerAction } from "../Actions";
+import { deleteBetAction, setWagerAndWinAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
 import {
@@ -15,25 +15,25 @@ import {
 } from "./BetslipUtils";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { BottomNavbarItems } from "./BottomNavbar";
+import { useEffect } from "react";
 
-function validateAndChangeWager(evt, setWager, setWinStr, line) {
+function validateAndChangeWager(evt, setWagerAndWin, line) {
   const newWagerStr = evt.target.value;
   if (isValidWagerOrWin(newWagerStr)) {
     const newWagerInteger = convertToIntegerScale(newWagerStr);
-    setWager(newWagerStr, newWagerInteger);
-    const newWinStr = convertToPriceString(determineWin(line, newWagerInteger));
-    setWinStr(newWinStr);
+    const newWinInteger = determineWin(line, newWagerInteger);
+    const newWinStr = convertToPriceString(newWinInteger);
+    setWagerAndWin(newWagerStr, newWagerInteger, newWinStr, newWinInteger);
   }
 }
 
-function validateAndChangeWin(evt, setWager, setWinStr, line) {
+function validateAndChangeWin(evt, setWagerAndWin, line) {
   const newWinStr = evt.target.value;
   if (isValidWagerOrWin(newWinStr)) {
     const newWinInteger = convertToIntegerScale(newWinStr);
-    setWinStr(newWinStr);
     const newWagerInteger = determineWager(line, newWinInteger);
     const newWagerStr = convertToPriceString(newWagerInteger);
-    setWager(newWagerStr, newWagerInteger);
+    setWagerAndWin(newWagerStr, newWagerInteger, newWinStr, newWinInteger);
   }
 }
 
@@ -41,7 +41,35 @@ function ToggledBet(props) {
   const dispatch = useDispatch();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const wagerStr = toggledBets.get(props.buttonId).wagerStr;
-  const [winStr, setWinStr] = useState("");
+  const winStr = toggledBets.get(props.buttonId).winStr;
+
+  const setWagerAndWin = (newWagerStr, newWagerInteger, newWinStr, newWinInteger) => {
+    dispatch(
+      setWagerAndWinAction(
+        props.buttonId,
+        newWagerStr,
+        newWagerInteger,
+        newWinStr,
+        newWinInteger
+      )
+    )};
+
+  /**
+   * This code is used to check if the line has changed since the previous refresh.
+   * If so, the win needs to be recalculated based on the wager.
+   * 
+   * Line has changed if wager->win or win->wager calculation does not line up properly.
+   */
+  useEffect(() => {
+    const wagerInteger = toggledBets.get(props.buttonId).wagerInteger;
+    const winInteger = toggledBets.get(props.buttonId).winInteger;
+    const isWagerOrWinSet = wagerInteger !== 0 || winInteger !== 0;
+    const determinedWagerInteger = determineWager(props.bet.line, winInteger);
+    const determinedWinInteger = determineWin(props.bet.line, wagerInteger);
+    if (isWagerOrWinSet && determinedWagerInteger !== wagerInteger && determinedWinInteger !== winInteger) {
+      setWagerAndWin(wagerStr, wagerInteger, winStr, winInteger);
+    }
+  })
 
   return (
     <div className="flex min-h-fit min-w-fit py-3 pr-9">
@@ -88,15 +116,7 @@ function ToggledBet(props) {
                 onChange={(evt) =>
                   validateAndChangeWager(
                     evt,
-                    (newWagerStr, newWagerInteger) =>
-                      dispatch(
-                        setWagerAction(
-                          props.buttonId,
-                          newWagerStr,
-                          newWagerInteger
-                        )
-                      ),
-                    setWinStr,
+                    setWagerAndWin,
                     props.bet.line
                   )
                 }
@@ -118,15 +138,7 @@ function ToggledBet(props) {
                 onChange={(evt) =>
                   validateAndChangeWin(
                     evt,
-                    (newWagerStr, newWagerInteger) =>
-                      dispatch(
-                        setWagerAction(
-                          props.buttonId,
-                          newWagerStr,
-                          newWagerInteger
-                        )
-                      ),
-                    setWinStr,
+                    setWagerAndWin,
                     props.bet.line
                   )
                 }
