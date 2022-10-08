@@ -27,8 +27,9 @@ import rts from "./MyRoutes";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
-  persistor.purge();
+  //persistor.purge();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
+  const activeTheme = useSelector((state) => state.activeTheme);
 
   const {
     loading,
@@ -44,6 +45,19 @@ function AppNested() {
   }
 
   const universalData = translateUniversalData(universalDataResponse);
+
+  if (
+    activeTheme === "Dark" ||
+    (activeTheme === "System" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add('dark');
+    console.log(`adding classlst.. classlist: ${document.documentElement.classList.toString()}`)
+  } else {
+    document.documentElement.classList.remove('dark');
+    console.log(`removing classlst.. classlist: ${document.documentElement.classList.toString()}`)
+
+  }
 
   return (
     <main className="dark:theme-dark inset-0 min-h-screen w-full bg-skin-default">
