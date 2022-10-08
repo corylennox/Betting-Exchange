@@ -6,7 +6,7 @@ Point spread
 To Do:
 order contender rows by odds
 make tailwind theme
-use HeadlessUI 
+Use HeadlessUI for sidebar, navbar, and bottomnavbar (already using for active theme button)
 add divider to grid in OutrightBet
 nightmode: https://www.youtube.com/watch?v=oMOe_32M6ss&ab_channel=JohnKomarnicki
 
