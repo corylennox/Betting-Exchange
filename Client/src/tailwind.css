@@ -7,6 +7,7 @@
         --color-text-header: #ffffff;
         --color-text-body: #465057; /* Matches FanDuel Color */
         --color-text-accent: #65676b;
+        --color-text-overlay: #171717;
         --color-text-action-unselected: #2563eb; /* text-blue-600 */
         --color-text-action-selected: #ffffff;
         --color-text-action-hover: #1e40af; /* text-blue-800 */
@@ -23,7 +24,7 @@
         --color-background-accent: #e2e8f0; /* slate-200 */
         --color-background-overlay: #ffffff;
         --color-background-sidebar-divider: #1E293B;
-        --color-background-betslip: #ffffff;
+        --color-background-selected: #334155;
 
         --color-border-divider: #0f172a; /* slate-900 */
         --color-border-action-unselected: #4089ea;
@@ -31,8 +32,9 @@
     }
     .theme-dark {
         --color-text-header: #ffffff;
-        --color-text-body: #ffffff; 
+        --color-text-body: #D4D4D4; 
         --color-text-accent: #171717;
+        --color-text-overlay: #ffffff;
         --color-text-action-unselected: #ffffff; 
         --color-text-action-selected: #ffffff;
         --color-text-action-hover: #1e40af; 
@@ -49,11 +51,11 @@
         --color-background-accent: #3F3F46; 
         --color-background-overlay: #71717A;
         --color-background-sidebar-divider: #262626;
-        --color-background-betslip: #1E293B;
-
+        --color-background-selected: #404040;
 
         --color-border-divider: #0f172a; 
         --color-border-action-unselected: #2563eb;
         --color-border-action-selected: #171717;
+        --color-border-overlay: #71717A;
       }
 }

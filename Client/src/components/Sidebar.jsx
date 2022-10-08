@@ -16,7 +16,7 @@ export default function Sidebar(props) {
   }
 
   return (
-    <div className={props.isSportPane ? "bg-white" : ""}>
+    <div className={props.isSportPane ? "bg-skin-overlay" : ""}>
       <div className={props.isSportPane ? "mb-1 ml-4 pt-3" : "mb-3 mt-3 ml-11"}>
         {/* margin left to match the padding left in the <a/> tag */}
         <h1
@@ -38,7 +38,7 @@ export default function Sidebar(props) {
                   props.isSportPane
                     ? " flex cursor-pointer items-center justify-between pb-4 pt-4 pl-5"
                     : sportData.href === activeSportPane
-                    ? "flex cursor-pointer items-center justify-between bg-skin-accent pb-2 pt-2 pl-11 pr-12 font-semibold text-slate-300"
+                    ? "flex cursor-pointer items-center justify-between bg-skin-selected pb-2 pt-2 pl-11 pr-12 font-semibold text-slate-300"
                     : "flex cursor-pointer items-center justify-between pb-2 pt-2 pl-11 pr-12"
                 }
                 onClick={() => {

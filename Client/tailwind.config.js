@@ -8,6 +8,7 @@ module.exports = {
         skin: {
           header: "var(--color-text-header)",
           body: "var(--color-text-body)",
+          overlay: "var(--color-text-overlay)",
           accent: "var(--color-text-accent)",
           actionUnselected: "var(--color-text-action-unselected)",
           actionSelected: "var(--color-text-action-selected)",
@@ -27,7 +28,7 @@ module.exports = {
           buttonActionSelected: "var(--color-button-action-selected)",
           buttonActionHover: "var(--color-button-action-hover)",
           sidebarDivider: "var(--color-background-sidebar-divider)",
-          betslip: "var(--color-background-betslip)",
+          selected: "var(--color-background-selected)",
         },
       },
       borderColor: {
@@ -36,6 +37,8 @@ module.exports = {
           input: "var(--color-text-accent)",
           buttonActionUnselected: "var(--color-border-action-unselected)",
           buttonActionSelected: "var(--color-border-action-selected)",
+          body: "var(--color-text-body)",
+          overlay: "var(--color-border-overlay)"
         },
       },
       fill: {

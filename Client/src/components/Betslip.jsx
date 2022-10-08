@@ -162,7 +162,7 @@ export default function Betslip(props) {
   } else {
     return (
       <div className=" w-full pt-28">
-        <h1 className=" text-skin-accent text-center text-2xl">
+        <h1 className=" text-skin-overlay text-center text-2xl">
           You have no current bets.
         </h1>
       </div>

@@ -8,6 +8,6 @@ export default function Account() {
   dispatch(changeNavbarTabAction(rts.account));
 
   return (
-    <h1 className=" text-slate-800 text-center text-2xl pt-28">Account</h1>
+    <h1 className=" text-skin-overlay text-center text-2xl pt-28">Account</h1>
   );
 }
