@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import "./tailwind.css";
 import SportPane from "./components/SportPane";
@@ -30,6 +30,7 @@ function AppNested() {
   //persistor.purge();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const activeTheme = useSelector((state) => state.activeTheme);
+  const [isSystemThemeDark, setIsSystemThemeDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const {
     loading,
@@ -46,18 +47,22 @@ function AppNested() {
 
   const universalData = translateUniversalData(universalDataResponse);
 
-  if (
-    activeTheme === "Dark" ||
-    (activeTheme === "System" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add('dark');
-    console.log(`adding classlst.. classlist: ${document.documentElement.classList.toString()}`)
-  } else {
-    document.documentElement.classList.remove('dark');
-    console.log(`removing classlst.. classlist: ${document.documentElement.classList.toString()}`)
+  /**
+   * Watching the current system color scheme and updating the state hook when the system color scheme changes forces a refresh of the the entire page.
+   * Without this event listener, the page would not autoamtically refresh when the user changes the system color scheme.
+   */
+  const systemColorScheme = isSystemThemeDark ? 'dark' : 'light';
+  window.matchMedia('(prefers-color-scheme: '+ systemColorScheme + ')').addEventListener('change', e => {
+    setIsSystemThemeDark(!isSystemThemeDark);
+  });
 
-  }
+  /**
+   * Checks if dark or light mode should be applied to the website. Depends on whether the user manually overridded the system theme or not.
+   */
+  if (activeTheme === "Dark" || (activeTheme === "System" && isSystemThemeDark))
+    document.documentElement.classList.add('dark');
+  else
+    document.documentElement.classList.remove('dark');
 
   return (
     <main className="dark:theme-dark inset-0 min-h-screen w-full bg-skin-default">

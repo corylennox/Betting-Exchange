@@ -5,9 +5,13 @@ import { changeThemeAction } from "../Actions";
 import { SunIcon, MoonIcon, DesktopComputerIcon } from "@heroicons/react/solid";
 
 const themeData = [
-  { id: 0, name: "System", icon: <DesktopComputerIcon className="h-6 w-6" /> },
-  { id: 1, name: "Light", icon: <SunIcon className="h-6 w-6" /> },
-  { id: 2, name: "Dark", icon: <MoonIcon className="h-6 w-6" /> },
+  { id: 0, name: "System", getIcon: (isNavbarIcon) => {return isNavbarIcon ?
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? <MoonIcon className="h-6 w-6" />
+      : <SunIcon className="h-6 w-6" />
+    : <DesktopComputerIcon className="h-6 w-6" /> }},
+  { id: 1, name: "Light", getIcon: (isNavbarIcon) => { return <SunIcon className={`h-6 w-6 ${isNavbarIcon ? "fill-blue-400" : ''}`} /> }},
+  { id: 2, name: "Dark", getIcon: (isNavbarIcon) => { return <MoonIcon className={`h-6 w-6 ${isNavbarIcon ? "fill-blue-400" : ''}`} /> }},
 ];
 
 const themes = new Map();
@@ -27,7 +31,7 @@ export default function ThemeButton() {
         onChange={(arg) => {dispatch(changeThemeAction(arg))}}
       >
         <Listbox.Button className="h-full items-center align-middle">
-          <span>{themes.get(activeTheme).icon}</span>
+          <span>{themes.get(activeTheme).getIcon(true)}</span>
         </Listbox.Button>
 
         {/* Menu Items */}
@@ -43,7 +47,7 @@ export default function ThemeButton() {
               }
             >
               <span className="inline-flex items-center align-middle">
-                <span className="mr-2">{theme.icon}</span>
+                <span className="mr-2">{theme.getIcon(false)}</span>
                 {theme.name}
               </span>
             </Listbox.Option>
