@@ -2,24 +2,9 @@ import React from "react";
 import { Listbox } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeThemeAction } from "../Actions";
-import { SunIcon, MoonIcon, DesktopComputerIcon } from "@heroicons/react/solid";
+import { Themes as themes, ThemeData as themeData } from "./ActiveThemes"
 
-const themeData = [
-  { id: 0, name: "System", getIcon: (isNavbarIcon) => {return isNavbarIcon ?
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? <MoonIcon className="h-6 w-6" />
-      : <SunIcon className="h-6 w-6" />
-    : <DesktopComputerIcon className="h-6 w-6" /> }},
-  { id: 1, name: "Light", getIcon: (isNavbarIcon) => { return <SunIcon className={`h-6 w-6 ${isNavbarIcon ? "fill-blue-400" : ''}`} /> }},
-  { id: 2, name: "Dark", getIcon: (isNavbarIcon) => { return <MoonIcon className={`h-6 w-6 ${isNavbarIcon ? "fill-blue-400" : ''}`} /> }},
-];
-
-const themes = new Map();
-themes.set("System", themeData[0]);
-themes.set("Light", themeData[1]);
-themes.set("Dark", themeData[2]);
-
-export default function ThemeButton() {
+export default function ActiveThemeButton() {
   //const [selectedTheme, setSelectedTheme] = useState(localStorage.theme === )
   const activeTheme = useSelector((state) => state.activeTheme);
   const dispatch = useDispatch();

@@ -1,4 +1,6 @@
-const activeThemeReducer = (state = 'System', action) => {
+import { ThemeData } from "../components/ActiveThemes"
+
+const activeThemeReducer = (state = ThemeData[0].name, action) => {
   if (!action.payload) return state;
 
   let newState = state;

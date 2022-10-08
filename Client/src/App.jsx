@@ -24,6 +24,7 @@ import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { translateUniversalData } from "./GraphQL/Translate";
 import rts from "./MyRoutes";
+import { ThemeData } from "./components/ActiveThemes"
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
@@ -51,7 +52,7 @@ function AppNested() {
    * Watching the current system color scheme and updating the state hook when the system color scheme changes forces a refresh of the the entire page.
    * Without this event listener, the page would not autoamtically refresh when the user changes the system color scheme.
    */
-  const systemColorScheme = isSystemThemeDark ? 'dark' : 'light';
+  const systemColorScheme = isSystemThemeDark ? "dark" : "light";
   window.matchMedia('(prefers-color-scheme: '+ systemColorScheme + ')').addEventListener('change', e => {
     setIsSystemThemeDark(!isSystemThemeDark);
   });
@@ -59,7 +60,7 @@ function AppNested() {
   /**
    * Checks if dark or light mode should be applied to the website. Depends on whether the user manually overridded the system theme or not.
    */
-  if (activeTheme === "Dark" || (activeTheme === "System" && isSystemThemeDark))
+  if (activeTheme === ThemeData[2].name || (activeTheme === ThemeData[0].name && isSystemThemeDark))
     document.documentElement.classList.add('dark');
   else
     document.documentElement.classList.remove('dark');

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
-import ThemeButton from "./ThemeButton.jsx";
+import ActiveThemeButton from "./ActiveThemeButton.jsx";
 import rts from "../MyRoutes";
 
 const navs = {
@@ -95,7 +95,7 @@ export default function Navbar() {
           </a>
           <div className="h-1/3 w-0.5 items-center bg-skin-sidebarDivider" />
           <div className="flex h-full items-center px-4">
-            <ThemeButton />
+            <ActiveThemeButton />
           </div>
         </div>
       </div>
