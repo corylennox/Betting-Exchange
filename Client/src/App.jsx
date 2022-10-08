@@ -24,14 +24,16 @@ import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { translateUniversalData } from "./GraphQL/Translate";
 import rts from "./MyRoutes";
-import { ThemeData } from "./components/ActiveThemes"
+import { ThemeData } from "./components/ActiveThemes";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   //persistor.purge();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const activeTheme = useSelector((state) => state.activeTheme);
-  const [isSystemThemeDark, setIsSystemThemeDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const [isSystemThemeDark, setIsSystemThemeDark] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
 
   const {
     loading,
@@ -53,17 +55,21 @@ function AppNested() {
    * Without this event listener, the page would not autoamtically refresh when the user changes the system color scheme.
    */
   const systemColorScheme = isSystemThemeDark ? "dark" : "light";
-  window.matchMedia('(prefers-color-scheme: '+ systemColorScheme + ')').addEventListener('change', e => {
-    setIsSystemThemeDark(!isSystemThemeDark);
-  });
+  window
+    .matchMedia("(prefers-color-scheme: " + systemColorScheme + ")")
+    .addEventListener("change", (e) => {
+      setIsSystemThemeDark(!isSystemThemeDark);
+    });
 
   /**
    * Checks if dark or light mode should be applied to the website. Depends on whether the user manually overridded the system theme or not.
    */
-  if (activeTheme === ThemeData[2].name || (activeTheme === ThemeData[0].name && isSystemThemeDark))
-    document.documentElement.classList.add('dark');
-  else
-    document.documentElement.classList.remove('dark');
+  if (
+    activeTheme === ThemeData[2].name ||
+    (activeTheme === ThemeData[0].name && isSystemThemeDark)
+  )
+    document.documentElement.classList.add("dark");
+  else document.documentElement.classList.remove("dark");
 
   return (
     <main className="dark:theme-dark inset-0 min-h-screen w-full bg-skin-default">

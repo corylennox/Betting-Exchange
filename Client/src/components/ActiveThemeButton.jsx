@@ -2,7 +2,7 @@ import React from "react";
 import { Listbox } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeThemeAction } from "../Actions";
-import { Themes as themes, ThemeData as themeData } from "./ActiveThemes"
+import { Themes as themes, ThemeData as themeData } from "./ActiveThemes";
 
 export default function ActiveThemeButton() {
   //const [selectedTheme, setSelectedTheme] = useState(localStorage.theme === )
@@ -10,21 +10,29 @@ export default function ActiveThemeButton() {
   const dispatch = useDispatch();
 
   return (
-    <div className="relative h-full">
+    <div className="relative inline-block h-full">
       <Listbox
         defaultValue={activeTheme}
-        onChange={(arg) => { dispatch(changeThemeAction(arg)) }}
+        onChange={(arg) => {
+          dispatch(changeThemeAction(arg));
+        }}
       >
-        <Listbox.Button className="h-full items-center align-middle">
-          <span className={() => `h-3 w-4 ${activeTheme === themeData[0].name ? "text-sky-500" : ""}`} >
-            {activeTheme === themeData[0].name ?
-              window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? themeData[2].icon
-                : themeData[1].icon
-              : themeData[0].icon}
-          </span>
-
-        </Listbox.Button>
+        <div className="h-full items-center bg-red-600 align-middle">
+          <Listbox.Button className=" inline-flex h-1/2 items-center rounded-lg border border-skin-buttonActionUnselected align-middle">
+            <span className="mx-1">Theme</span>
+            <span
+              className={`mx-1 ${
+                activeTheme !== themeData[0].name ? "text-sky-500" : ""
+              }`}
+            >
+              {activeTheme === themeData[0].name
+                ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? themeData[2].icon
+                  : themeData[1].icon
+                : themes.get(activeTheme).icon}
+            </span>
+          </Listbox.Button>
+        </div>
 
         {/* Menu Items */}
         <Listbox.Options className="dark:highlight-white/5 absolute top-1/2 right-0 z-50 mt-8 w-36 overflow-hidden rounded-lg bg-white py-1 text-sm font-semibold text-slate-700 shadow-lg ring-1 ring-slate-900/10 dark:bg-stone-900 dark:text-slate-300 dark:ring-0">
@@ -33,7 +41,8 @@ export default function ActiveThemeButton() {
               key={theme.id}
               value={theme.name}
               className={({ active, selected }) =>
-                `cursor-pointer items-center px-2 py-1 ${active ? "bg-skin-accent" : ""
+                `cursor-pointer items-center px-2 py-1 ${
+                  active ? "bg-skin-accent" : ""
                 } ${selected ? "text-sky-500" : ""}`
               }
             >

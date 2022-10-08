@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-1/2 z-50 w-full max-w-[76rem] translate-x-[-50%] bg-skin-default text-skin-header">
-      <div className="flex h-20 w-full flex-row flex-nowrap items-center">
+      <div className="inline-flex h-20 w-full flex-row flex-nowrap items-center">
         <div className="h-full min-w-[12rem] max-w-[12rem] ">
           <Link
             to={navs.home.href}
@@ -80,7 +80,7 @@ export default function Navbar() {
             {navs.myBets.name}
           </Link>
         </div>
-        <div className="flex h-full min-w-[22rem] max-w-[22rem] flex-nowrap items-center justify-end">
+        <div className="inline-flex h-full min-w-[22rem] max-w-[22rem] flex-nowrap items-center justify-end align-middle">
           <a
             href={loginItems.login.href}
             className="flex h-full items-center px-8"
@@ -94,9 +94,9 @@ export default function Navbar() {
             {loginItems.signup.name}
           </a>
           <div className="h-1/3 w-0.5 items-center bg-skin-sidebarDivider" />
-          <div className="flex h-full items-center px-4">
+          <span className="inline-block h-full items-center px-4 align-middle">
             <ActiveThemeButton />
-          </div>
+          </span>
         </div>
       </div>
     </div>
