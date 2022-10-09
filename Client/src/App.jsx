@@ -7,6 +7,7 @@ import Account from "./components/Account";
 import MyBets from "./components/MyBets";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
+import BetslipSubmission from "./components/BetslipSubmission";
 import {
   BrowserRouter as Router,
   Route,
@@ -176,7 +177,7 @@ function AppNested() {
                     <Betslip isSportPane={false} />
                   </div>
                   <div className="absolute bottom-0 h-[6rem] w-full border-t-2 border-gray-300">
-                    submit betslip
+                    <BetslipSubmission />
                   </div>
                 </div>
               </div>

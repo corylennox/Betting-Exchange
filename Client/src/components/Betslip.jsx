@@ -1,7 +1,7 @@
 import React from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBetAction, setWagerAndWinAction } from "../Actions";
+import { deleteBetsAction, setWagerAndWinAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
 import {
@@ -77,7 +77,7 @@ function ToggledBet(props) {
         alt="remove icon"
         className="w-7 h-7 mx-2 mt-2 cursor-pointer"
         src="res/remove.png"
-        onClick={() => dispatch(deleteBetAction(props.buttonId))}
+        onClick={() => dispatch(deleteBetsAction([props.buttonId]))}
       />
       <div className="bg-skin-overlay text-skin-body rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
         <div className="inline-flex w-full ">

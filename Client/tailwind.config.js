@@ -23,7 +23,6 @@ module.exports = {
           accent: "var(--color-background-accent)",
           overlay: "var(--color-background-overlay)",
           buttonMuted: "var(--color-button-muted)",
-          buttonAccent: "var(--color-button-accent)",
           buttonActionUnselected: "var(--color-button-action-unselected)",
           buttonActionSelected: "var(--color-button-action-selected)",
           buttonActionHover: "var(--color-button-action-hover)",
@@ -47,6 +46,14 @@ module.exports = {
           selected: "var(--color-text-action-unselected)",
         },
       },
+      gradientColorStops: {
+        skin: {
+          buttonAccentGradientStart: "var(--color-button-accent-gradient-start)",
+          buttonAccentGradientEnd: "var(--color-button-accent-gradient-end)",
+          buttonAccentPressed: "var(--color-button-accent-pressed)",
+          buttonAccentDeactivated: "var(--color-button-accent-deactivated)",
+        },
+      }
     },
   },
   plugins: [],

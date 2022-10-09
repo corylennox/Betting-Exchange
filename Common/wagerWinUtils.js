@@ -16,6 +16,11 @@ export function determineWager(line, win) {
     return Math.ceil(win * ratio);
 }
 
-export function getCommission() {
-    return 0;
+function getCommission() {
+    return 0.01;
+}
+
+export function getWinAfterCommission(win) {
+    const winAfterCommission = Math.floor(win * (1.0 - getCommission()));
+    return winAfterCommission;
 }

@@ -12,11 +12,11 @@ export const myButtonClickedAction = (buttonId, betInfo) => {
   };
 };
 
-export const deleteBetAction = (buttonId) => {
+export const deleteBetsAction = (buttonIds) => {
   return {
-    type: "DELETE_BET",
+    type: "DELETE_BETS",
     payload: {
-      buttonId: buttonId,
+      buttonIds: buttonIds,
     },
   };
 };
