@@ -43,18 +43,18 @@ export default function BetslipSubmission() {
                         textSize="text-m"
                         subtext={`TO WIN $${convertToPriceString(winAfterCommission)}`}
                         subtextSize="text-xs"
-                        gradientColorStart="from-skin-buttonAccentGradientStart"
-                        gradientColorEnd="to-skin-buttonAccentGradientEnd"
-                        gradientColorPressedStart="active:from-skin-buttonAccentPressed"
-                        gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+                        gradientColorStart="skin-buttonAccentGradientStart"
+                        gradientColorEnd="skin-buttonAccentGradientEnd"
+                        gradientColorPressedStart="skin-buttonAccentPressed"
+                        gradientColorPressedEnd="skin-buttonAccentPressed" />
                 :
                     <PromptButton
                         text="Enter a wager to place a bet"
                         textSize="text-m"
-                        gradientColorStart="from-skin-buttonAccentDeactivated"
-                        gradientColorEnd="to-skin-buttonAccentDeactivated"
-                        gradientColorPressedStart="active:from-skin-buttonAccentDeactivated"
-                        gradientColorPressedEnd="active:to-skin-buttonAccentDeactivated" />
+                        gradientColorStart="skin-buttonAccentDeactivated"
+                        gradientColorEnd="skin-buttonAccentDeactivated"
+                        gradientColorPressedStart="skin-buttonAccentDeactivated"
+                        gradientColorPressedEnd="skin-buttonAccentDeactivated" />
                 }
             </div>
         </div>
