@@ -1,6 +1,8 @@
-const { ApolloServer, gql } = require('apollo-server');
+require('dotenv').config() // loads environment variables from .env file
+const { ApolloServer, gql, AuthenticationError } = require('apollo-server');
 const typeDefs = require('./src/Schema');
 const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
+const { verifyToken } = require('./src/verifyToken');
 
 const books = [
     {
@@ -46,6 +48,13 @@ const resolvers = {
         getAllUsers: () => users,
         universalData: () => UniversalData,
         sportPane: (parent, args, context, info) => {return SportsBets.has(args.sportTitle) ? SportsBets.get(args.sportTitle) : FeaturedSportBets;},
+        userInfo: (parent, args, context, info) => {
+            const isAuthenticated = context.auth.isAuthenticated;
+            if (!isAuthenticated) {
+                throw new AuthenticationError("Not logged in");
+            }
+            return { name: "Test User" };
+        }
     },
 };
 
@@ -58,6 +67,26 @@ const {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: async ({ req, ...rest }) => { 
+        let isAuthenticated = false;
+        /**
+         * gets the jwt off the request
+         * if there is a token, verify it
+         * if there's is a token and the token is valid, set isAuthenticated to true
+         */
+        try {
+            const authHeader = req.headers.authorization || "";
+            if (authHeader) {
+                const token = authHeader.split(" ")[1];
+                const payload = await verifyToken(token);
+                isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
+                console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
+            }
+        } catch (error) {
+            console.error(`Auth0 Token validation error: ${error}`);
+        }
+        return { ...rest, req, auth: { isAuthenticated } };
+     },
     csrfPrevention: true,
     cache: 'bounded',
     /**

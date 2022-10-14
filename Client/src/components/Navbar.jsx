@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import ActiveThemeButton from "./ActiveThemeButton.jsx";
 import rts from "../MyRoutes";
+import { useAuth0 } from "@auth0/auth0-react";
+import PromptButton from "./PromptButton";
 
 const navs = {
   home: {
@@ -30,6 +32,9 @@ const loginItems = {
 export default function Navbar() {
   const dispatch = useDispatch();
   const activeSportPane = useSelector((state) => state.activeSportPane);
+  const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect, logout } = useAuth0();
+
+  if (isAuthLoading) return <h1>Loading</h1>;
 
   return (
     <div className="fixed top-0 left-1/2 z-50 w-full max-w-[76rem] translate-x-[-50%] bg-skin-default text-skin-header">
@@ -81,12 +86,15 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="inline-flex h-full min-w-[22rem] max-w-[22rem] flex-nowrap items-center justify-end align-middle">
-          <a
-            href={loginItems.login.href}
-            className="flex h-full items-center px-8"
-          >
-            {loginItems.login.name}
-          </a>
+          <div className="flex h-full w-full items-center py-4 mr-3">
+            <PromptButton onClick={loginWithRedirect}
+              text="Log in"
+              textSize="text-m"
+              gradientColorStart="from-skin-buttonAccentGradientStart"
+              gradientColorEnd="to-skin-buttonAccentGradientEnd"
+              gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+              gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+          </div>
           <a
             href={loginItems.signup.href}
             className="flex h-full items-center px-8"

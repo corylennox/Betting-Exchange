@@ -95,3 +95,11 @@ export const SPORT_PANE_QUERY = gql`
     }
   }
 `;
+
+export const USER_INFO_QUERY = gql`
+  query UserInfoQuery {
+    userInfo {
+      name
+    }
+  }
+`;

@@ -1,6 +1,5 @@
 export default function PromptButton(props) {
     const buttonClassName = `h-full w-full bg-gradient-to-b ${props.onClick ? "cursor-pointer" : "cursor-default"} ${props.gradientColorStart} ${props.gradientColorEnd} ${props.gradientColorPressedStart} ${props.gradientColorPressedEnd} rounded`
-    console.log("Button class: " + buttonClassName);
 
     return (
     <button onClick={props.onClick} className={buttonClassName} >

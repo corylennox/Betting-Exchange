@@ -20,12 +20,13 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./ConfigureStore";
 import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
-import { client } from "./ConfigureBackend";
+import ApolloWrapper from "./ConfigureBackend";
 import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { translateUniversalData } from "./GraphQL/Translate";
 import rts from "./MyRoutes";
 import { ThemeData } from "./components/ActiveThemes";
+import Auth0Wrapper from "./Auth0Wrapper";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
@@ -198,12 +199,14 @@ function AppNested() {
 
 export default function App() {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <AppNested />
-        </PersistGate>
-      </Provider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <Auth0Wrapper>
+        <ApolloWrapper>
+          <PersistGate loading={null} persistor={persistor}>
+            <AppNested />
+          </PersistGate>
+        </ApolloWrapper>
+      </Auth0Wrapper>
+    </Provider>
   );
 }

@@ -114,9 +114,8 @@ export default function BottomNavbar() {
   return (
     <div className="flex justify-between w-full bottom-0 fixed inset-x-0 bg-skin-overlay h-16 text-center border-t-2 border-slate-300 text-xs pb-5">
       {BottomNavbarItems.map((navbarItem) => (
-        <Link to={navbarItem.href} className="h-16 w-full">
+        <Link key={navbarItem.name} to={navbarItem.href} className="h-16 w-full">
           <span
-            key={navbarItem.name}
             className="w-full h-full relative"
             onClick={() => {
               dispatch(changeNavbarTabAction(navbarItem.href));
