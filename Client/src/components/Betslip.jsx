@@ -105,13 +105,13 @@ function ToggledBet(props) {
         {/* Wager input */}
         <div className="flex w-full h-14 mt-2">
           <div className="w-1/2 mr-1 border border-skin-input rounded-lg  p-1 text-sm">
-            <label class="block uppercase tracking-wide text-skin-body font-bold">
+            <label className="block uppercase tracking-wide text-skin-body font-bold">
               Wager
             </label>
             <div className="inline-flex font-bold text-skin-body">
               <span className="">$</span>
               <input
-                class="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
+                className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
                   validateAndChangeWager(
@@ -127,13 +127,13 @@ function ToggledBet(props) {
 
           {/* Win input */}
           <div className="w-1/2 ml-1 border border-skin-input rounded-lg p-1 text-sm">
-            <label class="block uppercase tracking-wide text-skin-body  font-bold ">
+            <label className="block uppercase tracking-wide text-skin-body  font-bold ">
               To Win
             </label>
             <div className="inline-flex font-bold text-skin-body">
               <span className="">$</span>
               <input
-                class="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
+                className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
                   validateAndChangeWin(
