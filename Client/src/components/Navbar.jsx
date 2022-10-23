@@ -104,7 +104,7 @@ export default function Navbar() {
               gradientColorPressedStart="active:from-skin-buttonMutedPressed"
               gradientColorPressedEnd="active:to-skin-buttonMutedPressed" />
           </div>
-          <div className="h-1/3 w-0.5 items-center bg-skin-sidebarDivider" />
+          <div className="h-1/3 w-1 items-center bg-skin-sidebarDivider" />
           <span className="inline-block h-full items-center px-4 align-middle">
             <ActiveThemeButton />
           </span>
