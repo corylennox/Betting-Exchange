@@ -15,10 +15,13 @@
         --color-text-action-hover: #1e40af; /* text-blue-800 */
         --color-text-betslip-header: #465057;
 
-        --color-button-muted: #4089ea; /* Matches FanDuel Color */
-        --color-button-accent-gradient-start: #F59E0B; /* ammber-500 */
-        --color-button-accent-gradient-end: #D97706; /* ammber-600 */
-        --color-button-accent-pressed: #B45309; /* ammber-700 */
+        --color-button-muted-gradient-start: #64748B; /* slate-500 */
+        --color-button-muted-gradient-end: #475569; /* slate-600 */
+        --color-button-muted-pressed: #334155; /* slate-700 */
+        --color-button-muted-deactivated: #525252; /* natural-600 */
+        --color-button-accent-gradient-start: #F59E0B; /* amber-500 */
+        --color-button-accent-gradient-end: #D97706; /* amber-600 */
+        --color-button-accent-pressed: #B45309; /* amber-700 */
         --color-button-accent-deactivated: #525252; /* natural-600 */
         --color-button-action-unselected: #ffffff; /* same as muted */
         --color-button-action-selected: #4089ea; /* same as muted */
@@ -46,10 +49,13 @@
         --color-text-action-hover: #1e40af; 
         --color-text-betslip-header: #ffffff;
 
-        --color-button-muted: #4089ea;
-        --color-button-accent-gradient-start: #F59E0B; /* ammber-500 */
-        --color-button-accent-gradient-end: #D97706; /* ammber-600 */
-        --color-button-accent-pressed: #B45309; /* ammber-700 */
+        --color-button-muted-gradient-start: #64748B; /* slate-500 */
+        --color-button-muted-gradient-end: #475569; /* slate-600 */
+        --color-button-muted-pressed: #334155; /* slate-700 */
+        --color-button-muted-deactivated: #525252; /* natural-600 */
+        --color-button-accent-gradient-start: #F59E0B; /* amber-500 */
+        --color-button-accent-gradient-end: #D97706; /* amber-600 */
+        --color-button-accent-pressed: #B45309; /* amber-700 */
         --color-button-accent-deactivated: #525252; /* natural-600 */
         --color-button-action-unselected: #3B82F6; 
         --color-button-action-selected: #1E40AF; 

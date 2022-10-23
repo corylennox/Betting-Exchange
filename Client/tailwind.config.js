@@ -22,7 +22,6 @@ module.exports = {
           defaultSelected: "var(--color-background-default-selected)",
           accent: "var(--color-background-accent)",
           overlay: "var(--color-background-overlay)",
-          buttonMuted: "var(--color-button-muted)",
           buttonActionUnselected: "var(--color-button-action-unselected)",
           buttonActionSelected: "var(--color-button-action-selected)",
           buttonActionHover: "var(--color-button-action-hover)",
@@ -48,6 +47,10 @@ module.exports = {
       },
       gradientColorStops: {
         skin: {
+          buttonMutedGradientStart: "var(--color-button-muted-gradient-start)",
+          buttonMutedGradientEnd: "var(--color-button-muted-gradient-end)",
+          buttonMutedPressed: "var(--color-button-muted-pressed)",
+          buttonMutedDeactivated: "var(--color-button-muted-deactivated)",
           buttonAccentGradientStart: "var(--color-button-accent-gradient-start)",
           buttonAccentGradientEnd: "var(--color-button-accent-gradient-end)",
           buttonAccentPressed: "var(--color-button-accent-pressed)",

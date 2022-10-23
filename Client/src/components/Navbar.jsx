@@ -99,10 +99,10 @@ export default function Navbar() {
             <PromptButton onClick={() => loginWithRedirect({screen_hint:'signup'})}
               text="Sign up"
               textSize="text-m"
-              gradientColorStart="from-skin-buttonAccentGradientStart"
-              gradientColorEnd="to-skin-buttonAccentGradientEnd"
-              gradientColorPressedStart="active:from-skin-buttonAccentPressed"
-              gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+              gradientColorStart="from-skin-buttonMutedGradientStart"
+              gradientColorEnd="to-skin-buttonMutedGradientEnd"
+              gradientColorPressedStart="active:from-skin-buttonMutedPressed"
+              gradientColorPressedEnd="active:to-skin-buttonMutedPressed" />
           </div>
           <div className="h-1/3 w-0.5 items-center bg-skin-sidebarDivider" />
           <span className="inline-block h-full items-center px-4 align-middle">
