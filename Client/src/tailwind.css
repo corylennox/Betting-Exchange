@@ -4,6 +4,8 @@
 
 @layer base{
     :root {
+        --color-divider: #1E293B;
+
         --color-text-header: #ffffff;
         --color-text-body: #465057; /* Matches FanDuel Color */
         --color-text-accent: #65676b;
@@ -26,14 +28,15 @@
         --color-background-default-selected: #1e293b; /* slate-800 */
         --color-background-accent: #e2e8f0; /* slate-200 */
         --color-background-overlay: #ffffff;
-        --color-background-sidebar-divider: #1E293B;
         --color-background-selected: #334155;
 
-        --color-border-divider: #0f172a; /* slate-900 */
         --color-border-action-unselected: #4089ea;
         --color-border-action-selected: #000000;
+        --color-border-overlay: #71717A;
     }
     .theme-dark {
+        --color-divider: #262626; 
+
         --color-text-header: #ffffff;
         --color-text-body: #D4D4D4; 
         --color-text-accent: #171717;
@@ -56,10 +59,8 @@
         --color-background-default-selected: #2563EB;
         --color-background-accent: #3F3F46; 
         --color-background-overlay: #71717A;
-        --color-background-sidebar-divider: #262626;
         --color-background-selected: #404040;
 
-        --color-border-divider: #0f172a; 
         --color-border-action-unselected: #2563eb;
         --color-border-action-selected: #171717;
         --color-border-overlay: #71717A;

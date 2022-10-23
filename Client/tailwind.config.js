@@ -26,13 +26,13 @@ module.exports = {
           buttonActionUnselected: "var(--color-button-action-unselected)",
           buttonActionSelected: "var(--color-button-action-selected)",
           buttonActionHover: "var(--color-button-action-hover)",
-          sidebarDivider: "var(--color-background-sidebar-divider)",
+          sidebarDivider: "var(--color-divider)",
           selected: "var(--color-background-selected)",
         },
       },
       borderColor: {
         skin: {
-          divider: "var(--color-border-divider)",
+          divider: "var(--color-divider)",
           input: "var(--color-text-accent)",
           buttonActionUnselected: "var(--color-border-action-unselected)",
           buttonActionSelected: "var(--color-border-action-selected)",

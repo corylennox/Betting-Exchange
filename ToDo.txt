@@ -19,3 +19,11 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - sidebar and betslip for mobile 
 
 - buttons with the same button id on two different pages (eg. featured page and basketball page) should be toggled in sync
+
+- When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
+
+potential names:
+- Aight Bet
+- Nouveau ("new" in french)
+- Pourtoi ("for you" in french)
+- Eiffel

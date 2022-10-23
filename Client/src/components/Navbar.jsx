@@ -86,8 +86,8 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="inline-flex h-full min-w-[22rem] max-w-[22rem] flex-nowrap items-center justify-end align-middle">
-          <div className="flex h-full w-full items-center py-4 mr-3">
-            <PromptButton onClick={loginWithRedirect}
+          <div className="flex h-full w-full items-center py-5 mr-4">
+            <PromptButton onClick={() => loginWithRedirect({screen_hint:'login'})}
               text="Log in"
               textSize="text-m"
               gradientColorStart="from-skin-buttonAccentGradientStart"
@@ -95,12 +95,15 @@ export default function Navbar() {
               gradientColorPressedStart="active:from-skin-buttonAccentPressed"
               gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
           </div>
-          <a
-            href={loginItems.signup.href}
-            className="flex h-full items-center px-8"
-          >
-            {loginItems.signup.name}
-          </a>
+          <div className="flex h-full w-full items-center py-5 mr-4">
+            <PromptButton onClick={() => loginWithRedirect({screen_hint:'signup'})}
+              text="Sign up"
+              textSize="text-m"
+              gradientColorStart="from-skin-buttonAccentGradientStart"
+              gradientColorEnd="to-skin-buttonAccentGradientEnd"
+              gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+              gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+          </div>
           <div className="h-1/3 w-0.5 items-center bg-skin-sidebarDivider" />
           <span className="inline-block h-full items-center px-4 align-middle">
             <ActiveThemeButton />
