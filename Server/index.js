@@ -67,6 +67,9 @@ const resolvers = {
 };
 
 async function startApolloServer() {
+    const app = express();
+    const httpServer = http.createServer(app);
+
     // The ApolloServer constructor requires two parameters: your schema
     // definition and your set of resolvers.
     const server = new ApolloServer({
@@ -83,35 +86,44 @@ async function startApolloServer() {
         **/
         plugins: [
             ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+            ApolloServerPluginDrainHttpServer({ httpServer }),
         ],
     });
 
-    const { url } = await startStandaloneServer(server, {
-        context: async ({ req, ...rest }) => { 
-            let isAuthenticated = false;
-            /**
-             * gets the jwt off the request
-             * if there is a token, verify it
-             * if there's is a token and the token is valid, set isAuthenticated to true
-             */
-            try {
-                const authHeader = req.headers.authorization || "";
-                if (authHeader) {
-                    const token = authHeader.split(" ")[1];
-                    const payload = await verifyToken(token);
-                    isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
-                    console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
-                }
-            } catch (error) {
-                console.error(`Auth0 Token validation error: ${error}`);
-            }
-            return { ...rest, req, auth: { isAuthenticated } };
-        },
-        listen: { port: 4000 },
-    });
+    await server.start();
 
-    // The `listen` method launches a web server.
-    console.log(`🚀 Server ready at ${url}`);
+    app.use(
+        '/graphql',
+        cors({
+            origin: 'http://localhost:3000',
+        }),
+        json(),
+        expressMiddleware(server, {
+            context: async ({ req, ...rest }) => { 
+                let isAuthenticated = false;
+                /**
+                 * gets the jwt off the request
+                 * if there is a token, verify it
+                 * if there's is a token and the token is valid, set isAuthenticated to true
+                 */
+                try {
+                    const authHeader = req.headers.authorization || "";
+                    if (authHeader) {
+                        const token = authHeader.split(" ")[1];
+                        const payload = await verifyToken(token);
+                        isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
+                        console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
+                    }
+                } catch (error) {
+                    console.error(`Auth0 Token validation error: ${error}`);
+                }
+                return { ...rest, req, auth: { isAuthenticated } };
+            },
+        }),
+    );
+
+    await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+    console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 }
 
 startApolloServer();

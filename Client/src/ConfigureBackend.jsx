@@ -56,7 +56,7 @@ export default function ApolloWrapper({ children }) {
   const link = from([
     errorLink,
     authLink,
-    new HttpLink({ uri: "http://localhost:4000/" }),
+    new HttpLink({ uri: "http://localhost:4000/graphql/" }),
     //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
   ]);
 
