@@ -5,6 +5,12 @@ const typeDefs = require('./src/Schema');
 const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
 const { verifyToken } = require('./src/verifyToken');
 const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
+const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
+const express = require('express');
+const http = require('http');
+const cors = require('cors');
+const { json } = require('body-parser');
+const { expressMiddleware } = require('@apollo/server/express4');
 
 const books = [
     {

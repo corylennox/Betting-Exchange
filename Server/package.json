@@ -21,6 +21,8 @@
   "dependencies": {
     "@apollo/server": "^4.0.4",
     "@auth0/auth0-react": "^1.11.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
