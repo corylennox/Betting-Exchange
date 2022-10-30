@@ -22,6 +22,11 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
 
+- Once we move to a public webiste and off of localhost, we need to setup CORS according to
+  https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
+  Once we set it up, we have to remove "fetchOptions: { mode: 'no-cors' }" from the client-side code if it exists there
+
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)

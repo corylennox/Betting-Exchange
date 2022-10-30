@@ -1,8 +1,10 @@
 require('dotenv').config() // loads environment variables from .env file
-const { ApolloServer, gql, AuthenticationError } = require('apollo-server');
+const { ApolloServer, AuthenticationError } = require('@apollo/server');
+const { startStandaloneServer } = require('@apollo/server/standalone');
 const typeDefs = require('./src/Schema');
 const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
 const { verifyToken } = require('./src/verifyToken');
+const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
 
 const books = [
     {
@@ -58,50 +60,52 @@ const resolvers = {
     },
 };
 
-const {
-    ApolloServerPluginLandingPageLocalDefault
-} = require('apollo-server-core');
-  
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: async ({ req, ...rest }) => { 
-        let isAuthenticated = false;
+async function startApolloServer() {
+    // The ApolloServer constructor requires two parameters: your schema
+    // definition and your set of resolvers.
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+        csrfPrevention: true,
+        cache: 'bounded',
         /**
-         * gets the jwt off the request
-         * if there is a token, verify it
-         * if there's is a token and the token is valid, set isAuthenticated to true
-         */
-        try {
-            const authHeader = req.headers.authorization || "";
-            if (authHeader) {
-                const token = authHeader.split(" ")[1];
-                const payload = await verifyToken(token);
-                isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
-                console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
-            }
-        } catch (error) {
-            console.error(`Auth0 Token validation error: ${error}`);
-        }
-        return { ...rest, req, auth: { isAuthenticated } };
-     },
-    csrfPrevention: true,
-    cache: 'bounded',
-    /**
-     * What's up with this embed: true option?
-     * These are our recommended settings for using AS;
-     * they aren't the defaults in AS3 for backwards-compatibility reasons but
-     * will be the defaults in AS4. For production environments, use
-     * ApolloServerPluginLandingPageProductionDefault instead.
-    **/
-    plugins: [
-        ApolloServerPluginLandingPageLocalDefault({ embed: true }),
-    ],
-});
+         * What's up with this embed: true option?
+         * These are our recommended settings for using AS;
+         * they aren't the defaults in AS3 for backwards-compatibility reasons but
+         * will be the defaults in AS4. For production environments, use
+         * ApolloServerPluginLandingPageProductionDefault instead.
+        **/
+        plugins: [
+            ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+        ],
+    });
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
+    const { url } = await startStandaloneServer(server, {
+        context: async ({ req, ...rest }) => { 
+            let isAuthenticated = false;
+            /**
+             * gets the jwt off the request
+             * if there is a token, verify it
+             * if there's is a token and the token is valid, set isAuthenticated to true
+             */
+            try {
+                const authHeader = req.headers.authorization || "";
+                if (authHeader) {
+                    const token = authHeader.split(" ")[1];
+                    const payload = await verifyToken(token);
+                    isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
+                    console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
+                }
+            } catch (error) {
+                console.error(`Auth0 Token validation error: ${error}`);
+            }
+            return { ...rest, req, auth: { isAuthenticated } };
+        },
+        listen: { port: 4000 },
+    });
+
+    // The `listen` method launches a web server.
     console.log(`🚀 Server ready at ${url}`);
-});
+}
+
+startApolloServer();

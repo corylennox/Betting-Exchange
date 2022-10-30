@@ -19,10 +19,11 @@
   },
   "homepage": "https://github.com/emersonboyd/BettingExchangeServer#readme",
   "dependencies": {
+    "@apollo/server": "^4.0.4",
     "@auth0/auth0-react": "^1.11.0",
-    "apollo-server": "^3.10.2",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.1.5",
     "nodemon": "^2.0.19"
