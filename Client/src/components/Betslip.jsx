@@ -1,6 +1,8 @@
 import React from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
+import { useSubscription } from "@apollo/client";
+import { LINE_UPDATE_SUBSCRIPTION } from "../GraphQL/Subscriptions";
 import { deleteBetsAction, setWagerAndWinAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
@@ -159,6 +161,13 @@ export default function Betslip(props) {
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const toggledBetsArray = Array.from(toggledBets);
   const dispatch = useDispatch();
+
+  const { data: subscriptionData, loading: subscriptionLoading, error: subscriptionError } = useSubscription(LINE_UPDATE_SUBSCRIPTION);
+  console.log(`Is subscription loading: ${subscriptionLoading}`);
+  if (!subscriptionLoading)
+    console.log(`Got subscription: ${JSON.stringify(subscriptionData)}`);
+  if (subscriptionError)
+    console.error(`Subscription error: ${subscriptionError}`);
 
   //if this betslip is rendering as a sportpane,
   if (props.isSportPane) {

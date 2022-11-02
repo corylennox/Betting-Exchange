@@ -11,6 +11,10 @@ const http = require('http');
 const cors = require('cors');
 const { json } = require('body-parser');
 const { expressMiddleware } = require('@apollo/server/express4');
+const { makeExecutableSchema } = require('@graphql-tools/schema');
+const { WebSocketServer } = require('ws');
+const { useServer } = require('graphql-ws/lib/use/ws');
+const { pubsub, updateLines } = require('./src/pubsub');
 
 const books = [
     {
@@ -64,17 +68,36 @@ const resolvers = {
             return { name: "Test User" };
         }
     },
+    Subscription: {
+        lineUpdate: {
+            subscribe: () => pubsub.asyncIterator(['LINE_UPDATE']),
+        },
+    },
 };
 
 async function startApolloServer() {
     const app = express();
     const httpServer = http.createServer(app);
 
+    const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+    // Creating the WebSocket server
+    const wsServer = new WebSocketServer({
+        // This is the `httpServer` we created in a previous step.
+        server: httpServer,
+        // Pass a different path here if app.use
+        // serves expressMiddleware at a different path
+        path: '/graphql',
+    });
+
+    // Hand in the schema we just created and have the
+    // WebSocketServer start listening.
+    const serverCleanup = useServer({ schema }, wsServer);
+
     // The ApolloServer constructor requires two parameters: your schema
     // definition and your set of resolvers.
     const server = new ApolloServer({
-        typeDefs,
-        resolvers,
+        schema,
         csrfPrevention: true,
         cache: 'bounded',
         /**
@@ -86,7 +109,20 @@ async function startApolloServer() {
         **/
         plugins: [
             ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+
+            // Proper shutdown for the http server.
             ApolloServerPluginDrainHttpServer({ httpServer }),
+
+            // Proper shutdown for the WebSocket server.
+            {
+                async serverWillStart() {
+                return {
+                    async drainServer() {
+                    await serverCleanup.dispose();
+                    },
+                };
+                },
+            },
         ],
     });
 
@@ -124,6 +160,9 @@ async function startApolloServer() {
 
     await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
     console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+
+    lineUpdateInteval = 1000; // 1 second
+    setInterval(updateLines, lineUpdateInteval);
 }
 
 startApolloServer();

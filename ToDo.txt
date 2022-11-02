@@ -25,6 +25,9 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - Once we move to a public webiste and off of localhost, we need to setup CORS according to
   https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
 
+- Switch the PubSub class usage into PubSubEngine for production use, as described in:
+  https://www.apollographql.com/docs/apollo-server/data/subscriptions/
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)

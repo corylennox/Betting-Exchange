@@ -1,8 +1,11 @@
 import { onError } from "@apollo/client/link/error";
-import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, split, HttpLink, from, ApolloProvider } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -48,10 +51,29 @@ export default function ApolloWrapper({ children }) {
       };
     });
 
+    const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql/" });
+
+    const wsLink = new GraphQLWsLink(createClient({
+      url: 'ws://localhost:4000/graphql',
+    }));
+
+    // Allows for GraphQL requests to be sent either the http or the websocket, depending on the request type
+    const splitLink = split(
+      ({ query }) => {
+        const definition = getMainDefinition(query);
+        return (
+          definition.kind === 'OperationDefinition' &&
+          definition.operation === 'subscription'
+        ); // checks if operation is a subscription
+      },
+      wsLink, // used if boolean operation is true
+      httpLink, // used if boolean operation is false
+    );
+
   const link = from([
     errorLink,
     authLink,
-    new HttpLink({ uri: "http://localhost:4000/graphql/" }),
+    splitLink,
     //new HttpLink({ uri: "http://192.168.1.13:4000/" }), //to use app from other devices
   ]);
 

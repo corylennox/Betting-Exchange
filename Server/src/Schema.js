@@ -116,6 +116,16 @@ const typeDefs = gql`
     sportPane(sportTitle: String!): SportPane!
     userInfo: UserInfo!
   }
+
+  type LineUpdate {
+    buttonId: ID
+    newValue: Float
+  }
+
+  # The "Subscription" type is special, similar to the "Query" type
+  type Subscription {
+    lineUpdate: LineUpdate # cannot be forced to be non-null (i.e., no "!").
+  }
 `;
 
 module.exports = typeDefs;
