@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "^3.7.1",
     "@auth0/auth0-react": "^1.11.0",
     "@auth0/auth0-spa-js": "^1.22.5",
     "@headlessui/react": "^1.7.3",
@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "apollo-link-context": "^1.0.20",
     "graphql": "^16.6.0",
+    "graphql-ws": "^5.11.2",
     "jquery": "^3.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
