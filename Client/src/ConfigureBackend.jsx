@@ -17,20 +17,16 @@ export default function ApolloWrapper({ children }) {
   const { user, isAuthenticated, getAccessTokenSilently, isLoading: isAuthLoading } = useAuth0();
   const [bearerToken, setBearerToken] = useState("");
 
-  console.log(`Is authenticated in Auth0Wrapper: ${isAuthenticated}`);
   useEffect(() => {
       const getToken = async () => {
           const token = isAuthenticated ? await getAccessTokenSilently({
               audience: process.env.REACT_APP_AUDIENCE,
               scope: "read:current_user",
           }) : "";
-          console.log(`Changing token (isAuthenticated: ${isAuthenticated}): ${token.toString()}`);
           setBearerToken(token);
       };
       getToken();
   }, [getAccessTokenSilently, isAuthenticated]);
-
-  console.log(`User: ${JSON.stringify(user)}`);
 
   /**
    * @authLink allows us to check if the user has a valid authentication token and, if so,
@@ -41,7 +37,6 @@ export default function ApolloWrapper({ children }) {
    *
    * Inspired by 1:39:00 of this video: https://www.youtube.com/watch?v=vqHkwTWbaUk&t=290s&ab_channel=ApolloGraphQL.
    */
-   console.log("Bearer Token: " + bearerToken);
    const authLink = setContext((_, { headers }) => {
     return (bearerToken === "")
     ? { headers }

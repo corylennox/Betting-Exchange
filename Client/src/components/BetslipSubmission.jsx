@@ -12,7 +12,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function BetslipSubmission() {
     const dispatch = useDispatch();
     const toggledBets = parseMap(useSelector((state) => state.toggledBets));
-    const { isAuthenticated, isLoading: isAuthLoading } = useAuth0();
+    const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect } = useAuth0();
 
     const {
         loading: isUserInfoLoading,
@@ -53,7 +53,6 @@ export default function BetslipSubmission() {
         })
         dispatch(deleteBetsAction(toggledButtonIds));
     }
-    console.log(`Is authenticated in BetslipSubmission: ${isAuthenticated}`);
 
     return (
         <div className="relative w-full h-full">
@@ -65,32 +64,41 @@ export default function BetslipSubmission() {
                 {
                 !isAuthenticated
                     ?
-                        <PromptButton
+                        <PromptButton onClick={() => loginWithRedirect({screen_hint:'signup'})}
                         text="Log in or sign up to place a bet"
                         textSize="text-m"
-                        gradientColorStart="from-skin-buttonAccentDeactivated"
-                        gradientColorEnd="to-skin-buttonAccentDeactivated"
-                        gradientColorPressedStart="active:from-skin-buttonAccentDeactivated"
-                        gradientColorPressedEnd="active:to-skin-buttonAccentDeactivated" />
-                    : numValidBets > 0
-                        ? 
-                            <PromptButton onClick={deleteAllBets}
-                                text={`Place ${numValidBets} bet${numValidBets !== 1 ? "s" : ""} for $${convertToPriceString(wagerSum)}`}
-                                textSize="text-m"
-                                subtext={`TO WIN $${convertToPriceString(winAfterCommission)}`}
-                                subtextSize="text-xs"
-                                gradientColorStart="from-skin-buttonAccentGradientStart"
-                                gradientColorEnd="to-skin-buttonAccentGradientEnd"
-                                gradientColorPressedStart="active:from-skin-buttonAccentPressed"
-                                gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
-                        :
+                        gradientColorStart="from-skin-buttonAccentGradientStart"
+                        gradientColorEnd="to-skin-buttonAccentGradientEnd"
+                        gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+                        gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+                    : toggledBets.size === 0
+                        ?
                             <PromptButton
-                                text="Enter a wager to place a bet"
+                                text="Add an event to the betslip"
                                 textSize="text-m"
                                 gradientColorStart="from-skin-buttonAccentDeactivated"
                                 gradientColorEnd="to-skin-buttonAccentDeactivated"
                                 gradientColorPressedStart="active:from-skin-buttonAccentDeactivated"
                                 gradientColorPressedEnd="active:to-skin-buttonAccentDeactivated" />
+                        : numValidBets > 0
+                            ? 
+                                <PromptButton onClick={deleteAllBets}
+                                    text={`Place ${numValidBets} bet${numValidBets !== 1 ? "s" : ""} for $${convertToPriceString(wagerSum)}`}
+                                    textSize="text-m"
+                                    subtext={`TO WIN $${convertToPriceString(winAfterCommission)}`}
+                                    subtextSize="text-xs"
+                                    gradientColorStart="from-skin-buttonAccentGradientStart"
+                                    gradientColorEnd="to-skin-buttonAccentGradientEnd"
+                                    gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+                                    gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+                            :
+                                <PromptButton
+                                    text="Enter a wager to place a bet"
+                                    textSize="text-m"
+                                    gradientColorStart="from-skin-buttonAccentDeactivated"
+                                    gradientColorEnd="to-skin-buttonAccentDeactivated"
+                                    gradientColorPressedStart="active:from-skin-buttonAccentDeactivated"
+                                    gradientColorPressedEnd="active:to-skin-buttonAccentDeactivated" />
                 }
             </div>
         </div>
