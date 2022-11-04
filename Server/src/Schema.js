@@ -19,7 +19,6 @@ const typeDefs = gql`
     name: String!
     image: String
     buttonId: ID!
-    line: Line!
   }
 
   type OutrightBet implements Bet {
@@ -35,18 +34,22 @@ const typeDefs = gql`
   }
 
   type Line {
+    buttonId: ID!
     type: LineType!
     value: Float!
+  }
+
+  # contains optional fields to allow for sending this type over subscription
+  type LineUpdate {
+    buttonId: ID
+    newValue: Float
   }
 
   type GameContender {
     name: String!
     image: String
-    spread: Line!
     spreadButtonId: ID!
-    money: Line!
     moneyButtonId: ID!
-    total: Line!
     totalButtonId: ID!
   }
 
@@ -62,10 +65,15 @@ const typeDefs = gql`
     availableBets: [Bet!]!
   }
 
-  type SportPane {
+  type SportData {
     sportTitle: String!
     href: String!
     tabs: [Tab!]
+  }
+
+  type SportPane {
+    sportData: SportData!
+    lines: [Line!]!
   }
 
   type SportHighLevelData {
@@ -114,12 +122,8 @@ const typeDefs = gql`
     getAllUsers: [User!]!
     universalData: UniversalData!
     sportPane(sportTitle: String!): SportPane!
+    lines(buttonIds: [ID!]!): [Line!]!
     userInfo: UserInfo!
-  }
-
-  type LineUpdate {
-    buttonId: ID
-    newValue: Float
   }
 
   # The "Subscription" type is special, similar to the "Query" type

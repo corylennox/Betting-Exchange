@@ -3,6 +3,7 @@ const { ApolloServer, AuthenticationError } = require('@apollo/server');
 const { startStandaloneServer } = require('@apollo/server/standalone');
 const typeDefs = require('./src/Schema');
 const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
+const { LinesContainer } = require('./src/Lines');
 const { verifyToken } = require('./src/verifyToken');
 const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
 const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
@@ -59,7 +60,38 @@ const resolvers = {
         books: () => books,
         getAllUsers: () => users,
         universalData: () => UniversalData,
-        sportPane: (parent, args, context, info) => {return SportsBets.has(args.sportTitle) ? SportsBets.get(args.sportTitle) : FeaturedSportBets;},
+        sportPane: (parent, args, context, info) => {
+            const sportBets = SportsBets.has(args.sportTitle) ? SportsBets.get(args.sportTitle) : FeaturedSportBets;
+
+            const lines = [];
+            sportBets.tabs.forEach((tab) => {
+                tab.availableBets.forEach((availableBet) => {
+                    if (availableBet.type == "OutrightBet") {
+                        availableBet.contendersData.forEach((contenderData) => {
+                            lines.push(LinesContainer.get(contenderData.buttonId));
+                        })
+                    }
+                    else if (availableBet.type == "GameBet") {
+                        const contender1Data = availableBet.contender1Data;
+                        const contender2Data = availableBet.contender2Data;
+                        lines.push(LinesContainer.get(contender1Data.spreadButtonId));
+                        lines.push(LinesContainer.get(contender1Data.moneyButtonId));
+                        lines.push(LinesContainer.get(contender1Data.totalButtonId));
+                        lines.push(LinesContainer.get(contender2Data.spreadButtonId));
+                        lines.push(LinesContainer.get(contender2Data.moneyButtonId));
+                        lines.push(LinesContainer.get(contender2Data.totalButtonId));
+                    }
+                })
+            })
+            return { sportData: sportBets, lines };
+        },
+        lines: (parent, args, context, info) => {
+            lines = [];
+            args.buttonIds.forEach((buttonId) => {
+                lines.push(LinesContainer.get(buttonId));
+            });
+            return lines;
+        },
         userInfo: (parent, args, context, info) => {
             const isAuthenticated = context.auth.isAuthenticated;
             if (!isAuthenticated) {

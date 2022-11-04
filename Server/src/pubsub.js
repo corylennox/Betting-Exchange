@@ -1,5 +1,6 @@
 const { PubSub } = require('graphql-subscriptions');
 const { SportsBets } = require('./Data');
+const { LinesContainer } = require('./Lines');
 
 const pubsub = new PubSub();
 
@@ -39,32 +40,18 @@ function conditionalPublishTotalLineUpdate(buttonId, total) {
     }
 }
 
-function conditionalPublishOutrightBetLineUpdate(outrightBet) {
-    outrightBet.contendersData.forEach((contenderData) => {
-        conditionalPublishMoneyLineUpdate(contenderData.buttonId, contenderData.line);
-    })
-}
-
-function conditionalPublishGameBetLineUpdate(gameBet) {
-    conditionalPublishSpreadLineUpdate(gameBet.contender1Data.spreadButtonId, gameBet.contender1Data.spread);
-    conditionalPublishMoneyLineUpdate(gameBet.contender1Data.moneyButtonId, gameBet.contender1Data.money);
-    conditionalPublishTotalLineUpdate(gameBet.contender1Data.totalButtonId, gameBet.contender1Data.total);
-    conditionalPublishSpreadLineUpdate(gameBet.contender2Data.spreadButtonId, gameBet.contender2Data.spread);
-    conditionalPublishMoneyLineUpdate(gameBet.contender2Data.moneyButtonId, gameBet.contender2Data.money);
-    conditionalPublishTotalLineUpdate(gameBet.contender2Data.totalButtonId, gameBet.contender2Data.total);
-}
-
 function updateLines() {
-    SportsBets.forEach((value, key, map) => {
-        value.tabs.forEach((tab) => {
-            tab.availableBets.forEach((bet) => {
-                if (bet.type === "OutrightBet")
-                    conditionalPublishOutrightBetLineUpdate(bet);
-                else if (bet.type === "GameBet")
-                    conditionalPublishGameBetLineUpdate(bet);
-            })
-        })
-    })
+    LinesContainer.forEach((line) => {
+        if (line.type == "MoneyLine") {
+            conditionalPublishMoneyLineUpdate(line.buttonId, line);
+        }
+        else if (line.type == "SpreadLine") {
+            conditionalPublishSpreadLineUpdate(line.buttonId, line);
+        }
+        else if (line.type == "TotalLine") {
+            conditionalPublishTotalLineUpdate(line.buttonId, line);
+        }
+    });
 }
 
 module.exports = { pubsub, updateLines };

@@ -66,204 +66,175 @@ const FeaturedSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Miami Heat",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png",
-              buttonId: 9043930,
-              line: { type: "MoneyLine", value: -760 },
+              buttonId: 43930,
             },
             {
               name: "Golden State Warriors",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png",
-              buttonId: 904390921,
-              line: { type: "MoneyLine", value: 20 },
+              buttonId: 40921,
             },
             {
               name: "Dallas Mavericks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/dallas_mavericks.png",
-              buttonId: 433432,
-              line: { type: "MoneyLine", value: 430 },
+              buttonId: 33432,
             },
             {
               name: "Detroit Pistons",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/detroit_pistons.png",
-              buttonId: 906564390921,
-              line: { type: "MoneyLine", value: 90 },
+              buttonId: 40925,
             },
             {
               name: "Memphis Grizzlies",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/memphis_grizzlies.png",
-              buttonId: 9084390921,
-              line: { type: "MoneyLine", value: -200 },
+              buttonId: 40928,
             },
             {
               name: "Chicago Bulls",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/chicago_bulls.png",
               buttonId: 2345,
-              line: { type: "MoneyLine", value: 500 },
             },
             {
               name: "Brooklyn Nets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/brooklyn_nets.png",
-              buttonId: 9043903523921,
-              line: { type: "MoneyLine", value: 670 },
+              buttonId: 23921,
             },
             {
               name: "Atlanta Hawks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/atlanta_hawks.png",
               buttonId: 654,
-              line: { type: "MoneyLine", value: 520 },
             },
             {
               name: "New Orleans Pelicans",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/new_orleans_pelicans.png",
               buttonId: 123,
-              line: { type: "MoneyLine", value: -800 },
             },
             {
               name: "Orlando Magic",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/orlando_magic.png",
               buttonId: 456,
-              line: { type: "MoneyLine", value: 810 },
             },
             {
               name: "Philadelphia 76ers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/philadelphia_76ers.png",
               buttonId: 6543,
-              line: { type: "MoneyLine", value: -540 },
             },
             {
               name: "Denver Nuggets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/denver_nuggets.png",
               buttonId: 3265,
-              line: { type: "MoneyLine", value: 910 },
             },
             {
               name: "Tornoto Raptors",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/toronto_raptors.png",
-              buttonId: 65432,
-              line: { type: "MoneyLine", value: 160 },
+              buttonId: 15432,
             },
             {
               name: "New York Knicks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/new_york_knicks.png",
               buttonId: 236,
-              line: { type: "MoneyLine", value: -170 },
             },
             {
               name: "Cleveland Cavaliers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/cleveland_cavaliers.png",
               buttonId: 8492,
-              line: { type: "MoneyLine", value: -920 },
             },
             {
               name: "Charlotte Hornets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/charlotte_hornets.png",
               buttonId: 43534,
-              line: { type: "MoneyLine", value: -500 },
             },
             {
               name: "Portland Trail Blazers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/portland_trail_blazers.png",
-              buttonId: 52345,
-              line: { type: "MoneyLine", value: -20 },
+              buttonId: 2349,
             },
             {
               name: "Washington Wizards",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/washington_wizards.png",
-              buttonId: 126437,
-              line: { type: "MoneyLine", value: -500 },
+              buttonId: 26437,
             },
             {
               name: "Utah Jazz",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/utah_jazz.png",
-              buttonId: 654325,
-              line: { type: "MoneyLine", value: -140 },
+              buttonId: 4325,
             },
             {
               name: "Sacramento Kings",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/sacramento_kings.png",
               buttonId: 7583,
-              line: { type: "MoneyLine", value: -290 },
             },
             {
               name: "Oklahoma City Thunder",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/oklahoma_city_thunder.png",
-              buttonId: 62049,
-              line: { type: "MoneyLine", value: -640 },
+              buttonId: 12049,
             },
             {
               name: "Indiana Pacers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/indiana_pacers.png",
-              buttonId: 2346626,
-              line: { type: "MoneyLine", value: 530 },
+              buttonId: 46626,
             },
             {
               name: "Phoenix Suns",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/phoenix_suns.png",
-              buttonId: 236266622,
-              line: { type: "MoneyLine", value: -710 },
+              buttonId: 16622,
             },
             {
               name: "Houston Rockets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/houston_rockets.png",
               buttonId: 544,
-              line: { type: "MoneyLine", value: -50 },
             },
             {
               name: "San Antonio Spurs",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/san_antonio_spurs.png",
-              buttonId: 999333,
-              line: { type: "MoneyLine", value: 170 },
+              buttonId: 49333,
             },
             {
               name: "Los Angeles Clippers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/los_angeles_clippers.png",
-              buttonId: 2932552,
-              line: { type: "MoneyLine", value: 20 },
+              buttonId: 32552,
             },
             {
               name: "Milwaukee Bucks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/milwaukee_bucks.png",
-              buttonId: 6653246,
-              line: { type: "MoneyLine", value: 1000 },
+              buttonId: 3246,
             },
             {
               name: "Minnesota Timberwolves",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/minnesota_timberwolves.png",
-              buttonId: 9889028,
-              line: { type: "MoneyLine", value: 200 },
+              buttonId: 39028,
             },
           ],
         },
@@ -279,23 +250,17 @@ const FeaturedSportBets = {
             name: "Cincinnati Reds",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/cincinnati_reds.png",
-            spread: { type: "SpreadLine", value: -5.5 },
-            spreadButtonId: 42663243,
-            money: { type: "MoneyLine", value: 530 },
-            moneyButtonId: 42663244,
-            total: { type: "TotalLine", value: -7.0 }, // -6.5 translates to "O 6.5"
-            totalButtonId: 42663245,
+            spreadButtonId: 13243,
+            moneyButtonId: 13244,
+            totalButtonId: 13245,
           },
           contender2Data: {
             name: "Philadelphia Phillies",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png",
-            spread: { type: "SpreadLine", value: -11.0 },
-            spreadButtonId: 42663246,
-            money: { type: "MoneyLine", value: -290 },
-            moneyButtonId: 42663247,
-            total: { type: "TotalLine", value: 6.5 }, // -6.5 translates to "U 6.5"
-            totalButtonId: 42663248,
+            spreadButtonId: 13246,
+            moneyButtonId: 13247,
+            totalButtonId: 13248,
           },
         },
         {
@@ -305,23 +270,17 @@ const FeaturedSportBets = {
             name: "Atlanta Braves",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png",
-            spread: { type: "SpreadLine", value: 11.0 },
-            spreadButtonId: 2930423,
-            money: { type: "MoneyLine", value: 180 },
-            moneyButtonId: 23409234,
-            total: { type: "TotalLine", value: -13.0 }, // negative indicates "O 8.5"
-            totalButtonId: 90234234,
+            spreadButtonId: 30423,
+            moneyButtonId: 9234,
+            totalButtonId: 34234,
           },
           contender2Data: {
             name: "Pittsburgh Pirates",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png",
-            spread: { type: "SpreadLine", value: -4.5 },
-            spreadButtonId: 203094,
-            money: { type: "MoneyLine", value: 280 },
-            moneyButtonId: 393242,
-            total: { type: "TotalLine", value: 12.5 }, // positive indicates "U 8.5"
-            totalButtonId: 99323444,
+            spreadButtonId: 3094,
+            moneyButtonId: 43242,
+            totalButtonId: 23444,
           },
         },
       ],
@@ -337,64 +296,55 @@ const FeaturedSportBets = {
               name: "Chicago Sky",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
-              buttonId: 9934322,
-              line: { type: "MoneyLine", value: 980 },
+              buttonId: 34322,
             },
             {
               name: "Minnesota Lynx",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
               buttonId: 8237,
-              line: { type: "MoneyLine", value: -900 },
             },
             {
               name: "Washington Mystics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/washington_mystics.png",
-              buttonId: 89012,
-              line: { type: "MoneyLine", value: -120 },
+              buttonId: 39012,
             },
             {
               name: "Seattle Storm",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/seattle_storm.png",
-              buttonId: 489242,
-              line: { type: "MoneyLine", value: 160 },
+              buttonId: 39242,
             },
             {
               name: "Los Angeles Sparks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/los_angeles_sparks.png",
-              buttonId: 73529,
-              line: { type: "MoneyLine", value: 750 },
+              buttonId: 23529,
             },
             {
               name: "Phoenix Mercury",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/phoenix_mercury.png",
-              buttonId: 66936,
-              line: { type: "MoneyLine", value: 990 },
+              buttonId: 16936,
             },
             {
               name: "Dallas Wings",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/dallas_wings.png",
-              buttonId: 552431,
-              line: { type: "MoneyLine", value: 550 },
+              buttonId: 2431,
             },
             {
               name: "Connecticut Sun",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/connecticut_sun.png",
-              buttonId: 903656,
-              line: { type: "MoneyLine", value: 540 },
+              buttonId: 3656,
             },
             {
               name: "Chicago Sky Test",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
-              buttonId: 994322,
-              line: { type: "MoneyLine", value: 80 },
+              buttonId: 44322,
             },
           ],
         },
@@ -418,204 +368,175 @@ const BasketballSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Miami Heat",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/miami_heat.png",
-              buttonId: 9043930,
-              line: { type: "MoneyLine", value: -760 },
+              buttonId: 43930,
             },
             {
               name: "Golden State Warriors",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/golden_state_warriors.png",
-              buttonId: 904390921,
-              line: { type: "MoneyLine", value: 20 },
+              buttonId: 40921,
             },
             {
               name: "Dallas Mavericks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/dallas_mavericks.png",
-              buttonId: 433432,
-              line: { type: "MoneyLine", value: 430 },
+              buttonId: 33432,
             },
             {
               name: "Detroit Pistons",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/detroit_pistons.png",
-              buttonId: 906564390921,
-              line: { type: "MoneyLine", value: 90 },
+              buttonId: 40925,
             },
             {
               name: "Memphis Grizzlies",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/memphis_grizzlies.png",
-              buttonId: 9084390921,
-              line: { type: "MoneyLine", value: -200 },
+              buttonId: 40928,
             },
             {
               name: "Chicago Bulls",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/chicago_bulls.png",
               buttonId: 2345,
-              line: { type: "MoneyLine", value: 500 },
             },
             {
               name: "Brooklyn Nets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/brooklyn_nets.png",
-              buttonId: 9043903523921,
-              line: { type: "MoneyLine", value: 670 },
+              buttonId: 23921,
             },
             {
               name: "Atlanta Hawks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/atlanta_hawks.png",
               buttonId: 654,
-              line: { type: "MoneyLine", value: 520 },
             },
             {
               name: "New Orleans Pelicans",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/new_orleans_pelicans.png",
               buttonId: 123,
-              line: { type: "MoneyLine", value: -800 },
             },
             {
               name: "Orlando Magic",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/orlando_magic.png",
               buttonId: 456,
-              line: { type: "MoneyLine", value: 810 },
             },
             {
               name: "Philadelphia 76ers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/philadelphia_76ers.png",
               buttonId: 6543,
-              line: { type: "MoneyLine", value: -540 },
             },
             {
               name: "Denver Nuggets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/denver_nuggets.png",
               buttonId: 3265,
-              line: { type: "MoneyLine", value: 910 },
             },
             {
               name: "Tornoto Raptors",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/toronto_raptors.png",
-              buttonId: 65432,
-              line: { type: "MoneyLine", value: 160 },
+              buttonId: 15432,
             },
             {
               name: "New York Knicks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/new_york_knicks.png",
               buttonId: 236,
-              line: { type: "MoneyLine", value: -170 },
             },
             {
               name: "Cleveland Cavaliers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/cleveland_cavaliers.png",
               buttonId: 8492,
-              line: { type: "MoneyLine", value: -920 },
             },
             {
               name: "Charlotte Hornets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/charlotte_hornets.png",
               buttonId: 43534,
-              line: { type: "MoneyLine", value: -500 },
             },
             {
               name: "Portland Trail Blazers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/portland_trail_blazers.png",
-              buttonId: 52345,
-              line: { type: "MoneyLine", value: -20 },
+              buttonId: 2349,
             },
             {
               name: "Washington Wizards",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/washington_wizards.png",
-              buttonId: 126437,
-              line: { type: "MoneyLine", value: -500 },
+              buttonId: 26437,
             },
             {
               name: "Utah Jazz",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/utah_jazz.png",
-              buttonId: 654325,
-              line: { type: "MoneyLine", value: -140 },
+              buttonId: 4325,
             },
             {
               name: "Sacramento Kings",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/sacramento_kings.png",
               buttonId: 7583,
-              line: { type: "MoneyLine", value: -290 },
             },
             {
               name: "Oklahoma City Thunder",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/oklahoma_city_thunder.png",
-              buttonId: 62049,
-              line: { type: "MoneyLine", value: -640 },
+              buttonId: 12049,
             },
             {
               name: "Indiana Pacers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/indiana_pacers.png",
-              buttonId: 2346626,
-              line: { type: "MoneyLine", value: 530 },
+              buttonId: 46626,
             },
             {
               name: "Phoenix Suns",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/phoenix_suns.png",
-              buttonId: 236266622,
-              line: { type: "MoneyLine", value: -710 },
+              buttonId: 16622,
             },
             {
               name: "Houston Rockets",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/houston_rockets.png",
               buttonId: 544,
-              line: { type: "MoneyLine", value: -50 },
             },
             {
               name: "San Antonio Spurs",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/san_antonio_spurs.png",
-              buttonId: 999333,
-              line: { type: "MoneyLine", value: 170 },
+              buttonId: 49333,
             },
             {
               name: "Los Angeles Clippers",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/los_angeles_clippers.png",
-              buttonId: 2932552,
-              line: { type: "MoneyLine", value: 20 },
+              buttonId: 32552,
             },
             {
               name: "Milwaukee Bucks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/milwaukee_bucks.png",
-              buttonId: 6653246,
-              line: { type: "MoneyLine", value: 1000 },
+              buttonId: 3246,
             },
             {
               name: "Minnesota Timberwolves",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/minnesota_timberwolves.png",
-              buttonId: 9889028,
-              line: { type: "MoneyLine", value: 200 },
+              buttonId: 39028,
             },
           ],
         },
@@ -626,23 +547,17 @@ const BasketballSportBets = {
             name: "Milwaukee Bucks",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/nba/milwaukee_bucks.png",
-            spread: { type: "SpreadLine", value: -8.0 },
-            spreadButtonId: 93940,
-            money: { type: "MoneyLine", value: -490 },
+            spreadButtonId: 43940,
             moneyButtonId: 3452,
-            total: { type: "TotalLine", value: -26.0 },
-            totalButtonId: 129438,
+            totalButtonId: 29438,
           },
           contender2Data: {
             name: "Minnesota Timberwolves",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/nba/minnesota_timberwolves.png",
-            spread: { type: "SpreadLine", value: -1.0 },
-            spreadButtonId: 637326,
-            money: { type: "MoneyLine", value: -530 },
+            spreadButtonId: 37326,
             moneyButtonId: 33322,
-            total: { type: "TotalLine", value: 25.5 },
-            totalButtonId: 777847,
+            totalButtonId: 27847,
           },
         },
       ],
@@ -658,64 +573,55 @@ const BasketballSportBets = {
               name: "Chicago Sky",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
-              buttonId: 9934322,
-              line: { type: "MoneyLine", value: 980 },
+              buttonId: 34322,
             },
             {
               name: "Minnesota Lynx",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
               buttonId: 8237,
-              line: { type: "MoneyLine", value: -900 },
             },
             {
               name: "Washington Mystics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/washington_mystics.png",
-              buttonId: 89012,
-              line: { type: "MoneyLine", value: -120 },
+              buttonId: 39012,
             },
             {
               name: "Seattle Storm",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/seattle_storm.png",
-              buttonId: 489242,
-              line: { type: "MoneyLine", value: 160 },
+              buttonId: 39242,
             },
             {
               name: "Los Angeles Sparks",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/los_angeles_sparks.png",
-              buttonId: 73529,
-              line: { type: "MoneyLine", value: 750 },
+              buttonId: 23529,
             },
             {
               name: "Phoenix Mercury",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/phoenix_mercury.png",
-              buttonId: 66936,
-              line: { type: "MoneyLine", value: 990 },
+              buttonId: 16936,
             },
             {
               name: "Dallas Wings",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/dallas_wings.png",
-              buttonId: 552431,
-              line: { type: "MoneyLine", value: 550 },
+              buttonId: 2431,
             },
             {
               name: "Connecticut Sun",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/connecticut_sun.png",
-              buttonId: 903656,
-              line: { type: "MoneyLine", value: 540 },
+              buttonId: 3656,
             },
             {
               name: "Chicago Sky Test",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
-              buttonId: 994322,
-              line: { type: "MoneyLine", value: 80 },
+              buttonId: 44322,
             },
           ],
         },
@@ -726,23 +632,17 @@ const BasketballSportBets = {
             name: "Chicago Sky",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/wnba/chicago_sky.png",
-            spread: { type: "SpreadLine", value: 13.5 },
-            spreadButtonId: 756837,
-            money: { type: "MoneyLine", value: -40 },
+            spreadButtonId: 6837,
             moneyButtonId: 15409,
-            total: { type: "TotalLine", value: -43.5 },
-            totalButtonId: 893654,
+            totalButtonId: 43654,
           },
           contender2Data: {
             name: "Minnesota Lynx",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/wnba/minnesota_lynx.png",
-            spread: { type: "SpreadLine", value: -6.5 },
-            spreadButtonId: 628578,
-            money: { type: "MoneyLine", value: -370 },
+            spreadButtonId: 28578,
             moneyButtonId: 48395,
-            total: { type: "TotalLine", value: 43.0 },
-            totalButtonId: 958473,
+            totalButtonId: 8473,
           },
         },
       ],
@@ -764,23 +664,17 @@ const BaseballSportBets = {
             name: "Chicago Cubs",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/chicago_cubs.png",
-            spread: { type: "SpreadLine", value: 8.5 },
-            spreadButtonId: 422223551,
-            money: { type: "MoneyLine", value: 360 },
-            moneyButtonId: 422223552,
-            total: { type: "TotalLine", value: -42.0 },
-            totalButtonId: 422223553,
+            spreadButtonId: 23551,
+            moneyButtonId: 23552,
+            totalButtonId: 23553,
           },
           contender2Data: {
             name: "Seattle Mariners",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/seattle_mariners.png",
-            spread: { type: "SpreadLine", value: -7.0 },
-            spreadButtonId: 422223554,
-            money: { type: "MoneyLine", value: -640 },
-            moneyButtonId: 422223555,
-            total: { type: "TotalLine", value: 41.5 },
-            totalButtonId: 422223556,
+            spreadButtonId: 23554,
+            moneyButtonId: 23555,
+            totalButtonId: 23556,
           },
         },
         {
@@ -790,23 +684,17 @@ const BaseballSportBets = {
             name: "Cincinnati Reds",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/cincinnati_reds.png",
-            spread: { type: "SpreadLine", value: -5.5 },
-            spreadButtonId: 42663243,
-            money: { type: "MoneyLine", value: 530 },
-            moneyButtonId: 42663244,
-            total: { type: "TotalLine", value: -7.0 },
-            totalButtonId: 42663245,
+            spreadButtonId: 13243,
+            moneyButtonId: 13244,
+            totalButtonId: 13245,
           },
           contender2Data: {
             name: "Philadelphia Phillies",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/philadelphia_phillies.png",
-            spread: { type: "SpreadLine", value: -11.0 },
-            spreadButtonId: 42663246,
-            money: { type: "MoneyLine", value: -290 },
-            moneyButtonId: 42663247,
-            total: { type: "TotalLine", value: 6.5 },
-            totalButtonId: 42663248,
+            spreadButtonId: 13246,
+            moneyButtonId: 13247,
+            totalButtonId: 13248,
           },
         },
         {
@@ -816,23 +704,17 @@ const BaseballSportBets = {
             name: "Atlanta Braves",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/atlanta_braves.png",
-            spread: { type: "SpreadLine", value: 11.0 },
-            spreadButtonId: 2930423,
-            money: { type: "MoneyLine", value: 180 },
-            moneyButtonId: 23409234,
-            total: { type: "TotalLine", value: -13.0 },
-            totalButtonId: 90234234,
+            spreadButtonId: 30423,
+            moneyButtonId: 9234,
+            totalButtonId: 34234,
           },
           contender2Data: {
             name: "Pittsburgh Pirates",
             image:
               "https://assets.sportsbook.fanduel.com/images/team/mlb/pittsburgh_pirates.png",
-            spread: { type: "SpreadLine", value: -4.5 },
-            spreadButtonId: 203094,
-            money: { type: "MoneyLine", value: 280 },
-            moneyButtonId: 393242,
-            total: { type: "TotalLine", value: 12.5 },
-            totalButtonId: 99323444,
+            spreadButtonId: 3094,
+            moneyButtonId: 43242,
+            totalButtonId: 23444,
           },
         },
       ],
@@ -855,92 +737,79 @@ const SoccerSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
           ],
         },
@@ -952,85 +821,73 @@ const SoccerSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
           ],
         },
@@ -1042,36 +899,31 @@ const SoccerSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
           ],
         },
@@ -1083,29 +935,25 @@ const SoccerSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
           ],
         },
@@ -1117,15 +965,13 @@ const SoccerSportBets = {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
             {
               name: "Boston Celtics",
               image:
                 "https://assets.sportsbook.fanduel.com/images/team/nba/boston_celtics.png",
-              buttonId: 93452,
-              line: { type: "MoneyLine", value: 400 },
+              buttonId: 43452,
             },
           ],
         },
