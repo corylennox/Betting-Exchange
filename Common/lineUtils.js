@@ -1,33 +1,36 @@
 const assert = require("assert");
 
 class LineContainer {
-    constructor(lines) {
-        this.minButtonId = Number.MAX_SAFE_INTEGER;
-        let maxButtonId = Number.MIN_SAFE_INTEGER;
+    constructor(lines = []) {
+        this.lines = new Array();
         lines.forEach((line) => {
-            this.minButtonId = Math.min(this.minButtonId, line.buttonId);
-            maxButtonId = Math.min(maxButtonId, line.buttonId);
-        });
-        this.lines = Array.from({ length: maxButtonId - this.minButtonId });
-        lines.forEach((line) => {
-            this.lines[this.#getIndex(line.buttonId)] = line;
+            this.addLine(line)
         });
     }
 
     #getIndex(buttonId) {
-        return buttonId - this.minButtonId;
+        return buttonId - this.#getMinButtonId();
     }
 
-    #getMaxIndex() {
-        return this.minButtonId + this.lines.length - 1
+    #getMinButtonId() {
+        assert(this.lines.length > 0)
+        return this.lines[0].buttonId
+    }
+
+    #getMaxButtonId() {
+        assert(this.lines.length > 0)
+        return this.lines[this.lines.length - 1].buttonId
     }
 
     #isInBounds(buttonId) {
-        return buttonId >= this.minButtonId && buttonId <= this.#getMaxIndex()
+        return this.lines.length > 0 && buttonId >= this.#getMinButtonId() && buttonId <= this.#getMaxButtonId()
     }
 
     has(buttonId) {
-        return this.#isInBounds(buttonId) && this.lines[this.#getIndex(buttonId)]
+        if (this.lines.length == 0)
+            return false;
+
+        return this.#isInBounds(buttonId) && this.lines[this.#getIndex(buttonId)] != undefined
     }
 
     get(buttonId) {
@@ -35,9 +38,47 @@ class LineContainer {
         return this.lines[this.#getIndex(buttonId)];
     }
 
-    set(buttonId, line) {
-        assert(this.#isInBounds(buttonId))
-        this.lines[this.#getIndex(buttonId)] = line
+    // Can also be called to replace an existing line, which can happen if a sport pane is loaded twice, for example
+    addLine(line) {
+        // if the array hasn't been populated yet, gotta allocate space for it
+        if (this.lines.length == 0) {
+            this.lines = Array.from({ length: 1 })
+            this.lines[0] = line
+        }
+
+        // if the array is too small to contain this button id, expand the array
+        else if (line.buttonId < this.#getMinButtonId())
+        {
+            const endLines = this.lines;
+            let frontLines = Array.from({ length: this.#getMinButtonId() - line.buttonId })
+            this.lines = frontLines.concat(endLines)
+            this.lines[0] = line
+        }
+
+        // if the array is too small to contain this button id, expand the array
+        else if (line.buttonId > this.#getMaxButtonId())
+        {
+            const endLines = Array.from({ length: line.buttonId - this.#getMaxButtonId() })
+            const frontLines = this.lines;
+            this.lines = frontLines.concat(endLines);
+            this.lines[this.lines.length - 1] = line;
+        }
+
+        // normal insertion, no special case
+        else
+            this.lines[this.#getIndex(line.buttonId)] = line;
+    }
+
+    setNewValue(buttonId, newValue) {
+        assert(this.has(buttonId))
+        this.lines[this.#getIndex(buttonId)].value = newValue
+    }
+
+    forEach(func) {
+        this.lines.forEach((line) => {
+            if (line)
+                func(line);
+        });
     }
 }
 
