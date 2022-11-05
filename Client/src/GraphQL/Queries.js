@@ -32,66 +32,55 @@ export const UNIVERSAL_DATA_QUERY = gql`
 export const SPORT_PANE_QUERY = gql`
   query SportPaneQuery($sportTitle: String!) {
     sportPane(sportTitle: $sportTitle) {
-      sportTitle
-      href
-      tabs {
-        tabTitle
-        availableBets {
-          type
-          betTitle
-          ... on OutrightBet {
-            contendersData {
-              buttonId
-              image
-              name
-              line {
-                type
-                value
+      sportData {
+        sportTitle
+        href
+        tabs {
+          tabTitle
+          availableBets {
+            type
+            betTitle
+            ... on OutrightBet {
+              contendersData {
+                buttonId
+                image
+                name
               }
             }
-          }
-          ... on GameBet {
-            contender1Data {
-              totalButtonId
-              total {
-                type
-                value
+            ... on GameBet {
+              contender1Data {
+                totalButtonId
+                moneyButtonId
+                spreadButtonId
+                name
+                image
               }
-              money {
-                type
-                value
+              contender2Data {
+                name
+                image
+                spreadButtonId
+                moneyButtonId
+                totalButtonId
               }
-              moneyButtonId
-              spreadButtonId
-              spread {
-                type
-                value
-              }
-              name
-              image
-            }
-            contender2Data {
-              name
-              image
-              spread {
-                type
-                value
-              }
-              money {
-                type
-                value
-              }
-              spreadButtonId
-              moneyButtonId
-              total {
-                type
-                value
-              }
-              totalButtonId
             }
           }
         }
       }
+      lines {
+        buttonId
+        type
+        value
+      }
+    }
+  }
+`;
+
+export const LINES_QUERY = gql`
+  query LinesQuery($buttonIds: [ID!]!) {
+    lines(buttonIds: $buttonIds) {
+      buttonId
+      type
+      value
     }
   }
 `;

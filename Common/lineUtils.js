@@ -1,5 +1,3 @@
-const assert = require("assert");
-
 class LineContainer {
     constructor(lines = []) {
         this.lines = new Array();
@@ -13,12 +11,12 @@ class LineContainer {
     }
 
     #getMinButtonId() {
-        assert(this.lines.length > 0)
+        console.assert(this.lines.length > 0)
         return this.lines[0].buttonId
     }
 
     #getMaxButtonId() {
-        assert(this.lines.length > 0)
+        console.assert(this.lines.length > 0)
         return this.lines[this.lines.length - 1].buttonId
     }
 
@@ -34,7 +32,7 @@ class LineContainer {
     }
 
     get(buttonId) {
-        assert(this.has(buttonId));
+        console.assert(this.has(buttonId));
         return this.lines[this.#getIndex(buttonId)];
     }
 
@@ -70,7 +68,7 @@ class LineContainer {
     }
 
     setNewValue(buttonId, newValue) {
-        assert(this.has(buttonId))
+        console.assert(this.has(buttonId))
         this.lines[this.#getIndex(buttonId)].value = newValue
     }
 

@@ -13,7 +13,6 @@ export default function MyButton(props) {
     "w-16 bg-skin-buttonActionUnselected hover:bg-skin-buttonActionHover text-skin-actionUnselected font-semibold hover:text-skin-actionHover border border-skin-buttonActionUnselected rounded placeholder-shown:bg-red-500";
 
   const betInfo = {
-    line: props.line,
     contenderName: props.contenderName,
     contenderImage: props.contenderImage,
     buttonId: props.buttonId,
@@ -22,6 +21,7 @@ export default function MyButton(props) {
   };
 
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
+  const linesContainer = parseMap(useSelector((state) => state.lines));
 
   return (
     <button
@@ -30,7 +30,7 @@ export default function MyButton(props) {
       }}
       className={toggledBets.has(props.buttonId) ? onCSS : offCSS}
     >
-      {getDisplayStr(props.line)}
+      {getDisplayStr(linesContainer.get(props.buttonId))}
     </button>
   );
 }

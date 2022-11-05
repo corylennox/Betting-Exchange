@@ -70,3 +70,27 @@ export const changeThemeAction = (theme) => {
     },
   };
 };
+
+/**
+ * update the value of lines that have already been added to the redux store
+ */
+export const updateLinesAction = (lineUpdates) => {
+  return {
+    type: "UPDATE_LINES",
+    payload: {
+      lineUpdates: lineUpdates
+    },
+  };
+};
+
+/**
+ * add lines to the redux store
+ */
+export const addLinesAction = (lines) => {
+  return {
+    type: "ADD_LINES",
+    payload: {
+      lines: lines
+    },
+  };
+};

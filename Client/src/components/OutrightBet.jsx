@@ -14,7 +14,6 @@ function OutrightBetContenderRow(props) {
       />
       <div className="w-auto flex justify-end">
         <MyButton
-          line={props.contenderData.line}
           contenderName={props.contenderData.name}
           contenderImage={props.contenderData.image}
           type={props.type}

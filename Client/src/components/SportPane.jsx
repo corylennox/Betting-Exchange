@@ -7,6 +7,7 @@ import { translateSportsPaneData } from "../GraphQL/Translate";
 import { useDispatch } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import rts from "../MyRoutes";
+import { addLinesAction } from "../Actions";
 
 export default function SportPane(props) {
   //const currentPathName = useLocation().pathname;
@@ -26,6 +27,9 @@ export default function SportPane(props) {
     error,
   } = useQuery(SPORT_PANE_QUERY, {
     variables: { sportTitle: props.sportPaneTitle },
+    onCompleted: (sportPaneDataResponse) => {
+      dispatch(addLinesAction(sportPaneDataResponse.sportPane.lines));
+    }
   });
 
   if (loading) return <h1>Loading...</h1>;

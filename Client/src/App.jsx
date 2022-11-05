@@ -14,23 +14,26 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { ApolloProvider } from "@apollo/client";
 import { PersistGate } from "redux-persist/integration/react";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store, persistor } from "./ConfigureStore";
 import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
 import ApolloWrapper from "./ConfigureBackend";
 import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
+import { useSubscription } from "@apollo/client";
+import { LINE_UPDATE_SUBSCRIPTION } from "./GraphQL/Subscriptions";
 import { translateUniversalData } from "./GraphQL/Translate";
 import rts from "./MyRoutes";
 import { ThemeData } from "./components/ActiveThemes";
 import Auth0Wrapper from "./Auth0Wrapper";
+import { updateLinesAction } from "./Actions";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
   //persistor.purge();
+  const dispatch = useDispatch();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const activeTheme = useSelector((state) => state.activeTheme);
   const [isSystemThemeDark, setIsSystemThemeDark] = useState(
@@ -38,15 +41,29 @@ function AppNested() {
   );
 
   const {
-    loading,
+    loading: queryLoading,
     data: universalDataResponse,
-    error,
+    error: queryError,
   } = useQuery(UNIVERSAL_DATA_QUERY);
 
-  if (loading) return <h1>Loading</h1>;
+  const {
+    error: subscriptionError
+  } = useSubscription(LINE_UPDATE_SUBSCRIPTION, {
+    onData: (data) => {
+      if (data.data.data)
+        dispatch(updateLinesAction( [ data.data.data.lineUpdate ] /* array with 1 item */ ));
+    },
+  });
 
-  if (error) {
-    console.log("Error loading App: " + error);
+  // Don't check for subscription loading, as that only equates to false once the first item arrives from the subscription, which may take a very long time hypothetically
+  if (queryLoading) return <h1>Loading</h1>;
+
+  if (queryError) {
+    console.log("Error loading App query: " + queryError);
+    return <h1>Error Loading App. Error logged to console.</h1>;
+  }
+  if (subscriptionError) {
+    console.log("Error loading App subscription: " + subscriptionError);
     return <h1>Error Loading App. Error logged to console.</h1>;
   }
 
