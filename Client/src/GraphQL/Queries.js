@@ -13,7 +13,7 @@ export const LOAD_USERS = gql`
 `;
 
 export const UNIVERSAL_DATA_QUERY = gql`
-  query SportPaneQuery {
+  query UniversalDataQuery {
     universalData {
       homepage {
         title

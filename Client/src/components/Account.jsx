@@ -35,10 +35,10 @@ function AccountSectionDivider() {
 }
 
 function AccountSectionActions(props) {
-  if (props.buttons.length == 0)
+  if (props.buttons.length === 0)
     return (Error)
 
-  const buttonWidthCss = props.buttons.length == 1 ? "w-full" : `w-1/${props.buttons.length.toString()}`
+  const buttonWidthCss = props.buttons.length === 1 ? "w-full" : `w-1/${props.buttons.length.toString()}`
 
   return (
     <div className="flex h-20 px-6 py-4 w-full border-t border-skin-divier">

@@ -72,7 +72,7 @@ function ToggledBet(props) {
     const determinedWagerInteger = determineWager(line, winInteger);
     const determinedWinInteger = determineWin(line, wagerInteger);
     if (isWagerOrWinSet && determinedWagerInteger !== wagerInteger && determinedWinInteger !== winInteger) {
-      setWagerAndWin(wagerStr, wagerInteger, winStr, winInteger);
+      setWagerAndWin(wagerStr, wagerInteger, convertToPriceString(determinedWinInteger), determinedWinInteger);
     }
   })
 
