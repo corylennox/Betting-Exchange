@@ -1,8 +1,6 @@
 import React from "react";
 import ContenderAndIcon from "./ContenderAndIcon";
 import { useSelector, useDispatch } from "react-redux";
-import { useSubscription } from "@apollo/client";
-import { LINE_UPDATE_SUBSCRIPTION } from "../GraphQL/Subscriptions";
 import { deleteBetsAction, setWagerAndWinAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
@@ -18,6 +16,9 @@ import {
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { BottomNavbarItems } from "./BottomNavbar";
 import { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { LINES_QUERY } from "../GraphQL/Queries";
+import { addLinesAction } from "../Actions";
 
 function validateAndChangeWager(evt, setWagerAndWin, line) {
   const newWagerStr = evt.target.value;
@@ -42,8 +43,10 @@ function validateAndChangeWin(evt, setWagerAndWin, line) {
 function ToggledBet(props) {
   const dispatch = useDispatch();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
+  const linesContainer = parseMap(useSelector((state) => state.lines));
   const wagerStr = toggledBets.get(props.buttonId).wagerStr;
   const winStr = toggledBets.get(props.buttonId).winStr;
+  const line = linesContainer.get(props.buttonId);
 
   const setWagerAndWin = (newWagerStr, newWagerInteger, newWinStr, newWinInteger) => {
     dispatch(
@@ -66,8 +69,8 @@ function ToggledBet(props) {
     const wagerInteger = toggledBets.get(props.buttonId).wagerInteger;
     const winInteger = toggledBets.get(props.buttonId).winInteger;
     const isWagerOrWinSet = wagerInteger !== 0 || winInteger !== 0;
-    const determinedWagerInteger = determineWager(props.bet.line, winInteger);
-    const determinedWinInteger = determineWin(props.bet.line, wagerInteger);
+    const determinedWagerInteger = determineWager(line, winInteger);
+    const determinedWinInteger = determineWin(line, wagerInteger);
     if (isWagerOrWinSet && determinedWagerInteger !== wagerInteger && determinedWinInteger !== winInteger) {
       setWagerAndWin(wagerStr, wagerInteger, winStr, winInteger);
     }
@@ -99,7 +102,7 @@ function ToggledBet(props) {
           </div>
           <div className="w-1/12 text-right mr-2">
             <h1 className="pt-4 pb-4 h-full">
-              {getDisplayStr(props.bet.line)}
+              {getDisplayStr(line)}
             </h1>
           </div>
         </div>
@@ -119,7 +122,7 @@ function ToggledBet(props) {
                   validateAndChangeWager(
                     evt,
                     setWagerAndWin,
-                    props.bet.line
+                    line
                   )
                 }
                 value={wagerStr}
@@ -141,7 +144,7 @@ function ToggledBet(props) {
                   validateAndChangeWin(
                     evt,
                     setWagerAndWin,
-                    props.bet.line
+                    line
                   )
                 }
                 value={winStr}
@@ -162,12 +165,27 @@ export default function Betslip(props) {
   const toggledBetsArray = Array.from(toggledBets);
   const dispatch = useDispatch();
 
-  const { data: subscriptionData, loading: subscriptionLoading, error: subscriptionError } = useSubscription(LINE_UPDATE_SUBSCRIPTION);
-  console.log(`Is subscription loading: ${subscriptionLoading}`);
-  if (!subscriptionLoading)
-    console.log(`Got subscription: ${JSON.stringify(subscriptionData)}`);
-  if (subscriptionError)
-    console.error(`Subscription error: ${subscriptionError}`);
+  let toggledButtonIds = [];
+  toggledBets.forEach((toggledBet) => {
+    toggledButtonIds.push(toggledBet.betInfo.buttonId);
+  })
+
+  /**
+   * The betslip needs its own query for toggledBet lines in the event the user refreshes the page.
+   * If the user refreshes the page, the only queried lines otherwise will be in the active sportspane, and
+   * it's possible there are toggled bets whose lines won't be queried by the active sportspane query.
+   */
+  const { loading, error } = useQuery(LINES_QUERY, {
+    variables: { buttonIds: toggledButtonIds },
+    onCompleted: (response) => dispatch(addLinesAction(response.lines)),
+  });
+
+  if (loading) return <h1>Loading...</h1>;
+
+  if (error) {
+    console.error("Error loading Betslip: " + error);
+    return <h1>Error Loading Betslip. Error logged to console.</h1>;
+  }
 
   //if this betslip is rendering as a sportpane,
   if (props.isSportPane) {

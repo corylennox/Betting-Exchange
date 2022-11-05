@@ -8,7 +8,9 @@
     "all": "run-p server client",
     "client": "cd Client && npm start",
     "server": "cd Server && npm start",
-    "test": "run-p test-client",
-    "test-client": "cd Client && npm test"
+    "test": "run-p test-client test-common",
+    "test-client": "cd Client && npm test",
+    "test-server": "cd Server && npm test",
+    "test-common": "cd Common && npm test"
   }
 }
