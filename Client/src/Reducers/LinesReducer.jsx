@@ -1,4 +1,3 @@
-import { LineContainer } from "bettingexchangecommon/lineUtils";
 import { stringifyMap, parseMap } from "../utils";
 
 const linesReducer = (state = stringifyMap(new Map()), action) => {

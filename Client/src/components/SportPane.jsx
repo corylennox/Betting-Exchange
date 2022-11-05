@@ -8,18 +8,25 @@ import { useDispatch } from "react-redux";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import rts from "../MyRoutes";
 import { addLinesAction } from "../Actions";
+import { useEffect } from "react";
 
 export default function SportPane(props) {
   //const currentPathName = useLocation().pathname;
   const dispatch = useDispatch();
   //const activeNavbarTab = useSelector((state) => state.activeNavbarTab);
 
-  dispatch(changeSportpaneAction(props.href));
-  
-  if(props.href === rts.homepage)
-    dispatch(changeNavbarTabAction(rts.homepage));
-  else
-    dispatch(changeNavbarTabAction(rts.allSports))
+  /**
+   * Change the active sportpane and active navbar tab on deferral. Dispatching during rendering isn't
+   * supposed to happen, so we have to wait until after render to dispatch.
+   */
+  useEffect(() => {
+    dispatch(changeSportpaneAction(props.href));
+
+    if(props.href === rts.homepage)
+      dispatch(changeNavbarTabAction(rts.homepage));
+    else
+      dispatch(changeNavbarTabAction(rts.allSports))
+  })
 
   const {
     loading,

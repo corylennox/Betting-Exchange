@@ -196,7 +196,7 @@ export default function Betslip(props) {
   if (toggledBetsArray.length !== 0) {
     return toggledBetsArray.map(([buttonId, toggledBet]) => {
       const bet = toggledBet.betInfo;
-      return <ToggledBet bet={bet} buttonId={buttonId} />;
+      return <ToggledBet key={buttonId} bet={bet} buttonId={buttonId} />;
     });
   } else {
     return (
