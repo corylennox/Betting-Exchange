@@ -114,7 +114,7 @@ function AppNested() {
             </div>
           </div>
           {/* Sportpane routes */}
-          <div className="w-full bg-skin-accent lg:max-w-2xl">
+          <div className="w-full bg-skin-accent lg:max-w-4xl">
             <Routes>
               <Route
                 path={rts.homepage}

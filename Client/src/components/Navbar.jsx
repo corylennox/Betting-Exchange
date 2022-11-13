@@ -41,9 +41,9 @@ export default function Navbar() {
   if (isAuthLoading) return <h1>Loading</h1>;
 
   return (
-    <div className="fixed top-0 left-1/2 z-50 w-full max-w-[76rem] translate-x-[-50%] bg-skin-default text-skin-header">
+    <div className="fixed top-0 left-1/2 z-50 w-full max-w-[90rem] translate-x-[-50%] bg-skin-default text-skin-header">
       <div className="inline-flex h-20 w-full flex-row flex-nowrap items-center">
-        <div className="h-full min-w-[12rem] max-w-[12rem] ">
+        <div className="h-full min-w-[12rem] max-w-[12rem]">
           <Link
             to={navs.home.href}
             className="flex h-full items-center pl-11"
@@ -57,7 +57,7 @@ export default function Navbar() {
             <img className="h-16" src="logo.png" alt="logo" />
           </Link>
         </div>
-        <div className="flex h-full w-full lg:max-w-2xl">
+        <div className="flex h-full w-full lg:max-w-4xl">
           <Link
             to={navs.home.href}
             className={

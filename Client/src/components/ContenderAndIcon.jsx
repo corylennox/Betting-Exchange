@@ -21,7 +21,7 @@ export default class ContenderAndIcon extends React.Component {
         return (
             <div className='w-full items-center flex justify-left'>
                 {this.renderOptionalImage()}
-                <h1 className='w-full text-skin-body text-sm font-medium font-sans pl-3 mr-4'>{this.props.name}</h1>
+                <h1 className='w-full text-skin-body text-sm font-medium font-sans pl-1 mr-2'>{this.props.name}</h1>
             </div>
         )
     }

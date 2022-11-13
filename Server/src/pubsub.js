@@ -5,12 +5,12 @@ const { LinesContainer } = require('./Lines');
 const pubsub = new PubSub();
 
 function shouldUpdateLine() {
-    const updateProbability = .01;
+    const updateProbability = .2;
     return Math.random() < updateProbability;
 }
 
 function publish(buttonId, newValue) {
-    console.log(`Publishing buttonId ${buttonId} with value ${newValue}`);
+    //console.log(`Publishing buttonId ${buttonId} with value ${newValue}`);
     pubsub.publish('LINE_UPDATE', {
         lineUpdate: {
             buttonId: buttonId,

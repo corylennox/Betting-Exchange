@@ -18,8 +18,8 @@ export default function ActiveThemeButton() {
         }}
       >
         <div className="flex h-full items-center">
-          <Listbox.Button className=" inline-flex h-1/2 items-center rounded-lg border-2 border-skin-overlay align-middle">
-            <span className="mx-1">Theme</span>
+          <Listbox.Button className=" inline-flex h-1/2 items-center  align-middle">
+            
             <span
               className={`mx-1 ${
                 activeTheme !== themeData[0].name ? "text-sky-500" : "" //this code colors the icon if theme isn't system
