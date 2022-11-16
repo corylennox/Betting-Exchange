@@ -114,7 +114,7 @@ function ToggledBet(props) {
             <label className="block uppercase tracking-wide text-skin-body font-bold">
               Wager
             </label>
-            <div className="inline-flex font-bold text-skin-body">
+            <div className="inline-flex font-bold text-skin-body w-full">
               <span className="">$</span>
               <input
                 className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
@@ -136,7 +136,7 @@ function ToggledBet(props) {
             <label className="block uppercase tracking-wide text-skin-body  font-bold ">
               To Win
             </label>
-            <div className="inline-flex font-bold text-skin-body">
+            <div className="inline-flex font-bold text-skin-body w-full">
               <span className="">$</span>
               <input
                 className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
