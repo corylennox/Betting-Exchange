@@ -191,11 +191,8 @@ function AppNested() {
                       Betslip
                     </h1>
                   </div>
-                  <div className="h-[calc(100vh-13.75rem)] overflow-y-auto">
+                  <div className="h-[calc(100vh-7.75rem)] overflow-y-auto">
                     <Betslip isSportPane={false} />
-                  </div>
-                  <div className="absolute bottom-0 h-[6rem] w-full border-t-2 border-gray-300">
-                    <BetslipSubmission />
                   </div>
                 </div>
               </div>

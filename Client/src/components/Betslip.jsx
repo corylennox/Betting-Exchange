@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { LINES_QUERY } from "../GraphQL/Queries";
 import { addLinesAction } from "../Actions";
+import BetslipSubmission from "./BetslipSubmission";
 
 function validateAndChangeWager(evt, setWagerAndWin, line) {
   const newWagerStr = evt.target.value;
@@ -160,6 +161,23 @@ function ToggledBet(props) {
   );
 }
 
+function PopulatedBetslip(toggledBetsArray) {
+  return toggledBetsArray.map(([buttonId, toggledBet]) => {
+    const bet = toggledBet.betInfo;
+    return <ToggledBet key={buttonId} bet={bet} buttonId={buttonId} />;
+  });
+}
+
+function UnpopulatedBetslip() {
+  return (
+    <div className=" w-full pt-28">
+      <h1 className=" text-skin-overlay text-center text-2xl">
+        You have no current bets.
+      </h1>
+    </div>
+  );
+}
+
 export default function Betslip(props) {
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const toggledBetsArray = Array.from(toggledBets);
@@ -193,18 +211,24 @@ export default function Betslip(props) {
     dispatch(changeNavbarTabAction(BottomNavbarItems[2].href));
   }
 
-  if (toggledBetsArray.length !== 0) {
-    return toggledBetsArray.map(([buttonId, toggledBet]) => {
-      const bet = toggledBet.betInfo;
-      return <ToggledBet key={buttonId} bet={bet} buttonId={buttonId} />;
-    });
-  } else {
-    return (
-      <div className=" w-full pt-28">
-        <h1 className=" text-skin-overlay text-center text-2xl">
-          You have no current bets.
-        </h1>
+  return (
+  <div>
+    <div className={`${props.isSportPane ? "lg:h-full h-[calc(100vh-10rem)] overflow-y-auto" : "h-[calc(100vh-13.75rem)] overflow-y-auto"}`}>
+    {
+      toggledBetsArray.length !== 0
+      ?
+        PopulatedBetslip(toggledBetsArray)
+      :
+        UnpopulatedBetslip()
+    }
+    </div>
+
+    { /* hide the submission button if it's the sports pane and if the screen is non-mobile, as there is already a submission on the right side */ }
+    <div className={`contents ${props.isSportPane ? "lg:hidden" : ""}`}>
+      <div className={`sticky ${props.isSportPane ? "bottom-16" : "bottom-0"} h-[6rem] w-full border-t-2 border-gray-300`}> {/* bottom-16 so it stays above BottomNavbar */}
+          <BetslipSubmission />
       </div>
-    );
-  }
+    </div>
+  </div>
+  )
 }
