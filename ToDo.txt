@@ -16,8 +16,6 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 
 - dividers between grid columns in OutrightBets
 
-- it takes a very long time when a bet in the betslip is deleted to then reload the betslip. You see the Loading... for maybe 0.5 seconds.
-
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
 
 - Once we move to a public webiste and off of localhost, we need to setup CORS according to
