@@ -16,9 +16,6 @@ import {
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { BottomNavbarItems } from "./BottomNavbar";
 import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { LINES_QUERY } from "../GraphQL/Queries";
-import { addLinesAction } from "../Actions";
 import BetslipSubmission from "./BetslipSubmission";
 
 function validateAndChangeWager(evt, setWagerAndWin, line) {
@@ -182,28 +179,6 @@ export default function Betslip(props) {
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const toggledBetsArray = Array.from(toggledBets);
   const dispatch = useDispatch();
-
-  let toggledButtonIds = [];
-  toggledBets.forEach((toggledBet) => {
-    toggledButtonIds.push(toggledBet.betInfo.buttonId);
-  })
-
-  /**
-   * The betslip needs its own query for toggledBet lines in the event the user refreshes the page.
-   * If the user refreshes the page, the only queried lines otherwise will be in the active sportspane, and
-   * it's possible there are toggled bets whose lines won't be queried by the active sportspane query.
-   */
-  const { loading, error } = useQuery(LINES_QUERY, {
-    variables: { buttonIds: toggledButtonIds },
-    onCompleted: (response) => dispatch(addLinesAction(response.lines)),
-  });
-
-  if (loading) return <h1>Loading...</h1>;
-
-  if (error) {
-    console.error("Error loading Betslip: " + error);
-    return <h1>Error Loading Betslip. Error logged to console.</h1>;
-  }
 
   //if this betslip is rendering as a sportpane,
   if (props.isSportPane) {

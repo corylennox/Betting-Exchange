@@ -22,6 +22,8 @@ import { parseMap } from "./utils";
 import ApolloWrapper from "./ConfigureBackend";
 import { useQuery } from "@apollo/client";
 import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
+import { LINES_QUERY } from "./GraphQL/Queries";
+import { addLinesAction } from "./Actions";
 import { useSubscription } from "@apollo/client";
 import { LINE_UPDATE_SUBSCRIPTION } from "./GraphQL/Subscriptions";
 import { translateUniversalData } from "./GraphQL/Translate";
@@ -40,6 +42,9 @@ function AppNested() {
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
 
+  // Allows us to only query the ToggledBet lines one time, when the app is first rendered, as that's all that's necessary.
+  const [skipLinesQuery, setSkipLinesQuery] = useState(false);
+
   const {
     loading: queryLoading,
     data: universalDataResponse,
@@ -55,11 +60,33 @@ function AppNested() {
     },
   });
 
+  /**
+   * The betslip needs its own query for toggledBet lines in the event the user refreshes the page.
+   * If the user refreshes the page, the only queried lines otherwise will be in the active sportspane, and
+   * it's possible there are toggled bets whose lines won't be queried by the active sportspane query.
+   */
+  let toggledButtonIds = [];
+  if (!skipLinesQuery)
+  {
+    toggledBets.forEach((toggledBet) => {
+      toggledButtonIds.push(toggledBet.betInfo.buttonId);
+    })
+  }
+  const { loading: linesQueryLoading, error: linesQueryError } = useQuery(LINES_QUERY, {
+    variables: { buttonIds: toggledButtonIds },
+    onCompleted: (response) => { setSkipLinesQuery(true); dispatch(addLinesAction(response.lines)) },
+    skip: skipLinesQuery,
+  });
+
   // Don't check for subscription loading, as that only equates to false once the first item arrives from the subscription, which may take a very long time hypothetically
-  if (queryLoading) return <h1>Loading</h1>;
+  if (queryLoading || linesQueryLoading) return <h1>Loading</h1>;
 
   if (queryError) {
     console.log("Error loading App query: " + queryError);
+    return <h1>Error Loading App. Error logged to console.</h1>;
+  }
+  if (linesQueryError) {
+    console.error("Error loading App linesQuery: " + linesQueryError);
     return <h1>Error Loading App. Error logged to console.</h1>;
   }
   if (subscriptionError) {
