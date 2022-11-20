@@ -14,6 +14,8 @@ Double check the logic in wagerWinUtils.js to make sure we are doing what fandue
 Implement commission into the betslip and backend (total, commission, To Win)
 Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
 
+- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
+
 - dividers between grid columns in OutrightBets
 
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
