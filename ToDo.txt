@@ -15,6 +15,7 @@ Implement commission into the betslip and backend (total, commission, To Win)
 Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
 
 - Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
+- Rename buttonId in frontend & backend?
 
 - dividers between grid columns in OutrightBets
 
