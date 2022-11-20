@@ -16,6 +16,7 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { WebSocketServer } = require('ws');
 const { useServer } = require('graphql-ws/lib/use/ws');
 const { pubsub, updateLines } = require('./src/pubsub');
+const betSubmissionController = require('./controller/betSubmission')
 
 const books = [
     {
