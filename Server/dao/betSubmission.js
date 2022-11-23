@@ -3,7 +3,7 @@ const db = require('../db/db');
 class BetSubmissionDAO {
     async createBetSubmission(
         userId, timePlaced, wagerAmount, totalPayout, line, buttonId) {
-        const [id] = await db('bet_submission')
+        const [id] = await db('confirmed_bets')
             .insert({
                 user_id: userId,
                 time_placed: timePlaced,
