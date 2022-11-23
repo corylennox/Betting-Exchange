@@ -17,6 +17,10 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
 - Rename buttonId in frontend & backend?
 
+- Change any line/wager/payout from Float to Int
+- Find a way to avoid passing totalPayout thru to backend. Setup some rule where totalPayout is not necessary and the rule can be applied on wagerAmount & line to determine totalPayout
+- in the submitBetslip mutation, check if the user is authorized (logged in)
+
 - dividers between grid columns in OutrightBets
 
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard

@@ -5,7 +5,6 @@ import PromptButton from "./PromptButton";
 import { convertToPriceString } from "./BetslipUtils";
 import { getWinAfterCommission } from "bettingexchangecommon";
 import { useQuery } from "@apollo/client";
-import { USER_INFO_QUERY } from "../GraphQL/Queries";
 import { translateUserInfo } from "../GraphQL/Translate";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -14,26 +13,7 @@ export default function BetslipSubmission() {
     const toggledBets = parseMap(useSelector((state) => state.toggledBets));
     const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect } = useAuth0();
 
-    const {
-        loading: isUserInfoLoading,
-        data: userInfoResponse,
-        error: userInfoError,
-      } = useQuery(USER_INFO_QUERY);
-
-    if (isAuthLoading || isUserInfoLoading) return <h1>Loading</h1>;
-
-    // We always expect there to be a userInfoError if the user is not authenticated, so ignore that case
-    if (isAuthenticated && userInfoError) {
-      console.log("Error loading BetslipSubmission: " + userInfoError);
-      return <h1>Error Loading BetslipSubmission. Error logged to console.</h1>;
-    }
-
-    let userInfo;
-    if (isAuthenticated)
-    {
-        userInfo = translateUserInfo(userInfoResponse);
-        console.log(`Got user info: ${userInfo.name}`);
-    }
+    if (isAuthLoading) return <h1>Loading</h1>;
 
     let wagerSum = 0
     let winSum = 0

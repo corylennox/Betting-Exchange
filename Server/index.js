@@ -18,36 +18,6 @@ const { useServer } = require('graphql-ws/lib/use/ws');
 const { pubsub, updateLines } = require('./src/pubsub');
 const betSubmissionController = require('./controller/betSubmission')
 
-const books = [
-    {
-      title: 'The Awakening',
-      author: 'Kate Chopin',
-    },
-    {
-      title: 'City of Glass',
-      author: 'Paul Auster',
-    },
-];
-
-const users = [
-    {
-        id: 0,
-        firstName: "Cory",
-        lastName: "Lennox",
-        email: "corylennox@gmail.com",
-        password: "muthafugginfriggyou",
-        age: 27,
-    },
-    {
-        id: 1,
-        firstName: "Emerson",
-        lastName: "Boyd",
-        email: "emersonboyd@gmail.com",
-        password: "muthafugginfriggyou2",
-        age: 25,
-    },
-]
-
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
@@ -58,8 +28,6 @@ const resolvers = {
       },
     },
     Query: {
-        books: () => books,
-        getAllUsers: () => users,
         universalData: () => UniversalData,
         sportPane: (parent, args, context, info) => {
             const sportBets = SportsBets.has(args.sportTitle) ? SportsBets.get(args.sportTitle) : FeaturedSportBets;
@@ -93,12 +61,12 @@ const resolvers = {
             });
             return lines;
         },
-        userInfo: (parent, args, context, info) => {
-            const isAuthenticated = context.auth.isAuthenticated;
-            if (!isAuthenticated) {
-                throw new AuthenticationError("Not logged in");
-            }
-            return { name: "Test User" };
+    },
+    Mutation: {
+        submitBetslip: async (parent, args) => {
+            const submittedBets = args.input;
+            const submittedBetIds = await betSubmissionController.createBetSubmissions(submittedBets);
+            return {betIds: submittedBetIds}
         }
     },
     Subscription: {

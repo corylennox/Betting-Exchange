@@ -5,7 +5,3 @@ export function translateUniversalData(universalDataResponse) {
 export function translateSportsPaneData(sportPaneDataResponse) {
     return sportPaneDataResponse.sportPane.sportData;
 }
-
-export function translateUserInfo(userInfoResponse) {
-    return userInfoResponse.userInfo;
-}

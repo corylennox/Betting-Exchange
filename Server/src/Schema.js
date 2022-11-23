@@ -93,10 +93,6 @@ const typeDefs = gql`
     sports: [SportHighLevelData!]
   }
 
-  type UserInfo {
-    name: String!
-  }
-
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
   # This "Book" type defines the queryable fields for every book in our data source.
@@ -105,25 +101,33 @@ const typeDefs = gql`
     author: String
   }
 
-  type User {
-    id: ID!
-    firstName: String!
-    lastName: String!
-    age: Int!
-    email: String!
-    password: String!
-  }
-
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    books: [Book]
-    getAllUsers: [User!]!
     universalData: UniversalData!
     sportPane(sportTitle: String!): SportPane!
     lines(buttonIds: [ID!]!): [Line!]!
-    userInfo: UserInfo!
+  }
+
+  input BetInput {
+    wagerAmount: Int!
+    totalPayout: Int!
+    line: Int!
+    buttonId: ID!
+  }
+
+  input SubmitBetslipInput {
+    bets: [BetInput!]!
+  }
+
+  type SubmitBetslipResponse {
+    betIds: [ID!]!
+  }
+
+  # The "Mutation" type is special just like the "Query" type
+  type Mutation {
+    submitBetslip(input: [BetInput!]!): SubmitBetslipResponse!
   }
 
   # The "Subscription" type is special, similar to the "Query" type
