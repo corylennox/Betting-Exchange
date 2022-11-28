@@ -1,4 +1,4 @@
-const db = require('../db/db');
+import db from '../db/db';
 
 class BetSubmissionDAO {
     async createBetSubmission(
@@ -18,4 +18,5 @@ class BetSubmissionDAO {
     }
 }
 
-module.exports = new BetSubmissionDAO()
+const betSubmissionDAO = new BetSubmissionDAO()
+export default betSubmissionDAO;

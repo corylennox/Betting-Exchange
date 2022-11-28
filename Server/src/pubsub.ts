@@ -2,7 +2,7 @@ const { PubSub } = require('graphql-subscriptions');
 const { SportsBets } = require('./Data');
 const { LinesContainer } = require('./Lines');
 
-const pubsub = new PubSub();
+export const pubsub = new PubSub();
 
 function shouldUpdateLine() {
     const updateProbability = .2;
@@ -40,7 +40,7 @@ function conditionalPublishTotalLineUpdate(buttonId, total) {
     }
 }
 
-function updateLines() {
+export function updateLines() {
     LinesContainer.forEach((line) => {
         if (line.type == "MoneyLine") {
             conditionalPublishMoneyLineUpdate(line.buttonId, line);
@@ -53,5 +53,3 @@ function updateLines() {
         }
     });
 }
-
-module.exports = { pubsub, updateLines };

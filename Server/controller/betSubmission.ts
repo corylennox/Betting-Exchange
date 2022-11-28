@@ -1,4 +1,4 @@
-const betSubmissionService = require('../service/betSubmission');
+import betSubmissionService from '../service/betSubmission';
 
 class BetSubmissionController {
     async createBetSubmissions(submittedBets) {
@@ -35,4 +35,5 @@ class BetSubmissionController {
     }
 }
 
-module.exports = new BetSubmissionController();
+const betSubmissionController = new BetSubmissionController();
+export default betSubmissionController;

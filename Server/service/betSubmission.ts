@@ -1,4 +1,4 @@
-const betSubmissionDAO = require('../dao/betSubmission');
+import betSubmissionDAO from '../dao/betSubmission';
 
 class BetSubmissionService {
     createBetSubmission(betSubmissionDto) {
@@ -7,4 +7,5 @@ class BetSubmissionService {
     }
 }
 
-module.exports = new BetSubmissionService();
+const betSubmissionService = new BetSubmissionService();
+export default betSubmissionService;

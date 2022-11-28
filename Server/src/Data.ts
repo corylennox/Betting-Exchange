@@ -1,5 +1,5 @@
 // The App.jsx will request UniversalData from the server, and the server will reply with this data:
-const UniversalData = {
+export const UniversalData = {
   homepage: {
     title: "Popular",
     href: "/",
@@ -51,7 +51,7 @@ const UniversalData = {
 };
 
 // The SportPane will be passed the href and will request the information to the server, and the server will reply with this data:
-const FeaturedSportBets = {
+export const FeaturedSportBets = {
   sportTitle: "Popular",
   href: "/", //probably doesn't need to be here
   tabs: [
@@ -980,11 +980,9 @@ const SoccerSportBets = {
   ],
 };
 
-const SportsBets = new Map([
+export const SportsBets = new Map<string, any>([
   [FeaturedSportBets.sportTitle, FeaturedSportBets],
   [BasketballSportBets.sportTitle, BasketballSportBets],
   [BaseballSportBets.sportTitle, BaseballSportBets],
   [SoccerSportBets.sportTitle, SoccerSportBets],
 ]);
-
-module.exports = { UniversalData, FeaturedSportBets, SportsBets };

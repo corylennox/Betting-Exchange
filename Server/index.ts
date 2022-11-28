@@ -1,22 +1,25 @@
 require('dotenv').config() // loads environment variables from .env file
-const { ApolloServer, AuthenticationError } = require('@apollo/server');
-const { startStandaloneServer } = require('@apollo/server/standalone');
-const typeDefs = require('./src/Schema');
-const { UniversalData, FeaturedSportBets, SportsBets } = require('./src/Data');
-const { LinesContainer } = require('./src/Lines');
-const { verifyToken } = require('./src/verifyToken');
-const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
-const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
-const express = require('express');
-const http = require('http');
-const cors = require('cors');
-const { json } = require('body-parser');
-const { expressMiddleware } = require('@apollo/server/express4');
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { WebSocketServer } = require('ws');
-const { useServer } = require('graphql-ws/lib/use/ws');
-const { pubsub, updateLines } = require('./src/pubsub');
-const betSubmissionController = require('./controller/betSubmission')
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { typeDefs } from './src/Schema';
+import { UniversalData, FeaturedSportBets, SportsBets } from './src/Data';
+import { LinesContainer } from './src/Lines';
+import { verifyToken } from './src/verifyToken';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
+import cors from 'cors';
+import { json } from 'body-parser';
+import { expressMiddleware } from '@apollo/server/express4';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { WebSocketServer } from 'ws';
+import { useServer } from 'graphql-ws/lib/use/ws';
+import { pubsub, updateLines } from './src/pubsub';
+import betSubmissionController from './controller/betSubmission';
+import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache';
+import { Jwt, JwtPayload } from 'jsonwebtoken';
+import { GraphQLError } from 'graphql';
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -55,7 +58,7 @@ const resolvers = {
             return { sportData: sportBets, lines };
         },
         lines: (parent, args, context, info) => {
-            lines = [];
+            let lines = [];
             args.buttonIds.forEach((buttonId) => {
                 lines.push(LinesContainer.get(buttonId));
             });
@@ -63,7 +66,19 @@ const resolvers = {
         },
     },
     Mutation: {
-        submitBetslip: async (parent, args) => {
+        submitBetslip: async (parent, args, context, info) => {
+            const isAuthenticated = context.auth.isAuthenticated;
+            if (!isAuthenticated) {
+                // throwing a `GraphQLError` here allows us to specify an HTTP status code,
+                // standard `Error`s will have a 500 status code by default
+                throw new GraphQLError('User is not authenticated', {
+                    extensions: {
+                    code: 'UNAUTHENTICATED',
+                    http: { status: 401 },
+                    },
+                });
+            }
+
             const submittedBets = args.input;
             const submittedBetIds = await betSubmissionController.createBetSubmissions(submittedBets);
             return {betIds: submittedBetIds}
@@ -100,7 +115,7 @@ async function startApolloServer() {
     const server = new ApolloServer({
         schema,
         csrfPrevention: true,
-        cache: 'bounded',
+        cache: new InMemoryLRUCache(),
         /**
          * What's up with this embed: true option?
          * These are our recommended settings for using AS;
@@ -147,7 +162,7 @@ async function startApolloServer() {
                     const authHeader = req.headers.authorization || "";
                     if (authHeader) {
                         const token = authHeader.split(" ")[1];
-                        const payload = await verifyToken(token);
+                        const payload : JwtPayload | Jwt = await verifyToken(token);
                         isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
                         console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
                     }
@@ -159,11 +174,12 @@ async function startApolloServer() {
         }),
     );
 
-    await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+    await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
     console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 
-    lineUpdateInteval = 1000; // 1 second
+    const lineUpdateInteval = 1000; // 1 second
     setInterval(updateLines, lineUpdateInteval);
+    console.log("Server publishing websocket updates");
 }
 
 startApolloServer();

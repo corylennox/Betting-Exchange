@@ -1,9 +1,9 @@
-const gql = require('graphql-tag');
+import gql from 'graphql-tag';
 
-// A schema is a collection of type definitions (hence "typeDefs")
+// A schemqla is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
-const typeDefs = gql`
+export const typeDefs = gql`
 
   enum BetType {
     OutrightBet
@@ -135,5 +135,3 @@ const typeDefs = gql`
     lineUpdate: LineUpdate # cannot be forced to be non-null (i.e., no "!").
   }
 `;
-
-module.exports = typeDefs;

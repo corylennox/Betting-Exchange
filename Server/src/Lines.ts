@@ -1,4 +1,4 @@
-const { LineContainer } = require("bettingexchangecommon/lineUtils");
+import { LineContainer } from "bettingexchangecommon/lineUtils";
 
 const LinesArray = [
     { buttonId: 43452, type: "MoneyLine", value: 400 },
@@ -157,6 +157,4 @@ const LinesArray = [
     { buttonId: 43452, type: "MoneyLine", value: 400 },
 ]
 
-const LinesContainer = new LineContainer(LinesArray);
-
-module.exports = { LinesContainer };
+export const LinesContainer = new LineContainer(LinesArray);

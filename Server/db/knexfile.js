@@ -4,7 +4,7 @@ require('dotenv').config({ path: '../.env'}); //load env vars from .env file
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
- module.exports = {
+export default {
 
   development: {
     client: 'postgresql',

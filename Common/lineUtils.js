@@ -1,4 +1,4 @@
-class LineContainer {
+export class LineContainer {
     constructor(lines = []) {
         this.lines = new Array();
         lines.forEach((line) => {
@@ -79,5 +79,3 @@ class LineContainer {
         });
     }
 }
-
-module.exports = { LineContainer }
