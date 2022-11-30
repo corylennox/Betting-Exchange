@@ -164,7 +164,7 @@ async function startApolloServer() {
                         const token = authHeader.split(" ")[1];
                         const payload : JwtPayload | Jwt = await verifyToken(token);
                         isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
-                        console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
+                        //console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
                     }
                 } catch (error) {
                     console.error(`Auth0 Token validation error: ${error}`);
