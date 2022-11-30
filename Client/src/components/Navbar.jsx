@@ -6,7 +6,8 @@ import ActiveThemeButton from "./ActiveThemeButton.jsx";
 import rts from "../MyRoutes";
 import { useAuth0 } from "@auth0/auth0-react";
 import PromptButton from "./PromptButton";
-import { UserCircleIcon } from "@heroicons/react/outline";
+//import { UserCircleIcon } from "@heroicons/react/outline";
+import { ReactComponent as LogoSvgRaw } from '../images/logo.svg';
 
 const navs = {
   home: {
@@ -52,9 +53,8 @@ export default function Navbar() {
               dispatch(changeNavbarTabAction(rts.homepage));
             }}
           >
-            {" "}
             {/* padding left matches the margin left in the sidebar, so logo and sidebar are left-aligned */}
-            <img className="h-16" src="logo.png" alt="logo" />
+            <LogoSvgRaw class="h-16" />
           </Link>
         </div>
         <div className="flex h-full w-full lg:max-w-4xl">
@@ -91,57 +91,57 @@ export default function Navbar() {
         </div>
         <div className="inline-flex h-full min-w-[22rem] max-w-[22rem] flex-nowrap items-center justify-end align-middle">
           {
-          isAuthenticated
-          ?
-            <div className="contents">
-            <div className="text-right mr-2">
-              <span className="block text-xs">Balance</span>
-              <span className="block text-s">$0.00</span>
-            </div>
-            <div className="flex h-full w-full items-center py-5 mr-4">
-              <PromptButton onClick={() => {}} // onClick() should redirect to Strip deposit
-                text="Deposit"
-                textSize="text-m"
-                gradientColorStart="from-skin-buttonAccentGradientStart"
-                gradientColorEnd="to-skin-buttonAccentGradientEnd"
-                gradientColorPressedStart="active:from-skin-buttonAccentPressed"
-                gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
-            </div>
-            <div className="h-1/3 w-1 items-center bg-skin-sidebarDivider" />
-            <div className="h-8 w-8 mx-4">
-              <Link
-                to={loginItems.account.href}
-                className="flex h-8 w-8 items-center"
-                onClick={() => {
-                  dispatch(changeSportpaneAction(loginItems.account.href));
-                  dispatch(changeNavbarTabAction(rts.account));
-                }}
-              >
-                <img className="h-8 w-8" src="accountIcon.svg" alt="logo" />
-              </Link>
-            </div>
-            </div>
-          :
-            <div className="contents">
-            <div className="flex h-full w-full items-center py-5 mr-4">
-              <PromptButton onClick={() => loginWithRedirect({screen_hint:'login'})}
-                text="Log in"
-                textSize="text-m"
-                gradientColorStart="from-skin-buttonAccentGradientStart"
-                gradientColorEnd="to-skin-buttonAccentGradientEnd"
-                gradientColorPressedStart="active:from-skin-buttonAccentPressed"
-                gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
-            </div>
-            <div className="flex h-full w-full items-center py-5 mr-4">
-              <PromptButton onClick={() => loginWithRedirect({screen_hint:'signup'})}
-                text="Sign up"
-                textSize="text-m"
-                gradientColorStart="from-skin-buttonMutedGradientStart"
-                gradientColorEnd="to-skin-buttonMutedGradientEnd"
-                gradientColorPressedStart="active:from-skin-buttonMutedPressed"
-                gradientColorPressedEnd="active:to-skin-buttonMutedPressed" />
-            </div>
-            </div>
+            isAuthenticated
+              ?
+              <div className="contents">
+                <div className="text-right mr-2">
+                  <span className="block text-xs">Balance</span>
+                  <span className="block text-s">$0.00</span>
+                </div>
+                <div className="flex h-full w-full items-center py-5 mr-4">
+                  <PromptButton onClick={() => { }} // onClick() should redirect to Strip deposit
+                    text="Deposit"
+                    textSize="text-m"
+                    gradientColorStart="from-skin-buttonAccentGradientStart"
+                    gradientColorEnd="to-skin-buttonAccentGradientEnd"
+                    gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+                    gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+                </div>
+                <div className="h-1/3 w-1 items-center bg-skin-sidebarDivider" />
+                <div className="h-8 w-8 mx-4">
+                  <Link
+                    to={loginItems.account.href}
+                    className="flex h-8 w-8 items-center"
+                    onClick={() => {
+                      dispatch(changeSportpaneAction(loginItems.account.href));
+                      dispatch(changeNavbarTabAction(rts.account));
+                    }}
+                  >
+                    <img className="h-8 w-8" src="accountIcon.svg" alt="logo" />
+                  </Link>
+                </div>
+              </div>
+              :
+              <div className="contents">
+                <div className="flex h-full w-full items-center py-5 mr-4">
+                  <PromptButton onClick={() => loginWithRedirect({ screen_hint: 'login' })}
+                    text="Log in"
+                    textSize="text-m"
+                    gradientColorStart="from-skin-buttonAccentGradientStart"
+                    gradientColorEnd="to-skin-buttonAccentGradientEnd"
+                    gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+                    gradientColorPressedEnd="active:to-skin-buttonAccentPressed" />
+                </div>
+                <div className="flex h-full w-full items-center py-5 mr-4">
+                  <PromptButton onClick={() => loginWithRedirect({ screen_hint: 'signup' })}
+                    text="Sign up"
+                    textSize="text-m"
+                    gradientColorStart="from-skin-buttonMutedGradientStart"
+                    gradientColorEnd="to-skin-buttonMutedGradientEnd"
+                    gradientColorPressedStart="active:from-skin-buttonMutedPressed"
+                    gradientColorPressedEnd="active:to-skin-buttonMutedPressed" />
+                </div>
+              </div>
           }
           <div className="h-1/3 w-1 items-center bg-skin-sidebarDivider" />
           <span className="inline-block h-full items-center px-4 align-middle">

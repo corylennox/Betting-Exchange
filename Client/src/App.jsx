@@ -7,7 +7,6 @@ import Account from "./components/Account";
 import MyBets from "./components/MyBets";
 import BottomNavbar from "./components/BottomNavbar";
 import Betslip from "./components/Betslip";
-import BetslipSubmission from "./components/BetslipSubmission";
 import {
   BrowserRouter as Router,
   Route,

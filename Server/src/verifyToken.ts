@@ -11,7 +11,7 @@ export const verifyToken = async (bearerToken) => {
         jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
     });
 
-    console.log(`Looking for bearer token ${bearerToken} from addr ${process.env.AUTH0_DOMAIN} and audience ${process.env.AUDIENCE}`);
+    //console.log(`Looking for bearer token ${bearerToken} from addr ${process.env.AUTH0_DOMAIN} and audience ${process.env.AUDIENCE}`);
     function getJwksClientKey(header, callback) {
         client.getSigningKey(header.kid, function (error, key: SigningKey | RsaSigningKey) {
             if (error)
