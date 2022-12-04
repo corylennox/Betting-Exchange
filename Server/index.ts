@@ -153,6 +153,7 @@ async function startApolloServer() {
         expressMiddleware(server, {
             context: async ({ req, ...rest }) => { 
                 let isAuthenticated = false;
+                let userId: string = "";
                 /**
                  * gets the jwt off the request
                  * if there is a token, verify it
@@ -164,12 +165,15 @@ async function startApolloServer() {
                         const token = authHeader.split(" ")[1];
                         const payload : JwtPayload | Jwt = await verifyToken(token);
                         isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
+                        if (isAuthenticated) {
+                            userId = payload.sub;
+                        }
                         //console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
                     }
                 } catch (error) {
                     console.error(`Auth0 Token validation error: ${error}`);
                 }
-                return { ...rest, req, auth: { isAuthenticated } };
+                return { ...rest, req, auth: { isAuthenticated, userId } };
             },
         }),
     );

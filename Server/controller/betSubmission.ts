@@ -11,7 +11,7 @@ class BetSubmissionController {
                 betSubmissionPromises.push(
                     betSubmissionService.createBetSubmission(
                     {
-                        userId: 3,  //TODO: dynamically pass userIds (might require changing field type to name instead of bigint in postgresql table)
+                        userId: "thecrazyshark@gmail.com",  //TODO: dynamically pass userIds (might require changing field type to name instead of bigint in postgresql table)
                         timePlaced: timestampInNanoseconds,
                         wagerAmount: bet.wagerAmount,
                         totalPayout: 10,  //TODO: calculate payout using wager and line

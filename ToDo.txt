@@ -33,6 +33,11 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 
 - use ints for all JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
 
+- Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+
+- We want a user experience like Fanduel. I.e., the user basically always gets filled on their orders.
+  Therefore, over the websocket we will send 2 price levels for each side of each buttonId. And the frontend will allow a max bet up to the sum of the wager amounts for those two price levels.
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)
