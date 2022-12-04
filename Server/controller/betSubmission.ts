@@ -11,23 +11,23 @@ class BetSubmissionController {
                 betSubmissionPromises.push(
                     betSubmissionService.createBetSubmission(
                     {
-                        userId: 3,
+                        userId: 3,  //TODO: dynamically pass userIds (might require changing field type to name instead of bigint in postgresql table)
                         timePlaced: timestampInNanoseconds,
                         wagerAmount: bet.wagerAmount,
-                        totalPayout: bet.totalPayout,
+                        totalPayout: 10,  //TODO: calculate payout using wager and line
                         line: bet.line,
                         buttonId: bet.buttonId
                     })
                 );
             });
 
-            let submittedBetIds = [];
-            await Promise.all(betSubmissionPromises).then((betIds) => {
-                betIds.forEach((betId) => {
-                    submittedBetIds.push(betId.id);
+            let returnedButtonIds = [];
+            await Promise.all(betSubmissionPromises).then((buttonIds) => {
+                buttonIds.forEach((buttonId) => {
+                    returnedButtonIds.push(buttonId.button_id);
                 })
             });
-            return submittedBetIds;
+            return returnedButtonIds;
         } catch (err) {
             console.log(err);
             return []

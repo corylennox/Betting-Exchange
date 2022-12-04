@@ -1,10 +1,9 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 // A schemqla is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
 export const typeDefs = gql`
-
   enum BetType {
     OutrightBet
     GameBet
@@ -28,9 +27,9 @@ export const typeDefs = gql`
   }
 
   enum LineType {
-    MoneyLine,
-    SpreadLine,
-    TotalLine,
+    MoneyLine
+    SpreadLine
+    TotalLine
   }
 
   type Line {
@@ -93,14 +92,6 @@ export const typeDefs = gql`
     sports: [SportHighLevelData!]
   }
 
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String
-  }
-
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
@@ -108,21 +99,6 @@ export const typeDefs = gql`
     universalData: UniversalData!
     sportPane(sportTitle: String!): SportPane!
     lines(buttonIds: [ID!]!): [Line!]!
-  }
-
-  input BetInput {
-    wagerAmount: Int!
-    totalPayout: Int!
-    line: Int!
-    buttonId: ID!
-  }
-
-  input SubmitBetslipInput {
-    bets: [BetInput!]!
-  }
-
-  type SubmitBetslipResponse {
-    betIds: [ID!]!
   }
 
   # The "Mutation" type is special just like the "Query" type
@@ -133,5 +109,19 @@ export const typeDefs = gql`
   # The "Subscription" type is special, similar to the "Query" type
   type Subscription {
     lineUpdate: LineUpdate # cannot be forced to be non-null (i.e., no "!").
+  }
+
+  input BetInput {
+    wagerAmount: Int!
+    line: Int!
+    buttonId: ID!
+  }
+
+  input SubmitBetslipInput {
+    bets: [BetInput!]!
+  }
+
+  type SubmitBetslipResponse {
+    returnedButtonIds: [ID!]!
   }
 `;

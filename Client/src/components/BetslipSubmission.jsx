@@ -32,7 +32,7 @@ export default function BetslipSubmission() {
   const winAfterCommission = getWinAfterCommission(winSum);
   const comissionAmt = winSum - winAfterCommission;
 
-  const submitAndDeleteBets = () => {
+  const submitAndDeleteBets = async () => {
     let submittedBetsToDelete = [];
     let input = [];
     toggledBets.forEach((toggledBet) => {
@@ -41,8 +41,7 @@ export default function BetslipSubmission() {
       {
         input.push({
           wagerAmount: toggledBets.get(toggledBet.betInfo.buttonId).wagerInteger,
-          totalPayout: toggledBets.get(toggledBet.betInfo.buttonId).wagerInteger + toggledBets.get(toggledBet.betInfo.buttonId).winInteger,
-          line: linesContainer.get(toggledBet.betInfo.buttonId).value,
+          line: linesContainer.get(toggledBet.betInfo.buttonId).value * 10, 
           buttonId: toggledBet.betInfo.buttonId,
         });
 
@@ -53,14 +52,15 @@ export default function BetslipSubmission() {
       
     });
 
-/////////////////////////////////////
-   console.log(submitBetslip({
+   let test = await submitBetslip({
       variables: {
         input: input,
       },
-    }));
-//////////////////////////////////////
+    });
 
+    test.data.submitBetslip.returnedButtonIds.forEach(buttonId => {
+      console.log(buttonId)
+    })
 
     //TODO: verify bets were successfully placed before deleting
     dispatch(deleteBetsAction(submittedBetsToDelete));

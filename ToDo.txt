@@ -31,6 +31,8 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - Switch the PubSub class usage into PubSubEngine for production use, as described in:
   https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 
+- use ints for all JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)

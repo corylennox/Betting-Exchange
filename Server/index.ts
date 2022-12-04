@@ -80,8 +80,8 @@ const resolvers = {
             }
 
             const submittedBets = args.input;
-            const submittedBetIds = await betSubmissionController.createBetSubmissions(submittedBets);
-            return {betIds: submittedBetIds}
+            const submittedBetButtonIds = await betSubmissionController.createBetSubmissions(submittedBets);
+            return {returnedButtonIds: submittedBetButtonIds}
         }
     },
     Subscription: {
