@@ -31,6 +31,11 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - Switch the PubSub class usage into PubSubEngine for production use, as described in:
   https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 
+- Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+
+- We want a user experience like Fanduel. I.e., the user basically always gets filled on their orders.
+  Therefore, over the websocket we will send 2 price levels for each side of each buttonId. And the frontend will allow a max bet up to the sum of the wager amounts for those two price levels.
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)

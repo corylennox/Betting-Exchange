@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+exports.up = async function(knex) {
   return knex.schema.renameTable('bet_submission', 'confirmed_bets')
 };
 
@@ -10,6 +10,6 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
+exports.down = async function(knex) {
   return knex.schema.renameTable('confirmed_bets', 'bet_submission')
 };
