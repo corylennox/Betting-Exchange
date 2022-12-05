@@ -2,8 +2,8 @@ import betSubmissionDAO from '../dao/betSubmission';
 
 class BetSubmissionService {
     createBetSubmission(betSubmissionDto) {
-        const { userId, timePlaced, wagerAmount, totalPayout, line, buttonId } = betSubmissionDto;
-        return betSubmissionDAO.createBetSubmission(userId, timePlaced, wagerAmount, totalPayout, line, buttonId);
+        const { userId, buttonId, line, wagerAmount, totalPayout, commission, timePlaced } = betSubmissionDto;
+        return betSubmissionDAO.createBetSubmission(userId, buttonId, line, wagerAmount, totalPayout, commission, timePlaced);
     }
 }
 

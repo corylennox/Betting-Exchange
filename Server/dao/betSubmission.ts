@@ -2,15 +2,16 @@ import db from '../db/db';
 
 class BetSubmissionDAO {
     async createBetSubmission(
-        userId, timePlaced, wagerAmount, totalPayout, line, buttonId) {
+        userId, buttonId, line, wagerAmount, totalPayout, commission, timePlaced) {
         const [ButtonId] = await db('confirmed_bets')
             .insert({
                 user_id: userId,
-                time_placed: timePlaced,
+                button_id: buttonId,
+                line,
                 wager_amount: wagerAmount,
                 total_payout: totalPayout,
-                line,
-                button_id: buttonId,
+                commission: commission,
+                time_placed: timePlaced,
             })
             .returning('button_id');
 
