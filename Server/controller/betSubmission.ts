@@ -1,7 +1,7 @@
 import betSubmissionService from '../service/betSubmission';
 
 class BetSubmissionController {
-    async createBetSubmissions(submittedBets) {
+    async createBetSubmissions(submittedBets, userId) {
         const timestampInNanoseconds = Date.now() * 1000000;
 
         let betSubmissionPromises = []
@@ -11,7 +11,7 @@ class BetSubmissionController {
                 betSubmissionPromises.push(
                     betSubmissionService.createBetSubmission(
                     {
-                        userId: "thecrazyshark@gmail.com",  //TODO: dynamically pass userIds (might require changing field type to name instead of bigint in postgresql table)
+                        userId: userId,
                         timePlaced: timestampInNanoseconds,
                         wagerAmount: bet.wagerAmount,
                         totalPayout: 10,  //TODO: calculate payout using wager and line
