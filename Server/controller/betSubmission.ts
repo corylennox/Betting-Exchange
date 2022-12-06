@@ -6,8 +6,6 @@ class BetSubmissionController {
         const timestampInNanoseconds = Date.now() * 1000000;
 
         let betSubmissionPromises = []
-        let winAmount = 0
-        let line = 0;
         try {
             submittedBets.forEach((bet) => {
 
@@ -16,9 +14,9 @@ class BetSubmissionController {
                     {
                         userId: userId,
                         buttonId: bet.buttonId,
-                        line: bet.line, //replace with getLine(bet.buttonId)
+                        line: bet.line, //TODO: get line from buttonId on backend
                         wagerAmount: bet.wagerAmount,
-                        totalPayout: bet.wagerAmount + 5000, //replace with calculateWin(bet.buttonId, bet.wagerAmount)
+                        totalPayout: bet.wagerAmount * 2, //TODO: get totalPayout from buttonId on backend
                         commission: Math.ceil(bet.wagerAmount * 0.01),
                         timePlaced: timestampInNanoseconds,
                     })
