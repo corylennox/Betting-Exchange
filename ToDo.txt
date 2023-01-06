@@ -38,8 +38,15 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - We want a user experience like Fanduel. I.e., the user basically always gets filled on their orders.
   Therefore, over the websocket we will send 2 price levels for each side of each buttonId. And the frontend will allow a max bet up to the sum of the wager amounts for those two price levels.
 
+- V2: Pro version of our app that allows users to have access to limit orders and selling on the outright betslip
+
 potential names:
 - Aight Bet
 - Nouveau ("new" in french)
 - Pourtoi ("for you" in french)
 - Eiffel
+- Contra (Latin), thanks nibs
+- Forum
+- Barter
+- Courtside
+- Jeffery

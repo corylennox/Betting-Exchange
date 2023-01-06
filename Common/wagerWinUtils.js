@@ -1,4 +1,4 @@
-export function determineWin(line, wager) {
+function determineWin(line, wager) {
     let ratio = 0.0;
     if (line.type === "SpreadLine" || line.type === "TotalLine")
         ratio = 1.0;
@@ -7,7 +7,7 @@ export function determineWin(line, wager) {
     return Math.floor(wager * ratio);
 }
 
-export function determineWager(line, win) {
+function determineWager(line, win) {
     let ratio = 0.0;
     if (line.type === "SpreadLine" || line.type === "TotalLine")
         ratio = 1.0;
@@ -20,7 +20,9 @@ function getCommission() {
     return 0.01;
 }
 
-export function getWinAfterCommission(win) {
+function getWinAfterCommission(win) {
     const winAfterCommission = Math.floor(win * (1.0 - getCommission()));
     return winAfterCommission;
 }
+
+module.exports = { determineWin, determineWager, getWinAfterCommission }
