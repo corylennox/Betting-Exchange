@@ -24,6 +24,10 @@ class BookEntry {
         result.add(new DollarAmount(determineWin(this.line.getAsLegacyLine(), this.wager)));
         return result;
     }
+
+    toString(): String {
+        return `{ betId: ${this.betId}, wager: ${this.wager}, line: ${this.line} }`
+    }
 }
 
 class BookLevel {
@@ -53,22 +57,26 @@ class BookLevel {
             const aggressingDesiredWin = new DollarAmount(determineWager(entry.line.getAsLegacyLine(), aggressingWager.dollarAmount.value));
             let matchedPassiveWager: DollarAmount;
             let matchedAggressiveWager: DollarAmount;
-            console.log(`Aggressing wager ${aggressingWager} led to aggressingDesiredWin ${aggressingDesiredWin}`);
+            let matchedPassiveWagerFullyFilled = false;
             if (aggressingDesiredWin.isGreater(entry.wager) || aggressingDesiredWin.isEqual(entry.wager)) {
                 matchedPassiveWager = new DollarAmount(entry.wager.value);
-                matchedAggressiveWager = new DollarAmount(determineWager(aggressingWager.line.getAsLegacyLine(), entry.wager.value));
+                matchedAggressiveWager = new DollarAmount(determineWin(entry.line.getAsLegacyLine(), entry.wager.value));
                 this.entries.shift(); // drop entry from matches
                 i -= 1;
+                matchedPassiveWagerFullyFilled = true;
             }
             else {
                 matchedPassiveWager = aggressingDesiredWin;
                 matchedAggressiveWager = new DollarAmount(aggressingWager.dollarAmount.value);
+                entry.wager.subtract(matchedPassiveWager);
             }
 
             aggressingWager.dollarAmount.subtract(matchedAggressiveWager);
             matches.push(new Match(aggressingBetId, entry.betId, aggressingSide,
                 new LineDollarAmountPair(aggressingWager.line, matchedAggressiveWager),
-                new LineDollarAmountPair(entry.line, matchedPassiveWager)));
+                new LineDollarAmountPair(entry.line, matchedPassiveWager),
+                aggressingWager.dollarAmount.isEmpty(),
+                matchedPassiveWagerFullyFilled));
             return matches;
         }
     }
@@ -84,6 +92,10 @@ class BookLevel {
     getInfo(): LineDollarAmountPair {
         return new LineDollarAmountPair(this.line, this.getDollarAmount());
     }
+
+    toString(): String {
+        return `{ line: ${this.line}, entries: [ ${this.entries} ] }`
+    }
 }
 
 export abstract class BookSide {
@@ -95,7 +107,8 @@ export abstract class BookSide {
 
     abstract addBet(betId: bigint, lineDollarAmountPair: LineDollarAmountPair): void;
     abstract tryMatch(aggressingBetId: bigint, aggressingWager: LineDollarAmountPair): Array<Match>;
-    abstract getLevels(maxDepth: number = 10): Array<LineDollarAmountPair>;
+    abstract getLevels(maxDepth: number): Array<LineDollarAmountPair>;
+    abstract toString(): String;
 }
 
 export class ExplicitBookSide extends BookSide {
@@ -144,6 +157,10 @@ export class ExplicitBookSide extends BookSide {
             levels.push(this.levels[i].getInfo());
         }
         return levels;
+    }
+
+    toString(): String {
+        return `{ side: ${this.side}, levels: [ ${this.levels} ] }`
     }
 }
 
@@ -242,5 +259,10 @@ export class ImplicitOutrightBookSide extends BookSide {
         }
 
         return impliedBookLevels;
+    }
+
+    toString(): String {
+        assert(false, "Not implemented yet");
+        return "";
     }
 }

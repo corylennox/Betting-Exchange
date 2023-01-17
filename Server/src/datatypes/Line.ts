@@ -119,8 +119,7 @@ export class MoneyLine extends Line {
             return false;
         }
 
-        let canMatch = this.value > 0 && aggressingLine.value > 0
-            || this.getAsUnscaledFloat() == -100 && aggressingLine.getAsUnscaledFloat() == -100
+        let canMatch = this.getAsUnscaledFloat() <= -100 && aggressingLine.getAsUnscaledFloat() <= -100
             || this.getAsUnscaledFloat() == 100 && aggressingLine.getAsUnscaledFloat() == 100
             || this.getAsUnscaledFloat() == -100 && aggressingLine.getAsUnscaledFloat() == 100
             || this.getAsUnscaledFloat() == 100 && aggressingLine.getAsUnscaledFloat() == -100

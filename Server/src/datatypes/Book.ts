@@ -19,10 +19,10 @@ export class Book {
         this.ask = ask;
     }
 
-    addBet(side: Side, betId: bigint, lineDollarAmountPair: LineDollarAmountPair, restingType: RestingType): Array<Match> {      
+    addBet(side: Side, betId: bigint, lineDollarAmountPair: LineDollarAmountPair, restingType: RestingType): Array<Match> | boolean {
         if (lineDollarAmountPair.line.getType() != this.lineType) {
             assert(false, `Line Types have to be the same. Book line type is ${this.lineType} while given line is ${lineDollarAmountPair}`);
-            return new Array<Match>();
+            return false;
         }
 
         // Check if the other side has any matchable bets
@@ -45,7 +45,14 @@ export class Book {
             }
         }
 
-        console.log(`${matches}`);
         return matches;
+    }
+
+    getLineType(): LineType {
+        return this.lineType;
+    }
+
+    toString(): String {
+        return `{ lineType: ${this.lineType}, bids: ${this.bid}, asks: ${this.ask} }`
     }
 }
