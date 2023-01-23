@@ -84,3 +84,15 @@ export const LINES_QUERY = gql`
     }
   }
 `;
+
+export const MY_BETS_QUERY = gql`
+  query MyBetsQuery {
+    myBets {
+      id
+      wager
+      timePlaced
+      totalPayout
+      buttonId
+    }
+  }
+`;

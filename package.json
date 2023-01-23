@@ -12,7 +12,7 @@
     "new-migration": "cd Server/db && npx knex migrate:make init",
     "migrate": "cd Server && npx knex migrate:latest --knexfile db/knexfile.js",
     "rollback": "cd Server && npx knex migrate:rollback --knexfile db/knexfile.js",
-    "test": "run-p test-client test-common",
+    "test": "run-p test-client test-server test-common",
     "test-client": "cd Client && npm test",
     "test-server": "cd Server && npm test",
     "test-common": "cd Common && npm test"

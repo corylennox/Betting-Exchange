@@ -20,6 +20,7 @@ import betSubmissionController from './controller/betSubmission';
 import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache';
 import { Jwt, JwtPayload } from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
+import fetchBetsController from './controller/fetchBets';
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -63,6 +64,32 @@ const resolvers = {
                 lines.push(LinesContainer.get(buttonId));
             });
             return lines;
+        },
+        myBets: async (parent, args, context, info) => {
+            const isAuthenticated = context.auth.isAuthenticated;
+            if (!isAuthenticated) {
+                // throwing a `GraphQLError` here allows us to specify an HTTP status code,
+                // standard `Error`s will have a 500 status code by default
+                throw new GraphQLError('User is not authenticated', {
+                    extensions: {
+                    code: 'UNAUTHENTICATED',
+                    http: { status: 401 },
+                    },
+                });
+            }
+
+            const myBets = await fetchBetsController.fetchBets( context.auth.userId );
+            const mappedBets = myBets.map(bet => {
+                let ret = { 
+                    id: bet.id,
+                    wager: bet.wager_amount,
+                    timePlaced: bet.time_placed,
+                    totalPayout: bet.total_payout,
+                    buttonId: bet.button_id,
+                };
+                return ret;
+            });
+            return mappedBets
         },
     },
     Mutation: {

@@ -1,4 +1,5 @@
-const { LineContainer } = require('./lineUtils');
+const { LineContainer, convertLineToProbability, convertProbabilityToLine } = require('./lineUtils');
+const { determineWager, determineWin } = require('./wagerWinUtils');
 
 test('Test adding a single item to a lineContainer', () => {
     const lineContainer = new LineContainer()
@@ -68,4 +69,26 @@ test('Test setNewValue', () => {
     lineContainer.setNewValue(500, 25)
     expect(lineContainer.get(50).value).toBe(20)
     expect(lineContainer.get(500).value).toBe(25)
+})
+
+test('Test convertLineToProbability', () => {
+    expect(convertLineToProbability(-300)).toBe(0.75)
+    expect(convertLineToProbability(100)).toBe(0.5)
+    expect(convertLineToProbability(300)).toBe(0.25)
+})
+
+test('Test convertProbabilityToLine', () => {
+    expect(convertProbabilityToLine(0.75)).toBe(-300)
+    expect(convertProbabilityToLine(0.5)).toBe(100)
+    expect(convertProbabilityToLine(0.25)).toBe(300)
+})
+
+test('Test asdf', () => {
+    // const p1 = convertLineToProbability(840)
+    // const p2 = convertLineToProbability(-150)
+    // const p3 = convertLineToProbability(405)
+    // console.log(1 - (p1 + p2 + p3))
+    // expect(determineWin({type: "MoneyLine", value: -340}, 17)).toBe(5)
+    // expect(determineWin({type: "MoneyLine", value: -278}, 3)).toBe(1)
+    // expect(determineWin({type: "MoneyLine", value: +278}, 201)).toBe(558)
 })

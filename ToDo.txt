@@ -14,6 +14,8 @@ Double check the logic in wagerWinUtils.js to make sure we are doing what fandue
 Implement commission into the betslip and backend (total, commission, To Win)
 Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
 
+
+
 - Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
 - Rename buttonId in frontend & backend?
 
@@ -38,12 +40,23 @@ Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as we
 - We want a user experience like Fanduel. I.e., the user basically always gets filled on their orders.
   Therefore, over the websocket we will send 2 price levels for each side of each buttonId. And the frontend will allow a max bet up to the sum of the wager amounts for those two price levels.
 
+- V2: Pro version of our app that allows users to have access to limit orders and selling on the outright betslip
+
+
+
+
 potential names:
+- use https://namify.tech/ for some good inspirations
 - Aight Bet
 - Nouveau ("new" in french)
+- Novus Sports Betting
 - Pourtoi ("for you" in french)
 - Eiffel
 - What's the line
 - Spons.io
 - Contra (versus in latin)
-- https://namify.tech/
+- Contra (Latin), thanks nibs
+- Forum
+- Barter
+- Courtside
+- Jeffery

@@ -1,4 +1,33 @@
-export class LineContainer {
+
+/**
+ * e.g., converts 2/3 to -200 or converts 1/5 to +400.
+ *
+ * @returns a non-scaled floating point number in American odds,
+ *  which needs to be rounded prior to displaying to user
+ */
+function convertProbabilityToLine(prob) {
+    console.assert(prob > 0 && prob <= 1, `Invalid probability: ${prob}`);
+    if (prob <= 0.5)
+        return 100 / prob - 100;
+    else
+        return -100 * prob / (1 - prob)
+}
+
+/**
+ * e.g., converts -200 to 2/3 or converts +400 to 1/5.
+ *
+ * @param line a non-scaled line (i.e. the line is in American odds format)
+ * @returns a floating point probability
+ */
+function convertLineToProbability(line) {
+    console.assert(line < -100 || line >= 100)
+    if (line > 0)
+        return 100 / (line + 100)
+    else
+        return line / (line - 100)
+}
+
+class LineContainer {
     constructor(lines = []) {
         this.lines = new Array();
         lines.forEach((line) => {
@@ -79,3 +108,5 @@ export class LineContainer {
         });
     }
 }
+
+module.exports = { LineContainer, convertLineToProbability, convertProbabilityToLine }

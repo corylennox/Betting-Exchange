@@ -38,6 +38,14 @@ export const typeDefs = gql`
     value: Float!
   }
 
+  type MyBet {
+    id: ID!
+    wager: Int!
+    timePlaced: String!
+    totalPayout: Int
+    buttonId: String!
+  }
+
   # contains optional fields to allow for sending this type over subscription
   type LineUpdate {
     buttonId: ID
@@ -93,12 +101,12 @@ export const typeDefs = gql`
   }
 
   # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  # clients can execute, along with the return type for each. 
   type Query {
     universalData: UniversalData!
     sportPane(sportTitle: String!): SportPane!
     lines(buttonIds: [ID!]!): [Line!]!
+    myBets: [MyBet!]
   }
 
   # The "Mutation" type is special just like the "Query" type

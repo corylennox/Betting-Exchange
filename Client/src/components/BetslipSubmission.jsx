@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@apollo/client";
 import { SUBMIT_BETSLIP_MUTATION } from "../GraphQL/Mutations";
 
+
 export default function BetslipSubmission() {
   const [submitBetslip] = useMutation(SUBMIT_BETSLIP_MUTATION);
   const dispatch = useDispatch();
