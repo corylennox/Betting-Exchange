@@ -20,6 +20,10 @@ import betSubmissionController from './controller/betSubmission';
 import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache';
 import { Jwt, JwtPayload } from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
+import { UserSubmittedBet } from './src/datatypes/UserSubmittedBet';
+import matchingEngineController from './controller/matchingEngine';
+import { RestingType } from './src/datatypes/RestingType';
+import { DollarAmount } from './src/datatypes/DollarAmount';
 import fetchBetsController from './controller/fetchBets';
 
 // Resolvers define the technique for fetching the types defined in the
@@ -94,6 +98,7 @@ const resolvers = {
     },
     Mutation: {
         submitBetslip: async (parent, args, context, info) => {
+            console.time("submitBetslip");
             const isAuthenticated = context.auth.isAuthenticated;
             if (!isAuthenticated) {
                 // throwing a `GraphQLError` here allows us to specify an HTTP status code,
@@ -107,8 +112,22 @@ const resolvers = {
             }
 
             const submittedBets = args.input;
-            const submittedBetButtonIds = await betSubmissionController.createBetSubmissions(submittedBets, context.auth.userId );
-            return {returnedButtonIds: submittedBetButtonIds}
+
+            // Convert the graph ql @submittedBets array to the backend @userSubmittedBets array
+            const userSubmittedBets = new Array<UserSubmittedBet>;
+            submittedBets.forEach((submittedBet: any) => {
+                let userSubmittedBet = new UserSubmittedBet();
+                userSubmittedBet.userId = context.auth.userId;
+                userSubmittedBet.buttonId = Number(submittedBet.buttonId);
+                userSubmittedBet.line = matchingEngineController.getLineFromLegacyLine(submittedBet.buttonId, submittedBet.line);
+                userSubmittedBet.wagerAmount = new DollarAmount(submittedBet.wagerAmount);
+                userSubmittedBet.restingType = RestingType.Limit; // Limit for now
+                userSubmittedBets.push(userSubmittedBet);
+            })
+
+            const userSubmittedBetResults = await betSubmissionController.createBetSubmissions(userSubmittedBets);
+            console.timeEnd("submitBetslip");
+            return {returnedButtonIds: []} // TODO populate the return type with useful information
         }
     },
     Subscription: {

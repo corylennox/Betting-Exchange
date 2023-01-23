@@ -16,13 +16,19 @@ function determineWager(line, win) {
     return Math.ceil(win * ratio);
 }
 
-function getCommission() {
+function getCommissionPct() {
     return 0.01;
 }
 
 function getWinAfterCommission(win) {
-    const winAfterCommission = Math.floor(win * (1.0 - getCommission()));
+    const winAfterCommission = Math.floor(win * (1.0 - getCommissionPct()));
     return winAfterCommission;
 }
 
-module.exports = { determineWin, determineWager, getWinAfterCommission }
+function getCommissionFromWager(wager) {
+    const commission = Math.ceil(wager * getCommissionPct());
+    console.log(`From wager ${wager} returning commission ${commission}`)
+    return commission;
+}
+
+module.exports = { determineWin, determineWager, getWinAfterCommission, getCommissionFromWager }

@@ -1,5 +1,6 @@
-import { Line, MoneyLine, SpreadLine, TotalLine } from "../datatypes/Line";
+import { Line, LineType, MoneyLine, SpreadLine, TotalLine } from "../datatypes/Line";
 import { Side } from "../datatypes/Side";
+import { cloneable } from "../utils/cloneable";
 
 const bid = Side.Bid;
 const ask = Side.Ask;
@@ -206,6 +207,18 @@ test('Test MoneyLine canMatchAgainst', () => {
     expect(l1.canMatchAgainst(Side.Ask, l4)).toBe(false);
     expect(l4.canMatchAgainst(Side.Ask, l1)).toBe(false);
 
+    const l1Diff1 = new MoneyLine(-1000);
+    expect(l1.canMatchAgainst(Side.Bid, l1Diff1)).toBe(true);
+    expect(l1Diff1.canMatchAgainst(Side.Bid, l1)).toBe(true);
+    expect(l1.canMatchAgainst(Side.Ask, l1Diff1)).toBe(true);
+    expect(l1Diff1.canMatchAgainst(Side.Ask, l1)).toBe(true);
+
+    const l1Diff2 = new MoneyLine(-5040);
+    expect(l1.canMatchAgainst(Side.Bid, l1Diff2)).toBe(true);
+    expect(l1Diff2.canMatchAgainst(Side.Bid, l1)).toBe(true);
+    expect(l1.canMatchAgainst(Side.Ask, l1Diff2)).toBe(true);
+    expect(l1Diff2.canMatchAgainst(Side.Ask, l1)).toBe(true);
+
     const l5 = new MoneyLine(+2500);
 
     const l6 = new MoneyLine(-2490);
@@ -225,6 +238,18 @@ test('Test MoneyLine canMatchAgainst', () => {
     expect(l8.canMatchAgainst(Side.Bid, l5)).toBe(true);
     expect(l5.canMatchAgainst(Side.Ask, l8)).toBe(true);
     expect(l8.canMatchAgainst(Side.Ask, l5)).toBe(true);
+
+    const l5Diff1 = new MoneyLine(+1000);
+    expect(l5.canMatchAgainst(Side.Bid, l5Diff1)).toBe(false);
+    expect(l5Diff1.canMatchAgainst(Side.Bid, l5)).toBe(false);
+    expect(l5.canMatchAgainst(Side.Ask, l5Diff1)).toBe(false);
+    expect(l5Diff1.canMatchAgainst(Side.Ask, l5)).toBe(false);
+
+    const l5Diff2 = new MoneyLine(+2400);
+    expect(l5.canMatchAgainst(Side.Bid, l5Diff2)).toBe(false);
+    expect(l5Diff2.canMatchAgainst(Side.Bid, l5)).toBe(false);
+    expect(l5.canMatchAgainst(Side.Ask, l5Diff2)).toBe(false);
+    expect(l5Diff2.canMatchAgainst(Side.Ask, l5)).toBe(false);
 })
 
 test('Test SpreadLine canMatchAgainst', () => {
