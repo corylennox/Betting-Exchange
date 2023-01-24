@@ -93,6 +93,8 @@ const resolvers = {
                 };
                 return ret;
             });
+
+            //TODO: call out to buttonID database and pull game/event info for the bet. Add this data to mappedBets and return
             return mappedBets
         },
     },

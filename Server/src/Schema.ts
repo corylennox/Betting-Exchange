@@ -41,7 +41,7 @@ export const typeDefs = gql`
   type MyBet {
     id: ID!
     wager: Int!
-    timePlaced: String!
+    timePlaced: String! # may need to chance at some point
     totalPayout: Int
     buttonId: String!
   }

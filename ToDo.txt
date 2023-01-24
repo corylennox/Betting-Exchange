@@ -6,7 +6,7 @@ Point spread
 To Do:
 order contender rows by odds
 make tailwind theme
-Use HeadlessUI for sidebar, navbar, and bottomnavbar (already using for active theme button)
+Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
 make admin panel (look into refinedev/refine on git)
 
 Process betslip submissions by sending to backend
