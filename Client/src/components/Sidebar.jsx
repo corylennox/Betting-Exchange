@@ -70,7 +70,9 @@ export default function Sidebar(props) {
               </span>
             </Link>
             {props.isSportPane && index < props.sportsData.length - 1 ? (
-              <div className="ml-12 h-0.5 w-11/12 bg-gray-300" />
+              <div className="ml-12">
+                <div className="h-0.5 w-full bg-gray-300" />
+              </div>
             ) : (
               <></>
             )}

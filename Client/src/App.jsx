@@ -228,7 +228,7 @@ function AppNested() {
 
         {/* Bottom Navbar */}
         <div className="contents lg:hidden">
-          <div className="fixed inset-0 bottom-0 z-50 h-16 w-full">
+          <div className="fixed bottom-0 z-50 h-16 w-full">
             <BottomNavbar />
           </div>
         </div>
