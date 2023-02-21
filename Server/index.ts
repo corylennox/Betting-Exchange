@@ -25,6 +25,7 @@ import matchingEngineController from './controller/matchingEngine';
 import { RestingType } from './src/datatypes/RestingType';
 import { DollarAmount } from './src/datatypes/DollarAmount';
 import fetchBetsController from './controller/fetchBets';
+import balancesController from './controller/balances';
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -97,6 +98,21 @@ const resolvers = {
             //TODO: call out to buttonID database and pull game/event info for the bet. Add this data to mappedBets and return
             return mappedBets
         },
+        balance: async (parent, args, context, info) => {
+            const isAuthenticated = context.auth.isAuthenticated;
+            if (!isAuthenticated) {
+                // throwing a `GraphQLError` here allows us to specify an HTTP status code,
+                // standard `Error`s will have a 500 status code by default
+                throw new GraphQLError('User is not authenticated', {
+                    extensions: {
+                    code: 'UNAUTHENTICATED',
+                    http: { status: 401 },
+                    },
+                });
+            }
+            const availableBalance: DollarAmount = await balancesController.getAvailableBalance(context.auth.userId);
+            return {availableBalance: availableBalance.value};
+        }
     },
     Mutation: {
         submitBetslip: async (parent, args, context, info) => {
@@ -130,6 +146,24 @@ const resolvers = {
             const userSubmittedBetResults = await betSubmissionController.createBetSubmissions(userSubmittedBets);
             console.timeEnd("submitBetslip");
             return {returnedButtonIds: []} // TODO populate the return type with useful information
+        },
+        addFunds: async (parent, args, context, info) => {
+            const isAuthenticated = context.auth.isAuthenticated;
+            if (!isAuthenticated) {
+                // throwing a `GraphQLError` here allows us to specify an HTTP status code,
+                // standard `Error`s will have a 500 status code by default
+                throw new GraphQLError('User is not authenticated', {
+                    extensions: {
+                    code: 'UNAUTHENTICATED',
+                    http: { status: 401 },
+                    },
+                });
+            }
+
+            let availableBalance: DollarAmount = await balancesController.getAvailableBalance(context.auth.userId);
+            availableBalance.add(new DollarAmount(args.input.fundsToAdd));
+            availableBalance = await balancesController.setAvailableBalance(context.auth.userId, availableBalance);
+            return {availableBalance: availableBalance.value};
         }
     },
     Subscription: {
@@ -202,6 +236,7 @@ async function startApolloServer() {
             context: async ({ req, ...rest }) => { 
                 let isAuthenticated = false;
                 let userId: string = "";
+                let email: string = "";
                 /**
                  * gets the jwt off the request
                  * if there is a token, verify it
@@ -215,13 +250,14 @@ async function startApolloServer() {
                         isAuthenticated = payload && payload.sub ? true : false; // this should never be false because verifyToken will throw an error if token is invalid
                         if (isAuthenticated) {
                             userId = payload.sub;
+                            email = payload.rule_email
                         }
-                        //console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
+                        // console.log(`Payload of authenticated jwt: ${JSON.stringify(payload)}`);
                     }
                 } catch (error) {
                     console.error(`Auth0 Token validation error: ${error}`);
                 }
-                return { ...rest, req, auth: { isAuthenticated, userId } };
+                return { ...rest, req, auth: { isAuthenticated, userId, email } };
             },
         }),
     );

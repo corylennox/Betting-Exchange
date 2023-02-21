@@ -60,3 +60,6 @@ potential names:
 - Barter
 - Courtside
 - Jeffery
+- Highline
+- Hangtime
+- MyBets

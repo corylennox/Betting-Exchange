@@ -7,3 +7,11 @@ export const SUBMIT_BETSLIP_MUTATION = gql`
     }
   }
 `;
+
+export const ADD_FUNDS_MUTATION = gql`
+  mutation AddFunds ($input: AddFundsInput!) {
+    addFunds( input: $input) {
+      availableBalance
+    }
+  }
+`;

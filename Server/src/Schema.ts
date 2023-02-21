@@ -46,6 +46,10 @@ export const typeDefs = gql`
     buttonId: String!
   }
 
+  type Balance {
+    availableBalance: Int!
+  }
+
   # contains optional fields to allow for sending this type over subscription
   type LineUpdate {
     buttonId: ID
@@ -107,11 +111,13 @@ export const typeDefs = gql`
     sportPane(sportTitle: String!): SportPane!
     lines(buttonIds: [ID!]!): [Line!]!
     myBets: [MyBet!]
+    balance: Balance!
   }
 
   # The "Mutation" type is special just like the "Query" type
   type Mutation {
     submitBetslip(input: [BetInput!]!): SubmitBetslipResponse!
+    addFunds(input: AddFundsInput!): AddFundsResponse!
   }
 
   # The "Subscription" type is special, similar to the "Query" type
@@ -131,5 +137,13 @@ export const typeDefs = gql`
 
   type SubmitBetslipResponse {
     returnedButtonIds: [ID!]!
+  }
+
+  input AddFundsInput {
+    fundsToAdd: Int!
+  }
+
+  type AddFundsResponse {
+    availableBalance: Int!
   }
 `;

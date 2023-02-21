@@ -96,3 +96,11 @@ export const MY_BETS_QUERY = gql`
     }
   }
 `;
+
+export const BALANCE_QUERY = gql`
+  query BalanceQuery {
+    balance {
+      availableBalance
+    }
+  }
+`;

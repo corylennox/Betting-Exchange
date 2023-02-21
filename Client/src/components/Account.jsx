@@ -1,8 +1,11 @@
 import rts from "../MyRoutes";
-import { useDispatch } from "react-redux";
-import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSportpaneAction, changeNavbarTabAction, setAvailableBalanceAction } from "../Actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import PromptButton from "./PromptButton";
+import { useMutation } from "@apollo/client";
+import { convertToPriceString } from "./BetslipUtils";
+import { ADD_FUNDS_MUTATION } from "../GraphQL/Mutations";
 
 function AccountSection(props) {
   return (
@@ -54,12 +57,26 @@ function AccountSectionActions(props) {
 export default function Account() {
   const dispatch = useDispatch();
   const { isAuthenticated, user, isLoading: isAuthLoading, loginWithRedirect, logout } = useAuth0();
+  const [addFundsMutation] = useMutation(ADD_FUNDS_MUTATION);
+  const availableBalance = useSelector((state) => state.availableBalance);
 
   if (isAuthLoading)
     return <h1>Loading</h1>;
-  
+
   dispatch(changeSportpaneAction(rts.account));
   dispatch(changeNavbarTabAction(rts.account));
+
+  const addFunds = async (fundsToAdd) => {
+    const addFundsResult = await addFundsMutation({
+      variables: {
+        input: {
+          fundsToAdd: fundsToAdd,
+        }
+      }
+    });
+    const newAvailableBalance = addFundsResult.data.addFunds.availableBalance;
+    dispatch(setAvailableBalanceAction(newAvailableBalance));
+  };
 
   return (
     <div className="ml-8 pt-4 mr-8">
@@ -86,7 +103,7 @@ export default function Account() {
               ]} />
             </AccountSection>
             <AccountSection title="Balance">
-              <AccountSectionDetail name="Balance" value="$0.00"/>
+              <AccountSectionDetail name="Balance" value={`$${convertToPriceString(availableBalance)}`}/>
               <AccountSectionActions buttons={[
                 <PromptButton
                   text="Deposit Funds"
@@ -95,6 +112,7 @@ export default function Account() {
                   gradientColorEnd="to-skin-buttonAccentGradientEnd"
                   gradientColorPressedStart="active:from-skin-buttonAccentPressed"
                   gradientColorPressedEnd="active:to-skin-buttonAccentPressed"
+                  onClick={() => addFunds(1000 /* $10.00 */)}
                 />,
                 <PromptButton
                   text="Withdraw Funds"

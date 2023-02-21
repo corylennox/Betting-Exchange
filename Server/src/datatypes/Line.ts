@@ -18,7 +18,7 @@ export abstract class Line {
 
     constructor(value: number) {
         this.value = value;
-        assert(this.isValid(), `Line invalid: ${this.value}`);
+        assert(this.isValid(), `Line invalid: ${this}`);
     }
 
     toString(): string {

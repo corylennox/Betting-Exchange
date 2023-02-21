@@ -94,3 +94,15 @@ export const addLinesAction = (lines) => {
     },
   };
 };
+
+/**
+ * set the available balance in the redux store
+ */
+export const setAvailableBalanceAction = (availableBalance) => {
+  return {
+    type: "SET_AVAILABLE_BALANCE",
+    payload: {
+      availableBalance: availableBalance
+    },
+  };
+};

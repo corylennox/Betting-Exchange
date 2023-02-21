@@ -20,16 +20,17 @@ import { useSelector } from "react-redux";
 import { parseMap } from "./utils";
 import ApolloWrapper from "./ConfigureBackend";
 import { useQuery } from "@apollo/client";
-import { UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
+import { BALANCE_QUERY, UNIVERSAL_DATA_QUERY } from "./GraphQL/Queries";
 import { LINES_QUERY } from "./GraphQL/Queries";
-import { addLinesAction } from "./Actions";
+import { addLinesAction, setAvailableBalanceAction } from "./Actions";
 import { useSubscription } from "@apollo/client";
 import { LINE_UPDATE_SUBSCRIPTION } from "./GraphQL/Subscriptions";
-import { translateUniversalData } from "./GraphQL/Translate";
+import { translateBalanceData, translateUniversalData } from "./GraphQL/Translate";
 import rts from "./MyRoutes";
 import { ThemeData } from "./components/ActiveThemes";
 import Auth0Wrapper from "./Auth0Wrapper";
 import { updateLinesAction } from "./Actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
@@ -43,6 +44,9 @@ function AppNested() {
 
   // Allows us to only query the ToggledBet lines one time, when the app is first rendered, as that's all that's necessary.
   const [skipLinesQuery, setSkipLinesQuery] = useState(false);
+
+  // Allows us to only query the Balance once after user has authenticated.
+  const [skipBalanceQuery, setSkipBalanceQuery] = useState(false);
 
   const {
     loading: queryLoading,
@@ -77,8 +81,21 @@ function AppNested() {
     skip: skipLinesQuery,
   });
 
+  const { isAuthenticated, user, isLoading: isAuthLoading, loginWithRedirect, logout } = useAuth0();
+  const { loading: isBalanceLoading, error: balanceError, data: balanceResponse } = useQuery(BALANCE_QUERY, {
+    onCompleted: (response) => {
+      setSkipBalanceQuery(true);
+      dispatch(setAvailableBalanceAction(translateBalanceData(response).availableBalance));
+    },
+    skip: skipBalanceQuery,
+  });
+
   // Don't check for subscription loading, as that only equates to false once the first item arrives from the subscription, which may take a very long time hypothetically
-  if (queryLoading || linesQueryLoading) return <h1>Loading</h1>;
+  if (queryLoading || linesQueryLoading || isAuthLoading) return <h1>Loading</h1>;
+
+  if (isAuthenticated && !isBalanceLoading && balanceError) {
+    return <h1>Error: {balanceError.message}</h1>;
+  }
 
   if (queryError) {
     console.log("Error loading App query: " + queryError);

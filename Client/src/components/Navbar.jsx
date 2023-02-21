@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PromptButton from "./PromptButton";
 //import { UserCircleIcon } from "@heroicons/react/outline";
 import { ReactComponent as LogoSvgRaw } from '../images/logo.svg';
+import { convertToPriceString } from "./BetslipUtils";
 
 const navs = {
   home: {
@@ -38,6 +39,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const activeSportPane = useSelector((state) => state.activeSportPane);
   const { isAuthenticated, isLoading: isAuthLoading, loginWithRedirect, logout } = useAuth0();
+  const availableBalance = useSelector((state) => state.availableBalance);
 
   if (isAuthLoading) return <h1>Loading</h1>;
 
@@ -96,7 +98,7 @@ export default function Navbar() {
               <div className="contents">
                 <div className="text-right mr-2">
                   <span className="block text-xs">Balance</span>
-                  <span className="block text-s">$0.00</span>
+                  <span className="block text-s">{`$${convertToPriceString(availableBalance)}`}</span>
                 </div>
                 <div className="flex h-full w-full items-center py-5 mr-4">
                   <PromptButton onClick={() => { }} // onClick() should redirect to Strip deposit
