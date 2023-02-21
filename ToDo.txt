@@ -3,49 +3,33 @@ Outright betting
 Moneyline
 Point spread
 
-To Do:
-order contender rows by odds
-make tailwind theme
-Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
-make admin panel (look into refinedev/refine on git)
-
-Process betslip submissions by sending to backend
-Double check the logic in wagerWinUtils.js to make sure we are doing what fanduel does with regards to Math.floor() and Math.ceil()
-Implement commission into the betslip and backend (total, commission, To Win)
-Make it so that the "Featured" tab is the same as the "Home" tab. Same URL as well?
-
-
-
-- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
-- Rename buttonId in frontend & backend?
-
-- Change any line/wager/payout from Float to Int
-- Find a way to avoid passing totalPayout thru to backend. Setup some rule where totalPayout is not necessary and the rule can be applied on wagerAmount & line to determine totalPayout
-- in the submitBetslip mutation, check if the user is authorized (logged in)
-
-- dividers between grid columns in OutrightBets
-
+V1:
+- order contender rows by odds
+- make tailwind theme
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
-
-- Once we move to a public webiste and off of localhost, we need to setup CORS according to
-  https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
-
-- Switch the PubSub class usage into PubSubEngine for production use, as described in:
-  https://www.apollographql.com/docs/apollo-server/data/subscriptions/
-
-- use ints for all JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
-
 - Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+- use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
+- have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
+- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
+- make admin panel (look into refinedev/refine on git)
+- Once we move to a public webiste and off of localhost, we need to setup CORS according to https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
+- Switch the PubSub class usage into PubSubEngine for production use, as described in: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
+- Switch to https
+- Don't allow bets from broke users. Need to check user balance when receiving betslip from frontend. If user balance is lower than wagers, send an error and display the error to the user.
+- When users bets get submitted successfully, have to transfer balance from available_balance to escrow_balance.
+- Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
+- Create tabs on MyBets page for "Settled" vs. "Active" bets.
+- Create tabs on the frontend within each sportpane for different categories.
 
-- We want a user experience like Fanduel. I.e., the user basically always gets filled on their orders.
-  Therefore, over the websocket we will send 2 price levels for each side of each buttonId. And the frontend will allow a max bet up to the sum of the wager amounts for those two price levels.
+V1.X:
+- Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
+- Rename buttonId in frontend & backend?
+- use ints for all line/wager/payout JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
 
 - V2: Pro version of our app that allows users to have access to limit orders and selling on the outright betslip
 
 
-
-
-potential names:
+Potential names:
 - use https://namify.tech/ for some good inspirations
 - Aight Bet
 - Nouveau ("new" in french)
