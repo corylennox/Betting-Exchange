@@ -20,7 +20,7 @@ import betSubmissionController from './controller/betSubmission';
 import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache';
 import { Jwt, JwtPayload } from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
-import { UserSubmittedBet } from './src/datatypes/UserSubmittedBet';
+import { UserSubmittedBet, UserSubmittedBetResult } from './src/datatypes/UserSubmittedBet';
 import matchingEngineController from './controller/matchingEngine';
 import { RestingType } from './src/datatypes/RestingType';
 import { DollarAmount } from './src/datatypes/DollarAmount';
@@ -143,9 +143,15 @@ const resolvers = {
                 userSubmittedBets.push(userSubmittedBet);
             })
 
-            const userSubmittedBetResults = await betSubmissionController.createBetSubmissions(userSubmittedBets);
+            const userSubmittedBetResults: Array<UserSubmittedBetResult> = await betSubmissionController.createBetSubmissions(context.auth.userId, userSubmittedBets);
             console.timeEnd("submitBetslip");
-            return {returnedButtonIds: []} // TODO populate the return type with useful information
+            let successfulButtonIds = new Array<number>();
+            for (const userSubmittedBetResult of userSubmittedBetResults) {
+                if (userSubmittedBetResult.success) {
+                    successfulButtonIds.push(userSubmittedBetResult.submittedBet.buttonId);
+                }
+            }
+            return {returnedButtonIds: successfulButtonIds} // TODO populate the return type with useful information
         },
         addFunds: async (parent, args, context, info) => {
             const isAuthenticated = context.auth.isAuthenticated;

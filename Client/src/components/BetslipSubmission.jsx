@@ -60,7 +60,7 @@ export default function BetslipSubmission() {
     });
 
     test.data.submitBetslip.returnedButtonIds.forEach(buttonId => {
-      console.log(buttonId)
+      console.log(`Successfully submitted bet for buttonId: ${buttonId}`);
     })
 
     //TODO: verify bets were successfully placed before deleting

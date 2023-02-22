@@ -9,14 +9,15 @@ import {determineWin, getWinAfterCommission, getCommissionFromWager } from "bett
 import { BetSubmissionStatusDbEnum } from '../dao/betSubmission';
 import { assert } from 'console';
 import fillController from './fillSubmission';
+import balancesController from './balances';
 
-function userHasAdequateFunds(userId: string, amount: DollarAmount) {
-    // TODO implement
-    return true;
+async function userHasAdequateFunds(userId: string, amount: DollarAmount) {
+    const availableBalance: DollarAmount = await balancesController.getAvailableBalance(userId);
+    return availableBalance.isGreater(amount) || availableBalance.isEqual(amount);
 }
 
 class BetSubmissionController {
-    async createBetSubmissions(submittedBets: Array<UserSubmittedBet>): Promise<Array<UserSubmittedBetResult>> {
+    async createBetSubmissions(userId: string, submittedBets: Array<UserSubmittedBet>): Promise<Array<UserSubmittedBetResult>> {
         let submittedBetResults = new Array<UserSubmittedBetResult>
         let submittedBetIds = [];
 
@@ -26,18 +27,25 @@ class BetSubmissionController {
             submittedBetResults[i].success = false;
         }
 
+        let commissions = new Array<DollarAmount>();
+        let totalRequiredBalance = new DollarAmount(0);
+        for (const [i, bet] of submittedBets.entries()) {
+            commissions.push(new DollarAmount(getCommissionFromWager(bet.wagerAmount.value)));
+            totalRequiredBalance.add(bet.wagerAmount);
+            totalRequiredBalance.add(commissions[i]);
+        }
+
         const timestampInNanoseconds = Date.now() * 1000000;
 
         let betSubmissionPromises = []
         try {
+            const hasAdequateFunds: boolean = await userHasAdequateFunds(userId, totalRequiredBalance);
+            if (!hasAdequateFunds)
+                return submittedBetResults;
+
             // Submit to database, then matching engine
             for (const [i, bet] of submittedBets.entries()) {
-                const commission = new DollarAmount(getCommissionFromWager(bet.wagerAmount.value));
-
-                if (!userHasAdequateFunds(bet.userId, new DollarAmount(bet.wagerAmount.value + commission.value)))
-                {
-                    // TODO handle inadequate funds
-                }
+                const commission = commissions[i];
 
                 const betId = await betSubmissionService.createBetSubmission(
                     {
