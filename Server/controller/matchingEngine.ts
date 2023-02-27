@@ -7,6 +7,7 @@ import { LineDollarAmountPair } from '../src/datatypes/LineDollarAmountPair';
 import { Match } from '../src/datatypes/Match';
 import { cloneable } from '../src/utils/cloneable';
 import { SportsBets } from '../src/Data';
+import { DollarAmount } from '../src/datatypes/DollarAmount';
 
 function createBook(lineType: LineType): Book {
     const bid = new ExplicitBookSide(Side.Bid);
@@ -94,17 +95,18 @@ class MatchingEngineController {
 
         let buttonIdBookInfo = this.buttonIdToBookInfo[submittedBet.buttonId];
         const lineDollarAmountPairCopy = new LineDollarAmountPair(cloneable.deepCopy(submittedBet.line), cloneable.deepCopy(submittedBet.wagerAmount));
-        const matches: Array<Match> | boolean = buttonIdBookInfo.book.addBet(buttonIdBookInfo.side, betId,
+        const addBetResult: [Array<Match>, DollarAmount] | boolean = buttonIdBookInfo.book.addBet(buttonIdBookInfo.side, betId,
             lineDollarAmountPairCopy,
             submittedBet.restingType);
 
         // check for an error upon submission
-        if (matches instanceof Boolean) {
+        if (addBetResult instanceof Boolean) {
             result.success = false
         }
-        else if (matches instanceof Array<Match>) {
+        else {
             result.success = true;
-            result.matches = matches;
+            result.matches = addBetResult[0];
+            result.cancelledWagerAmount = addBetResult[1];
         }
 
         return result;

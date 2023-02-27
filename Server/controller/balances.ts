@@ -10,6 +10,10 @@ class BalancesController {
     async setAvailableBalance(userId: string, availableBalance: DollarAmount) {
         return await balancesService.setAvailableBalance(userId, availableBalance);
     }
+
+    async transferFromAvailableToEscrow(userId: string, amount: DollarAmount) {
+        return await balancesService.transferFromAvailableToEscrow(userId, amount);
+    }
 }
 
 const balancesController = new BalancesController();

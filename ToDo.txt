@@ -15,7 +15,7 @@ V1:
 - Once we move to a public webiste and off of localhost, we need to setup CORS according to https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
 - Switch the PubSub class usage into PubSubEngine for production use, as described in: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 - Switch to https
-- When users bets get submitted successfully, have to transfer balance from available_balance to escrow_balance.
+- Switch to AWS hosting the database
 - Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
 - Create tabs on MyBets page for "Settled" vs. "Active" bets.
 - Create tabs on the frontend within each sportpane for different categories.

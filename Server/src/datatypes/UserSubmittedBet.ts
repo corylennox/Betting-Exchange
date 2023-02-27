@@ -17,6 +17,7 @@ export class UserSubmittedBet {
 
 export class UserSubmittedBetResult {
     submittedBet: UserSubmittedBet
+    cancelledWagerAmount: DollarAmount // e.g., cancelled due to Market order not resting after matching as much as possible
     betId: bigint
     success: boolean
     matches: Array<Match> // valid only if success is true

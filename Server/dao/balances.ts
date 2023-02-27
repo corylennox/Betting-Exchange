@@ -24,6 +24,25 @@ class BalancesDao {
         return availableBalance;
     }
 
+    async getEscrowBalance(userId: string) {
+        let [escrowBalance] = await db('balances')
+            .where('user_id', userId)
+            .returning('escrow_balance');
+
+        if (escrowBalance)
+            escrowBalance = escrowBalance['escrow_balance']
+
+        return escrowBalance;
+    }
+
+    async getBalances(userId: string) {
+        let [balances] = await db('balances')
+            .where('user_id', userId)
+            .returning(['available_balance', 'escrow_balance']);
+
+        return balances;
+    }
+
     async setAvailableBalance(userId: string, availableBalance: BigInt) {
         let [newAvailableBalance] = await db('balances')
             .where('user_id', userId)
@@ -36,6 +55,20 @@ class BalancesDao {
             newAvailableBalance = newAvailableBalance['available_balance']
 
         return newAvailableBalance;
+    }
+
+    async setEscrowBalance(userId: string, escrowBalance: BigInt) {
+        let [newEscrowBalance] = await db('balances')
+            .where('user_id', userId)
+            .update({
+                escrow_balance: escrowBalance,
+            })
+            .returning('available_balance');
+
+        if (newEscrowBalance)
+            newEscrowBalance = newEscrowBalance['available_balance']
+
+        return newEscrowBalance;
     }
 }
 

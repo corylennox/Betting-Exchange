@@ -17,6 +17,8 @@ async function userHasAdequateFunds(userId: string, amount: DollarAmount) {
 }
 
 class BetSubmissionController {
+    betIdToUserIdMap = new Map<BigInt, string>;
+
     async createBetSubmissions(userId: string, submittedBets: Array<UserSubmittedBet>): Promise<Array<UserSubmittedBetResult>> {
         let submittedBetResults = new Array<UserSubmittedBetResult>
         let submittedBetIds = [];
@@ -107,12 +109,29 @@ class BetSubmissionController {
                     }
                 }
             }
-
-            return submittedBetResults;
         } catch (err) {
             console.error(`Error processing submitted bets. ${submittedBetResults}. Stack trace: ${err.stack}`);
-            return submittedBetResults;
         }
+
+        for (const submittedBetId of submittedBetIds) {
+            this.betIdToUserIdMap.set(submittedBetId, userId);
+        }
+
+        /**
+         * Actually execute the transfers from available to escrow in the database based on any matches. And remove any commission from the user's bet.
+         */
+        for (const submittedBetResult of submittedBetResults) {
+            if (submittedBetResult.success) {
+                let restingOrMatchedAmount: DollarAmount = new DollarAmount(submittedBetResult.submittedBet.wagerAmount.value - submittedBetResult.cancelledWagerAmount.value);
+                await balancesController.transferFromAvailableToEscrow(userId, restingOrMatchedAmount);
+
+                const betCommission = new DollarAmount(getCommissionFromWager(restingOrMatchedAmount.value));
+                const availableBalance = await balancesController.getAvailableBalance(userId);
+                const avaialbleBalanceAfterCommission = new DollarAmount(availableBalance.value - betCommission.value);
+                await balancesController.setAvailableBalance(userId, avaialbleBalanceAfterCommission);
+            }
+        }
+        return submittedBetResults;
     }
 }
 

@@ -19,7 +19,7 @@ export class Book {
         this.ask = ask;
     }
 
-    addBet(side: Side, betId: bigint, lineDollarAmountPair: LineDollarAmountPair, restingType: RestingType): Array<Match> | boolean {
+    addBet(side: Side, betId: bigint, lineDollarAmountPair: LineDollarAmountPair, restingType: RestingType): [Array<Match>, DollarAmount] | boolean {
         if (lineDollarAmountPair.line.getType() != this.lineType) {
             assert(false, `Line Types have to be the same. Book line type is ${this.lineType} while given line is ${lineDollarAmountPair}`);
             return false;
@@ -36,6 +36,7 @@ export class Book {
         let remainingAggressiveWager = new LineDollarAmountPair(lineDollarAmountPair.line, new DollarAmount(lineDollarAmountPair.dollarAmount.value));
         remainingAggressiveWager.dollarAmount.subtract(matchedAggressiveDollarAmount);
         assert(remainingAggressiveWager.dollarAmount.isValid(), `Invalid remaining wager: ${remainingAggressiveWager}`);
+        let cancelledWagerAmount = new DollarAmount(remainingAggressiveWager.dollarAmount.value);
         if (restingType == RestingType.Limit && !remainingAggressiveWager.dollarAmount.isEmpty()) {
             if (side == Side.Bid) {
                 this.bid.addBet(betId, remainingAggressiveWager);
@@ -43,9 +44,10 @@ export class Book {
             else if (side == Side.Ask) {
                 this.ask.addBet(betId, remainingAggressiveWager);
             }
+            cancelledWagerAmount.subtract(remainingAggressiveWager.dollarAmount);
         }
 
-        return matches;
+        return [matches, cancelledWagerAmount];
     }
 
     getLineType(): LineType {
