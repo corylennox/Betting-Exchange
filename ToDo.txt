@@ -4,21 +4,32 @@ Moneyline
 Point spread
 
 V1:
+Cory
 - order contender rows by odds
-- make tailwind theme
-- When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
-- Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
-- use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
-- have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
-- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
 - make admin panel (look into refinedev/refine on git)
+- Create tabs on MyBets page for "Settled" vs. "Active" bets.
+
+
+Emerson
+- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
 - Once we move to a public webiste and off of localhost, we need to setup CORS according to https://www.apollographql.com/docs/apollo-server/security/cors/#apis-with-known-consumers
 - Switch the PubSub class usage into PubSubEngine for production use, as described in: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 - Switch to https
-- Switch to AWS hosting the database
-- Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
-- Create tabs on MyBets page for "Settled" vs. "Active" bets.
 - Create tabs on the frontend within each sportpane for different categories.
+
+
+Together
+- use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
+- Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+- Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
+
+- have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
+
+- Switch to AWS hosting the database
+
+- make tailwind theme
+- When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
+
 
 V1.X:
 - Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
