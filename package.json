@@ -15,6 +15,7 @@
     "test": "run-p test-client test-server test-common",
     "test-client": "cd Client && npm test",
     "test-server": "cd Server && npm test",
-    "test-common": "cd Common && npm test"
+    "test-common": "cd Common && npm test",
+    "fetch-events": "cd Server && npm run fetch-events"
   }
 }
