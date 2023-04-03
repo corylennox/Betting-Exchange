@@ -21,6 +21,9 @@ Emerson
 Together
 - use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
 - Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+- live update the status of bets in My Bets (e.g. you bet the over on total points scored and it will show something like [Live: 175 Bet: 226 ] )
+- add betting groups so you can sweat bets with your friends
+
 - Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
 
 - have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
