@@ -13,7 +13,4 @@ npm link && \
 cd ../ && \
 cd Client && \
 npm link ../Common && \
-cd ../ && \
-cd Server && \
-npm link ../Common
-
+cd ../

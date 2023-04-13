@@ -1,4 +1,4 @@
-import { LineContainer } from "bettingexchangecommon/lineUtils";
+import { LineContainer } from "../bettingexchangecommon/lineUtils";
 
 const LinesArray = [
     { buttonId: 43452, type: "MoneyLine", value: 400 },
