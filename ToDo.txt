@@ -6,8 +6,8 @@ Point spread
 V1:
 Cory
 - order contender rows by odds
-- make admin panel (look into refinedev/refine on git)
 - Create tabs on MyBets page for "Settled" vs. "Active" bets.
+- make admin panel (look into refinedev/refine on git)
 
 
 Emerson
