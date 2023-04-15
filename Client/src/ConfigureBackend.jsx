@@ -51,11 +51,18 @@ export default function ApolloWrapper({ children }) {
       };
     });
 
-    const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql/" });
-    //const httpLink = new HttpLink({ uri: "http://192.168.1.19:4000/graphql" }); //to use app from other devices
+    const webServerProtocol = "http";
+    const webServerUrl = "localhost";
+    const webServerPort = "4000"
+
+    // const webServerProtocol = "https";
+    // const webServerUrl = "atlasexpressapollowebserver-env-1.eba-s9dzrde9.us-east-2.elasticbeanstalk.com";
+    // const webServerPort = "8080"
+
+    const httpLink = new HttpLink({ uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/` });
 
     const wsLink = new GraphQLWsLink(createClient({
-      url: 'ws://localhost:4000/graphql',
+      url: `ws://${webServerUrl}:${webServerPort}/graphql`,
     }));
 
     // Allows for GraphQL requests to be sent either the http or the websocket, depending on the request type

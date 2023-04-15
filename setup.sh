@@ -14,6 +14,6 @@ cd ../ && \
 cd Client && \
 npm link ../Common && \
 cd ../ && \
-cd Server && \
-npm link ../Common
+cd Server/certificates && \
+chmod 400 node-express-ec2.pem
 

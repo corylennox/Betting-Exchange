@@ -1,6 +1,6 @@
 import { assert } from "console";
 import { Side } from "./Side";
-import { roundUp, roundDown } from "bettingexchangecommon/mathUtils";
+import { roundUp, roundDown } from "../../bettingexchangecommon/mathUtils";
 
 export enum LineType {
     None, // only used in error cases

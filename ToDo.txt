@@ -16,7 +16,7 @@ Emerson
 - Switch the PubSub class usage into PubSubEngine for production use, as described in: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 - Switch to https
 - Create tabs on the frontend within each sportpane for different categories.
-
+- Install and setup morgan package
 
 Together
 - use populate server with real-world sport data on upcoming events - https://the-odds-api.com/

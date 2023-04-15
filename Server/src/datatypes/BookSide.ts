@@ -3,8 +3,8 @@ import { Line, MoneyLine } from './Line';
 import { Side, sideFlip } from './Side';
 import { DollarAmount } from './DollarAmount';
 import { LineDollarAmountPair } from "./LineDollarAmountPair";
-import { convertLineToProbability, convertProbabilityToLine } from "bettingexchangecommon/lineUtils";
-import { determineWager, determineWin } from "bettingexchangecommon/wagerWinUtils";
+import { convertLineToProbability, convertProbabilityToLine } from "../../bettingexchangecommon/lineUtils";
+import { determineWager, determineWin } from "../../bettingexchangecommon/wagerWinUtils";
 import { cloneable } from '../utils/cloneable';
 import { Match } from "./Match";
 
