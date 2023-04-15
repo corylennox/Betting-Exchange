@@ -16,6 +16,7 @@
     "test-client": "cd Client && npm test",
     "test-server": "cd Server && npm test",
     "test-common": "cd Common && npm test",
-    "fetch-events": "cd Server && npm run fetch-events"
+    "fetch-events": "cd Server && npm run fetch-events",
+    "ssh-aws": "ssh -i './Server/certificates/node-express-ec2.pem' ubuntu@ec2-18-222-37-155.us-east-2.compute.amazonaws.com"
   }
 }
