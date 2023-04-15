@@ -11,6 +11,9 @@ coverage
 # production
 build
 
+# security
+certificates
+
 # misc
 .DS_Store
 .env
