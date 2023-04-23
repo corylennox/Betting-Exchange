@@ -5,11 +5,11 @@
   "main": "build/index.js",
   "scripts": {
     "clean": "tsc -b --clean",
-    "build": "npm run clean; tsc && zip -r Archive.zip .env build package.json package-lock.json tsconfig.json",
-    "test": "npm run clean; jest",
-    "start:ts": "tsc -w;",
+    "build": "npm run-script clean && tsc && zip -r Archive.zip .env build package.json package-lock.json tsconfig.json",
+    "test": "npm run-script clean && jest",
+    "start:ts": "tsc -w",
     "start:js": "nodemon",
-    "start": "npm run clean; tsc && run-p start:ts start:js",
+    "start": "npm run-script clean && tsc && run-p start:ts start:js",
     "fetch-events": "ts-node ./the_odds_api/fetch_events.ts"
   },
   "repository": {

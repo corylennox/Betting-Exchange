@@ -1,8 +1,3 @@
-Terms we should know:
-Outright betting
-Moneyline
-Point spread
-
 V1:
 Cory
 - order contender rows by odds
