@@ -15,6 +15,7 @@ build
 certificates
 
 # misc
+.prettierignore
 ./Server/bettingexchangecommon
 .vscode
 .DS_Store

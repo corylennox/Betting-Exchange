@@ -5,10 +5,13 @@ This project contains the front and back end of a betting exchange.
 
 ## Setting up after pulling
 
-In the root project directory, run the following command:
+Navigate to the root project directory.
+
+Mac/Linux users run the following command:
 ### `sh setup.sh`
 
-If you're on a Windows machine, run the above command via your VSCode terminal
+Windows users, run the following command:
+### `.\win_setup.ps1`
 
 ## Available Scripts
 
