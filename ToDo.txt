@@ -1,6 +1,7 @@
 V1:
 Cory
 - order contender rows by odds
+- git ignore .* files
 - Create tabs on MyBets page for "Settled" vs. "Active" bets.
 - make admin panel (look into refinedev/refine on git)
 
