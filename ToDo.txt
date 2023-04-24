@@ -55,3 +55,6 @@ Potential names:
 - Highline
 - Hangtime
 - MyBets
+- Narrative (play on the word SportsBOOK)
+- Novel (play on the word SportsBOOK)
+- Native
