@@ -15,5 +15,9 @@ cd Client && \
 npm link ../Common && \
 cd ../ && \
 cd Server/certificates && \
-chmod 400 node-express-ec2.pem
-
+chmod 400 node-express-ec2.pem && \
+cd ../ && \
+rm -f bettingexchangecommon && \
+ln -s ../Common bettingexchangecommon && \
+cd ../ && \
+echo "Setup complete"
