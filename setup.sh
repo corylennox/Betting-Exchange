@@ -14,9 +14,8 @@ cd ../ && \
 cd Client && \
 npm link ../Common && \
 cd ../ && \
-cd Server/certificates && \
-chmod -f 400 node-express-ec2.pem && \
-cd ../ && \
+chmod -f 400 Server/certificates/node-express-ec2.pem && \
+cd Server && \
 rm -f bettingexchangecommon && \
 ln -s ../Common bettingexchangecommon && \
 cd ../ && \
