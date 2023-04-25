@@ -20,7 +20,7 @@ cd Client && \
 npm link ../Common && \
 cd ../ && \
 echo "Update certificates (if any exist)" && \
-chmod -f 400 Server/certificates/node-express-ec2.pem && \
+chmod -f 400 Server/certificates/node-express-ec2.pem || true && \
 echo "Symlink bettingexchangecommon" && \
 cd Server && \
 rm -f bettingexchangecommon && \
