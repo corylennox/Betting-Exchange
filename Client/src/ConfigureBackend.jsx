@@ -51,13 +51,13 @@ export default function ApolloWrapper({ children }) {
       };
     });
 
-    const webServerProtocol = "http";
-    const webServerUrl = "localhost";
-    const webServerPort = "4000"
+    // const webServerProtocol = "http";
+    // const webServerUrl = "localhost";
+    // const webServerPort = "4000"
 
-    // const webServerProtocol = "https";
-    // const webServerUrl = "atlasexpressapollowebserver-env-1.eba-s9dzrde9.us-east-2.elasticbeanstalk.com";
-    // const webServerPort = "8080"
+    const webServerProtocol = "http";
+    const webServerUrl = "3.18.221.200";
+    const webServerPort = "4000"
 
     const httpLink = new HttpLink({ uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/` });
 
