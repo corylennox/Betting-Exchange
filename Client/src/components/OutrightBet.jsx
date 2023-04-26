@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import MyButton from "./MyButton";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import ContenderAndIcon from "./ContenderAndIcon";
+import { parseMap } from "../utils";
 
 const numContenderRowsToDisplay = 3;
 
@@ -31,15 +33,27 @@ export default function OutrightBet(props) {
   const downIcon = <ChevronDownIcon className="ml-1 h-5 w-5" />;
   const upIcon = <ChevronUpIcon className="ml-1 h-5 w-5" />;
 
+  const linesContainer = parseMap(useSelector((state) => state.lines));
+
   const [state, setState] = useState({
     isExpanded: false,
     showText: showMoreText,
     arrowIcon: downIcon,
   });
+  const [sortedData, setSortedData] = useState([]);
 
-  // this.showAll = this.showAll.bind(this);
-  // this.displayRows = this.displayRows.bind(this);
-  // this.showMoreCSS = this.showMoreCSS.bind(this);
+  //sort the contenders data by line value
+  useEffect(() => {
+    console.log("test");
+    const contendersDataCopy = [...props.outrightBetData.contendersData];
+    contendersDataCopy.sort((a, b) => {
+      const aLineValue = linesContainer.get(a.buttonId).value;
+      const bLineValue = linesContainer.get(b.buttonId).value;
+      return aLineValue - bLineValue;
+    });
+    setSortedData(contendersDataCopy);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getCellClassName = (index) => {
     return !state.isExpanded
@@ -126,7 +140,7 @@ export default function OutrightBet(props) {
     /* h-fit is needed in one of the inner divs so that if there are 2 columns and column 1 has 3 items, but column 2 has 2 items, the item in row 2 col 2 doesn't stretch to fit the padding created in row 2 col 1 */
     return (
       <div className="xs:grid-cols-1 grid gap-0 md:grid-cols-2 xl:grid-cols-3">
-        {props.outrightBetData.contendersData.map((contenderData, index) => {
+        {sortedData.map((contenderData, index) => {
           return (
             <div
               key={
