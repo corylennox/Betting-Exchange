@@ -57,3 +57,4 @@ Potential names:
 - Narrative (play on the word SportsBOOK)
 - Novel (play on the word SportsBOOK)
 - Native
+- OpenBook (openbook.gg)
