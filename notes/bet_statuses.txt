@@ -1,0 +1,11 @@
+Statuses of a bet. Only two tabs: settled and open
+
+For any bet, there are filled and unfilled portions of the bet.
+
+If a user cancels their bet, the unfilled and filled portions still remain, but are guaranteed to not change any further.
+
+Settled (event has ended, winner/outcome is known):
+- Won (green)
+- Lost (red)
+
+Open (event hasn’t ended):
