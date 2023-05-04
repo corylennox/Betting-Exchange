@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -27,6 +27,8 @@ module.exports = {
           buttonActionHover: "var(--color-button-action-hover)",
           sidebarDivider: "var(--color-divider)",
           selected: "var(--color-background-selected)",
+          header: "var(--color-background-header)",
+          mybetsselected: "var(--color-background-mybetsselected)",
         },
       },
       borderColor: {
@@ -36,7 +38,8 @@ module.exports = {
           buttonActionUnselected: "var(--color-border-action-unselected)",
           buttonActionSelected: "var(--color-border-action-selected)",
           body: "var(--color-text-body)",
-          overlay: "var(--color-border-overlay)"
+          overlay: "var(--color-border-overlay)",
+          hover: "var(--color-border-hover)",
         },
       },
       fill: {
@@ -51,13 +54,16 @@ module.exports = {
           buttonMutedGradientEnd: "var(--color-button-muted-gradient-end)",
           buttonMutedPressed: "var(--color-button-muted-pressed)",
           buttonMutedDeactivated: "var(--color-button-muted-deactivated)",
-          buttonAccentGradientStart: "var(--color-button-accent-gradient-start)",
+          buttonAccentGradientStart:
+            "var(--color-button-accent-gradient-start)",
           buttonAccentGradientEnd: "var(--color-button-accent-gradient-end)",
           buttonAccentPressed: "var(--color-button-accent-pressed)",
           buttonAccentDeactivated: "var(--color-button-accent-deactivated)",
         },
-      }
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    /*require("@tailwindcss/forms")*/
+  ],
 };

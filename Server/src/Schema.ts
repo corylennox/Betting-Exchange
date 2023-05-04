@@ -44,6 +44,7 @@ export const typeDefs = gql`
     timePlaced: String! # may need to chance at some point
     totalPayout: Int
     buttonId: String!
+    status: String!
   }
 
   type Balance {
@@ -105,7 +106,7 @@ export const typeDefs = gql`
   }
 
   # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. 
+  # clients can execute, along with the return type for each.
   type Query {
     universalData: UniversalData!
     sportPane(sportTitle: String!): SportPane!

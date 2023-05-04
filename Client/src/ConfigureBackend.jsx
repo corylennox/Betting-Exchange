@@ -1,11 +1,18 @@
 import { onError } from "@apollo/client/link/error";
-import { ApolloClient, InMemoryCache, split, HttpLink, from, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  split,
+  HttpLink,
+  from,
+  ApolloProvider,
+} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
-import { createClient } from 'graphql-ws';
-import { getMainDefinition } from '@apollo/client/utilities';
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -17,18 +24,25 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 });
 
 export default function ApolloWrapper({ children }) {
-  const { user, isAuthenticated, getAccessTokenSilently, isLoading: isAuthLoading } = useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    getAccessTokenSilently,
+    isLoading: isAuthLoading,
+  } = useAuth0();
   const [bearerToken, setBearerToken] = useState("");
 
   useEffect(() => {
-      const getToken = async () => {
-          const token = isAuthenticated ? await getAccessTokenSilently({
-              audience: process.env.REACT_APP_AUDIENCE,
-              scope: "read:current_user",
-          }) : "";
-          setBearerToken(token);
-      };
-      getToken();
+    const getToken = async () => {
+      const token = isAuthenticated
+        ? await getAccessTokenSilently({
+            audience: process.env.REACT_APP_AUDIENCE,
+            scope: "read:current_user",
+          })
+        : "";
+      setBearerToken(token);
+    };
+    getToken();
   }, [getAccessTokenSilently, isAuthenticated]);
 
   /**
@@ -40,58 +54,54 @@ export default function ApolloWrapper({ children }) {
    *
    * Inspired by 1:39:00 of this video: https://www.youtube.com/watch?v=vqHkwTWbaUk&t=290s&ab_channel=ApolloGraphQL.
    */
-   const authLink = setContext((_, { headers }) => {
-    return (bearerToken === "")
-    ? { headers }
-    : {
-        headers: {
-          ...headers,
-          authorization: `Bearer: ${bearerToken}`,
-        }
-      };
-    });
+  const authLink = setContext((_, { headers }) => {
+    return bearerToken === ""
+      ? { headers }
+      : {
+          headers: {
+            ...headers,
+            authorization: `Bearer: ${bearerToken}`,
+          },
+        };
+  });
 
-    // const webServerProtocol = "http";
-    // const webServerUrl = "localhost";
-    // const webServerPort = "4000"
+  const webServerProtocol = "http";
+  const webServerUrl = "localhost";
+  const webServerPort = "4000";
 
-    const webServerProtocol = "http";
-    const webServerUrl = "3.18.221.200";
-    const webServerPort = "4000"
+  // const webServerProtocol = "http";
+  // const webServerUrl = "3.133.83.109";
+  // const webServerPort = "4000";
 
-    const httpLink = new HttpLink({ uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/` });
+  const httpLink = new HttpLink({
+    uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/`,
+  });
 
-    const wsLink = new GraphQLWsLink(createClient({
+  const wsLink = new GraphQLWsLink(
+    createClient({
       url: `ws://${webServerUrl}:${webServerPort}/graphql`,
-    }));
+    })
+  );
 
-    // Allows for GraphQL requests to be sent either the http or the websocket, depending on the request type
-    const splitLink = split(
-      ({ query }) => {
-        const definition = getMainDefinition(query);
-        return (
-          definition.kind === 'OperationDefinition' &&
-          definition.operation === 'subscription'
-        ); // checks if operation is a subscription
-      },
-      wsLink, // used if boolean operation is true
-      httpLink, // used if boolean operation is false
-    );
+  // Allows for GraphQL requests to be sent either the http or the websocket, depending on the request type
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
+      ); // checks if operation is a subscription
+    },
+    wsLink, // used if boolean operation is true
+    httpLink // used if boolean operation is false
+  );
 
-  const link = from([
-    errorLink,
-    authLink,
-    splitLink,
-  ]);
+  const link = from([errorLink, authLink, splitLink]);
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: link,
   });
 
-  return (  
-    <ApolloProvider client={client}>
-      {children}
-    </ApolloProvider>
-  );
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }

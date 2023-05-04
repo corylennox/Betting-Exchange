@@ -93,6 +93,7 @@ export const MY_BETS_QUERY = gql`
       timePlaced
       totalPayout
       buttonId
+      status
     }
   }
 `;
