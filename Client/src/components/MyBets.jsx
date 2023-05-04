@@ -5,55 +5,67 @@ import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { useQuery } from "@apollo/client";
 import { MY_BETS_QUERY } from "../GraphQL/Queries";
 
+const paidSVG = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    class="h-3 w-3"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+      clip-rule="evenodd"
+    />
+  </svg>
+);
+
+const lostSVG = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    class="h-3 w-3"
+  >
+    <path d="M14.707 5.293a1 1 0 010 1.414L11.414 10l3.293 3.293a1 1 0 11-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 10 5.293 6.707a1 1 0 011.414-1.414L10 8.586l3.293-3.293a1 1 0 011.414 0z" />
+  </svg>
+);
+
+const cancelledSVG = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    class="h-3 w-3"
+  >
+    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 110-20 10 10 0 010 20zm-1-15a1 1 0 112 0v8a1 1 0 11-2 0V5zm1 11a1 1 0 100-2 1 1 0 000 2z" />
+  </svg>
+);
+
 function printStatus(count) {
   let ret;
   switch (count % 3) {
     case 0:
       ret = (
         <span class="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-3 w-3"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-              clip-rule="evenodd"
-            />
-          </svg>
+          {paidSVG}
           Paid
         </span>
       );
       break;
     case 1:
       ret = (
-        <span class="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-3 w-3"
-          >
-            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 110-20 10 10 0 010 20zm-1-15a1 1 0 112 0v8a1 1 0 11-2 0V5zm1 11a1 1 0 100-2 1 1 0 000 2z" />
-          </svg>
-          Cancelled
+        <span class="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
+          {lostSVG}
+          Lost
         </span>
       );
       break;
     case 2:
       ret = (
-        <span class="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-3 w-3"
-          >
-            <path d="M14.707 5.293a1 1 0 010 1.414L11.414 10l3.293 3.293a1 1 0 11-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 10 5.293 6.707a1 1 0 011.414-1.414L10 8.586l3.293-3.293a1 1 0 011.414 0z" />
-          </svg>
-          Lost
+        <span class="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
+          {cancelledSVG}
+          Cancelled
         </span>
       );
       break;
