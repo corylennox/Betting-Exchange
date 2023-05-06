@@ -15,7 +15,7 @@ export const verifyToken = async (bearerToken) => {
     function getJwksClientKey(header, callback) {
         client.getSigningKey(header.kid, function (error, key: SigningKey | RsaSigningKey) {
             if (error)
-                console.error(error);
+                console.error(`Error getting signing key: ${error} with JSON stringify: ${JSON.stringify(error)}`);
             const signingKey = key.getPublicKey();
             callback(null, signingKey);
         });

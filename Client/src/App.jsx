@@ -87,7 +87,7 @@ function AppNested() {
       setSkipBalanceQuery(true);
       dispatch(setAvailableBalanceAction(translateBalanceData(response).availableBalance));
     },
-    skip: skipBalanceQuery,
+    skip: skipBalanceQuery | !isAuthenticated,
   });
 
   // Don't check for subscription loading, as that only equates to false once the first item arrives from the subscription, which may take a very long time hypothetically

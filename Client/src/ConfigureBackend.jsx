@@ -25,10 +25,10 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 
 export default function ApolloWrapper({ children }) {
   const {
-    user,
+    _user,
     isAuthenticated,
     getAccessTokenSilently,
-    isLoading: isAuthLoading,
+    isLoading: _isAuthLoading,
   } = useAuth0();
   const [bearerToken, setBearerToken] = useState("");
 
@@ -65,13 +65,15 @@ export default function ApolloWrapper({ children }) {
         };
   });
 
-  const webServerProtocol = "http";
-  const webServerUrl = "localhost";
-  const webServerPort = "4000";
+  // const webServerProtocol = "https";
+  // const webSocketProtocol = "wss";
+  // const webServerUrl = "localhost";
+  // const webServerPort = "4000"
 
-  // const webServerProtocol = "http";
-  // const webServerUrl = "3.133.83.109";
-  // const webServerPort = "4000";
+  const webServerProtocol = "https";
+  const webSocketProtocol = "wss";
+  const webServerUrl = "3.140.200.226";
+  const webServerPort = "443"
 
   const httpLink = new HttpLink({
     uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/`,
@@ -79,7 +81,7 @@ export default function ApolloWrapper({ children }) {
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: `ws://${webServerUrl}:${webServerPort}/graphql`,
+      url: `${webSocketProtocol}://${webServerUrl}:${webServerPort}/graphql`,
     })
   );
 
