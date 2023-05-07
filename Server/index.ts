@@ -95,7 +95,8 @@ const resolvers = {
           timePlaced: bet.time_placed,
           totalPayout: bet.total_payout,
           buttonId: bet.button_id,
-          status: bet.bet_status,
+          orderStatus: bet.order_status,
+          betStatus: bet.bet_status,
         };
         return ret;
       });

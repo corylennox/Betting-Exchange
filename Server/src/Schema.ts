@@ -44,7 +44,8 @@ export const typeDefs = gql`
     timePlaced: String! # may need to chance at some point
     totalPayout: Int
     buttonId: String!
-    status: String!
+    orderStatus: String!
+    betStatus: String!
   }
 
   type Balance {
