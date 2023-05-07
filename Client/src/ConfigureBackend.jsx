@@ -65,15 +65,26 @@ export default function ApolloWrapper({ children }) {
         };
   });
 
-  // const webServerProtocol = "https";
-  // const webSocketProtocol = "wss";
-  // const webServerUrl = "localhost";
-  // const webServerPort = "4000"
+  const environments = {
+    local: {
+      webServerProtocol: "http",
+      webSocketProtocol: "ws",
+      webServerUrl: "localhost",
+      webServerPort: "4000",
+    },
+    production: {
+      webServerProtocol: "https",
+      webSocketProtocol: "wss",
+      webServerUrl: "3.140.200.226",
+      webServerPort: "443",
+    },
+  };
 
-  const webServerProtocol = "https";
-  const webSocketProtocol = "wss";
-  const webServerUrl = "3.140.200.226";
-  const webServerPort = "443"
+  //Change this to local or production depending on where you're running the server
+  const currentEnvironment = "local";
+
+  const { webServerProtocol, webSocketProtocol, webServerUrl, webServerPort } =
+    environments[currentEnvironment];
 
   const httpLink = new HttpLink({
     uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/`,
