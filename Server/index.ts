@@ -9,6 +9,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
 import http from "http";
+import https from 'https';
 import cors from "cors";
 import { json } from "body-parser";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -29,6 +30,14 @@ import { RestingType } from "./src/datatypes/RestingType";
 import { DollarAmount } from "./src/datatypes/DollarAmount";
 import fetchBetsController from "./controller/fetchBets";
 import balancesController from "./controller/balances";
+import fs from 'fs';
+
+const sslKey = fs.readFileSync('./certificates/private.key');
+const sslCert = fs.readFileSync('./certificates/certificate.crt');
+const sslCredentials = {
+    key: sslKey,
+    cert: sslCert,
+}
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -202,7 +211,7 @@ const resolvers = {
 
 async function startApolloServer() {
   const app = express();
-  const httpServer = http.createServer(app);
+  const httpServer = https.createServer(sslCredentials, app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
 
@@ -256,7 +265,7 @@ async function startApolloServer() {
   app.use(
     "/graphql",
     cors({
-      origin: "http://localhost:3000",
+      origin: "https://localhost:3000",
     }),
     json(),
     expressMiddleware(server, {
@@ -288,6 +297,10 @@ async function startApolloServer() {
       },
     })
   );
+
+  // app.get('/.well-known/pki-validation/517EAE812FFA1349F5C1E4EA4DDE367A.txt', (req, res) => {
+  //     res.sendFile('/home/ubuntu/Betting-Exchange/certificates/517EAE812FFA1349F5C1E4EA4DDE367A.txt');
+  // })
 
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 4000 }, resolve)
