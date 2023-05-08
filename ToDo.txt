@@ -27,6 +27,8 @@ Together
 - make tailwind theme
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
 
+- Remove any db migrations that are dangerous (in case a revert is run)
+- Create auth0 production environment, remove localhost from any production cors/auth0 allows URIs
 
 V1.X:
 - Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
