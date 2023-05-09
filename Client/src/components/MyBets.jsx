@@ -4,6 +4,12 @@ import { useState } from "react";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { useQuery } from "@apollo/client";
 import { MY_BETS_QUERY } from "../GraphQL/Queries";
+import Tooltip from "./Tooltip";
+import {
+  ClockIcon,
+  CubeIcon,
+  CubeTransparentIcon,
+} from "@heroicons/react/outline";
 
 const paidSVG = (
   <svg
@@ -31,7 +37,7 @@ const lostSVG = (
   </svg>
 );
 
-const cancelledSVG = (
+const noFillCancelSVG = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -42,10 +48,16 @@ const cancelledSVG = (
   </svg>
 );
 
-function printStatus(count) {
+const partiallyCancelledSVG = <CubeTransparentIcon className="h-8 w-8" />;
+
+const pendingSVG = <ClockIcon className="h-5 w-5" />;
+
+const fullFillSVG = <CubeIcon className="h-5 w-5" />;
+
+function printBetStatus(status) {
   let ret;
-  switch (count % 3) {
-    case 0:
+  switch (status) {
+    case "paid":
       ret = (
         <span class="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
           {paidSVG}
@@ -53,7 +65,7 @@ function printStatus(count) {
         </span>
       );
       break;
-    case 1:
+    case "lost":
       ret = (
         <span class="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
           {lostSVG}
@@ -61,11 +73,48 @@ function printStatus(count) {
         </span>
       );
       break;
-    case 2:
+    case "cancelled":
       ret = (
         <span class="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
-          {cancelledSVG}
+          {noFillCancelSVG}
           Cancelled
+        </span>
+      );
+      break;
+    default:
+      ret = "Unknown";
+  }
+
+  return ret;
+}
+
+function printOrderStatus(status) {
+  let ret;
+  switch (status) {
+    case "fully_filled":
+      ret = (
+        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+          {fullFillSVG}
+          Confirmed
+        </span>
+      );
+      break;
+    case "cancelled_by_user":
+    case "cancelled_by_exchange":
+      ret = (
+        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+          {partiallyCancelledSVG}
+          Partially Cancelled
+        </span>
+      );
+      break;
+    case "received_by_backend":
+    case "submitted_to_matching_engine":
+    case "resting_on_matching_engine":
+      ret = (
+        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+          {pendingSVG}
+          Pending
         </span>
       );
       break;
@@ -86,6 +135,17 @@ function MyBets() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  const sortedMyBetsArray = data.myBets.slice();
+  sortedMyBetsArray.sort((a, b) => b.timePlaced - a.timePlaced);
+
+  const openBetsArray = sortedMyBetsArray.filter(
+    (bet) => bet.betStatus === "pending"
+  );
+
+  const settledBetsArray = sortedMyBetsArray.filter(
+    (bet) => bet.betStatus !== "pending"
+  );
 
   return (
     <div>
@@ -121,7 +181,7 @@ function MyBets() {
         {/* Open Bets */}
         <div className={`${activeTab === 0 ? "block" : "hidden"}`}>
           <div class="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table class="w-full border-collapse text-left text-sm text-skin-body">
+            <table class="w-full border-collapse text-center text-sm text-skin-body">
               <thead class="bg-skin-header">
                 <tr>
                   <th scope="col" class="px-6 py-4 font-medium text-gray-900">
@@ -142,10 +202,13 @@ function MyBets() {
                   <th scope="col" class="px-6 py-4 font-medium text-gray-900">
                     Button ID
                   </th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                    Order Status
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                {data.myBets.map((bet, i = 0) => (
+                {openBetsArray.map((bet) => (
                   <tr class="">
                     <td class="px-6 py-4">{bet.id}</td>
                     <td class="px-6 py-4 text-skin-body">
@@ -153,16 +216,31 @@ function MyBets() {
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleDateString()}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="whitespace-nowrap px-6 py-4">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleTimeString()}
                     </td>
-                    <td class="px-6 py-4">${(bet.wager / 100).toFixed(2)}</td>
+                    <td class="px-6 py-4">
+                      {bet.orderStatus.includes("cancelled") ? (
+                        <span class="flex items-center">
+                          <span class="text-gray-400">$#.##/&nbsp;</span>
+                          <span class="mr-1">
+                            ${(bet.wager / 100).toFixed(2)}
+                          </span>
+                          <Tooltip type={bet.orderStatus} />
+                        </span>
+                      ) : (
+                        <span>${(bet.wager / 100).toFixed(2)}</span>
+                      )}
+                    </td>
                     <td class="px-6 py-4">
                       ${(bet.totalPayout / 100).toFixed(2)}
                     </td>
                     <td class="px-6 py-4">{bet.buttonId}</td>
+                    <td class="px-6 py-4 text-left">
+                      {printOrderStatus(bet.orderStatus)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -172,7 +250,7 @@ function MyBets() {
         {/* Settled Bets */}
         <div className={`${activeTab === 1 ? "block" : "hidden"}`}>
           <div class="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table class="w-full border-collapse text-left text-sm text-skin-body">
+            <table class="w-full border-collapse text-center text-sm text-skin-body">
               <thead class="bg-skin-header">
                 <tr>
                   <th scope="col" class="px-6 py-4 font-medium text-gray-900">
@@ -199,7 +277,7 @@ function MyBets() {
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                {data.myBets.map((bet, i = 0) => (
+                {settledBetsArray.map((bet) => (
                   <tr class="">
                     <td class="px-6 py-4">{bet.id}</td>
                     <td class="px-6 py-4 text-skin-body">
@@ -207,17 +285,29 @@ function MyBets() {
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleDateString()}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="whitespace-nowrap px-6 py-4">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleTimeString()}
                     </td>
-                    <td class="px-6 py-4">${(bet.wager / 100).toFixed(2)}</td>
+                    <td class="px-6 py-4">
+                      {bet.orderStatus.includes("cancelled") ? (
+                        <span class="flex items-center">
+                          <span class="text-gray-400">$#.##/&nbsp;</span>
+                          <span class="mr-1">
+                            ${(bet.wager / 100).toFixed(2)}
+                          </span>
+                          <Tooltip type={bet.orderStatus} />
+                        </span>
+                      ) : (
+                        <span>${(bet.wager / 100).toFixed(2)}</span>
+                      )}
+                    </td>
                     <td class="px-6 py-4">
                       ${(bet.totalPayout / 100).toFixed(2)}
                     </td>
                     <td class="px-6 py-4">{bet.buttonId}</td>
-                    <td class="px-6 py-4">{printStatus(i++)}</td>
+                    <td class="px-6 py-4">{printBetStatus(bet.betStatus)}</td>
                   </tr>
                 ))}
               </tbody>

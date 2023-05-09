@@ -1,6 +1,12 @@
 V1:
 Cory
-- Create tabs on MyBets page for "Settled" vs. "Active" bets.
+My Bets:
+  - make FAQ page
+  - get accurate data for cancelled bets
+  - query automatically every 5 seconds for new bets
+  - lazy loading for queries
+  - query db pulling all game data (by button ID) for all bets in My Bets
+- make sure users can't query the db after signing in to Auth0
 - make admin panel (look into refinedev/refine on git)
 
 

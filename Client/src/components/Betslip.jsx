@@ -17,6 +17,7 @@ import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { BottomNavbarItems } from "./BottomNavbar";
 import { useEffect } from "react";
 import BetslipSubmission from "./BetslipSubmission";
+import { TrashIcon } from "@heroicons/react/outline";
 
 function validateAndChangeWager(evt, setWagerAndWin, line) {
   const newWagerStr = evt.target.value;
@@ -46,7 +47,12 @@ function ToggledBet(props) {
   const winStr = toggledBets.get(props.buttonId).winStr;
   const line = linesContainer.get(props.buttonId);
 
-  const setWagerAndWin = (newWagerStr, newWagerInteger, newWinStr, newWinInteger) => {
+  const setWagerAndWin = (
+    newWagerStr,
+    newWagerInteger,
+    newWinStr,
+    newWinInteger
+  ) => {
     dispatch(
       setWagerAndWinAction(
         props.buttonId,
@@ -55,12 +61,13 @@ function ToggledBet(props) {
         newWinStr,
         newWinInteger
       )
-    )};
+    );
+  };
 
   /**
    * This code is used to check if the line has changed since the previous refresh.
    * If so, the win needs to be recalculated based on the wager.
-   * 
+   *
    * Line has changed if wager->win or win->wager calculation does not line up properly.
    */
   useEffect(() => {
@@ -69,20 +76,27 @@ function ToggledBet(props) {
     const isWagerOrWinSet = wagerInteger !== 0 || winInteger !== 0;
     const determinedWagerInteger = determineWager(line, winInteger);
     const determinedWinInteger = determineWin(line, wagerInteger);
-    if (isWagerOrWinSet && determinedWagerInteger !== wagerInteger && determinedWinInteger !== winInteger) {
-      setWagerAndWin(wagerStr, wagerInteger, convertToPriceString(determinedWinInteger), determinedWinInteger);
+    if (
+      isWagerOrWinSet &&
+      determinedWagerInteger !== wagerInteger &&
+      determinedWinInteger !== winInteger
+    ) {
+      setWagerAndWin(
+        wagerStr,
+        wagerInteger,
+        convertToPriceString(determinedWinInteger),
+        determinedWinInteger
+      );
     }
-  })
+  });
 
   return (
     <div className="flex min-h-fit min-w-fit py-3 pr-9">
-      <img
-        alt="remove icon"
-        className="w-7 h-7 mx-2 mt-2 cursor-pointer"
-        src="res/remove.png"
+      <TrashIcon
+        className="mx-2 mt-2 h-7 w-7 cursor-pointer"
         onClick={() => dispatch(deleteBetsAction([props.buttonId]))}
       />
-      <div className="bg-skin-overlay text-skin-body rounded-2xl p-3 drop-shadow-md shadow-lg w-full">
+      <div className="w-full rounded-2xl bg-skin-overlay p-3 text-skin-body shadow-lg drop-shadow-md">
         <div className="inline-flex w-full ">
           <div className=" w-11/12">
             <h1>
@@ -98,30 +112,24 @@ function ToggledBet(props) {
                 props.bet.type.slice(1)}
             </h1>
           </div>
-          <div className="w-1/12 text-right mr-2">
-            <h1 className="pt-4 pb-4 h-full">
-              {getDisplayStr(line)}
-            </h1>
+          <div className="mr-2 w-1/12 text-right">
+            <h1 className="h-full pt-4 pb-4">{getDisplayStr(line)}</h1>
           </div>
         </div>
 
         {/* Wager input */}
-        <div className="flex w-full h-14 mt-2">
-          <div className="w-1/2 mr-1 border border-skin-input rounded-lg  p-1 text-sm">
-            <label className="block uppercase tracking-wide text-skin-body font-bold">
+        <div className="mt-2 flex h-14 w-full">
+          <div className="mr-1 w-1/2 rounded-lg border border-skin-input  p-1 text-sm">
+            <label className="block font-bold uppercase tracking-wide text-skin-body">
               Wager
             </label>
-            <div className="inline-flex font-bold text-skin-body w-full">
+            <div className="inline-flex w-full font-bold text-skin-body">
               <span className="">$</span>
               <input
-                className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
+                className="block w-full appearance-none bg-transparent leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
-                  validateAndChangeWager(
-                    evt,
-                    setWagerAndWin,
-                    line
-                  )
+                  validateAndChangeWager(evt, setWagerAndWin, line)
                 }
                 value={wagerStr}
               />
@@ -129,21 +137,17 @@ function ToggledBet(props) {
           </div>
 
           {/* Win input */}
-          <div className="w-1/2 ml-1 border border-skin-input rounded-lg p-1 text-sm">
-            <label className="block uppercase tracking-wide text-skin-body  font-bold ">
+          <div className="ml-1 w-1/2 rounded-lg border border-skin-input p-1 text-sm">
+            <label className="block font-bold uppercase tracking-wide  text-skin-body ">
               To Win
             </label>
-            <div className="inline-flex font-bold text-skin-body w-full">
+            <div className="inline-flex w-full font-bold text-skin-body">
               <span className="">$</span>
               <input
-                className="appearance-none block bg-transparent w-full leading-tight focus:outline-none"
+                className="block w-full appearance-none bg-transparent leading-tight focus:outline-none"
                 type="text"
                 onChange={(evt) =>
-                  validateAndChangeWin(
-                    evt,
-                    setWagerAndWin,
-                    line
-                  )
+                  validateAndChangeWin(evt, setWagerAndWin, line)
                 }
                 value={winStr}
               />
@@ -168,7 +172,7 @@ function PopulatedBetslip(toggledBetsArray) {
 function UnpopulatedBetslip() {
   return (
     <div className=" w-full pt-28">
-      <h1 className=" text-skin-overlay text-center text-2xl">
+      <h1 className=" text-center text-2xl text-skin-overlay">
         You have no current bets.
       </h1>
     </div>
@@ -187,23 +191,31 @@ export default function Betslip(props) {
   }
 
   return (
-  <div>
-    <div className={`${props.isSportPane ? "lg:h-full h-[calc(100vh-10rem)] overflow-y-auto" : "h-[calc(100vh-13.75rem)] overflow-y-auto"}`}>
-    {
-      toggledBetsArray.length !== 0
-      ?
-        PopulatedBetslip(toggledBetsArray)
-      :
-        UnpopulatedBetslip()
-    }
-    </div>
+    <div>
+      <div
+        className={`${
+          props.isSportPane
+            ? "h-[calc(100vh-10rem)] overflow-y-auto lg:h-full"
+            : "h-[calc(100vh-13.75rem)] overflow-y-auto"
+        }`}
+      >
+        {toggledBetsArray.length !== 0
+          ? PopulatedBetslip(toggledBetsArray)
+          : UnpopulatedBetslip()}
+      </div>
 
-    { /* hide the submission button if it's the sports pane and if the screen is non-mobile, as there is already a submission on the right side */ }
-    <div className={`contents ${props.isSportPane ? "lg:hidden" : ""}`}>
-      <div className={`sticky ${props.isSportPane ? "bottom-16" : "bottom-0"} h-[6rem] w-full border-t-2 border-gray-300`}> {/* bottom-16 so it stays above BottomNavbar */}
+      {/* hide the submission button if it's the sports pane and if the screen is non-mobile, as there is already a submission on the right side */}
+      <div className={`contents ${props.isSportPane ? "lg:hidden" : ""}`}>
+        <div
+          className={`sticky ${
+            props.isSportPane ? "bottom-16" : "bottom-0"
+          } h-[6rem] w-full border-t-2 border-gray-300`}
+        >
+          {" "}
+          {/* bottom-16 so it stays above BottomNavbar */}
           <BetslipSubmission />
+        </div>
       </div>
     </div>
-  </div>
-  )
+  );
 }
