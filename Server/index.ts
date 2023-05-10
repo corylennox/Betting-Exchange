@@ -9,7 +9,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
 import http from "http";
-import https from 'https';
+import https from "https";
 import cors from "cors";
 import { json } from "body-parser";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -30,13 +30,29 @@ import { RestingType } from "./src/datatypes/RestingType";
 import { DollarAmount } from "./src/datatypes/DollarAmount";
 import fetchBetsController from "./controller/fetchBets";
 import balancesController from "./controller/balances";
-import fs from 'fs';
+import fs from "fs";
+import {
+  getEnvironmentVariable,
+  getOptionalEnvironmentVariable,
+} from "./bettingexchangecommon/environmentVariable";
 
-const sslKey = fs.readFileSync('./certificates/private.key');
-const sslCert = fs.readFileSync('./certificates/certificate.crt');
-const sslCredentials = {
+const httpsEnvironmentVariable = getOptionalEnvironmentVariable("HTTPS");
+const useHttps =
+  httpsEnvironmentVariable &&
+  (httpsEnvironmentVariable.toLowerCase() == "true" ||
+    httpsEnvironmentVariable == "1");
+let sslCredentials = {};
+if (useHttps) {
+  const sslKey = fs.readFileSync(
+    getEnvironmentVariable("SSL_KEY_RELATIVE_PATH")
+  );
+  const sslCert = fs.readFileSync(
+    getEnvironmentVariable("SSL_CERT_RELATIVE_PATH")
+  );
+  sslCredentials = {
     key: sslKey,
     cert: sslCert,
+  };
 }
 
 // Resolvers define the technique for fetching the types defined in the
@@ -212,7 +228,9 @@ const resolvers = {
 
 async function startApolloServer() {
   const app = express();
-  const httpServer = https.createServer(sslCredentials, app);
+  const httpServer = useHttps
+    ? https.createServer(sslCredentials, app)
+    : http.createServer(app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
 
@@ -266,7 +284,11 @@ async function startApolloServer() {
   app.use(
     "/graphql",
     cors({
-      origin: ["https://3.140.200.226", "http://localhost:3000", "http://localhost:8080"],
+      origin: [
+        "https://3.140.200.226",
+        "http://localhost:3000",
+        "http://localhost:8080",
+      ],
     }),
     json(),
     expressMiddleware(server, {
@@ -304,7 +326,10 @@ async function startApolloServer() {
   // })
 
   await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve)
+    httpServer.listen(
+      { port: getEnvironmentVariable("WEB_SERVER_PORT") },
+      resolve
+    )
   );
   console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 

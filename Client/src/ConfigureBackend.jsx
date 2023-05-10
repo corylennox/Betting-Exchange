@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { getEnvironmentVariable } from "bettingexchangecommon/environmentVariable";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -65,26 +66,14 @@ export default function ApolloWrapper({ children }) {
         };
   });
 
-  const environments = {
-    local: {
-      webServerProtocol: "http",
-      webSocketProtocol: "ws",
-      webServerUrl: "localhost",
-      webServerPort: "4000",
-    },
-    production: {
-      webServerProtocol: "https",
-      webSocketProtocol: "wss",
-      webServerUrl: "3.140.200.226",
-      webServerPort: "444",
-    },
-  };
-
-  //Change this to local or production depending on where you're running the server
-  const currentEnvironment = "local";
-
-  const { webServerProtocol, webSocketProtocol, webServerUrl, webServerPort } =
-    environments[currentEnvironment];
+  const webServerProtocol = getEnvironmentVariable(
+    "REACT_APP_WEB_SERVER_PROTOCOL"
+  );
+  const webSocketProtocol = getEnvironmentVariable(
+    "REACT_APP_WEB_SOCKET_PROTOCOL"
+  );
+  const webServerUrl = getEnvironmentVariable("REACT_APP_WEB_SERVER_URL");
+  const webServerPort = getEnvironmentVariable("REACT_APP_WEB_SERVER_PORT");
 
   const httpLink = new HttpLink({
     uri: `${webServerProtocol}://${webServerUrl}:${webServerPort}/graphql/`,
