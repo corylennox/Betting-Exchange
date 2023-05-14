@@ -17,7 +17,7 @@
     "test-server": "cd Server && npm test",
     "test-common": "cd Common && npm test",
     "fetch-events": "cd Server && npm run fetch-events",
-    "ssh-aws": "ssh -i \"Server/certificates/node-express-ec2.pem\" ubuntu@ec2-3-140-200-226.us-east-2.compute.amazonaws.com"
+    "ssh-aws": "ssh -i \"Server/certificates/node-express-ec2.pem\" ubuntu@ec2-3-21-59-221.us-east-2.compute.amazonaws.com"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3"
