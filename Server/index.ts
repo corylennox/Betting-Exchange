@@ -107,7 +107,7 @@ const resolvers = {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
             code: "UNAUTHENTICATED",
-            http: { status: 401 },
+            https: { status: 401 },
           },
         });
       }
@@ -137,7 +137,7 @@ const resolvers = {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
             code: "UNAUTHENTICATED",
-            http: { status: 401 },
+            https: { status: 401 },
           },
         });
       }
@@ -156,7 +156,7 @@ const resolvers = {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
             code: "UNAUTHENTICATED",
-            http: { status: 401 },
+            https: { status: 401 },
           },
         });
       }
@@ -204,7 +204,7 @@ const resolvers = {
         throw new GraphQLError("User is not authenticated", {
           extensions: {
             code: "UNAUTHENTICATED",
-            http: { status: 401 },
+            https: { status: 401 },
           },
         });
       }
@@ -285,9 +285,8 @@ async function startApolloServer() {
     "/graphql",
     cors({
       origin: [
-        "https://3.140.200.226",
-        "http://localhost:3000",
-        "http://localhost:8080",
+        "http://localhost",
+        "https://openbook.gg",
       ],
     }),
     json(),
@@ -320,10 +319,6 @@ async function startApolloServer() {
       },
     })
   );
-
-  // app.get('/.well-known/pki-validation/517EAE812FFA1349F5C1E4EA4DDE367A.txt', (req, res) => {
-  //     res.sendFile('/home/ubuntu/Betting-Exchange/certificates/517EAE812FFA1349F5C1E4EA4DDE367A.txt');
-  // })
 
   await new Promise<void>((resolve) =>
     httpServer.listen(
