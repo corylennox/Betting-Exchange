@@ -44,7 +44,6 @@ export default function OutrightBet(props) {
 
   //sort the contenders data by line value
   useEffect(() => {
-    console.log("test");
     const contendersDataCopy = [...props.outrightBetData.contendersData];
     contendersDataCopy.sort((a, b) => {
       const aLineValue = linesContainer.get(a.buttonId).value;
