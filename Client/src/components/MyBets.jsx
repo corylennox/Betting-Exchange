@@ -16,7 +16,7 @@ const paidSVG = (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    class="h-3 w-3"
+    className="h-3 w-3"
   >
     <path
       fill-rule="evenodd"
@@ -31,7 +31,7 @@ const lostSVG = (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    class="h-3 w-3"
+    className="h-3 w-3"
   >
     <path d="M14.707 5.293a1 1 0 010 1.414L11.414 10l3.293 3.293a1 1 0 11-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 10 5.293 6.707a1 1 0 011.414-1.414L10 8.586l3.293-3.293a1 1 0 011.414 0z" />
   </svg>
@@ -42,7 +42,7 @@ const noFillCancelSVG = (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    class="h-3 w-3"
+    className="h-3 w-3"
   >
     <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 110-20 10 10 0 010 20zm-1-15a1 1 0 112 0v8a1 1 0 11-2 0V5zm1 11a1 1 0 100-2 1 1 0 000 2z" />
   </svg>
@@ -59,7 +59,7 @@ function printBetStatus(status) {
   switch (status) {
     case "paid":
       ret = (
-        <span class="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
+        <span className="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
           {paidSVG}
           Paid
         </span>
@@ -67,7 +67,7 @@ function printBetStatus(status) {
       break;
     case "lost":
       ret = (
-        <span class="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
+        <span className="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
           {lostSVG}
           Lost
         </span>
@@ -75,7 +75,7 @@ function printBetStatus(status) {
       break;
     case "cancelled":
       ret = (
-        <span class="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
+        <span className="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
           {noFillCancelSVG}
           Cancelled
         </span>
@@ -93,7 +93,7 @@ function printOrderStatus(status) {
   switch (status) {
     case "fully_filled":
       ret = (
-        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
           {fullFillSVG}
           Confirmed
         </span>
@@ -102,7 +102,7 @@ function printOrderStatus(status) {
     case "cancelled_by_user":
     case "cancelled_by_exchange":
       ret = (
-        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
           {partiallyCancelledSVG}
           Partially Cancelled
         </span>
@@ -112,7 +112,7 @@ function printOrderStatus(status) {
     case "submitted_to_matching_engine":
     case "resting_on_matching_engine":
       ret = (
-        <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
           {pendingSVG}
           Pending
         </span>
@@ -180,52 +180,73 @@ function MyBets() {
       <div className="py-5">
         {/* Open Bets */}
         <div className={`${activeTab === 0 ? "block" : "hidden"}`}>
-          <div class="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table class="w-full border-collapse text-center text-sm text-skin-body">
-              <thead class="bg-skin-header">
+          <div className="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
+            <table className="w-full border-collapse text-center text-sm text-skin-body">
+              <thead className="bg-skin-header">
                 <tr>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Bet ID
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Date Placed
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Time Placed
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Wager
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Total Payout
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Button ID
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Order Status
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {openBetsArray.map((bet) => (
-                  <tr class="">
-                    <td class="px-6 py-4">{bet.id}</td>
-                    <td class="px-6 py-4 text-skin-body">
+                  <tr className="">
+                    <td className="px-6 py-4">{bet.id}</td>
+                    <td className="px-6 py-4 text-skin-body">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleDateString()}
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleTimeString()}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       {bet.orderStatus.includes("cancelled") ? (
-                        <span class="flex items-center">
-                          <span class="text-gray-400">$#.##/&nbsp;</span>
-                          <span class="mr-1">
+                        <span className="flex items-center">
+                          <span className="text-gray-400">$#.##/&nbsp;</span>
+                          <span className="mr-1">
                             ${(bet.wager / 100).toFixed(2)}
                           </span>
                           <Tooltip type={bet.orderStatus} />
@@ -234,11 +255,11 @@ function MyBets() {
                         <span>${(bet.wager / 100).toFixed(2)}</span>
                       )}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       ${(bet.totalPayout / 100).toFixed(2)}
                     </td>
-                    <td class="px-6 py-4">{bet.buttonId}</td>
-                    <td class="px-6 py-4 text-left">
+                    <td className="px-6 py-4">{bet.buttonId}</td>
+                    <td className="px-6 py-4 text-left">
                       {printOrderStatus(bet.orderStatus)}
                     </td>
                   </tr>
@@ -249,52 +270,73 @@ function MyBets() {
         </div>
         {/* Settled Bets */}
         <div className={`${activeTab === 1 ? "block" : "hidden"}`}>
-          <div class="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table class="w-full border-collapse text-center text-sm text-skin-body">
-              <thead class="bg-skin-header">
+          <div className="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
+            <table className="w-full border-collapse text-center text-sm text-skin-body">
+              <thead className="bg-skin-header">
                 <tr>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Bet ID
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Date Placed
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Time Placed
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Wager
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Total Payout
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Button ID
                   </th>
-                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Status
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {settledBetsArray.map((bet) => (
-                  <tr class="">
-                    <td class="px-6 py-4">{bet.id}</td>
-                    <td class="px-6 py-4 text-skin-body">
+                  <tr className="">
+                    <td className="px-6 py-4">{bet.id}</td>
+                    <td className="px-6 py-4 text-skin-body">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleDateString()}
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4">
                       {new Date(
                         parseInt(bet.timePlaced) / 1000000
                       ).toLocaleTimeString()}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       {bet.orderStatus.includes("cancelled") ? (
-                        <span class="flex items-center">
-                          <span class="text-gray-400">$#.##/&nbsp;</span>
-                          <span class="mr-1">
+                        <span className="flex items-center">
+                          <span className="text-gray-400">$#.##/&nbsp;</span>
+                          <span className="mr-1">
                             ${(bet.wager / 100).toFixed(2)}
                           </span>
                           <Tooltip type={bet.orderStatus} />
@@ -303,11 +345,13 @@ function MyBets() {
                         <span>${(bet.wager / 100).toFixed(2)}</span>
                       )}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       ${(bet.totalPayout / 100).toFixed(2)}
                     </td>
-                    <td class="px-6 py-4">{bet.buttonId}</td>
-                    <td class="px-6 py-4">{printBetStatus(bet.betStatus)}</td>
+                    <td className="px-6 py-4">{bet.buttonId}</td>
+                    <td className="px-6 py-4">
+                      {printBetStatus(bet.betStatus)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

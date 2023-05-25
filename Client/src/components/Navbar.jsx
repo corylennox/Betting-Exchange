@@ -63,7 +63,7 @@ export default function Navbar() {
             }}
           >
             {/* padding left matches the margin left in the sidebar, so logo and sidebar are left-aligned */}
-            <LogoSvgRaw class="h-16" />
+            <LogoSvgRaw className="h-16" />
           </Link>
         </div>
         <div className="flex h-full w-full lg:max-w-4xl">
