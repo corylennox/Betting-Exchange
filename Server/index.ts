@@ -329,6 +329,11 @@ async function startApolloServer() {
   );
   console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 
+  // this endpoint allows for AWS health checks
+  app.get('/health', (req, res) => {
+    res.status(200).send('Okay!');
+  });
+
   const lineUpdateInteval = 1000; // 1 second
   setInterval(updateLines, lineUpdateInteval);
   console.log("Server publishing websocket updates");
