@@ -1,8 +1,23 @@
-const { PubSub } = require('graphql-subscriptions');
+import { RedisPubSub } from 'graphql-redis-subscriptions'; // followed https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries for production pubsub
 const { SportsBets } = require('./Data');
 const { LinesContainer } = require('./Lines');
+import { Redis } from 'ioredis';
+import { getEnvironmentVariable } from "../bettingexchangecommon/environmentVariable";
 
-export const pubsub = new PubSub();
+const publisherOptions = new Redis({
+    port: Number(getEnvironmentVariable("REDIS_PORT")),
+    host: getEnvironmentVariable('REDIS_HOST'),
+    password: getEnvironmentVariable('REDIS_PASSWORD'),
+});
+const subscriberOptions = new Redis({
+    port: Number(getEnvironmentVariable("REDIS_PORT")),
+    host: getEnvironmentVariable('REDIS_HOST'),
+    password: getEnvironmentVariable('REDIS_PASSWORD'),
+});
+export const pubsub = new RedisPubSub({
+    publisher: publisherOptions,
+    subscriber: subscriberOptions,
+});
 
 function shouldUpdateLine() {
     const updateProbability = .2;
