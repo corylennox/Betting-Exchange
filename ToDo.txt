@@ -20,6 +20,7 @@ Emerson
 - Switch to https
 - Create tabs on the frontend within each sportpane for different categories.
 - Install and setup morgan package
+- Remove localhost from Auth0 redirect urls and from cors?
 
 Together
 - use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
@@ -38,6 +39,7 @@ Together
 
 - Remove any db migrations that are dangerous (in case a revert is run)
 - Create auth0 production environment, remove localhost from any production cors/auth0 allows URIs
+- Check auth0 audience in client and server .envs to make sure we're using https not http for audience
 
 V1.X:
 - Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
