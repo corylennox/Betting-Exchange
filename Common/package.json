@@ -1,0 +1,14 @@
+{
+  "name": "bettingexchangecommon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wagerWinUtils.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "BettingExchange",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.2.2"
+  }
+}

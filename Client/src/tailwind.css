@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-divider: #1e293b;
+
+    --color-text-header: #ffffff;
+    --color-text-body: #465057; /* Matches FanDuel Color */
+    --color-text-accent: #65676b;
+    --color-text-overlay: #171717;
+    --color-text-action-unselected: #2563eb; /* text-blue-600 */
+    --color-text-action-selected: #ffffff;
+    --color-text-action-hover: #1e40af; /* text-blue-800 */
+    --color-text-betslip-header: #465057;
+
+    --color-button-muted-gradient-start: #64748b; /* slate-500 */
+    --color-button-muted-gradient-end: #475569; /* slate-600 */
+    --color-button-muted-pressed: #334155; /* slate-700 */
+    --color-button-muted-deactivated: #525252; /* natural-600 */
+    --color-button-accent-gradient-start: #f59e0b; /* amber-500 */
+    --color-button-accent-gradient-end: #d97706; /* amber-600 */
+    --color-button-accent-pressed: #b45309; /* amber-700 */
+    --color-button-accent-deactivated: #525252; /* natural-600 */
+    --color-button-action-unselected: #ffffff; /* same as muted */
+    --color-button-action-selected: #4089ea; /* same as muted */
+    --color-button-action-hover: #e5e7eb; /* bg-gray-200 */
+
+    --color-background-default: #0f172a; /* slate-900 */
+    --color-background-default-selected: #1e293b; /* slate-800 */
+    --color-background-accent: #e2e8f0; /* slate-200 */
+    --color-background-overlay: #ffffff;
+    --color-background-selected: #334155;
+    --color-background-header: #ffffff;
+    --color-background-mybetsselected: #f8fafc; /* slate-50 */
+
+    --color-border-action-unselected: #4089ea;
+    --color-border-action-selected: #000000;
+    --color-border-overlay: #71717a;
+  }
+  .theme-dark {
+    --color-divider: #262626;
+    --color-text-header: #ffffff;
+    --color-text-body: #ffffff;
+    --color-text-accent: #171717;
+    --color-text-overlay: #ffffff;
+    --color-text-action-unselected: #ffffff;
+    --color-text-action-selected: #ffffff;
+    --color-text-action-hover: #ffffff;
+    --color-text-betslip-header: #ffffff;
+
+    --color-button-muted-gradient-start: #64748b; /* slate-500 */
+    --color-button-muted-gradient-end: #475569; /* slate-600 */
+    --color-button-muted-pressed: #334155; /* slate-700 */
+    --color-button-muted-deactivated: #525252; /* natural-600 */
+    --color-button-accent-gradient-start: #f59e0b; /* amber-500 */
+    --color-button-accent-gradient-end: #d97706; /* amber-600 */
+    --color-button-accent-pressed: #b45309; /* amber-700 */
+    --color-button-accent-deactivated: #525252; /* natural-600 */
+    --color-button-action-unselected: #3b82f6;
+    --color-button-action-selected: #1e40af;
+    --color-button-action-hover: #064fc5;
+
+    --color-background-default: #171717;
+    --color-background-default-selected: #2563eb;
+    --color-background-accent: #3f3f46;
+    --color-background-overlay: #71717a;
+    --color-background-selected: #404040;
+    --color-background-header: #cfcfcf;
+    --color-background-mybetsselected: #f8fafc; /* slate-50 */
+
+    --color-border-action-unselected: #2563eb;
+    --color-border-action-selected: #171717;
+    --color-border-overlay: #71717a;
+    --color-border-hover: #064fc5;
+  }
+}

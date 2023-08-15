@@ -1,0 +1,80 @@
+V1:
+-Any remaining unfilled wager will become a limit order at the top of the book.
+  If the bet is not filled, the order will rest on the book
+  If the bet is filled, the user will be notified and the bet will be added to their My Bets page. 
+  The user can then sell the bet at any time for the current market price. If the user sells the bet for a profit, 
+  the profit will be added to their account balance.
+-Show available liquidity on the betslip with tooltip
+-If there's no available liquidity on the book, the user can specify a odds/price they want to buy the bet at (using arrows)
+ and the bet will be added to the book as a limit order.
+
+Cory
+My Bets:
+  - get total_payout in db working
+  - update tooltip message with link to FAQ page
+  - get accurate data for cancelled bets
+  - query automatically every 5 seconds for new bets
+  - lazy loading for queries
+  - query db pulling all game data (by button ID) for all bets in My Bets
+- make FAQ page
+- register domain and aws under one of our names
+- make sure users can't query the db after signing in to Auth0
+- make admin panel (look into refinedev/refine on git)
+
+
+Emerson
+- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
+- Create tabs on the frontend within each sportpane for different categories.
+- Install and setup morgan package
+- Remove localhost from Auth0 redirect urls and from cors?
+
+Together
+- use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
+- Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
+- live update the status of bets in My Bets (e.g. you bet the over on total points scored and it will show something like [Live: 175 Bet: 226 ] )
+- add betting groups so you can sweat bets with your friends
+
+- Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
+
+- have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
+
+- Switch to AWS hosting the database
+
+- make tailwind theme
+- When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
+
+- Remove any db migrations that are dangerous (in case a revert is run)
+- Create auth0 production environment, remove localhost from any production cors/auth0 allows URIs
+- Check auth0 audience in client and server .envs to make sure we're using https not http for audience
+
+V1.X:
+- Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
+- Rename buttonId in frontend & backend?
+- use ints for all line/wager/payout JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
+- Fix fetch requests being cancelled (chrome dev tools -> network tab) (caused by LINES_QUERY being fetched 2 more times than necessary) https://stackoverflow.com/questions/50294001/apollo-graphql-requests-are-canceled
+
+- V2: Pro version of our app that allows users to have access to limit orders and selling on the outright betslip
+
+
+Potential names:
+- use https://namify.tech/ for some good inspirations
+- Aight Bet
+- Nouveau ("new" in french)
+- Novus Sports Betting
+- Pourtoi ("for you" in french)
+- Eiffel
+- What's the line
+- Spons.io
+- Contra (versus in latin)
+- Contra (Latin), thanks nibs
+- Forum
+- Barter
+- Courtside
+- Jeffery
+- Highline
+- Hangtime
+- MyBets
+- Narrative (play on the word SportsBOOK)
+- Novel (play on the word SportsBOOK)
+- Native
+- OpenBook (openbook.gg)
