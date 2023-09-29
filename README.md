@@ -2,26 +2,35 @@
 
 This project contains the front and back end of a betting exchange.
 
-## Setting up after pulling
+## Table of Contents
 
-Navigate to the root project directory and run the following command:
+1. [Dev Environment Setup](#dev-environment-setup)
+2. [Project Commands](#project-commands)
+3. [Live Demo](#live-demo)
 
-### `npm run setup`
+## Dev Environment Setup
 
-## Available Scripts
+1. Clone this repository
+2. Navigate to the root directory and run `npm run setup`
+
+## Project Commands
 
 In the root project directory, you can run the following commands:
 
-### `npm run all`
+* `npm run all`
 Starts both front end react client and back end apollo server in parallel.\
 Client runs on [http://localhost:3000](http://localhost:3000)\
 Server runs on [http://localhost:4000](http://localhost:4000)
 
-### `npm run client`
+* `npm run client`
 Runs the client only.
 
-### `npm run server`
+* `npm run server`
 Runs the server only.
 
-### `npm test`
+* `npm test`
 Runs every unit test in every package (Client, Server, Common).
+
+Live Demo
+
+The project is live at [openbook.gg](http://openbook.gg).
