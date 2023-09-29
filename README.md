@@ -31,6 +31,6 @@ Runs the server only.
 * `npm test`
 Runs every unit test in every package (Client, Server, Common).
 
-Live Demo
+## Live Demo
 
 The project is live at [openbook.gg](http://openbook.gg).
