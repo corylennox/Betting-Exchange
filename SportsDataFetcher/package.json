@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node test.ts"
+    "fetch-sports-data": "ts-node nflScheduleFetcher.ts"
   },
   "keywords": [],
   "author": "",
