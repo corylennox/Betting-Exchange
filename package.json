@@ -19,7 +19,6 @@
     "test-client": "cd Client && npm test",
     "test-server": "cd Server && npm test",
     "test-common": "cd Common && npm test",
-    "fetch-events": "cd Server && npm run fetch-events",
     "fetch-sports-data": "cd SportsDataFetcher && npm run fetch-sports-data",
     "ssh-aws": "ssh -i \"Server/certificates/node-express-ec2.pem\" ubuntu@3.20.192.165",
     "pm2-all": "pm2 start npm --name \"server\" -- run server && pm2 start npm --name \"client\" -- run client"

@@ -9,8 +9,7 @@
     "test": "npm run-script clean && jest",
     "start:ts": "tsc -w",
     "start:js": "nodemon",
-    "start": "npm run-script clean && tsc && run-p start:ts start:js",
-    "fetch-events": "ts-node ./the_odds_api/fetch_events.ts"
+    "start": "npm run-script clean && tsc && run-p start:ts start:js"
   },
   "repository": {
     "type": "git",
