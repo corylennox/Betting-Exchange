@@ -8,6 +8,9 @@ echo "Install client packages" && \
 cd Common && \
 npm i && \
 cd ../ && \
+cd SportsDataFetcher && \
+npm i && \
+cd ../ && \
 echo "Install server packages" && \
 cd Server && \
 npm i && \
