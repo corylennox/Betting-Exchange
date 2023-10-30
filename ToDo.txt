@@ -23,7 +23,6 @@ My Bets:
 
 
 Emerson
-- Revise commit history to get rid of any history in the Github repo with the .env files. All commits should have no data regarding .env.
 - Create tabs on the frontend within each sportpane for different categories.
 - Install and setup morgan package
 - Remove localhost from Auth0 redirect urls and from cors?
