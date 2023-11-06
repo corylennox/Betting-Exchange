@@ -7,12 +7,22 @@ function logObject(obj: any): void {
   console.log(JSON.stringify(obj, null, 2));
 }
 
+function sleep(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+/**
+ * For GameBets
+ */
+
 class Competition {
+  id: ID;
   awayTeam: ID;
   homeTeam: ID;
   scheduledTime: Date;
 
   constructor(data: any) {
+    this.id = data.id;
     this.awayTeam = data.away.id;
     this.homeTeam = data.home.id;
     this.scheduledTime = data.scheduled;
@@ -45,11 +55,74 @@ class Season {
   static async fetchCurrentSeason(apiKey: string): Promise<Season> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/games/current_season/schedule.json?api_key=${apiKey}`;
     const response = await axios.get(url);
-    console.log('Raw data:');
+    console.log('Raw current season data:');
     logObject(response.data);
     console.log('\n\n\n');
     return new Season(response.data);
   }
+}
+
+/**
+ * For Player OutrightBets
+ */
+class Player {
+  id: ID;
+  firstName: string;
+  lastName: string;
+  displayName: string;
+  dateOfBirth: Date;
+
+  constructor(data: any) {
+    this.id = data.id;
+    this.firstName = data.first_name;
+    this.lastName = data.last_name;
+    this.displayName = data.name;
+    this.dateOfBirth = data.birth_date;
+  }
+}
+
+/**
+ * For Team OutrightBets
+ */
+class Team {
+  id: ID;
+  name: string;
+  market: string;
+  alias: string;
+  players: Player[]
+
+  constructor(data: any) {
+    this.id = data.id;
+    this.name = data.name;
+    this.market = data.market;
+    this.alias = data.alias;
+    this.players = data.players.map((player: any) => new Player(player));
+  }
+
+  static async fetchTeam(apiKey: string, teamId: ID): Promise<Team> {    
+    const url = `https://api.sportradar.us/nfl/official/trial/v7/en/teams/${teamId}/profile.json?api_key=${apiKey}`;
+    const response = await axios.get(url);
+    console.log('Raw profile data:');
+    logObject(response.data);
+    console.log('\n\n\n');
+    return new Team(response.data);
+  }
+}
+
+function getTeamIds(season: Season) : Set<ID>
+{
+  let teamIds = new Set<ID>;
+
+  for (const week of season.weeks)
+  {
+    for (const game of week.games)
+    {
+      teamIds.add(game.awayTeam);
+      teamIds.add(game.homeTeam);
+    }
+  }
+
+  return teamIds;
 }
 
 // Usage example:
@@ -57,10 +130,18 @@ class Season {
   try {
     const apiKey : string = process.env.SPORTSRADAR_NFL_API_KEY;
     const currentSeason = await Season.fetchCurrentSeason(apiKey);
-    console.log('Formatted data:');
+    console.log('Formatted season data:');
     logObject(currentSeason);
     console.log('\n\n\n');
+    const teamIds = getTeamIds(currentSeason);
+    for (const teamId of teamIds)
+    {
+      await sleep(1000);
+      const team = await Team.fetchTeam(apiKey, teamId);
+      console.log('Formatted team data:');
+      logObject(team);
+    }
   } catch (error) {
-    console.error("Failed to fetch season:", error);
+    console.error("Failed to fetch season or team:", error);
   }
 })();
