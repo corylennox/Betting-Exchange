@@ -171,9 +171,8 @@ export default function OutrightBet(props) {
   const showAll = () => {
     setState((prevState) => ({
       isExpanded: !prevState.isExpanded,
-      showText:
-        prevState.showText === showMoreText ? showLessText : showMoreText,
-      arrowIcon: prevState.arrowIcon === downIcon ? upIcon : downIcon,
+      showText: !prevState.isExpanded ? showLessText : showMoreText,
+      arrowIcon: !prevState.isExpanded ? upIcon : downIcon,
     }));
   };
 
