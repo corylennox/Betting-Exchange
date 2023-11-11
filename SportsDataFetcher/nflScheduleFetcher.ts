@@ -67,16 +67,14 @@ class Season {
  */
 class Player {
   id: ID;
-  firstName: string;
-  lastName: string;
   displayName: string;
+  abbreviatedName: string;
   dateOfBirth: Date;
 
   constructor(data: any) {
     this.id = data.id;
-    this.firstName = data.first_name;
-    this.lastName = data.last_name;
     this.displayName = data.name;
+    this.abbreviatedName = data.abbr_name;
     this.dateOfBirth = data.birth_date;
   }
 }
