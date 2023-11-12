@@ -25,7 +25,10 @@ import { LINES_QUERY } from "./GraphQL/Queries";
 import { addLinesAction, setAvailableBalanceAction } from "./Actions";
 import { useSubscription } from "@apollo/client";
 import { LINE_UPDATE_SUBSCRIPTION } from "./GraphQL/Subscriptions";
-import { translateBalanceData, translateUniversalData } from "./GraphQL/Translate";
+import {
+  translateBalanceData,
+  translateUniversalData,
+} from "./GraphQL/Translate";
 import rts from "./MyRoutes";
 import { ThemeData } from "./components/ActiveThemes";
 import Auth0Wrapper from "./Auth0Wrapper";
@@ -34,7 +37,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 // Nest the entire app in <ApolloProvider> so that App.jsx can query backend
 function AppNested() {
-  //persistor.purge();
+  //persistor.purge(); // uncomment to purge redux store
   const dispatch = useDispatch();
   const toggledBets = parseMap(useSelector((state) => state.toggledBets));
   const activeTheme = useSelector((state) => state.activeTheme);
@@ -54,14 +57,19 @@ function AppNested() {
     error: queryError,
   } = useQuery(UNIVERSAL_DATA_QUERY);
 
-  const {
-    error: subscriptionError
-  } = useSubscription(LINE_UPDATE_SUBSCRIPTION, {
-    onData: (data) => {
-      if (data.data.data)
-        dispatch(updateLinesAction( [ data.data.data.lineUpdate ] /* array with 1 item */ ));
-    },
-  });
+  const { error: subscriptionError } = useSubscription(
+    LINE_UPDATE_SUBSCRIPTION,
+    {
+      onData: (data) => {
+        if (data.data.data)
+          dispatch(
+            updateLinesAction(
+              [data.data.data.lineUpdate] /* array with 1 item */
+            )
+          );
+      },
+    }
+  );
 
   /**
    * The betslip needs its own query for toggledBet lines in the event the user refreshes the page.
@@ -69,29 +77,49 @@ function AppNested() {
    * it's possible there are toggled bets whose lines won't be queried by the active sportspane query.
    */
   let toggledButtonIds = [];
-  if (!skipLinesQuery)
-  {
+  if (!skipLinesQuery) {
     toggledBets.forEach((toggledBet) => {
       toggledButtonIds.push(toggledBet.betInfo.buttonId);
-    })
+    });
   }
-  const { loading: linesQueryLoading, error: linesQueryError } = useQuery(LINES_QUERY, {
-    variables: { buttonIds: toggledButtonIds },
-    onCompleted: (response) => { setSkipLinesQuery(true); dispatch(addLinesAction(response.lines)) },
-    skip: skipLinesQuery,
-  });
+  const { loading: linesQueryLoading, error: linesQueryError } = useQuery(
+    LINES_QUERY,
+    {
+      variables: { buttonIds: toggledButtonIds },
+      onCompleted: (response) => {
+        setSkipLinesQuery(true);
+        dispatch(addLinesAction(response.lines));
+      },
+      skip: skipLinesQuery,
+    }
+  );
 
-  const { isAuthenticated, user, isLoading: isAuthLoading, loginWithRedirect, logout } = useAuth0();
-  const { loading: isBalanceLoading, error: balanceError, data: balanceResponse } = useQuery(BALANCE_QUERY, {
+  const {
+    isAuthenticated,
+    user,
+    isLoading: isAuthLoading,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
+  const {
+    loading: isBalanceLoading,
+    error: balanceError,
+    data: balanceResponse,
+  } = useQuery(BALANCE_QUERY, {
     onCompleted: (response) => {
       setSkipBalanceQuery(true);
-      dispatch(setAvailableBalanceAction(translateBalanceData(response).availableBalance));
+      dispatch(
+        setAvailableBalanceAction(
+          translateBalanceData(response).availableBalance
+        )
+      );
     },
     skip: skipBalanceQuery | !isAuthenticated,
   });
 
   // Don't check for subscription loading, as that only equates to false once the first item arrives from the subscription, which may take a very long time hypothetically
-  if (queryLoading || linesQueryLoading || isAuthLoading) return <h1>Loading</h1>;
+  if (queryLoading || linesQueryLoading || isAuthLoading)
+    return <h1>Loading</h1>;
 
   if (isAuthenticated && !isBalanceLoading && balanceError) {
     return <h1>Error: {balanceError.message}</h1>;

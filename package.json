@@ -7,7 +7,7 @@
   },
   "scripts": {
     "all": "run-p server client",
-    "client": "cd Client && npm start",
+    "client": "cd Client && npx dotenv-run-script _start",
     "server": "cd Server && npm start",
     "setup": "npm install --save-dev run-script-os && run-script-os",
     "setup:windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./win_setup.ps1",
