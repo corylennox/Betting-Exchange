@@ -44,6 +44,8 @@ Together
 - make tailwind theme
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
 
+- Change 2 scnearios with auth0 login: 1) have the users require a verification of email to sign up 2) make the error message more descriptive if someone tries to sign up with an already-signed-up email account
+
 - Remove any db migrations that are dangerous (in case a revert is run)
 - Create auth0 production environment, remove localhost from any production cors/auth0 allows URIs
 - Check auth0 audience in client and server .envs to make sure we're using https not http for audience
