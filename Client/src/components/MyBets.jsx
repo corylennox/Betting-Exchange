@@ -152,12 +152,12 @@ function MyBets() {
       <div className="mt-16 flex justify-center">
         <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-skin-overlay p-6 shadow-md">
           <div>
-            <div className="text-xl font-medium text-skin-overlay">
+            <div className="mt-2 text-xl font-medium text-skin-overlay">
               Please Log In
             </div>
             <p className="mb-2">You need to log in to view your placed bets.</p>
-            <div className="mx-auto flex w-full justify-center">
-              <div className="w-28">
+            <div className="flex h-20 w-full border-t border-skin-divider py-4">
+              <div className="mx-2 w-full">
                 <PromptButton
                   onClick={() =>
                     loginWithRedirect({
