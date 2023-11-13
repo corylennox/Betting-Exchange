@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import ImageMap from "../images/ImageMap";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,10 +10,12 @@ export default function Sidebar(props) {
   const dispatch = useDispatch();
   const activeSportPane = useSelector((state) => state.activeSportPane);
 
-  if (props.isSportPane) {
-    dispatch(changeSportpaneAction(rts.allSports));
-    dispatch(changeNavbarTabAction(rts.allSports));
-  }
+  useEffect(() => {
+    if (props.isSportPane) {
+      dispatch(changeSportpaneAction(rts.allSports));
+      dispatch(changeNavbarTabAction(rts.allSports));
+    }
+  }, [dispatch, props.isSportPane]);
 
   return (
     <div className={props.isSportPane ? "bg-skin-overlay" : ""}>

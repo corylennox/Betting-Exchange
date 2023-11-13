@@ -1,6 +1,6 @@
 import rts from "../MyRoutes";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { useQuery } from "@apollo/client";
 import { MY_BETS_QUERY } from "../GraphQL/Queries";
@@ -10,6 +10,8 @@ import {
   CubeIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/outline";
+import PromptButton from "./PromptButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const paidSVG = (
   <svg
@@ -128,13 +130,54 @@ function printOrderStatus(status) {
 function MyBets() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
-  dispatch(changeSportpaneAction(rts.myBets));
-  dispatch(changeNavbarTabAction(rts.myBets));
+
+  useEffect(() => {
+    dispatch(changeSportpaneAction(rts.myBets));
+    dispatch(changeNavbarTabAction(rts.myBets));
+  }, [dispatch]);
+
+  const {
+    isAuthenticated,
+    isLoading: isAuthLoading,
+    loginWithRedirect,
+  } = useAuth0();
 
   const { loading, error, data } = useQuery(MY_BETS_QUERY);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error && error.message !== "User is not authenticated")
+    return <p>Error: {error.message}</p>;
+  if (loading || isAuthLoading) return <p>Loading...</p>;
+  if (isAuthenticated === false)
+    return (
+      <div className="mt-16 flex justify-center">
+        <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-skin-overlay p-6 shadow-md">
+          <div>
+            <div className="text-xl font-medium text-skin-overlay">
+              Please Log In
+            </div>
+            <p className="mb-2">You need to log in to view your placed bets.</p>
+            <div className="mx-auto flex w-full justify-center">
+              <div className="w-28">
+                <PromptButton
+                  onClick={() =>
+                    loginWithRedirect({
+                      screen_hint: "login",
+                      redirectUri: `${window.location.origin}/my-bets`,
+                    })
+                  }
+                  text="Log in"
+                  textSize="text-m"
+                  gradientColorStart="from-skin-buttonAccentGradientStart"
+                  gradientColorEnd="to-skin-buttonAccentGradientEnd"
+                  gradientColorPressedStart="active:from-skin-buttonAccentPressed"
+                  gradientColorPressedEnd="active:to-skin-buttonAccentPressed"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 
   const sortedMyBetsArray = data.myBets.slice();
   sortedMyBetsArray.sort((a, b) => b.timePlaced - a.timePlaced);
