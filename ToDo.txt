@@ -16,7 +16,6 @@ My Bets:
   - query automatically every 5 seconds for new bets
   - lazy loading for queries
   - query db pulling all game data (by button ID) for all bets in My Bets
-- remove ssh-aws command from package.json
 - add .join() to all queries in backend
 - make FAQ page
 - register domain and aws under one of our names

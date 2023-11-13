@@ -150,7 +150,7 @@ function MyBets() {
   if (isAuthenticated === false)
     return (
       <div className="mt-16 flex justify-center">
-        <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-skin-overlay p-6 shadow-md">
+        <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-skin-overlay px-5 py-2 shadow-md">
           <div>
             <div className="mt-2 text-xl font-medium text-skin-overlay">
               Please Log In
