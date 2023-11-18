@@ -15,7 +15,7 @@ function sleep(ms: number) {
  * For GameBets
  */
 
-class Competition {
+class Game {
   id: ID;
   awayTeam: ID;
   homeTeam: ID;
@@ -32,13 +32,13 @@ class Competition {
 class Season {
   seasonId: ID;
   seasonName: string;
-  games: Competition[];
+  games: Game[];
 
   constructor(data: any) {
     this.seasonId = data.season.id;
     this.seasonName = data.season.year.toString();
     this.games = data.weeks.flatMap((week: any) => {
-      return week.games.map((game: any) => new Competition(game));
+      return week.games.map((game: any) => new Game(game));
     });
   }
 
