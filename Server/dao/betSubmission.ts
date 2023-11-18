@@ -1,4 +1,4 @@
-import db from "../db/db";
+import db from "../bettingexchangecommon/db/db";
 
 export enum BetSubmissionStatusDbEnum {
   ReceivedByBackend = "received_by_backend",

@@ -1,4 +1,4 @@
-import db from '../db/db';
+import db from '../bettingexchangecommon/db/db';
 
 class BalancesDao {
     async createBalance(userId: string) {
