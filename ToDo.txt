@@ -54,7 +54,9 @@ V1.X:
 - Rename buttonId in frontend & backend?
 - use ints for all line/wager/payout JS numbers to avoid decimal floating point precision. Create hard coded constant values (scale vars) in the front end so front end can reference when converting to decimal
 - Fix fetch requests being cancelled (chrome dev tools -> network tab) (caused by LINES_QUERY being fetched 2 more times than necessary) https://stackoverflow.com/questions/50294001/apollo-graphql-requests-are-canceled
+- Allow auth0 redirect to redirct to any url on our site. make sure there are no security vulnerabilities with it.
 
+- V2: Allow for prop bets. We need a way to parse SportRadar to determine outcome of prop bets (e.g., first player to 25 points in a game). Also, need a database model to model these prop bets efficiently. The knowledge of how to model it properly will hopefully come with experience...
 - V2: Pro version of our app that allows users to have access to limit orders and selling on the outright betslip
 
 
