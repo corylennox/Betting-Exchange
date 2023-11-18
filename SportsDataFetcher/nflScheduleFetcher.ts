@@ -29,27 +29,17 @@ class Competition {
   }
 }
 
-class Week {
-  weekId: ID;
-  name: string;
-  games: Competition[];
-
-  constructor(data: any) {
-    this.weekId = data.id;
-    this.name = data.sequence.toString();
-    this.games = data.games.map((game: any) => new Competition(game));
-  }
-}
-
 class Season {
   seasonId: ID;
   seasonName: string;
-  weeks: Week[];
+  games: Competition[];
 
   constructor(data: any) {
     this.seasonId = data.season.id;
     this.seasonName = data.season.year.toString();
-    this.weeks = data.weeks.map((week: any) => new Week(week));
+    this.games = data.weeks.flatMap((week: any) => {
+      return week.games.map((game: any) => new Competition(game));
+    });
   }
 
   static async fetchCurrentSeason(apiKey: string): Promise<Season> {
@@ -110,11 +100,9 @@ class Team {
 function getTeamIds(season: Season): Set<ID> {
   let teamIds = new Set<ID>();
 
-  for (const week of season.weeks) {
-    for (const game of week.games) {
-      teamIds.add(game.awayTeam);
-      teamIds.add(game.homeTeam);
-    }
+  for (const game of season.games) {
+    teamIds.add(game.awayTeam);
+    teamIds.add(game.homeTeam);
   }
 
   return teamIds;
