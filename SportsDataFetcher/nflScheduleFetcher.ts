@@ -1,5 +1,5 @@
 require("dotenv").config(); // loads environment variables from .env file
-import axios from 'axios';
+import axios from "axios";
 
 type ID = string;
 
@@ -8,7 +8,7 @@ function logObject(obj: any): void {
 }
 
 function sleep(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
@@ -55,9 +55,9 @@ class Season {
   static async fetchCurrentSeason(apiKey: string): Promise<Season> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/games/current_season/schedule.json?api_key=${apiKey}`;
     const response = await axios.get(url);
-    console.log('Raw current season data:');
+    console.log("Raw current season data:");
     logObject(response.data);
-    console.log('\n\n\n');
+    console.log("\n\n\n");
     return new Season(response.data);
   }
 }
@@ -87,7 +87,7 @@ class Team {
   name: string;
   market: string;
   alias: string;
-  players: Player[]
+  players: Player[];
 
   constructor(data: any) {
     this.id = data.id;
@@ -97,24 +97,21 @@ class Team {
     this.players = data.players.map((player: any) => new Player(player));
   }
 
-  static async fetchTeam(apiKey: string, teamId: ID): Promise<Team> {    
+  static async fetchTeam(apiKey: string, teamId: ID): Promise<Team> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/teams/${teamId}/profile.json?api_key=${apiKey}`;
     const response = await axios.get(url);
-    console.log('Raw profile data:');
+    console.log("Raw profile data:");
     logObject(response.data);
-    console.log('\n\n\n');
+    console.log("\n\n\n");
     return new Team(response.data);
   }
 }
 
-function getTeamIds(season: Season) : Set<ID>
-{
-  let teamIds = new Set<ID>;
+function getTeamIds(season: Season): Set<ID> {
+  let teamIds = new Set<ID>();
 
-  for (const week of season.weeks)
-  {
-    for (const game of week.games)
-    {
+  for (const week of season.weeks) {
+    for (const game of week.games) {
       teamIds.add(game.awayTeam);
       teamIds.add(game.homeTeam);
     }
@@ -126,17 +123,16 @@ function getTeamIds(season: Season) : Set<ID>
 // Usage example:
 (async () => {
   try {
-    const apiKey : string = process.env.SPORTSRADAR_NFL_API_KEY;
+    const apiKey: string = process.env.SPORTSRADAR_NFL_API_KEY;
     const currentSeason = await Season.fetchCurrentSeason(apiKey);
-    console.log('Formatted season data:');
+    console.log("Formatted season data:");
     logObject(currentSeason);
-    console.log('\n\n\n');
+    console.log("\n\n\n");
     const teamIds = getTeamIds(currentSeason);
-    for (const teamId of teamIds)
-    {
+    for (const teamId of teamIds) {
       await sleep(1000);
       const team = await Team.fetchTeam(apiKey, teamId);
-      console.log('Formatted team data:');
+      console.log("Formatted team data:");
       logObject(team);
     }
   } catch (error) {
