@@ -52,10 +52,7 @@ class Season {
   }
 }
 
-/**
- * For Player OutrightBets
- */
-class Player {
+class Individual {
   id: ID;
   displayName: string;
   abbreviatedName: string;
@@ -77,14 +74,16 @@ class Team {
   name: string;
   market: string;
   alias: string;
-  players: Player[];
+  individuals: Individual[];
 
   constructor(data: any) {
     this.id = data.id;
     this.name = data.name;
     this.market = data.market;
     this.alias = data.alias;
-    this.players = data.players.map((player: any) => new Player(player));
+    this.individuals = data.players.map(
+      (player: any) => new Individual(player)
+    );
   }
 
   static async fetchTeam(apiKey: string, teamId: ID): Promise<Team> {
