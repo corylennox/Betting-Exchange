@@ -1,103 +1,17 @@
 require("dotenv").config(); // loads environment variables from .env file
-import axios from "axios";
-
-type ID = string;
-
-function logObject(obj: any): void {
-  console.log(JSON.stringify(obj, null, 2));
-}
+import Game from "./datatypes/Game";
+import Id from "./datatypes/Id";
+import Individual from "./datatypes/Individual";
+import logObject from "./src/logObject";
+import Season from "./datatypes/Season";
+import Team from "./datatypes/Team";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/**
- * For GameBets
- */
-
-class Game {
-  id: ID;
-  awayTeam: ID;
-  homeTeam: ID;
-  scheduledTime: Date;
-
-  constructor(data: any) {
-    this.id = data.id;
-    this.awayTeam = data.away.id;
-    this.homeTeam = data.home.id;
-    this.scheduledTime = data.scheduled;
-  }
-}
-
-class Season {
-  seasonId: ID;
-  seasonName: string;
-  games: Game[];
-
-  constructor(data: any) {
-    this.seasonId = data.season.id;
-    this.seasonName = data.season.year.toString();
-    this.games = data.weeks.flatMap((week: any) => {
-      return week.games.map((game: any) => new Game(game));
-    });
-  }
-
-  static async fetchCurrentSeason(apiKey: string): Promise<Season> {
-    const url = `https://api.sportradar.us/nfl/official/trial/v7/en/games/current_season/schedule.json?api_key=${apiKey}`;
-    const response = await axios.get(url);
-    console.log("Raw current season data:");
-    logObject(response.data);
-    console.log("\n\n\n");
-    return new Season(response.data);
-  }
-}
-
-class Individual {
-  id: ID;
-  displayName: string;
-  abbreviatedName: string;
-  dateOfBirth: Date;
-
-  constructor(data: any) {
-    this.id = data.id;
-    this.displayName = data.name;
-    this.abbreviatedName = data.abbr_name;
-    this.dateOfBirth = data.birth_date;
-  }
-}
-
-/**
- * For Team OutrightBets
- */
-class Team {
-  id: ID;
-  name: string;
-  market: string;
-  alias: string;
-  individuals: Individual[];
-
-  constructor(data: any) {
-    this.id = data.id;
-    this.name = data.name;
-    this.market = data.market;
-    this.alias = data.alias;
-    this.individuals = data.players.map(
-      (player: any) => new Individual(player)
-    );
-  }
-
-  static async fetchTeam(apiKey: string, teamId: ID): Promise<Team> {
-    const url = `https://api.sportradar.us/nfl/official/trial/v7/en/teams/${teamId}/profile.json?api_key=${apiKey}`;
-    const response = await axios.get(url);
-    console.log("Raw profile data:");
-    logObject(response.data);
-    console.log("\n\n\n");
-    return new Team(response.data);
-  }
-}
-
-function getTeamIds(season: Season): Set<ID> {
-  let teamIds = new Set<ID>();
+function getTeamIds(season: Season): Set<Id> {
+  let teamIds = new Set<Id>();
 
   for (const game of season.games) {
     teamIds.add(game.awayTeam);
