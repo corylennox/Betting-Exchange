@@ -1,17 +1,15 @@
-import Id from "./Id";
+import { Id } from "./Id";
 
-class Game {
-  id: Id;
+export class Game {
+  vendorId: Id;
   awayTeam: Id;
   homeTeam: Id;
   scheduledTime: Date;
 
   constructor(data: any) {
-    this.id = data.id;
+    this.vendorId = data.id;
     this.awayTeam = data.away.id;
     this.homeTeam = data.home.id;
     this.scheduledTime = data.scheduled;
   }
 }
-
-export default Game;

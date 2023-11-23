@@ -1,15 +1,15 @@
 import axios from "axios";
-import Id from "./Id";
-import Game from "./Game";
+import { Id } from "./Id";
+import { Game } from "./Game";
 import logObject from "../src/logObject";
 
-class Season {
-  seasonId: Id;
+export class Season {
+  vendorId: Id;
   seasonName: string;
   games: Game[];
 
   constructor(data: any) {
-    this.seasonId = data.season.id;
+    this.vendorId = data.season.id;
     this.seasonName = data.season.year.toString();
     this.games = data.weeks.flatMap((week: any) => {
       return week.games.map((game: any) => new Game(game));
@@ -25,5 +25,3 @@ class Season {
     return new Season(response.data);
   }
 }
-
-export default Season;

@@ -1,17 +1,17 @@
 import axios from "axios";
-import Id from "./Id";
-import Individual from "./Individual";
+import { Id } from "./Id";
+import { Individual } from "./Individual";
 import logObject from "../src/logObject";
 
-class Team {
-  id: Id;
+export class Team {
+  vendorId: Id;
   name: string;
   market: string;
   alias: string;
   individuals: Individual[];
 
   constructor(data: any) {
-    this.id = data.id;
+    this.vendorId = data.id;
     this.name = data.name;
     this.market = data.market;
     this.alias = data.alias;
@@ -29,5 +29,3 @@ class Team {
     return new Team(response.data);
   }
 }
-
-export default Team;
