@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Id } from "./Id";
 import { Individual } from "./Individual";
-import logObject from "../src/logObject";
+import logObject from "../../src/logObject";
 
 export class Team {
   vendorId: Id;

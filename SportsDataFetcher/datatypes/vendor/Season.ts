@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Id } from "./Id";
 import { Game } from "./Game";
-import logObject from "../src/logObject";
+import logObject from "../../src/logObject";
 
 export class Season {
   vendorId: Id;

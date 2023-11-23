@@ -1,10 +1,10 @@
 require("dotenv").config(); // loads environment variables from .env file
-import { Game } from "./datatypes/Game";
-import { Id } from "./datatypes/Id";
-import { Individual } from "./datatypes/Individual";
+import { Game } from "./datatypes/vendor/Game";
+import { Id } from "./datatypes/vendor/Id";
+import { Individual } from "./datatypes/vendor/Individual";
 import logObject from "./src/logObject";
-import { Season } from "./datatypes/Season";
-import { Team } from "./datatypes/Team";
+import { Season } from "./datatypes/vendor/Season";
+import { Team } from "./datatypes/vendor/Team";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
