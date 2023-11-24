@@ -12,7 +12,7 @@ export class Season {
     this.vendorId = data.season.id;
     this.seasonName = data.season.year.toString();
     this.games = data.weeks.flatMap((week: any) => {
-      return week.games.map((game: any) => new Game(game));
+      return week.games.map((game: any) => new Game(game, this.vendorId));
     });
   }
 

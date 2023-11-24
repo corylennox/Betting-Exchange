@@ -10,15 +10,15 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function getTeamIds(season: Season): Set<Id> {
-  let teamIds = new Set<Id>();
+function getTeamVendorIds(season: Season): Set<Id> {
+  let teamVendorIds = new Set<Id>();
 
   for (const game of season.games) {
-    teamIds.add(game.awayTeam);
-    teamIds.add(game.homeTeam);
+    teamVendorIds.add(game.awayTeamVendorId);
+    teamVendorIds.add(game.homeTeamVendorId);
   }
 
-  return teamIds;
+  return teamVendorIds;
 }
 
 // Usage example:
@@ -29,10 +29,10 @@ function getTeamIds(season: Season): Set<Id> {
     console.log("Formatted season data:");
     logObject(currentSeason);
     console.log("\n\n\n");
-    const teamIds = getTeamIds(currentSeason);
-    for (const teamId of teamIds) {
+    const teamVendorIds = getTeamVendorIds(currentSeason);
+    for (const teamVendorId of teamVendorIds) {
       await sleep(1000);
-      const team = await Team.fetchTeam(apiKey, teamId);
+      const team = await Team.fetchTeam(apiKey, teamVendorId);
       console.log("Formatted team data:");
       logObject(team);
     }
