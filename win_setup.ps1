@@ -7,6 +7,8 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 # Run setup.sh script
 sh setup.sh
 
+
+
 # Change working directory to Server folder
 Set-Location ".\Server"
 
@@ -22,3 +24,22 @@ if (Test-Path ".\bettingexchangecommon") {
 
 # Change working directory to root folder
 Set-Location "..\"
+
+
+
+# Change working directory to Server folder
+Set-Location ".\SportsDataFetcher"
+
+# Check if the bettingexchangecommon file exists
+if (Test-Path ".\bettingexchangecommon") {
+
+  # Remove the bettingexchangecommon file
+  Remove-Item ".\bettingexchangecommon" -Recurse
+}
+
+# Create symbolic link to Common folder
+& cmd.exe /c mklink /D bettingexchangecommon ..\Common
+
+# Change working directory to root folder
+Set-Location "..\"
+
