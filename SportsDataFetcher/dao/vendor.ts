@@ -13,19 +13,35 @@ class VendorDao {
   async getIndividualId(vendorId: Id) {
     let [ret] = await db("individuals")
       .where("vendor_id", vendorId)
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getIndividualId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     return ret ? ret["id"] : InvalidId();
   }
 
   async getTeamId(vendorId: Id) {
-    let [ret] = await db("teams").where("vendor_id", vendorId).returning("id");
+    let [ret] = await db("teams")
+      .where("vendor_id", vendorId)
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getTeamId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     return ret ? ret["id"] : InvalidId();
   }
 
   async getGameId(vendorId: Id) {
-    let [ret] = await db("games").where("vendor_id", vendorId).returning("id");
+    let [ret] = await db("games")
+      .where("vendor_id", vendorId)
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getGameId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     return ret ? ret["id"] : InvalidId();
   }
@@ -33,8 +49,13 @@ class VendorDao {
   async getSeasonId(vendorId: Id) {
     let [ret] = await db("seasons")
       .where("vendor_id", vendorId)
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getSeasonId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
+    console.log(`Ret: ${JSON.stringify(ret)}`);
     return ret ? ret["id"] : InvalidId();
   }
 
@@ -51,7 +72,11 @@ class VendorDao {
         date_of_birth: date_of_birth,
         vendor_id: vendor_id,
       })
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addIndividual():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     const individualId = ret["id"];
     return individualId;
@@ -72,7 +97,11 @@ class VendorDao {
         image_url: image_url,
         vendor_id: vendor_id,
       })
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addTeam():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     const teamId = ret["id"];
     return teamId;
@@ -93,7 +122,11 @@ class VendorDao {
         season_id: season_id,
         scheduled_start_time: scheduled_start_time,
       })
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addGame():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     const gameId = ret["id"];
     return gameId;
@@ -106,7 +139,11 @@ class VendorDao {
         name: name,
         vendor_id: vendor_id,
       })
-      .returning("id");
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addSeason():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
 
     const seasonId = ret["id"];
     return seasonId;

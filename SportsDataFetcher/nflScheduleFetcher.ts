@@ -7,6 +7,7 @@ import { Season } from "./datatypes/vendor/Season";
 import { Team } from "./datatypes/vendor/Team";
 import { VendorController } from "./controller/vendor";
 import { League, getLeagueAsString } from "./datatypes/League";
+import db from "./bettingexchangecommon/db/db";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -48,7 +49,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
       teams,
       individuals
     );
-    const result: Boolean | string =
+    const result: boolean | string =
       await vendorDatabaseInserter.updateDatabase();
     if (!(result === true))
       throw new Error(`Error adding to database: ${result}`);
@@ -57,5 +58,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
       "Failed to fetch data or failed to insert into database:",
       error
     );
+  } finally {
+    await db.destroy();
   }
 })();

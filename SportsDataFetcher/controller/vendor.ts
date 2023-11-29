@@ -28,7 +28,7 @@ export class VendorController {
    *
    * @returns true upon success, string with error reason upon failure.
    */
-  async updateDatabase(): Promise<Boolean | string> {
+  async updateDatabase(): Promise<boolean | string> {
     for (const season of this.seasons) {
       if (!(await vendorService.hasSeason(season.vendorId))) {
         if (!(await vendorService.canAddSeason(season))) {

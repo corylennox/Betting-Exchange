@@ -49,6 +49,8 @@ Together
 - Create auth0 production environment, remove localhost from any production cors/auth0 allows URIs
 - Check auth0 audience in client and server .envs to make sure we're using https not http for audience
 
+- Switch all knex database tables from increments() to bigIncrements()
+
 V1.X:
 - Use HeadlessUI for sidebar, navbar, and bottomnavbar? (already using for active theme button)
 - Rename buttonId in frontend & backend?
