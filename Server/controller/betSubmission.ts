@@ -53,9 +53,9 @@ class BetSubmissionController {
                     {
                         userId: bet.userId,
                         buttonId: bet.buttonId,
-                        line: bet.line.value, //TODO: get line from buttonId on backend
+                        line: bet.line.value, //TODO: confirm that line matches what is in the database or else prompt user to resubmit or accept line changes
                         wagerAmount: bet.wagerAmount.value,
-                        totalPayout: 0, // TODO I think this should be deleted because we don't know totalPayout as it could be a market order or it could match against lines that are better or equal to given line
+                        totalPayout: getWinAfterCommission(determineWin( bet.line.getAsLegacyLine(), bet.wagerAmount.value)), 
                         commission: commission.value,
                         timePlaced: timestampInNanoseconds,
                     });
