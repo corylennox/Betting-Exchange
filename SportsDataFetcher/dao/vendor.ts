@@ -1,6 +1,6 @@
 import db from "../bettingexchangecommon/db/db";
 
-import { Id } from "../datatypes/vendor/Id";
+import { Id } from "../bettingexchangecommon/datatypes/Id";
 
 export function InvalidId() {
   return "invalidId";

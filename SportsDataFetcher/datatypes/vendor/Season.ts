@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Id } from "./Id";
+import { Id } from "../../bettingexchangecommon/datatypes/Id";
 import { Game } from "./Game";
 import logObject from "../../src/logObject";
 import { League } from "../League";

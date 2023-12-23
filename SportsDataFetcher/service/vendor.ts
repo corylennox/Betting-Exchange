@@ -1,6 +1,6 @@
 import vendorDao, { InvalidId } from "../dao/vendor";
 
-import { Id } from "../datatypes/vendor/Id";
+import { Id } from "../bettingexchangecommon/datatypes/Id";
 import { Game } from "../datatypes/vendor/Game";
 import { Team } from "../datatypes/vendor/Team";
 import { Season } from "../datatypes/vendor/Season";

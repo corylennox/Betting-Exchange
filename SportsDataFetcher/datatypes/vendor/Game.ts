@@ -1,4 +1,4 @@
-import { Id } from "./Id";
+import { Id } from "../../bettingexchangecommon/datatypes/Id";
 
 export class Game {
   vendorId: Id;
