@@ -53,9 +53,9 @@ class BetSubmissionController {
                     {
                         userId: bet.userId,
                         buttonId: bet.buttonId,
-                        line: bet.line.value, //TODO: confirm that line matches what is in the database or else prompt user to resubmit or accept line changes
+                        line: bet.line.value,
                         wagerAmount: bet.wagerAmount.value,
-                        totalPayout: getWinAfterCommission(determineWin( bet.line.getAsLegacyLine(), bet.wagerAmount.value)), 
+                        totalPayout: getWinAfterCommission(determineWin( bet.line.getAsLegacyLine(), bet.wagerAmount.value)) + bet.wagerAmount.value, 
                         commission: commission.value,
                         timePlaced: timestampInNanoseconds,
                     });

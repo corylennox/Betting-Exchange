@@ -29,6 +29,9 @@ Emerson
 - Remove localhost from Auth0 redirect urls and from cors?
 
 Together
+- Betslip submission errors (e.g. line on submitted bet differs from line on backend) should redirect user to MyBets page
+- Add "cooldown" where bet in betslip is grayed out immediately after line change for a short period of time to prevent users from submitting bets at the old line
+- Add toggle to accept line changes
 - use populate server with real-world sport data on upcoming events - https://the-odds-api.com/
 - Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
 - live update the status of bets in My Bets (e.g. you bet the over on total points scored and it will show something like [Live: 175 Bet: 226 ] )
