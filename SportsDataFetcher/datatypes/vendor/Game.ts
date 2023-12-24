@@ -1,5 +1,8 @@
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
 
+/**
+ * A Game object that contains the necessary data to insert the Game into the database
+ */
 export class Game {
   vendorId: Id;
   awayTeamVendorId: Id;

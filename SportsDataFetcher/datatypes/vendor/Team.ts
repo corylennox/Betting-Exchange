@@ -3,6 +3,9 @@ import { Id } from "../../bettingexchangecommon/datatypes/Id";
 import { Individual } from "./Individual";
 import logObject from "../../src/logObject";
 
+/**
+ * An Team object that contains the necessary data to insert the Team into the database
+ */
 export class Team {
   vendorId: Id;
   name: string;

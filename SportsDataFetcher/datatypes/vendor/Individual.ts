@@ -1,5 +1,8 @@
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
 
+/**
+ * An Individual object that contains the necessary data to insert the Individual into the database
+ */
 export class Individual {
   vendorId: Id;
   displayName: string;

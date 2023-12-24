@@ -4,6 +4,9 @@ import { Game } from "./Game";
 import logObject from "../../src/logObject";
 import { League } from "../../bettingexchangecommon/datatypes/League";
 
+/**
+ * An Season object that contains the necessary data to insert the Season into the database
+ */
 export class Season {
   vendorId: Id;
   seasonName: string;
