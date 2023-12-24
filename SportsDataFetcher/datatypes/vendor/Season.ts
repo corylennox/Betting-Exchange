@@ -2,7 +2,7 @@ import axios from "axios";
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
 import { Game } from "./Game";
 import logObject from "../../src/logObject";
-import { League } from "../League";
+import { League } from "../../bettingexchangecommon/datatypes/League";
 
 export class Season {
   vendorId: Id;

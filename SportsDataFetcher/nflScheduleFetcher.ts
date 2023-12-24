@@ -6,7 +6,10 @@ import logObject from "./src/logObject";
 import { Season } from "./datatypes/vendor/Season";
 import { Team } from "./datatypes/vendor/Team";
 import { VendorController } from "./controller/vendor";
-import { League, getLeagueAsString } from "./datatypes/League";
+import {
+  League,
+  getLeagueAsString,
+} from "./bettingexchangecommon/datatypes/League";
 import db from "./bettingexchangecommon/db/db";
 
 function sleep(ms: number) {

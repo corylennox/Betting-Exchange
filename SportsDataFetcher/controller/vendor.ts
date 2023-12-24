@@ -3,7 +3,10 @@ import { Individual } from "../datatypes/vendor/Individual";
 import { Season } from "../datatypes/vendor/Season";
 import { Team } from "../datatypes/vendor/Team";
 import vendorService from "../service/vendor";
-import { League, getLeagueAsString } from "../datatypes/League";
+import {
+  League,
+  getLeagueAsString,
+} from "../bettingexchangecommon/datatypes/League";
 
 function getImageUrl(team: Team) {
   const league = League.NFL; // TODO fix this to work with any league
