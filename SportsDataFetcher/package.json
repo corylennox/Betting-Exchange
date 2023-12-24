@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "fetch-sports-data": "ts-node nflScheduleFetcher.ts"
+    "fetch-sports-data": "ts-node nflScheduleFetcher.ts",
+    "insert-bet-events": "ts-node nflBetEventInserter.ts"
   },
   "keywords": [],
   "author": "",
