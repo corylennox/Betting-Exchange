@@ -17,7 +17,7 @@ exports.up = function (knex) {
       table.string("vendor_id").notNullable();
     }),
     knex.schema.alterTable("teams", (table) => {
-      table.bigint("division_id").notNullable();
+      table.bigint("division_id").notNullable().defaultTo(0);
     }),
   ]);
 };
