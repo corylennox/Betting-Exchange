@@ -35,6 +35,7 @@ Together
 - Create a buttonId table with all the historic and active buttonIds and their associated betTypes.
 - live update the status of bets in My Bets (e.g. you bet the over on total points scored and it will show something like [Live: 175 Bet: 226 ] )
 - add betting groups so you can sweat bets with your friends
+- verify our database is not sucseptible to sql injections
 
 - Have a mechanism to determine automatically when games complete and what the outcome of all of the bets on that game are and pay users out accordingly.
 
