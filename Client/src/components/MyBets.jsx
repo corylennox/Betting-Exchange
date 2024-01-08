@@ -167,7 +167,7 @@ function printStatus(betStatus, orderStatus) {
   return ret;
 }
 
-function OpenBetAccordionItem({ bet, isOpen, onClick }) {
+function OpenBetAccordionItem({ bet, isExpanded, onClick }) {
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
 
@@ -175,10 +175,10 @@ function OpenBetAccordionItem({ bet, isOpen, onClick }) {
     if (contentRef.current) {
       setContentHeight(contentRef.current.scrollHeight);
     }
-  }, [isOpen]);
+  }, [isExpanded]);
 
   const springProps = useSpring({
-    to: { height: isOpen ? contentHeight : 0 },
+    to: { height: isExpanded ? contentHeight : 0 },
     from: { height: 0 },
     config: {
       ...config.default,
@@ -259,7 +259,7 @@ function OpenBetAccordionItem({ bet, isOpen, onClick }) {
         </p>
       </animated.div>
       <span className="absolute bottom-0 left-1/2 -translate-x-1/2 transform text-gray-400">
-        {!isOpen ? (
+        {!isExpanded ? (
           <ChevronDownIcon className="h-3 w-3" />
         ) : (
           <ChevronUpIcon className="h-3 w-3" />
@@ -269,7 +269,7 @@ function OpenBetAccordionItem({ bet, isOpen, onClick }) {
   );
 }
 
-function SettledBetAccordionItem({ bet, isOpen, onClick }) {
+function SettledBetAccordionItem({ bet, isExpanded, onClick }) {
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
 
@@ -277,10 +277,10 @@ function SettledBetAccordionItem({ bet, isOpen, onClick }) {
     if (contentRef.current) {
       setContentHeight(contentRef.current.scrollHeight);
     }
-  }, [isOpen]);
+  }, [isExpanded]);
 
   const springProps = useSpring({
-    to: { height: isOpen ? contentHeight : 0 },
+    to: { height: isExpanded ? contentHeight : 0 },
     from: { height: 0 },
     config: {
       ...config.default,
@@ -360,7 +360,7 @@ function SettledBetAccordionItem({ bet, isOpen, onClick }) {
         </p>
       </animated.div>
       <span className="absolute bottom-0 left-1/2 -translate-x-1/2 transform text-gray-400">
-        {!isOpen ? (
+        {!isExpanded ? (
           <ChevronDownIcon className="h-3 w-3" />
         ) : (
           <ChevronUpIcon className="h-3 w-3" />
@@ -479,7 +479,7 @@ function MyBets() {
               <OpenBetAccordionItem
                 key={bet.id}
                 bet={bet}
-                isOpen={openAccordionItems.includes(bet.id)}
+                isExpanded={openAccordionItems.includes(bet.id)}
                 onClick={() => toggleBetDetails(bet.id)}
               />
             ))}
@@ -492,7 +492,7 @@ function MyBets() {
               <SettledBetAccordionItem
                 key={bet.id}
                 bet={bet}
-                isOpen={openAccordionItems.includes(bet.id)}
+                isExpanded={openAccordionItems.includes(bet.id)}
                 onClick={() => toggleBetDetails(bet.id)}
               />
             ))}

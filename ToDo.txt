@@ -14,7 +14,6 @@ My Bets:
   - get accurate data for cancelled bets
   - query automatically every 5 seconds for new bets
   - lazy loading for queries
-  - query db pulling all game data (by button ID) for all bets in My Bets
 - add .join() to all queries in backend
 - make FAQ page
 - register domain and aws under one of our names
@@ -28,6 +27,7 @@ Emerson
 - Remove localhost from Auth0 redirect urls and from cors?
 
 Together
+- Automate db backups with scripts
 - Betslip submission errors (e.g. line on submitted bet differs from line on backend) should redirect user to MyBets page
 - Add "cooldown" where bet in betslip is grayed out immediately after line change for a short period of time to prevent users from submitting bets at the old line
 - Add toggle to accept line changes
