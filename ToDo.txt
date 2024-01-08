@@ -10,7 +10,6 @@ V1:
 
 Cory
 My Bets:
-  - get total_payout in db working
   - update tooltip message with link to FAQ page
   - get accurate data for cancelled bets
   - query automatically every 5 seconds for new bets

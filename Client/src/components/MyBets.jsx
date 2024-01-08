@@ -1,17 +1,20 @@
 import rts from "../MyRoutes";
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { changeSportpaneAction, changeNavbarTabAction } from "../Actions";
 import { useQuery } from "@apollo/client";
 import { MY_BETS_QUERY } from "../GraphQL/Queries";
 import Tooltip from "./Tooltip";
 import {
+  ChevronDownIcon,
+  ChevronUpIcon,
   ClockIcon,
   CubeIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/outline";
 import PromptButton from "./PromptButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSpring, animated, config } from "react-spring";
 
 const paidSVG = (
   <svg
@@ -21,9 +24,9 @@ const paidSVG = (
     className="h-3 w-3"
   >
     <path
-      fill-rule="evenodd"
+      fillRule="evenodd"
       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-      clip-rule="evenodd"
+      clipRule="evenodd"
     />
   </svg>
 );
@@ -50,86 +53,333 @@ const noFillCancelSVG = (
   </svg>
 );
 
-const partiallyCancelledSVG = <CubeTransparentIcon className="h-8 w-8" />;
+const partiallyCancelledSVG = <CubeTransparentIcon className="h-4 w-4" />;
 
-const pendingSVG = <ClockIcon className="h-5 w-5" />;
+const pendingSVG = <ClockIcon className="h-4 w-4" />;
 
-const fullFillSVG = <CubeIcon className="h-5 w-5" />;
+const fullFillSVG = <CubeIcon className="h-4 w-4" />;
 
-function printBetStatus(status) {
+function printStatus(betStatus, orderStatus) {
   let ret;
-  switch (status) {
-    case "paid":
-      ret = (
-        <span className="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
-          {paidSVG}
-          Paid
-        </span>
-      );
-      break;
-    case "lost":
-      ret = (
-        <span className="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
-          {lostSVG}
-          Lost
-        </span>
-      );
-      break;
-    case "cancelled":
-      ret = (
-        <span className="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
-          {noFillCancelSVG}
-          Cancelled
-        </span>
-      );
-      break;
-    default:
-      ret = "Unknown";
+
+  //Open Bets
+  if (betStatus === "pending") {
+    switch (orderStatus) {
+      case "fully_filled":
+        ret = (
+          <span className="inline-flex items-center gap-1 py-1 text-xs font-semibold">
+            {fullFillSVG}
+            Confirmed
+          </span>
+        );
+        break;
+      case "cancelled_by_user":
+      case "cancelled_by_exchange":
+        ret = (
+          <span className="inline-flex items-center gap-1 py-1 text-xs font-semibold">
+            {partiallyCancelledSVG}
+            Partially Cancelled
+          </span>
+        );
+        break;
+      case "received_by_backend":
+      case "submitted_to_matching_engine":
+      case "resting_on_matching_engine":
+        ret = (
+          <span className="inline-flex items-center gap-1 py-1 text-xs font-semibold">
+            {pendingSVG}
+            Pending
+          </span>
+        );
+        break;
+      default:
+        ret =
+          "An error occured. Bet status: " +
+          betStatus +
+          ", Order status: " +
+          orderStatus;
+    }
+  }
+
+  //Settled Bets
+  else {
+    if (orderStatus.includes("cancelled")) {
+      switch (betStatus) {
+        case "paid":
+          ret = (
+            <span className="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
+              {paidSVG}
+              Paid &#40;Partially Cancelled&#41;
+            </span>
+          );
+          break;
+        case "lost":
+          ret = (
+            <span className="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
+              {lostSVG}
+              Lost &#40;Partially Cancelled&#41;
+            </span>
+          );
+          break;
+        case "cancelled":
+          ret = (
+            <span className="inline-flex items-center gap-1 rounded-full bg-gray-300 px-2 py-1 text-xs font-semibold text-gray-700">
+              {noFillCancelSVG}
+              Fully Cancelled
+            </span>
+          );
+          break;
+        default:
+          ret =
+            "An error occured. Bet status: " +
+            betStatus +
+            ", Order status: " +
+            orderStatus;
+      }
+    } else {
+      switch (betStatus) {
+        case "paid":
+          ret = (
+            <span className="inline-flex items-center gap-1 rounded-full bg-green-300 px-2 py-1 text-xs font-semibold text-green-700">
+              {paidSVG}
+              Paid
+            </span>
+          );
+          break;
+        case "lost":
+          ret = (
+            <span className="inline-flex items-center gap-1 rounded-full bg-red-300 px-2 py-1 text-xs font-semibold text-red-700">
+              {lostSVG}
+              Lost
+            </span>
+          );
+          break;
+        default:
+          ret =
+            "An error occured. Bet status: " +
+            betStatus +
+            ", Order status: " +
+            orderStatus;
+      }
+    }
   }
 
   return ret;
 }
 
-function printOrderStatus(status) {
-  let ret;
-  switch (status) {
-    case "fully_filled":
-      ret = (
-        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
-          {fullFillSVG}
-          Confirmed
-        </span>
-      );
-      break;
-    case "cancelled_by_user":
-    case "cancelled_by_exchange":
-      ret = (
-        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
-          {partiallyCancelledSVG}
-          Partially Cancelled
-        </span>
-      );
-      break;
-    case "received_by_backend":
-    case "submitted_to_matching_engine":
-    case "resting_on_matching_engine":
-      ret = (
-        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
-          {pendingSVG}
-          Pending
-        </span>
-      );
-      break;
-    default:
-      ret = "Unknown";
-  }
+function OpenBetAccordionItem({ bet, isOpen, onClick }) {
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef(null);
 
-  return ret;
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen]);
+
+  const springProps = useSpring({
+    to: { height: isOpen ? contentHeight : 0 },
+    from: { height: 0 },
+    config: {
+      ...config.default,
+      duration: 300,
+      easing: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    }, // Custom ease-in-out cubic function
+  });
+
+  return (
+    <div
+      onClick={onClick}
+      key={bet.id}
+      className="relative cursor-pointer select-none border-b border-gray-400 pt-2"
+    >
+      <h3 className="flex w-full justify-between text-lg font-semibold">
+        <span>{bet.betTitle}</span>
+        <span className="ml-3 text-right font-bold">
+          {bet.line > 0 ? `+${bet.line / 10}` : bet.line / 10}
+        </span>
+      </h3>
+      <div className="inline-flex w-full justify-between text-sm">
+        <span>
+          Wagered{" "}
+          {bet.orderStatus.includes("cancelled") ? (
+            <span className=" inline-flex items-center">
+              <span className="text-gray-400">$#.##/&nbsp;</span>
+              <span className="mr-1">${(bet.wager / 100).toFixed(2)}</span>
+              <Tooltip type={bet.orderStatus} />
+            </span>
+          ) : (
+            <span>${(bet.wager / 100).toFixed(2)}</span>
+          )}
+        </span>
+        <span className="inline-flex items-center text-right text-sm">
+          Returned ${(bet.totalPayout / 100).toFixed(2)}
+        </span>
+      </div>
+      <div className="flex flex-col"></div>
+      <animated.div
+        style={{ ...springProps, overflow: "hidden" }}
+        ref={contentRef}
+        className={"mt-2"}
+      >
+        <div className="flex w-full items-center">
+          <span className=" w-1/12 border-t border-gray-200"></span>
+          <span className="bg-white px-2 text-gray-600">Event Information</span>
+          <span className="flex-grow border-t border-gray-200"></span>
+        </div>
+        <p className="text-xs"> {bet.gameTitle} </p>
+        <p className="text-xs"> {bet.gameStartTime} </p>
+        <div className="flex w-full items-center">
+          <span className=" w-1/12 border-t border-gray-200"></span>
+          <span className="bg-white px-2 text-gray-600">Bet Information</span>
+          <span className="flex-grow border-t border-gray-200"></span>
+        </div>
+        <p className="text-xs">
+          Placed{" "}
+          {new Date(parseInt(bet.timePlaced) / 1000000).toLocaleString(
+            "en-US",
+            {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+              timeZoneName: "short",
+            }
+          )}
+        </p>
+        <div className="flex items-end justify-between ">
+          <div className="text-xs uppercase tracking-wide">
+            {printStatus(bet.betStatus, bet.orderStatus)}
+          </div>
+        </div>
+        <p className="h-2 w-full text-right text-xs text-gray-300">
+          Bet ID{" " + bet.id}
+        </p>
+      </animated.div>
+      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 transform text-gray-400">
+        {!isOpen ? (
+          <ChevronDownIcon className="h-3 w-3" />
+        ) : (
+          <ChevronUpIcon className="h-3 w-3" />
+        )}
+      </span>
+    </div>
+  );
+}
+
+function SettledBetAccordionItem({ bet, isOpen, onClick }) {
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen]);
+
+  const springProps = useSpring({
+    to: { height: isOpen ? contentHeight : 0 },
+    from: { height: 0 },
+    config: {
+      ...config.default,
+      duration: 300,
+      easing: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    }, // Custom ease-in-out cubic function
+  });
+
+  return (
+    <div
+      onClick={onClick}
+      key={bet.id}
+      className="relative cursor-pointer select-none border-b border-gray-400 pt-2"
+    >
+      <h3 className="flex w-full justify-between text-lg font-semibold">
+        <span>{bet.betTitle}</span>
+        <span className="ml-3 text-right font-bold">
+          {bet.line > 0 ? `+${bet.line / 10}` : bet.line / 10}
+        </span>
+      </h3>
+      <div className="inline-flex w-full justify-between text-sm">
+        <span>
+          Wagered{" "}
+          {bet.orderStatus.includes("cancelled") ? (
+            <span className=" inline-flex items-center">
+              <span className="text-gray-400">$#.##/&nbsp;</span>
+              <span className="mr-1">${(bet.wager / 100).toFixed(2)}</span>
+              <Tooltip type={bet.orderStatus} />
+            </span>
+          ) : (
+            <span>${(bet.wager / 100).toFixed(2)}</span>
+          )}
+        </span>
+        <p className="inline-flex items-center text-right text-sm">
+          Returned ${(bet.totalPayout / 100).toFixed(2)}
+        </p>
+      </div>
+      <div className="flex flex-col"></div>
+      <animated.div
+        style={{ ...springProps, overflow: "hidden" }}
+        ref={contentRef}
+        className={"mt-2"}
+      >
+        <div className="flex w-full items-center">
+          <span className=" w-1/12 border-t border-gray-200"></span>
+          <span className="bg-white px-2 text-gray-600">Event Information</span>
+          <span className="flex-grow border-t border-gray-200"></span>
+        </div>
+        <p className="text-xs"> {bet.gameTitle} </p>
+        <p className="text-xs"> {bet.gameStartTime} </p>
+        <div className="flex w-full items-center">
+          <span className=" w-1/12 border-t border-gray-200"></span>
+          <span className="bg-white px-2 text-gray-600">Bet Information</span>
+          <span className="flex-grow border-t border-gray-200"></span>
+        </div>
+
+        <p className="text-xs">
+          Placed{" "}
+          {new Date(parseInt(bet.timePlaced) / 1000000).toLocaleString(
+            "en-US",
+            {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+              timeZoneName: "short",
+            }
+          )}
+        </p>
+        <div className="text-xs uppercase tracking-wide">
+          {printStatus(bet.betStatus, bet.orderStatus)}
+        </div>
+        <p className="h-2 w-full text-right text-xs text-gray-300">
+          Bet ID{" " + bet.id}
+        </p>
+      </animated.div>
+      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 transform text-gray-400">
+        {!isOpen ? (
+          <ChevronDownIcon className="h-3 w-3" />
+        ) : (
+          <ChevronUpIcon className="h-3 w-3" />
+        )}
+      </span>
+    </div>
+  );
 }
 
 function MyBets() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
+  const [openAccordionItems, setopenAccordionItems] = useState([]);
+
+  const toggleBetDetails = (betId) => {
+    setopenAccordionItems((ids) =>
+      ids.includes(betId) ? ids.filter((id) => id !== betId) : [...ids, betId]
+    );
+  };
 
   useEffect(() => {
     dispatch(changeSportpaneAction(rts.myBets));
@@ -144,6 +394,7 @@ function MyBets() {
 
   const { loading, error, data } = useQuery(MY_BETS_QUERY);
 
+  //TODO: handle errors better
   if (error && error.message !== "User is not authenticated")
     return <p>Error: {error.message}</p>;
   if (loading || isAuthLoading) return <p>Loading...</p>;
@@ -223,182 +474,28 @@ function MyBets() {
       <div className="py-5">
         {/* Open Bets */}
         <div className={`${activeTab === 0 ? "block" : "hidden"}`}>
-          <div className="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table className="w-full border-collapse text-center text-sm text-skin-body">
-              <thead className="bg-skin-header">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Bet ID
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Date Placed
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Time Placed
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Wager
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Total Payout
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Button ID
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Order Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {openBetsArray.map((bet) => (
-                  <tr className="">
-                    <td className="px-6 py-4">{bet.id}</td>
-                    <td className="px-6 py-4 text-skin-body">
-                      {new Date(
-                        parseInt(bet.timePlaced) / 1000000
-                      ).toLocaleDateString()}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {new Date(
-                        parseInt(bet.timePlaced) / 1000000
-                      ).toLocaleTimeString()}
-                    </td>
-                    <td className="px-6 py-4">
-                      {bet.orderStatus.includes("cancelled") ? (
-                        <span className="flex items-center">
-                          <span className="text-gray-400">$#.##/&nbsp;</span>
-                          <span className="mr-1">
-                            ${(bet.wager / 100).toFixed(2)}
-                          </span>
-                          <Tooltip type={bet.orderStatus} />
-                        </span>
-                      ) : (
-                        <span>${(bet.wager / 100).toFixed(2)}</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      ${(bet.totalPayout / 100).toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4">{bet.buttonId}</td>
-                    <td className="px-6 py-4 text-left">
-                      {printOrderStatus(bet.orderStatus)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className=" mx-5 rounded-lg border border-gray-200 bg-white px-4 text-gray-800 shadow-md">
+            {openBetsArray.map((bet) => (
+              <OpenBetAccordionItem
+                key={bet.id}
+                bet={bet}
+                isOpen={openAccordionItems.includes(bet.id)}
+                onClick={() => toggleBetDetails(bet.id)}
+              />
+            ))}
           </div>
         </div>
         {/* Settled Bets */}
         <div className={`${activeTab === 1 ? "block" : "hidden"}`}>
-          <div className="ml-10 mr-10 overflow-hidden rounded-lg border border-gray-200 bg-skin-overlay shadow-md">
-            <table className="w-full border-collapse text-center text-sm text-skin-body">
-              <thead className="bg-skin-header">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Bet ID
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Date Placed
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Time Placed
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Wager
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Total Payout
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Button ID
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {settledBetsArray.map((bet) => (
-                  <tr className="">
-                    <td className="px-6 py-4">{bet.id}</td>
-                    <td className="px-6 py-4 text-skin-body">
-                      {new Date(
-                        parseInt(bet.timePlaced) / 1000000
-                      ).toLocaleDateString()}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {new Date(
-                        parseInt(bet.timePlaced) / 1000000
-                      ).toLocaleTimeString()}
-                    </td>
-                    <td className="px-6 py-4">
-                      {bet.orderStatus.includes("cancelled") ? (
-                        <span className="flex items-center">
-                          <span className="text-gray-400">$#.##/&nbsp;</span>
-                          <span className="mr-1">
-                            ${(bet.wager / 100).toFixed(2)}
-                          </span>
-                          <Tooltip type={bet.orderStatus} />
-                        </span>
-                      ) : (
-                        <span>${(bet.wager / 100).toFixed(2)}</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      ${(bet.totalPayout / 100).toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4">{bet.buttonId}</td>
-                    <td className="px-6 py-4">
-                      {printBetStatus(bet.betStatus)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className=" mx-5 rounded-lg border border-gray-200 bg-white px-4 text-gray-800 shadow-md">
+            {settledBetsArray.map((bet) => (
+              <SettledBetAccordionItem
+                key={bet.id}
+                bet={bet}
+                isOpen={openAccordionItems.includes(bet.id)}
+                onClick={() => toggleBetDetails(bet.id)}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
-import { pubsub, updateLines, makeChannelName} from "./src/pubsub";
+import { pubsub, updateLines, makeChannelName } from "./src/pubsub";
 import betSubmissionController from "./controller/betSubmission";
 import { InMemoryLRUCache } from "@apollo/utils.keyvaluecache";
 import { Jwt, JwtPayload } from "jsonwebtoken";
@@ -29,6 +29,7 @@ import matchingEngineController from "./controller/matchingEngine";
 import { RestingType } from "./src/datatypes/RestingType";
 import { DollarAmount } from "./src/datatypes/DollarAmount";
 import fetchBetsController from "./controller/fetchBets";
+import fetchButtonIdDetailsController from "./controller/fetchButtonIdDetails";
 import balancesController from "./controller/balances";
 import fs from "fs";
 import {
@@ -113,9 +114,19 @@ const resolvers = {
       }
 
       const myBets = await fetchBetsController.fetchBets(context.auth.userId);
-      const mappedBets = myBets.map((bet) => {
-        let ret = {
+      // Transform each bet asynchronously
+      const betPromises = myBets.map(async (bet) => {
+        const buttonId =
+          await fetchButtonIdDetailsController.fetchButtonIdDetails(
+            bet.button_id
+          );
+
+        return {
           id: bet.id,
+          betTitle: buttonId.bet_title,
+          gameTitle: buttonId.game_title,
+          gameStartTime: buttonId.game_start_time,
+          line: bet.line,
           wager: bet.wager_amount,
           timePlaced: bet.time_placed,
           totalPayout: bet.total_payout,
@@ -123,10 +134,12 @@ const resolvers = {
           orderStatus: bet.order_status,
           betStatus: bet.bet_status,
         };
-        return ret;
       });
 
-      //TODO: call out to buttonID database and pull game/event info for the bet. Add this data to mappedBets and return
+      // Wait for all promises to resolve
+      const mappedBets = await Promise.all(betPromises);
+
+      // Return the array of transformed bets
       return mappedBets;
     },
     balance: async (parent, args, context, info) => {
@@ -221,7 +234,7 @@ const resolvers = {
   },
   Subscription: {
     lineUpdate: {
-      subscribe: () => pubsub.asyncIterator([makeChannelName('LINE_UPDATE')]),
+      subscribe: () => pubsub.asyncIterator([makeChannelName("LINE_UPDATE")]),
     },
   },
 };
@@ -330,8 +343,8 @@ async function startApolloServer() {
   console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 
   // this endpoint allows for AWS health checks
-  app.get('/health', (req, res) => {
-    res.status(200).send('Okay!');
+  app.get("/health", (req, res) => {
+    res.status(200).send("Okay!");
   });
 
   const lineUpdateInteval = 1000; // 1 second

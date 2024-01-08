@@ -89,6 +89,10 @@ export const MY_BETS_QUERY = gql`
   query MyBetsQuery {
     myBets {
       id
+      betTitle
+      gameTitle
+      gameStartTime
+      line
       wager
       timePlaced
       totalPayout

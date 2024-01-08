@@ -40,6 +40,10 @@ export const typeDefs = gql`
 
   type MyBet {
     id: ID!
+    betTitle: String!
+    gameTitle: String!
+    gameStartTime: String!
+    line: Int!
     wager: Int!
     timePlaced: String! # may need to chance at some point
     totalPayout: Int

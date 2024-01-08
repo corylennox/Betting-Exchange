@@ -7,13 +7,13 @@ const Tooltip = ({ type }) => {
   return (
     <div className="relative inline-block">
       <InformationCircleIcon
-        className="h-6 w-6  stroke-sky-500"
+        className="h-5 w-5  stroke-sky-500"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       />
 
       {show && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded bg-gray-700 px-2 py-1 text-sm text-white shadow-md">
+        <div className="absolute left-full top-1/2 z-50 -translate-y-1/2 transform whitespace-nowrap rounded bg-gray-700 px-2 py-1 text-sm text-white shadow-md">
           {type === "cancelled_by_user"
             ? "Cancelled by User"
             : type === "cancelled_by_exchange"
