@@ -3,25 +3,35 @@ import { Individual } from "../datatypes/vendor/Individual";
 import { Season } from "../datatypes/vendor/Season";
 import { Team } from "../datatypes/vendor/Team";
 import vendorService from "../service/vendor";
-import {
-  League,
-  getLeagueAsString,
-} from "../bettingexchangecommon/datatypes/League";
+import { League } from "../bettingexchangecommon/datatypes/League";
+import { enumToString } from "../bettingexchangecommon/enumUtils";
+import { Conference } from "../datatypes/vendor/Conference";
+import { Division } from "../datatypes/vendor/Division";
 
 function getImageUrl(team: Team) {
   const league = League.NFL; // TODO fix this to work with any league
-  return `https://sportsbook.draftkings.com/static/logos/teams/${getLeagueAsString(
+  return `https://sportsbook.draftkings.com/static/logos/teams/${enumToString(
     league
   ).toLowerCase()}/${team.alias}.png`;
 }
 
 export class VendorController {
   seasons: Season[]; // contains games list
+  conferences: Conference[];
+  divisions: Division[];
   teams: Team[];
   individuals: Individual[];
 
-  constructor(seasons: Season[], teams: Team[], individuals: Individual[]) {
+  constructor(
+    seasons: Season[],
+    conferences: Conference[],
+    divisions: Division[],
+    teams: Team[],
+    individuals: Individual[]
+  ) {
     this.seasons = seasons;
+    this.conferences = conferences;
+    this.divisions = divisions;
     this.teams = teams;
     this.individuals = individuals;
   }
@@ -41,6 +51,28 @@ export class VendorController {
           console.log(`Added season to database: ${stringify(season)}`);
         }
       } else console.log(`Skipping adding season: ${season.vendorId}`);
+    }
+
+    for (const conference of this.conferences) {
+      if (!(await vendorService.hasConference(conference.vendorId))) {
+        if (!(await vendorService.canAddConference(conference))) {
+          return `Cannot add conference ${stringify(conference)}`;
+        } else {
+          await vendorService.addConference(conference);
+          console.log(`Added conference to database: ${stringify(conference)}`);
+        }
+      } else console.log(`Skipping adding conference: ${conference.vendorId}`);
+    }
+
+    for (const division of this.divisions) {
+      if (!(await vendorService.hasDivision(division.vendorId))) {
+        if (!(await vendorService.canAddDivision(division))) {
+          return `Cannot add division ${stringify(division)}`;
+        } else {
+          await vendorService.addDivision(division);
+          console.log(`Added division to database: ${stringify(division)}`);
+        }
+      } else console.log(`Skipping adding division: ${division.vendorId}`);
     }
 
     for (const team of this.teams) {
