@@ -2,12 +2,15 @@ import betEventInsertionDao, { InvalidId } from "../dao/betEventInsertion";
 
 import { Id } from "../bettingexchangecommon/datatypes/Id";
 import { GameBet } from "../datatypes/vendor/GameBet";
-import { League } from "../bettingexchangecommon/datatypes/League";
+import {
+  League,
+  getLeagueAsDatabaseId,
+} from "../bettingexchangecommon/datatypes/League";
 
 class BetEventInsertionService {
   async getAllGameIds(league: League): Promise<Id[]> {
     return await betEventInsertionDao.getAllGameIds(
-      (league as number).toString()
+      getLeagueAsDatabaseId(league)
     );
   }
 

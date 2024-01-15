@@ -1,11 +1,9 @@
 import db from "../bettingexchangecommon/db/db";
 
 import { Id } from "../bettingexchangecommon/datatypes/Id";
-
-export enum BetEventType {
-  GameBet = "game",
-  OutrightBet = "outright",
-}
+import { BetType } from "../bettingexchangecommon/datatypes/BetType";
+import { enumToString } from "../bettingexchangecommon/enumUtils";
+import { BetEventType } from "../bettingexchangecommon/datatypes/BetEventType";
 
 export function InvalidId() {
   return "invalidId";
@@ -38,35 +36,41 @@ class BetEventInsertionDao {
     // insert the game bet and the button ids for the game bet in one go
     const ret = await db.transaction(async (trx) => {
       try {
-        const betEventType = BetEventType.GameBet;
+        const betEventType = BetEventType.Game;
         let [spreadButtonIdA] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Spread,
           })
           .returning("id");
         let [moneyButtonIdA] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Money,
           })
           .returning("id");
         let [totalButtonIdA] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Total,
           })
           .returning("id");
         let [spreadButtonIdB] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Spread,
           })
           .returning("id");
         let [moneyButtonIdB] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Money,
           })
           .returning("id");
         let [totalButtonIdB] = await trx("button_ids")
           .insert({
             bet_event_type: betEventType,
+            bet_type: BetType.Total,
           })
           .returning("id");
 

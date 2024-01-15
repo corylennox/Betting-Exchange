@@ -12,6 +12,7 @@ export class Team {
   market: string;
   alias: string;
   individuals: Individual[];
+  divisionVendorId: Id;
 
   constructor(data: any) {
     this.vendorId = data.id;
@@ -21,6 +22,7 @@ export class Team {
     this.individuals = data.players.map(
       (player: any) => new Individual(player)
     );
+    this.divisionVendorId = data.division.id;
   }
 
   static async fetchTeam(apiKey: string, teamId: Id): Promise<Team> {

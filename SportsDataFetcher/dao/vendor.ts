@@ -55,7 +55,42 @@ class VendorDao {
         throw error; // Rethrow the error to stop script execution
       });
 
-    console.log(`Ret: ${JSON.stringify(ret)}`);
+    return ret ? ret["id"] : InvalidId();
+  }
+
+  async getConferenceId(vendorId: Id) {
+    let [ret] = await db("conferences")
+      .where("vendor_id", vendorId)
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getConferenceId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
+
+    return ret ? ret["id"] : InvalidId();
+  }
+
+  async getDivisionId(vendorId: Id) {
+    let [ret] = await db("divisions")
+      .where("vendor_id", vendorId)
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getDivisionId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
+
+    return ret ? ret["id"] : InvalidId();
+  }
+
+  async getLeagueId(league_id: Id) {
+    let [ret] = await db("leagues")
+      .where("id", league_id)
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in getLeagueId():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
+
     return ret ? ret["id"] : InvalidId();
   }
 
@@ -87,7 +122,8 @@ class VendorDao {
     market: string,
     alias: string,
     image_url: string,
-    vendor_id: Id
+    vendor_id: Id,
+    division_id: Id
   ) {
     let [ret] = await db("teams")
       .insert({
@@ -96,6 +132,7 @@ class VendorDao {
         alias: alias,
         image_url: image_url,
         vendor_id: vendor_id,
+        division_id: division_id,
       })
       .returning("id")
       .catch((error) => {
@@ -147,6 +184,40 @@ class VendorDao {
 
     const seasonId = ret["id"];
     return seasonId;
+  }
+
+  async addConference(league_id: Id, name: string, vendor_id: Id) {
+    let [ret] = await db("conferences")
+      .insert({
+        league_id: league_id,
+        name: name,
+        vendor_id: vendor_id,
+      })
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addConference():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
+
+    const conferenceId = ret["id"];
+    return conferenceId;
+  }
+
+  async addDivision(name: string, conference_id: Id, vendor_id: Id) {
+    let [ret] = await db("divisions")
+      .insert({
+        name: name,
+        conference_id: conference_id,
+        vendor_id: vendor_id,
+      })
+      .returning("id")
+      .catch((error) => {
+        console.error("Error in addDivision():", error);
+        throw error; // Rethrow the error to stop script execution
+      });
+
+    const divisionId = ret["id"];
+    return divisionId;
   }
 }
 
