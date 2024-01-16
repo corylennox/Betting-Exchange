@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import logObject from "../../src/logObject";
+import logObject from "../../bettingexchangecommon/src/logObject";
 
 /**
  * An Division object that contains the necessary data to insert the Division into the database

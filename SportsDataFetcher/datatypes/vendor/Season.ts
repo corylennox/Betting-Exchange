@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
 import { Game } from "./Game";
-import logObject from "../../src/logObject";
+import logObject from "../../bettingexchangecommon/src/logObject";
 import {
   League,
   getLeagueAsDatabaseId,

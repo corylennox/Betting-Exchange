@@ -1,7 +1,10 @@
 import axios from "axios";
 import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import { League, getLeagueAsDatabaseId } from "../../bettingexchangecommon/datatypes/League";
-import logObject from "../../src/logObject";
+import {
+  League,
+  getLeagueAsDatabaseId,
+} from "../../bettingexchangecommon/datatypes/League";
+import logObject from "../../bettingexchangecommon/src/logObject";
 import { enumToNumber } from "../../bettingexchangecommon/enumUtils";
 
 /**

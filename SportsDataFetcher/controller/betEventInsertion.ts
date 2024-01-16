@@ -1,4 +1,4 @@
-import stringify from "../src/stringify";
+import stringify from "../bettingexchangecommon/src/stringify";
 import betEventInsertionService from "../service/betEventInsertion";
 import { League } from "../bettingexchangecommon/datatypes/League";
 import { GameBet } from "../datatypes/vendor/GameBet";

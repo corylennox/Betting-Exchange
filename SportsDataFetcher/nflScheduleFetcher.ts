@@ -2,7 +2,7 @@ require("dotenv").config(); // loads environment variables from .env file
 import { Game } from "./datatypes/vendor/Game";
 import { Id } from "./bettingexchangecommon/datatypes/Id";
 import { Individual } from "./datatypes/vendor/Individual";
-import logObject from "./src/logObject";
+import logObject from "./bettingexchangecommon/src/logObject";
 import { Season } from "./datatypes/vendor/Season";
 import { Team } from "./datatypes/vendor/Team";
 import { VendorController } from "./controller/vendor";

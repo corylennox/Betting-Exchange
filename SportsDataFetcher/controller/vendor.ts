@@ -1,4 +1,4 @@
-import stringify from "../src/stringify";
+import stringify from "../bettingexchangecommon/src/stringify";
 import { Individual } from "../datatypes/vendor/Individual";
 import { Season } from "../datatypes/vendor/Season";
 import { Team } from "../datatypes/vendor/Team";
