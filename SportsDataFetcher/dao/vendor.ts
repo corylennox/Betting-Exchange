@@ -98,7 +98,8 @@ class VendorDao {
     display_name: string,
     abbreviated_name: string,
     date_of_birth: Date,
-    vendor_id: Id
+    vendor_id: Id,
+    league_id: Id
   ) {
     let [ret] = await db("individuals")
       .insert({
@@ -106,6 +107,7 @@ class VendorDao {
         abbreviated_name: abbreviated_name,
         date_of_birth: date_of_birth,
         vendor_id: vendor_id,
+        league_id: league_id,
       })
       .returning("id")
       .catch((error) => {

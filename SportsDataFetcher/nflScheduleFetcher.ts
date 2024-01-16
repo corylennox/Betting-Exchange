@@ -60,7 +60,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
       divisions.set(division.vendorId, division);
 
       await sleep(1000);
-      const team = await Team.fetchTeam(apiKey, teamVendorId);
+      const team = await Team.fetchTeam(apiKey, teamVendorId, League.NFL);
       console.log("Formatted team data:");
       logObject(team);
       teams.push(team);

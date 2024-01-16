@@ -94,7 +94,10 @@ class VendorService {
   }
 
   async canAddIndividual(individual: Individual) {
-    return !(await this.hasIndividual(individual.vendorId));
+    return (
+      (await this.hasLeague(individual.leagueId)) &&
+      !(await this.hasIndividual(individual.vendorId))
+    );
   }
 
   async canAddTeam(team: Team) {
@@ -139,7 +142,8 @@ class VendorService {
       individual.displayName,
       individual.abbreviatedName,
       individual.dateOfBirth,
-      individual.vendorId
+      individual.vendorId,
+      individual.leagueId
     );
   }
 
