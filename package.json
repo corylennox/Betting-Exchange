@@ -21,6 +21,8 @@
     "test-common": "cd Common && npm test",
     "fetch-sports-data": "cd SportsDataFetcher && npm run fetch-sports-data",
     "insert-bet-events": "cd SportsDataFetcher && npm run insert-bet-events",
+    "psql": "npx dotenv-run-script _psql",
+    "_psql": "PGPASSWORD=$PG_PASSWORD psql -h $PG_HOST -p $PG_PORT -U $PG_USER -d $PG_DATABASE",
     "ssh-aws": "npx dotenv-run-script _ssh-aws",
     "_ssh-aws": "ssh -i $AWS_KEY_PATH $AWS_USER@$AWS_HOST",
     "pm2-all": "pm2 start npm --name \"server\" -- run server && pm2 start npm --name \"client\" -- run client"
