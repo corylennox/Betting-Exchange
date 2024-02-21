@@ -4,6 +4,7 @@ import { Id } from "../bettingexchangecommon/datatypes/Id";
 import { BetType } from "../bettingexchangecommon/datatypes/BetType";
 import { enumToString } from "../bettingexchangecommon/enumUtils";
 import { BetEventType } from "../bettingexchangecommon/datatypes/BetEventType";
+import { ContenderType } from "../bettingexchangecommon/datatypes/ContenderType";
 
 export function InvalidId() {
   return "invalidId";
@@ -111,6 +112,59 @@ class BetEventInsertionDao {
         // Rollback the transaction in case of an error
         await trx.rollback();
         console.error("Error in addGameBetEvent()", error);
+        return false;
+      }
+    });
+    return ret ? ret : InvalidId();
+  }
+
+  // insert the outright bet and the outright bet choices for the bet in one go
+  async addOutrightBetEvent(
+    bet_title: string,
+    contender_ids: Id[],
+    contender_type: ContenderType,
+    bet_event_type: BetEventType,
+    scheduled_completion_time: Date,
+    league_id: Id,
+    symbol: Id
+  ) {
+    const ret = await db.transaction(async (trx) => {
+      try {
+        let outright_bet_choice_ids: Id[] = [];
+        for (const contender_id of contender_ids) {
+          let [button_id] = await trx("button_ids")
+            .insert({
+              bet_event_type: bet_event_type,
+              bet_type: BetType.Outright,
+            })
+            .returning("id");
+          button_id = button_id["id"];
+          let [outrightBetChoiceId] = await trx("outright_bet_choices")
+            .insert({
+              contender_id: contender_id,
+              contender_type: contender_type,
+              button_id: button_id,
+            })
+            .returning("id");
+          outrightBetChoiceId = outrightBetChoiceId["id"];
+          outright_bet_choice_ids.push(outrightBetChoiceId);
+        }
+        let [outrightBetId] = await trx("outright_bets")
+          .insert({
+            bet_title: bet_title,
+            outright_bet_choice_ids: outright_bet_choice_ids,
+            scheduled_completion_time: scheduled_completion_time,
+            league_id: league_id,
+            symbol: symbol,
+          })
+          .returning("id");
+        outrightBetId = outrightBetId["id"];
+        await trx.commit();
+        return outrightBetId;
+      } catch (error) {
+        // Rollback the transaction in case of an error
+        await trx.rollback();
+        console.error("Error in addOutrightBetEvent()", error);
         return false;
       }
     });
