@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteBetsAction } from "../Actions";
 import PromptButton from "./PromptButton";
 import { convertToPriceString } from "./BetslipUtils";
-import { getWinAfterCommission } from "bettingexchangecommon";
+import { getWinAfterCommission } from "@openbook/common/wagerWinUtils";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@apollo/client";
 import { SUBMIT_BETSLIP_MUTATION } from "../GraphQL/Mutations";
-
 
 export default function BetslipSubmission() {
   const [submitBetslip] = useMutation(SUBMIT_BETSLIP_MUTATION);
@@ -37,31 +36,27 @@ export default function BetslipSubmission() {
     let submittedBetsToDelete = [];
     let input = [];
     toggledBets.forEach((toggledBet) => {
-
-      if(toggledBets.get(toggledBet.betInfo.buttonId).wagerInteger > 0)
-      {
+      if (toggledBets.get(toggledBet.betInfo.buttonId).wagerInteger > 0) {
         input.push({
-          wagerAmount: toggledBets.get(toggledBet.betInfo.buttonId).wagerInteger,
-          line: linesContainer.get(toggledBet.betInfo.buttonId).value * 10, 
+          wagerAmount: toggledBets.get(toggledBet.betInfo.buttonId)
+            .wagerInteger,
+          line: linesContainer.get(toggledBet.betInfo.buttonId).value * 10,
           buttonId: toggledBet.betInfo.buttonId,
         });
 
         submittedBetsToDelete.push(toggledBet.betInfo.buttonId);
       }
-      
-
-      
     });
 
-   let test = await submitBetslip({
+    let test = await submitBetslip({
       variables: {
         input: input,
       },
     });
 
-    test.data.submitBetslip.returnedButtonIds.forEach(buttonId => {
+    test.data.submitBetslip.returnedButtonIds.forEach((buttonId) => {
       console.log(`Successfully submitted bet for buttonId: ${buttonId}`);
-    })
+    });
 
     //TODO: verify bets were successfully placed before deleting
     dispatch(deleteBetsAction(submittedBetsToDelete));

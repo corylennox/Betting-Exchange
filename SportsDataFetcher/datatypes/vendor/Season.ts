@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common/datatypes/Id";
 import { Game } from "./Game";
-import logObject from "../../bettingexchangecommon/src/logObject";
+import logObject from "@openbook/common/src/logObject";
 import {
   League,
   getLeagueAsDatabaseId,
-} from "../../bettingexchangecommon/datatypes/League";
+} from "@openbook/common/datatypes/League";
 
 /**
  * An Season object that contains the necessary data to insert the Season into the database

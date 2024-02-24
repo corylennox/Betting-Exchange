@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common/datatypes/Id";
 import { Individual } from "./Individual";
-import logObject from "../../bettingexchangecommon/src/logObject";
-import { League } from "../../bettingexchangecommon/datatypes/League";
+import logObject from "@openbook/common/src/logObject";
+import { League } from "@openbook/common/datatypes/League";
 
 /**
  * An Team object that contains the necessary data to insert the Team into the database

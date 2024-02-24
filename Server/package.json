@@ -44,7 +44,8 @@
     "pg": "^8.8.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
-    "ws": "^8.10.0"
+    "ws": "^8.10.0",
+    "@openbook/common": "file:../Common"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

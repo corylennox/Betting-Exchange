@@ -1,10 +1,10 @@
-import db from "../bettingexchangecommon/db/db";
+import db from "@openbook/common/db/db";
 
-import { Id } from "../bettingexchangecommon/datatypes/Id";
-import { BetType } from "../bettingexchangecommon/datatypes/BetType";
-import { enumToString } from "../bettingexchangecommon/enumUtils";
-import { BetEventType } from "../bettingexchangecommon/datatypes/BetEventType";
-import { ContenderType } from "../bettingexchangecommon/datatypes/ContenderType";
+import { Id } from "@openbook/common/datatypes/Id";
+import { BetType } from "@openbook/common/datatypes/BetType";
+import { enumToString } from "@openbook/common/enumUtils";
+import { BetEventType } from "@openbook/common/datatypes/BetEventType";
+import { ContenderType } from "@openbook/common/datatypes/ContenderType";
 
 export function InvalidId() {
   return "invalidId";

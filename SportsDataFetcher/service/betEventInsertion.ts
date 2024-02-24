@@ -1,15 +1,15 @@
 import betEventInsertionDao, { InvalidId } from "../dao/betEventInsertion";
 
-import { Id } from "../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common/datatypes/Id";
 import { GameBet } from "../datatypes/vendor/GameBet";
 import {
   League,
   getLeagueAsDatabaseId,
-} from "../bettingexchangecommon/datatypes/League";
-import { Individual } from "../bettingexchangecommon/datatypes/db/Individual";
-import { Team } from "../bettingexchangecommon/datatypes/db/Team";
-import { BetEventType } from "../bettingexchangecommon/datatypes/BetEventType";
-import { ContenderType } from "../bettingexchangecommon/datatypes/ContenderType";
+} from "@openbook/common/datatypes/League";
+import { Individual } from "@openbook/common/datatypes/db/Individual";
+import { Team } from "@openbook/common/datatypes/db/Team";
+import { BetEventType } from "@openbook/common/datatypes/BetEventType";
+import { ContenderType } from "@openbook/common/datatypes/ContenderType";
 
 class BetEventInsertionService {
   async getAllGameIds(league: League): Promise<Id[]> {

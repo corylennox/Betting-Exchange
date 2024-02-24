@@ -1,10 +1,10 @@
 require("dotenv").config(); // loads environment variables from .env file
-import db from "./bettingexchangecommon/db/db";
-import { League } from "./bettingexchangecommon/datatypes/League";
-import { LeagueStateFetcherController } from "./bettingexchangecommon/controller/leagueStateFetcher";
+import db from "@openbook/common/db/db";
+import { League } from "@openbook/common/datatypes/League";
+import { LeagueStateFetcherController } from "@openbook/common/controller/leagueStateFetcher";
 import { BetEventInsertionController } from "./controller/betEventInsertion";
-import { LeagueState } from "./bettingexchangecommon/datatypes/db/LeagueState";
-import logObject from "./bettingexchangecommon/src/logObject";
+import { LeagueState } from "@openbook/common/datatypes/db/LeagueState";
+import logObject from "@openbook/common/src/logObject";
 
 // Usage example:
 (async () => {

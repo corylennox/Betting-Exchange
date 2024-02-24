@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { getEnvironmentVariable } from "bettingexchangecommon/environmentVariable";
+import { getEnvironmentVariable } from "@openbook/common/environmentVariable";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {

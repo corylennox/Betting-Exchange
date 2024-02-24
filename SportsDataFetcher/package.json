@@ -14,7 +14,8 @@
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@openbook/common": "file:../Common"
   },
   "devDependencies": {
     "@types/node": "^20.8.8"

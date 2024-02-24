@@ -1,5 +1,5 @@
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import { ContenderType } from "../../bettingexchangecommon/datatypes/ContenderType";
+import { Id } from "@openbook/common/datatypes/Id";
+import { ContenderType } from "@openbook/common/datatypes/ContenderType";
 
 export class OutrightBetChoice {
   contenderId: Id;
