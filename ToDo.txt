@@ -44,8 +44,6 @@ Together
 
 - have at least 1 market maker providing odds to the server. Create a "fake" market maker that pulls odds from the-odds-api and sends those odds to our server.
 
-- Switch to AWS hosting the database
-
 - make tailwind theme
 - When we update the css, color scheme, and branding for the website, don't forget about updating the Auth0 branding in the user dashboard
 
