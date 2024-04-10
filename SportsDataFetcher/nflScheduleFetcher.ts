@@ -29,7 +29,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
 // Usage example:
 (async () => {
   try {
-    const apiKey: string = process.env.SPORTSRADAR_NFL_API_KEY;
+    const apiKey: string = process.env.SPORTSRADAR_API_KEY;
     const currentSeason = await Season.fetchCurrentSeason(apiKey, League.NFL);
     console.log("Formatted season data:");
     logObject(currentSeason);
@@ -40,7 +40,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
     let teams: Team[] = [];
     let individuals: Individual[] = [];
     for (const teamVendorId of teamVendorIds) {
-      await sleep(1000);
+      await sleep(3000);
       const conference: Conference = await Conference.fetchConference(
         apiKey,
         teamVendorId,
@@ -50,7 +50,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
       logObject(conference);
       conferences.set(conference.vendorId, conference);
 
-      await sleep(1000);
+      await sleep(3000);
       const division: Division = await Division.fetchDivision(
         apiKey,
         teamVendorId
@@ -59,7 +59,7 @@ function getTeamVendorIds(season: Season): Set<Id> {
       logObject(division);
       divisions.set(division.vendorId, division);
 
-      await sleep(1000);
+      await sleep(3000);
       const team = await Team.fetchTeam(apiKey, teamVendorId, League.NFL);
       console.log("Formatted team data:");
       logObject(team);
