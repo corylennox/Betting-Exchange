@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteBetsAction, setWagerAndWinAction } from "../Actions";
 import { parseMap } from "../utils";
 import { getDisplayStr } from "../utils";
-import {
-  determineWager,
-  determineWin,
-} from "bettingexchangecommon/wagerWinUtils";
+import { determineWager, determineWin } from "@openbook/common/wagerWinUtils";
 import {
   isValidWagerOrWin,
   convertToIntegerScale,

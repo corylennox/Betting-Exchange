@@ -1,6 +1,6 @@
-import db from "../bettingexchangecommon/db/db";
+import { db } from "@openbook/common";
 
-import { Id } from "../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common";
 
 export function InvalidId() {
   return "invalidId";

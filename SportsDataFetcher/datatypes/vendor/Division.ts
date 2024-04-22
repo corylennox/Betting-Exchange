@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import logObject from "../../bettingexchangecommon/src/logObject";
+import { Id } from "@openbook/common";
+import { logObject } from "@openbook/common";
 
 /**
  * An Division object that contains the necessary data to insert the Division into the database

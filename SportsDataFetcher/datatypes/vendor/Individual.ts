@@ -1,6 +1,6 @@
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import { League } from "../../bettingexchangecommon/datatypes/League";
-import { enumToNumber } from "../../bettingexchangecommon/enumUtils";
+import { Id } from "@openbook/common";
+import { League } from "@openbook/common";
+import { enumToNumber } from "@openbook/common";
 
 /**
  * An Individual object that contains the necessary data to insert the Individual into the database

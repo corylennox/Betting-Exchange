@@ -1,10 +1,10 @@
-import stringify from "../bettingexchangecommon/src/stringify";
+import { stringify } from "@openbook/common";
 import { Individual } from "../datatypes/vendor/Individual";
 import { Season } from "../datatypes/vendor/Season";
 import { Team } from "../datatypes/vendor/Team";
 import vendorService from "../service/vendor";
-import { League } from "../bettingexchangecommon/datatypes/League";
-import { enumToString } from "../bettingexchangecommon/enumUtils";
+import { League } from "@openbook/common";
+import { enumToString } from "@openbook/common";
 import { Conference } from "../datatypes/vendor/Conference";
 import { Division } from "../datatypes/vendor/Division";
 

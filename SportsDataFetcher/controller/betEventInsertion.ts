@@ -1,8 +1,8 @@
-import stringify from "../bettingexchangecommon/src/stringify";
+import { stringify } from "@openbook/common";
 import betEventInsertionService from "../service/betEventInsertion";
-import { League } from "../bettingexchangecommon/datatypes/League";
+import { League } from "@openbook/common";
 import { GameBet } from "../datatypes/vendor/GameBet";
-import { Id } from "../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common";
 
 export class BetEventInsertionController {
   league: League;

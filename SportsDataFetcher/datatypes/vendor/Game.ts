@@ -1,4 +1,4 @@
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common";
 
 /**
  * A Game object that contains the necessary data to insert the Game into the database

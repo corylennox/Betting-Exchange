@@ -25,7 +25,8 @@
     "react-spring": "^9.7.3",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@openbook/common": "file:../Common"
   },
   "scripts": {
     "_start": "BROWSER=$BROWSER npm start",

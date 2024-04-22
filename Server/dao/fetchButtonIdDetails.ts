@@ -1,4 +1,4 @@
-import db from "../bettingexchangecommon/db/db";
+import { db } from "@openbook/common";
 
 class FetchButtonIdDetailsDAO {
   async fetchButtonIdDetails(buttonId) {

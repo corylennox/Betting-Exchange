@@ -5,6 +5,9 @@ node_modules
 .pnp
 .pnp.js
 
+# development
+dist
+
 # testing
 coverage
 
@@ -15,7 +18,6 @@ build
 certificates
 
 # misc
-./Server/bettingexchangecommon
 .vscode
 .DS_Store
 .env
