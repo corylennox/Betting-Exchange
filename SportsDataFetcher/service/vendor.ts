@@ -1,12 +1,12 @@
 import vendorDao, { InvalidId } from "../dao/vendor";
 
-import { Id } from "../bettingexchangecommon/datatypes/Id";
+import { Id } from "@openbook/common";
 import { Game } from "../datatypes/vendor/Game";
 import { Team } from "../datatypes/vendor/Team";
 import { Season } from "../datatypes/vendor/Season";
 import { Individual } from "../datatypes/vendor/Individual";
-import { enumToNumber } from "../bettingexchangecommon/enumUtils";
-import { League } from "../bettingexchangecommon/datatypes/League";
+import { enumToNumber } from "@openbook/common";
+import { League } from "@openbook/common";
 import { Division } from "../datatypes/vendor/Division";
 import { Conference } from "../datatypes/vendor/Conference";
 

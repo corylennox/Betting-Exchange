@@ -1,11 +1,8 @@
 import axios from "axios";
-import { Id } from "../../bettingexchangecommon/datatypes/Id";
-import {
-  League,
-  getLeagueAsDatabaseId,
-} from "../../bettingexchangecommon/datatypes/League";
-import logObject from "../../bettingexchangecommon/src/logObject";
-import { enumToNumber } from "../../bettingexchangecommon/enumUtils";
+import { Id } from "@openbook/common";
+import { League, getLeagueAsDatabaseId } from "@openbook/common";
+import { logObject } from "@openbook/common";
+import { enumToNumber } from "@openbook/common";
 
 /**
  * An Conference object that contains the necessary data to insert the Conference into the database

@@ -7,6 +7,7 @@
   },
   "scripts": {
     "all": "run-p server client",
+    "common": "cd Common && npm run compile && cd ../",
     "client": "cd Client && npx dotenv-run-script _start",
     "server": "cd Server && npm start",
     "setup": "npm install --save-dev run-script-os && run-script-os",

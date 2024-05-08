@@ -2,8 +2,10 @@
   "name": "bettingexchangecommon",
   "version": "1.0.0",
   "description": "",
-  "main": "wagerWinUtils.js",
+  "main": "index.js",
   "scripts": {
+    "clean": "tsc -b --clean",
+    "compile": "npm run-script clean && tsc",
     "test": "jest"
   },
   "author": "BettingExchange",
@@ -14,6 +16,7 @@
   "dependencies": {
     "@types/knex": "^0.16.1",
     "knex": "^3.0.1",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "typescript": "^5.3.3"
   }
 }

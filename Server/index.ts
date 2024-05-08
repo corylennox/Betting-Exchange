@@ -35,7 +35,7 @@ import fs from "fs";
 import {
   getEnvironmentVariable,
   getOptionalEnvironmentVariable,
-} from "./bettingexchangecommon/environmentVariable";
+} from "@openbook/common";
 
 const httpsEnvironmentVariable = getOptionalEnvironmentVariable("HTTPS");
 const useHttps =

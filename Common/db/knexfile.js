@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" }); //load env vars from .env file
+require("dotenv").config({ path: ".env" }); //load env vars from .env file
 
 const fs = require("fs");
 

@@ -1,4 +1,31 @@
-V1:
+MVP for investors (fewer requirements than V1):
+- Technical requirements:
+  - Get real-world bets available on the frontend
+  - Clean up UI
+  - Go through the TODOs for V1 and figure out which are required for MVP
+- Cost estimations:
+  - Legal fees search
+    - applying for a license per state
+    - the work entailed to apply to legally operate
+  - Insurance for user payout
+  - Geolocation verification fees
+  - Identification verification fees
+  - Do we have to generate tax forms for users? (e.g., 1099)
+  - Regular Operational costs
+    - AWS
+    - Redis
+- Determine a target state(s) to release in
+- Pitch for where we're headed
+  - Who is our target audience?
+  - Do we start with a website or an ios app?
+  - What is our edge over the competitors?
+    - Market makers provide industry support
+    - Better user experience:
+      - Lower fees
+      - Normal mode is intuitive to new bettors
+      - Pro mode feels like investing
+
+V1 (allowing friends and family to bet - user testing):
 -Any remaining unfilled wager will become a limit order at the top of the book.
   If the bet is not filled, the order will rest on the book
   If the bet is filled, the user will be notified and the bet will be added to their My Bets page. 

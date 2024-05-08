@@ -5,7 +5,7 @@ import { RestingType } from '../src/datatypes/RestingType';
 import { Match } from '../src/datatypes/Match';
 import { UserSubmittedBet, UserSubmittedBetResult } from '../src/datatypes/UserSubmittedBet';
 import matchingEngineController from './matchingEngine';
-import {determineWin, getWinAfterCommission, getCommissionFromWager } from "../bettingexchangecommon/wagerWinUtils";
+import {determineWin, getWinAfterCommission, getCommissionFromWager } from "@openbook/common";
 import { BetSubmissionStatusDbEnum } from '../dao/betSubmission';
 import { assert } from 'console';
 import fillController from './fillSubmission';
