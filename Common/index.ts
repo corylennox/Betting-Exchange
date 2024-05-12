@@ -10,7 +10,7 @@ export { Team } from "./datatypes/db/Team";
 export { BetType } from "./datatypes/BetType";
 export { BetEventType } from "./datatypes/BetEventType";
 export { ContenderType } from "./datatypes/ContenderType";
-export { enumToString } from "./enumUtils";
+export { enumToString, enumToNumber } from "./enumUtils";
 export {
   getEnvironmentVariable,
   getOptionalEnvironmentVariable,
