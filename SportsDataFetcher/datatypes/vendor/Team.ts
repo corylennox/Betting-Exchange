@@ -1,8 +1,8 @@
-import axios from "axios";
 import { Id } from "@openbook/common";
 import { Individual } from "./Individual";
 import { logObject } from "@openbook/common";
 import { League } from "@openbook/common";
+import { request } from "src/RequestCache";
 
 /**
  * An Team object that contains the necessary data to insert the Team into the database
@@ -32,7 +32,7 @@ export class Team {
     league: League
   ): Promise<Team> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/teams/${teamId}/profile.json?api_key=${apiKey}`;
-    const response = await axios.get(url);
+    const response = await request(url);
     console.log("Raw profile data:");
     logObject(response.data);
     console.log("\n\n\n");

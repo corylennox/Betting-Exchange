@@ -1,8 +1,8 @@
-import axios from "axios";
 import { Id } from "@openbook/common";
 import { Game } from "./Game";
 import { logObject } from "@openbook/common";
 import { League, getLeagueAsDatabaseId } from "@openbook/common";
+import { request } from "src/RequestCache";
 
 /**
  * An Season object that contains the necessary data to insert the Season into the database
@@ -27,7 +27,7 @@ export class Season {
     league: League
   ): Promise<Season> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/games/2023/reg/schedule.json?api_key=${apiKey}`;
-    const response = await axios.get(url);
+    const response = await request(url);
     console.log("Raw current season data:");
     logObject(response.data);
     console.log("\n\n\n");

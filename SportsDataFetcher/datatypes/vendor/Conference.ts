@@ -1,8 +1,8 @@
-import axios from "axios";
 import { Id } from "@openbook/common";
 import { League, getLeagueAsDatabaseId } from "@openbook/common";
 import { logObject } from "@openbook/common";
 import { enumToNumber } from "@openbook/common";
+import { request } from "src/RequestCache";
 
 /**
  * An Conference object that contains the necessary data to insert the Conference into the database
@@ -24,7 +24,7 @@ export class Conference {
     league: League
   ): Promise<Conference> {
     const url = `https://api.sportradar.us/nfl/official/trial/v7/en/teams/${teamId}/profile.json?api_key=${apiKey}`;
-    const response = await axios.get(url);
+    const response = await request(url);
     console.log("Raw conference data:");
     logObject(response.data);
     console.log("\n\n\n");
