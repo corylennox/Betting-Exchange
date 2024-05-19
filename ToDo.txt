@@ -55,6 +55,17 @@ Emerson
 - Install and setup morgan package
 - Remove localhost from Auth0 redirect urls and from cors?
 
+Nick
+- Populate frontend (nfl sportpane) with real games from database
+  - Server should generate a LeagueState object from database to represent all known information about NFL league
+    - use the leagueStateFetcher in the controller folder to do this. You can find an example of this being done already in the code
+  - Server should figure out which games to display on frontend
+    - Only display games with today's date as a start time (will implement some smarter API in the future to figure out which games are not yet completed)
+    - Sort games by scheduled start time (ascending)
+  - Use existing graphql response object to send the games to the frontend when the frontend makes a request
+    - Feel free to modify the response object if needed
+  - Leave the code flexible for things that are likely to change (e.g., the order in which games are displayed)
+
 Together
 - Automate db backups with scripts
 - Betslip submission errors (e.g. line on submitted bet differs from line on backend) should redirect user to MyBets page
