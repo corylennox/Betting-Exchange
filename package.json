@@ -13,7 +13,7 @@
     "setup": "npm install --save-dev run-script-os && run-script-os",
     "setup:windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./win_setup.ps1",
     "setup:nix": "sh setup.sh",
-    "new-migration": "cd Common/db && npx knex migrate:make init",
+    "new-migration": "cd Common && npx knex migrate:make init --knexfile db/knexfile.js",
     "migrate": "cd Common && npx knex migrate:latest --knexfile db/knexfile.js",
     "rollback": "cd Common && npx knex migrate:rollback --knexfile db/knexfile.js",
     "test": "run-p test-client test-server test-common",
