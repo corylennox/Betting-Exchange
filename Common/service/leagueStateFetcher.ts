@@ -77,10 +77,7 @@ class LeagueStateFetcherService {
     );
     const gameBet: GameBet = await this.#createGameBet(gameId);
 
-    const outrightBets: OutrightBet[] = await this.#createOutrightBetsForEvent(
-      gameId,
-      EventType.Game
-    );
+    const outrightBets: OutrightBet[] = [];
     return new Game(
       gameId,
       contenderA,
@@ -163,9 +160,9 @@ class LeagueStateFetcherService {
     return outrightBetChoices;
   }
 
-  async #createOutrightBetsForEvent(eventId: Id, eventType: EventType) {
+  async #createOutrightBetsForEvent(eventId: Id, eventTypes: Array<EventType>) {
     const outrightBetsResponse =
-      await leagueStateFetcherDao.getOutrightBetsForEvent(eventId, eventType);
+      await leagueStateFetcherDao.getOutrightBetsForEvent(eventId, eventTypes);
 
     let outrightBets: OutrightBet[] = [];
     for (const outrightBetResponse of outrightBetsResponse) {
@@ -179,9 +176,7 @@ class LeagueStateFetcherService {
           outrightBetResponse["id"],
           outrightBetResponse["title"],
           outrightBetChoices,
-          outrightBetResponse["scheduled_completion_time"],
           outrightBetResponse["contender_type"],
-          outrightBetResponse["symbol"],
           outrightBetResponse["event_id"],
           outrightBetResponse["event_type"]
         )
@@ -204,7 +199,12 @@ class LeagueStateFetcherService {
 
     const outrightBets: OutrightBet[] = await this.#createOutrightBetsForEvent(
       seasonId,
-      EventType.Season
+      [
+        EventType.DivisionWinner,
+        EventType.ConferenceWinner,
+        EventType.PostseasonChampion,
+        EventType.LeagueMvp,
+      ]
     );
 
     return new Season(seasonId, seasonName, games, outrightBets);

@@ -77,12 +77,12 @@ class LeagueStateFetcherDao {
     return outrightBetChoices;
   }
 
-  async getOutrightBetsForEvent(event_id: Id, event_type: string) {
+  async getOutrightBetsForEvent(event_id: Id, event_types: Array<string>) {
     const outrightBets = await db
       .select("*")
       .from("outright_bets")
       .where("event_id", event_id)
-      .where("event_type", event_type);
+      .whereIn("event_type", event_types);
     return outrightBets;
   }
 
