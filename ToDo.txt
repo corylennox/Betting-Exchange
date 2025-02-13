@@ -126,3 +126,4 @@ Potential names:
 - Novel (play on the word SportsBOOK)
 - Native
 - OpenBook (openbook.gg)
+- Starter
